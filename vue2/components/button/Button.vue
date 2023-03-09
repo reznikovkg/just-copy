@@ -1,5 +1,5 @@
 <template>
-    <button class="btn" :class="['btn--' + type, 'btn--' + size]" >
+    <button class="btn" :class="['btn--' + type, 'btn--' + size]" @click="() => actionClick()">
         <slot>Button</slot>
     </button>
 </template>

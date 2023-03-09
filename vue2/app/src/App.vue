@@ -34,7 +34,7 @@
 
 <script>
 import ButtonComponent from './../../components/button/Button.vue'
-import InputComponent from './../../components/input/Inp.vue'
+import InputComponent from './../../components/input/Input.vue'
 
 export default {
   name: 'App',
