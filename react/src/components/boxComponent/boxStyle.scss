@@ -1,0 +1,46 @@
+.box {
+    position: relative;
+    border-top: 1px solid #ced0d7;
+}
+
+.box:last-child {
+    border-bottom: 1px solid #ced0d7;
+}
+
+.box__label {
+    position: relative;
+}
+
+.box__content {
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.accordion__icon {
+    margin-left: auto;
+    transition: transform 0.4s ease;
+}
+
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+
+p {
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.box__sign {
+    padding-left: 100px;
+    padding-right: 10px;
+}
+
+.box__panel {
+    display: flex;
+    height: 40px;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+}
