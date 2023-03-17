@@ -29,13 +29,17 @@
       <InputComponent v-model="text" />
       {{ text }}
     </div>
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+      <router-link to="/evseenko"> Evseenko Page</router-link>
+    </nav>
+    <router-view/>
   </div>
 </template>
-
 <script>
 import ButtonComponent from './../../components/button/Button.vue'
 import InputComponent from './../../components/input/Input.vue'
-
 export default {
   name: 'App',
   components: {
@@ -54,6 +58,25 @@ export default {
   }
 }
 </script>
+<style lang="less">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-<style>
+nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
 </style>
