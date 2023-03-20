@@ -13,7 +13,7 @@
       :class="buttonClass"
       @mouseover="() => setTextHoverIfNotOpen()"
       @mouseleave="() => unHoverText()"
-      @click="() => openAndHideSelect()"
+      @click="() => selectButtonClick()"
     >
       {{ buttonText }}
     </div>
@@ -170,7 +170,7 @@ export default {
     },
 
     selectFocusOut() {
-      this.isOpen = false;
+      this.hideSelect();
       this.isFocused = false;
     },
 
@@ -186,8 +186,23 @@ export default {
       this.highlightedOption = option[this.optionKey];
     },
 
-    openAndHideSelect() {
-      this.isOpen = !this.isOpen;
+    selectButtonClick(){
+      if(this.isOpen){
+        this.hideSelect();
+      }
+      else{
+        this.openSelect();
+      }
+    },
+
+    openSelect(){
+      this.isOpen = true;
+      this.$emit("visibleChange", true);
+    },
+
+    hideSelect(){
+      this.isOpen = false;
+      this.$emit("visibleChange", false);
     },
 
     onOptionClick(option) {
@@ -203,7 +218,7 @@ export default {
       }
 
       if (this.closeOnSelect) {
-        this.isOpen = false;
+        this.hideSelect();
       }
 
       this.$emit("onSelectedOptionChanged", result);
