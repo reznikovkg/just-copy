@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-
 Vue.use(Vuex)
 
 export default {
   namespaced: true,
   state: {
+    lastSelectedBerry:"",
     berries: [
         {
           name: "Голубика",
@@ -51,19 +51,23 @@ export default {
       ]
   },
   getters: {
-    getBerries: (state) => state.berries
+    getBerries: (state) => state.berries,
+    getLastSelectedBerry: (state) => state.lastSelectedBerry
   },
   mutations: {
     addBerry: (state, payload) => {
       state.berries.push(payload)
+    },
+    setLastSelectedBerry: (state, payload) => {
+      state.lastSelectedBerry = payload
     }
   },
   actions: {
     addBerry: ({ commit }, payload) => {
       commit('addBerry', payload)
+    },
+    setLastSelectedBerry: ({ commit }, payload) => {
+      commit('setLastSelectedBerry', payload)
     }
   },
-  modules: {
-
-  }
 }
