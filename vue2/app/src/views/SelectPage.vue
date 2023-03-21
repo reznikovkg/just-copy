@@ -2,11 +2,13 @@
   <div class="about">
     <h1>Select</h1>
     <div style="max-width: 400px;">
+      <h3>Last selected berry: {{getLastSelectedBerry}}</h3>
       <h2>Select without closing on select</h2>
       <SelectComponent
         v-model="selectedOption1"
         :options="berries"
         :close-on-select="false"
+        @on-select-set-new-option="onBerrySelected"
         no-data-message="Доступных ягод нет"
         placeholder="Выберите ягоду"
       >
@@ -16,6 +18,7 @@
         v-model="selectedOption2"
         :options="berries"
         :close-on-select="true"
+        @on-select-set-new-option="onBerrySelected"
         no-data-message="Доступных ягод нет"
         placeholder="Выберите ягоду"
       >
@@ -25,6 +28,7 @@
         v-model="selectedOption3"
         :options="berries"
         :custom-label="customLabel"
+        @on-select-set-new-option="onBerrySelected"
         no-data-message="Доступных ягод нет"
         placeholder="Выберите ягоду"
       >
@@ -51,6 +55,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import SelectComponent from "../../../components/select/SelectComponent.vue";
 
 export default {
@@ -65,22 +70,26 @@ export default {
       selectedOption3: "strawberry",
       selectedOption4: "strawberry",
       selectedOption5: "strawberry",
-      selectedOption6: "strawberry",
     };
   },
-
   methods: {
-    customLabel(option)
-    {
+    customLabel(option){
       return (`${option.name} - ${option.color}`);
+    },
+    ...mapActions('berries', [
+      'setLastSelectedBerry'
+    ]),
+    onBerrySelected(option){
+      this.setLastSelectedBerry(option.name);
     }
   },
-
   computed: {
-
     berries(){
         return this.$store.getters['berries/getBerries']
     },
+    ...mapGetters('berries', [
+      'getLastSelectedBerry'
+    ])
   },
 };
 </script>
