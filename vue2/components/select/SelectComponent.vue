@@ -45,12 +45,10 @@
 <script>
 export default {
   name: "Select",
-
   model: {
     prop: "selected",
-    event: "onSelectedOptionChanged",
+    event: "on-selected-option-changed",
   },
-
   props: {
     options: {
       type: Array,
@@ -58,26 +56,21 @@ export default {
         return [];
       },
     },
-
     selected: {
       type: String,
     },
-
     optionKey: {
       type: String,
       default: "value",
     },
-
     closeOnSelect: {
       type: Boolean,
       default: true,
     },
-
     placeholder: {
       type: String,
       default: "-",
     },
-
     tabindex: {
       type: Number,
       default: 0,
@@ -85,17 +78,14 @@ export default {
         return value >= 0;
       },
     },
-
     noDataMessage: {
       type: String,
       default: "No Data",
     },
-
     disabled: {
       type: Boolean,
       default: false,
     },
-
     customLabel: {
       type: Function,
       default: function (option) {
@@ -103,12 +93,10 @@ export default {
       },
     },
   },
-
   created() {
     this.innerOptions = this.getInnerOptions();
     this.initDefaultHighlightedOption();
   },
-
   data() {
     return {
       innerOptions: null,
@@ -118,15 +106,15 @@ export default {
       isFocused: false,
     };
   },
-
   computed: {
     buttonText() {
       let result = this.placeholder;
-      let selectedOption = this.innerOptions[this.selected];
-      if (selectedOption) result = this.customLabel(selectedOption);
+      const selectedOption = this.innerOptions[this.selected];
+      if (selectedOption) {
+        result = this.customLabel(selectedOption);
+      }
       return result;
     },
-
     buttonClass() {
       return {
         "select__button--focused": this.isFocused,
@@ -134,15 +122,13 @@ export default {
         "select__button--highlighted": this.isTextHover,
       };
     },
-
     areOptionsExist() {
       return this.options.length;
     },
   },
-
   methods: {
     getInnerOptions() {
-      let result = {};
+      const result = {};
       this.options.forEach((option) => {
         if (result[option[this.optionKey]]) {
           throw new Error("Data has not unique key");
@@ -152,81 +138,67 @@ export default {
       });
       return result;
     },
-
     initDefaultHighlightedOption() {
       this.highlightedOption = this.selected;
     },
-
     isOptionSelected(option) {
       return option[this.optionKey] === this.selected;
     },
-
     isOptionHighlighted(option) {
       return option[this.optionKey] === this.highlightedOption;
     },
-
     selectFocused() {
       this.isFocused = true;
     },
-
     selectFocusOut() {
       this.hideSelect();
       this.isFocused = false;
     },
-
     setTextHoverIfNotOpen() {
-      if (!this.isOpen) this.isTextHover = true;
+      if (!this.isOpen) {
+        this.isTextHover = true;
+      }
     },
-
     unHoverText() {
       this.isTextHover = false;
     },
-
     setHighlightedOption(option) {
       this.highlightedOption = option[this.optionKey];
     },
-
-    selectButtonClick(){
-      if(this.isOpen){
+    selectButtonClick() {
+      if (this.isOpen) {
         this.hideSelect();
-      }
-      else{
+      } else {
         this.openSelect();
       }
     },
-
-    openSelect(){
+    openSelect() {
       this.isOpen = true;
-      this.$emit("visibleChange", true);
+      this.$emit("visible-change", true);
     },
-
-    hideSelect(){
+    hideSelect() {
       this.isOpen = false;
-      this.$emit("visibleChange", false);
+      this.$emit("visible-change", false);
     },
-
     onOptionClick(option) {
       let result = null;
       let optionKey = option[this.optionKey];
-
       if (optionKey !== this.selected) {
         result = optionKey;
         this.highlightedOption = optionKey;
-        this.$emit("onSelectSetNewOption", option);
+        this.$emit("on-select-set-new-option", option);
       } else {
-        this.$emit("onSelectSetEmpty", this.innerOptions[this.selected]);
+        this.$emit("on-select-set-empty", this.innerOptions[this.selected]);
       }
-
       if (this.closeOnSelect) {
         this.hideSelect();
       }
-
-      this.$emit("onSelectedOptionChanged", result);
+      this.$emit("on-selected-option-changed", result);
     },
   },
 };
 </script>
 
 <style scoped lang="less">
-    @import "styles/styles.less";
+@import "styles/styles.less";
 </style>
