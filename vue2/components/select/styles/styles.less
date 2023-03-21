@@ -46,7 +46,7 @@
         transition: transform 0.3s ease-in-out;
       }
   
-      &--opened.select__button::after {
+      &--opened&::after {
         transform: rotate(-180deg);
         transition: transform 0.3s ease-in-out;
       }
@@ -125,14 +125,16 @@
   
     /*Animations*/
   
-    &__slide-fade-enter-active,
-    &__slide-fade-leave-active {
-      transition: all 0.2s ease-in-out;
-    }
-  
-    &__slide-fade-enter,
-    &__slide-fade-leave-to {
-      transform: translateY(-10px);
-      opacity: 0;
+    &__slide-fade {
+      &-enter-active,
+      &-leave-active {
+        transition: all 0.2s ease-in-out;
+      }
+
+      &-enter,
+      &-leave-to {
+        transform: translateY(-10px);
+        opacity: 0;
+      }
     }
   }
