@@ -5,7 +5,7 @@
       <h3>Last selected berry: {{getLastSelectedBerry}}</h3>
       <h2>Select without closing on select</h2>
       <SelectComponent
-        v-model="selectedOption1"
+        v-model="selectedOption1Set"
         :options="berries"
         :close-on-select="false"
         @on-select-set-new-option="onBerrySelected"
@@ -65,12 +65,33 @@ export default {
   },
   data() {
     return {
-      selectedOption1: "strawberry",
+      componentGetObject: {
+        selectedOption1: "strawberry"
+      },
       selectedOption2: "strawberry",
       selectedOption3: "strawberry",
       selectedOption4: "strawberry",
       selectedOption5: "strawberry",
     };
+  },
+  computed: {
+    berries(){
+        return this.$store.getters['berries/getBerries']
+    },
+    ...mapGetters('berries', [
+      'getLastSelectedBerry'
+    ]),
+    selectedOption1Set: {
+      get() {
+        return this.componentGetObject.selectedOption1;
+      },
+      set(val) {
+        this.componentSignal({
+          pro: 'selectedOption1',
+          val
+        })
+      }
+    }
   },
   methods: {
     customLabel(option){
@@ -79,17 +100,12 @@ export default {
     ...mapActions('berries', [
       'setLastSelectedBerry'
     ]),
-    onBerrySelected(option){
+    onBerrySelected(option) {
       this.setLastSelectedBerry(option.name);
-    }
-  },
-  computed: {
-    berries(){
-        return this.$store.getters['berries/getBerries']
     },
-    ...mapGetters('berries', [
-      'getLastSelectedBerry'
-    ])
+    componentSignal(obj) {
+      this.componentGetObject[obj.pro] = obj.val;
+    }
   },
 };
 </script>
