@@ -8,6 +8,16 @@
     @focus="() => selectFocused()"
     @blur="() => selectFocusOut()"
   >
+    <select v-model="innerSelected" style="display: none">
+      <option :value="null" disabled hidden></option>
+      <option
+        v-for="(option, index) in options"
+        :key="index"
+        :value="option[optionKey]"
+      >
+        {{ customLabel(option) }}
+      </option>
+    </select>
     <div
       class="select__button"
       :class="buttonClass"
@@ -96,9 +106,11 @@ export default {
   created() {
     this.innerOptions = this.getInnerOptions();
     this.initDefaultHighlightedOption();
+    this.initDefaultSelectedOptionForInnerSelect();
   },
   data() {
     return {
+      innerSelected: null,
       innerOptions: null,
       highlightedOption: null,
       isOpen: false,
@@ -140,6 +152,9 @@ export default {
     },
     initDefaultHighlightedOption() {
       this.highlightedOption = this.selected;
+    },
+    initDefaultSelectedOptionForInnerSelect() {
+      this.innerSelected = this.selected;
     },
     isOptionSelected(option) {
       return option[this.optionKey] === this.selected;
@@ -185,6 +200,7 @@ export default {
       let optionKey = option[this.optionKey];
       if (optionKey !== this.selected) {
         result = optionKey;
+        this.innerSelected = optionKey;
         this.highlightedOption = optionKey;
         this.$emit("on-select-set-new-option", option);
       } else {
