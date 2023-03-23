@@ -32,11 +32,7 @@
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-<<<<<<< Updated upstream
-      <router-link to="/evseenko"> Evseenko Page</router-link>
-=======
       <router-link to="/checkbox"> Checkbox and switch</router-link>
->>>>>>> Stashed changes
     </nav>
     <router-view/>
   </div>

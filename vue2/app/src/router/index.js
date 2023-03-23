@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AppEvseenko from '../AppEvseenko.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -16,14 +15,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/evseenko',
-    name: 'evseenko',
-    component: AppEvseenko
-  }
+    path: '/checkbox',
+    name: 'checkbox',
+    component: () => import(/* webpackChunkName: "select" */ '../views/CheckBoxApp.vue')
+  },
 
 ]
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
 
