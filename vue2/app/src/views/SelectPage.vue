@@ -5,10 +5,9 @@
       <h3>Last selected berry: {{getLastSelectedBerry}}</h3>
       <h2>Select without closing on select</h2>
       <SelectComponent
-        v-model="selectedOption1Set"
+        v-model="selectedOption1"
         :options="berries"
         :close-on-select="false"
-        @on-select-set-new-option="onBerrySelected"
         no-data-message="Доступных ягод нет"
         placeholder="Выберите ягоду"
       >
@@ -18,7 +17,6 @@
         v-model="selectedOption2"
         :options="berries"
         :close-on-select="true"
-        @on-select-set-new-option="onBerrySelected"
         no-data-message="Доступных ягод нет"
         placeholder="Выберите ягоду"
       >
@@ -28,7 +26,6 @@
         v-model="selectedOption3"
         :options="berries"
         :custom-label="customLabel"
-        @on-select-set-new-option="onBerrySelected"
         no-data-message="Доступных ягод нет"
         placeholder="Выберите ягоду"
       >
@@ -65,9 +62,6 @@ export default {
   },
   data() {
     return {
-      componentGetObject: {
-        selectedOption1: "strawberry"
-      },
       selectedOption2: "strawberry",
       selectedOption3: "strawberry",
       selectedOption4: "strawberry",
@@ -81,15 +75,12 @@ export default {
     ...mapGetters('berries', [
       'getLastSelectedBerry'
     ]),
-    selectedOption1Set: {
+    selectedOption1: {
       get() {
-        return this.componentGetObject.selectedOption1;
+        return this.getLastSelectedBerry;
       },
       set(val) {
-        this.componentSignal({
-          pro: 'selectedOption1',
-          val
-        })
+        this.setLastSelectedBerry(val);
       }
     }
   },
@@ -100,12 +91,6 @@ export default {
     ...mapActions('berries', [
       'setLastSelectedBerry'
     ]),
-    onBerrySelected(option) {
-      this.setLastSelectedBerry(option.name);
-    },
-    componentSignal(obj) {
-      this.componentGetObject[obj.pro] = obj.val;
-    }
   },
 };
 </script>
