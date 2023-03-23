@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div class="about">
+    <h1>BTN</h1>
     <div>
       <ButtonComponent @click="() => click()" >
         Confirm
@@ -28,24 +29,18 @@
     <div>
       <InputComponent v-model="text" />
       {{ text }}
+      {{ getCount }}
+      {{ getCountD }}
     </div>
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-<<<<<<< Updated upstream
-      <router-link to="/evseenko"> Evseenko Page</router-link>
-=======
-      <router-link to="/checkbox"> Checkbox and switch</router-link>
->>>>>>> Stashed changes
-    </nav>
-    <router-view/>
   </div>
 </template>
+
 <script>
-import ButtonComponent from './../../components/button/Button.vue'
-import InputComponent from './../../components/input/Input.vue'
+import ButtonComponent from '../../../components/button/Button.vue'
+import InputComponent from '../../../components/input/Input.vue'
+
 export default {
-  name: 'App',
+  name: 'BtnView',
   components: {
     ButtonComponent,
     InputComponent
@@ -61,26 +56,5 @@ export default {
     }
   }
 }
+
 </script>
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
