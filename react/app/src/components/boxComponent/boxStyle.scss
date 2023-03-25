@@ -7,13 +7,14 @@
     border-bottom: 1px solid #ced0d7;
 }
 
-.box__label {
-    position: relative;
-}
+
 
 .box__content {
     overflow: hidden;
     transition: 0.4s;
+    .box__label {
+        position: relative;
+    }
 }
 
 .accordion__icon {
