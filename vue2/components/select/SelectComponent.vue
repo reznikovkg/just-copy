@@ -104,14 +104,12 @@ export default {
     },
   },
   created() {
-    this.innerOptions = this.getInnerOptions();
     this.initDefaultHighlightedOption();
     this.initDefaultSelectedOptionForInnerSelect();
   },
   data() {
     return {
       innerSelected: null,
-      innerOptions: null,
       highlightedOption: null,
       isOpen: false,
       isTextHover: false,
@@ -125,6 +123,17 @@ export default {
       if (selectedOption) {
         result = this.customLabel(selectedOption);
       }
+      return result;
+    },
+    innerOptions() {
+      const result = {};
+      this.options.forEach((option) => {
+        if (result[option[this.optionKey]]) {
+          throw new Error("Data has not unique key");
+        } else {
+          result[option[this.optionKey]] = option;
+        }
+      });
       return result;
     },
     buttonClass() {
