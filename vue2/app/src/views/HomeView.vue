@@ -6,6 +6,9 @@
     <p><router-link :to="{ name: 'exp' }">
       Express
     </router-link></p>
+    <p><router-link :to="{ name: 'selectExp' }">
+      SelectExpress
+    </router-link></p>
     <p><router-link :to="{ name: 'select' }">
       Select
     </router-link></p>

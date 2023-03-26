@@ -21,6 +21,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "btn" */ '../views/ExpressPage.vue')
   },
   {
+    path: '/selectExp',
+    name: 'selectExp',
+    component: () => import(/* webpackChunkName: "select" */ '../views/SelectExpressPage.vue')
+  },
+  {
     path: '/select',
     name: 'select',
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
