@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -10,16 +11,6 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about', 
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  },
-  {
-    path: '/checkbox',
-    name: 'CheckBox',
-    component: () => import(/* webpackChunkName: "select" */ '../views/CheckBoxView.vue')
-  },
-
     path: '/btn',
     name: 'btn',
     component: () => import(/* webpackChunkName: "btn" */ '../views/BtnPage.vue')
@@ -28,6 +19,11 @@ const routes = [
     path: '/exp',
     name: 'exp',
     component: () => import(/* webpackChunkName: "btn" */ '../views/ExpressPage.vue')
+  },
+  {
+    path: '/checkbox',
+    name: 'CheckBox',
+    component: () => import(/* webpackChunkName: "select" */ '../views/CheckBoxView.vue')
   },
   {
     path: '/select',
