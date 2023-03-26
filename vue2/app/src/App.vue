@@ -32,7 +32,7 @@
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-      <router-link to="/checkbox"> Checkbox and switch</router-link>
+      <router-link to="/checkbox"> Checkbox and Switch</router-link>
     </nav>
     <router-view/>
   </div>

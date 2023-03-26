@@ -1,9 +1,9 @@
 <template>
-    <div id="app">
-      <CheckBox v-model="switch1"></CheckBox>
-      <SwitchButton v-model="switch1"></SwitchButton>
-     </div>
-    </template>
+  <div id="app">
+    <CheckBox v-model="switch1"></CheckBox>
+    <SwitchButton v-model="switch1"></SwitchButton>
+  </div>
+</template>
 
   <script>
   import { mapGetters, mapActions } from "vuex";
@@ -15,7 +15,7 @@
      SwitchButton,
      CheckBox
     },
-    data() {
+    data(){
     return {
       switch1:false,
     };
@@ -28,26 +28,24 @@
       'getLastSelectedSwitch'
     ]),
     switch2: {
-      get() {
+      get(){
         return this.getLastSelectedSwitch;
       },
-      set(val) {
+      set(val){
         this.setLastSelectedSwitch(val);
       }
     }
   },
-  methods: {
-    ...mapActions('switches', [
+  methods:{
+    ...mapActions('switches',[
       'setLastSelectedSwitch'
     ]),
   },
 };
   </script>
-  
   <style lang="less">
   #app {
     font-family: Lato, sans-serif;
   }
-  
   </style>
   
