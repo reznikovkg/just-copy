@@ -6,8 +6,9 @@ app.use(cors());
 
 const db = [
   {
-    id: "container",
+    id: "1",
     name: "Ёмкость",
+    type: "container",
     required: true,
     placeholder: "Выберите ёмкость",
     options: [
@@ -30,8 +31,9 @@ const db = [
     ],
   },
   {
-    id: "iceCream",
+    id: "2",
     name: "Мороженое",
+    type: "iceCream",
     required: true,
     placeholder: "Выберите мороженое",
     options: [
@@ -54,8 +56,9 @@ const db = [
     ],
   },
   {
-    id: "syrup",
+    id: "3",
     name: "Сироп",
+    type: "syrup",
     required: false,
     placeholder: "Выберите сироп",
     options: [
@@ -87,7 +90,12 @@ app.get("/", (req, res) => {
 });
 app.get("/json", (req, res) => {
   if (req.query && req.query.required !== undefined) {
-    return res.json(db.filter((item) => item.required === Boolean(req.query.required)));
+    return res.json(
+      db.filter((item) => item.required === Boolean(req.query.required))
+    );
+  }
+  if (req.query && req.query.type) {
+    return res.json(db.filter((item) => item.type === req.query.type));
   }
   res.json(db);
 });

@@ -2,31 +2,21 @@
   <div class="about">
     <h1>SelectExpress</h1>
     <div style="max-width: 400px">
-      <h2>Сборка мороженого</h2>
-      <h3>Ёмкость для мороженого: {{ getCurrentContainer}}</h3>
-      <h3>Мороженое: {{ getCurrentIceCream}}</h3>
-      <h3>Сироп: {{ getCurrentSyrup}}</h3>
-      <h2>Выбор ёмкости</h2>
-      <SelectComponent
-        v-model="selectedContainer"
-        :options="getContainers.options"
-        :placeholder="getContainers.placeholder"
-      >
-      </SelectComponent>
-      <h2>Выбор мороженого</h2>
-      <SelectComponent
-        v-model="selectedIceCream"
-        :options="getIceCream.options"
-        :placeholder="getIceCream.placeholder"
-      >
-      </SelectComponent>
-      <h2>Выбор сиропа</h2>
-      <SelectComponent
-        v-model="selectedSyrup"
-        :options="getSyrups.options"
-        :placeholder="getSyrups.placeholder"
-      >
-      </SelectComponent>
+      <div>
+        <h2>Набор:</h2>
+        <div v-for="(element, index) in getSelectedElements" :key="index">
+          <h3>{{ getIceCreamSelects[index].name }}: {{ element }}</h3>
+        </div>
+      </div>
+      <div v-for="(select, index) in getIceCreamSelects" :key="index">
+        <h2>{{ select.name }}</h2>
+        <SelectComponent
+          v-model="getSelectedElements[index]"
+          :options="select.options"
+          :placeholder="select.placeholder"
+        >
+        </SelectComponent>
+      </div>
     </div>
   </div>
 </template>
@@ -41,53 +31,13 @@ export default {
     SelectComponent,
   },
   computed: {
-    ...mapGetters("iceCream", [
-      "getContainers",
-      "getIceCream",
-      "getSyrups",
-      "getCurrentContainer",
-      "getCurrentIceCream",
-      "getCurrentSyrup",
-    ]),
-    selectedContainer: {
-      get() {
-        return this.getCurrentContainer;
-      },
-      set(val) {
-        this.setCurrentContainer(val);
-      },
-    },
-    selectedIceCream: {
-      get() {
-        return this.getCurrentIceCream;
-      },
-      set(val) {
-        this.setCurrentIceCream(val);
-      },
-    },
-    selectedSyrup: {
-      get() {
-        return this.getCurrentSyrup;
-      },
-      set(val) {
-        this.setCurrentSyrup(val);
-      },
-    },
+    ...mapGetters("iceCream", ["getIceCreamSelects", "getSelectedElements"]),
   },
   mounted() {
-    this.loadContainers();
-    this.loadIceCream();
-    this.loadSyrups();
+    this.loadIceCreamSelects();
   },
   methods: {
-    ...mapActions("iceCream", [
-      "loadContainers",
-      "loadIceCream",
-      "loadSyrups",
-      "setCurrentContainer",
-      "setCurrentIceCream",
-      "setCurrentSyrup",
-    ]),
+    ...mapActions("iceCream", ["loadIceCreamSelects", "setSelectedElements"]),
   },
 };
 </script>

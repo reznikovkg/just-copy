@@ -8,65 +8,29 @@ const domen = "http://localhost:3000";
 export default {
   namespaced: true,
   state: {
-    containers: {},
-    iceCream: {},
-    syrups: {},
-    currentContainer: "",
-    currentIceCream: "",
-    currentSyrup: "",
+    iceCreamSelects: [],
+    selectedElements: [],
   },
   getters: {
-    getContainers: (state) => state.containers,
-    getIceCream: (state) => state.iceCream,
-    getSyrups: (state) => state.syrups,
-    getCurrentContainer: (state) => state.currentContainer,
-    getCurrentIceCream: (state) => state.currentIceCream,
-    getCurrentSyrup: (state) => state.currentSyrup,
+    getIceCreamSelects: (state) => state.iceCreamSelects,
+    getSelectedElements: (state) => state.selectedElements,
   },
   mutations: {
-    setContainers: (state, payload) => {
-      state.containers = payload;
+    setIceCreamSelects: (state, payload) => {
+      state.iceCreamSelects = payload;
     },
-    setIceCream: (state, payload) => {
-      state.iceCream = payload;
-    },
-    setSyrups: (state, payload) => {
-      state.syrups = payload;
-    },
-    setCurrentContainer: (state, payload) => {
-      state.currentContainer = payload;
-    },
-    setCurrentIceCream: (state, payload) => {
-      state.currentIceCream = payload;
-    },
-    setCurrentSyrup: (state, payload) => {
-      state.currentSyrup = payload;
+    setSelectedElements: (state, payload) => {
+      state.selectedElements = payload;
     },
   },
   actions: {
-    loadContainers: ({ commit }) => {
-      axios.get(domen + "/json/container").then((response) => {
-        commit("setContainers", response.data);
+    loadIceCreamSelects: ({ commit }) => {
+      axios.get(domen + "/json").then((response) => {
+        commit("setIceCreamSelects", response.data);
       });
     },
-    loadIceCream: ({ commit }) => {
-      axios.get(domen + "/json/iceCream").then((response) => {
-        commit("setIceCream", response.data);
-      });
-    },
-    loadSyrups: ({ commit }) => {
-      axios.get(domen + "/json/syrup").then((response) => {
-        commit("setSyrups", response.data);
-      });
-    },
-    setCurrentContainer: ({ commit }, payload) => {
-      commit("setCurrentContainer", payload);
-    },
-    setCurrentIceCream: ({ commit }, payload) => {
-      commit("setCurrentIceCream", payload);
-    },
-    setCurrentSyrup: ({ commit }, payload) => {
-      commit("setCurrentSyrup", payload);
+    setSelectedElement: ({ commit }, payload) => {
+      commit("setSelectedElements", payload);
     },
   },
 };
