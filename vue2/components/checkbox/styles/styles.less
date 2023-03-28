@@ -16,6 +16,10 @@
     position: relative;
     left: 20px;
   }
+  &&--disabled{
+    pointer-events: none;
+    filter: brightness(0.3);
+  }
   &.enabled {
     &:extend(.checkbox);
     border-color: @checkbox_border_color_1;

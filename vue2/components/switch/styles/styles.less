@@ -11,7 +11,7 @@
   cursor: pointer;
   background-color: @switch_background_color_1;
 
-  .switch-button_circle {
+  &_circle {
     height: calc(25px - (2 * 2px));
     width: calc(25px - (2 * 2px));
     border: 2px solid rgb(212, 206, 206);
@@ -20,13 +20,18 @@
     transition: 0.3s;
     background-color: @switch_background_color_2;
   }
-}
 
-.switch-button.enabled {
-  background-color: @switch_background_color_3;
+  &--disabled {
+    pointer-events: none;
+    filter: brightness(0.3);
+  }
 
-  .switch-button_circle {
-    background: white;
-    transform: translateX(calc(calc(25px - (2 * 2px)) + (2 *2px)));
+  &.enabled {
+    background-color: @switch_background_color_3;
+
+    .switch-button_circle {
+      background: white;
+      transform: translateX(calc(calc(25px - (2 * 2px)) + (2 *2px)));
+    }
   }
 }

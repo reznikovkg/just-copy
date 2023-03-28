@@ -1,5 +1,5 @@
 <template>
-  <div class="switch-button" :class="{ enabled: value }" @click="() => toggle()">
+  <div class="switch-button" :class="{ enabled: value,'switch-button--disabled': disabled}" @click="() => toggle()">
     <div class="switch-button_circle"></div>
   </div>
 </template>
@@ -20,8 +20,9 @@ export default {
   },
   methods: {
     toggle() {
-      if (!this.disabled)
+      if (!this.disabled) {
       this.$emit("change", !this.value);
+      }
     }
   }
 }
