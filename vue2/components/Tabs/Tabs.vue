@@ -20,9 +20,9 @@ export default {
             required: true
         },
         activeTabIndex: {
-            type: Number,
+            type: String,
             required: false,
-            default: 0
+            default: "0"
         }
     },
     data() {
