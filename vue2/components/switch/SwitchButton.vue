@@ -12,10 +12,15 @@ export default {
     event: "change"
   },
   props: {
-    value: Boolean
+    value: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false,
+    }
   },
   methods: {
     toggle() {
+      if (!this.disabled)
       this.$emit("change", !this.value);
     }
   }

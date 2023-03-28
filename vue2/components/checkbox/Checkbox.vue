@@ -1,5 +1,7 @@
 <template>
-  <div class="checkbox" :class="{enabled: value,'checkbox--disabled': disabled}" @click="() => check()"><label>{{label}}</label></div>
+  <div class="checkbox" :class="{enabled: value}" @click="() => check()">
+    <div class="checkbox__labels"><label>{{label}}</label></div>
+  </div>
 </template>
 
 <script>
@@ -19,6 +21,7 @@ export default {
   },
   methods: {
     check () {
+      if (!this.disabled)
       this.$emit("change", !this.value);
     }
   }
