@@ -5,7 +5,7 @@ const ContainerComponent = ({data}) => {
     return (
         <div className="container">
             {data.map( (item)=>{
-                return <BoxComponent key = {item.id} data = {item}/>
+                return <BoxComponent key = {item.id} title={item.title} outContent={item.content}/>
             } )}
         </div>
     );

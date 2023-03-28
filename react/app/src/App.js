@@ -1,13 +1,18 @@
 
 import './AppStyle.scss'
-import {data_1} from "./data/data";
-import {data_2} from "./data/data";
-import ContainerComponent from "./components/containerComponent/containerComponent";
+
+import MainPageComponent from "./components/pages/mainPageComponent/MainPageComponent";
+import {Route, Routes} from "react-router-dom";
+import React from "react";
+import AcordionsPageComponent from "./components/pages/acordionsPageComponent/AcordionsPageComponent";
 function App() {
   return (
     <div className="App">
-        <ContainerComponent data={data_2}/>
-        <ContainerComponent data={data_1}/>
+            <Routes>
+                <Route exact path='/' element={<MainPageComponent />}/>
+                <Route  path='/main' element={<MainPageComponent />}/>
+                <Route  path='/acordions' element={<AcordionsPageComponent />}/>
+            </Routes>
     </div>
   );
 }
