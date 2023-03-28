@@ -19,8 +19,8 @@ export default {
     setIceCreamSelects: (state, payload) => {
       state.iceCreamSelects = payload;
     },
-    setSelectedElements: (state, payload) => {
-      state.selectedElements = payload;
+    setSelectedElementByIndex: (state, payload) => {
+      Vue.set(state.selectedElements, payload.index, payload.value);
     },
   },
   actions: {
@@ -29,8 +29,8 @@ export default {
         commit("setIceCreamSelects", response.data);
       });
     },
-    setSelectedElement: ({ commit }, payload) => {
-      commit("setSelectedElements", payload);
+    setSelectedElementByIndex: ({ commit }, payload) => {
+      commit("setSelectedElementByIndex", payload);
     },
   },
 };

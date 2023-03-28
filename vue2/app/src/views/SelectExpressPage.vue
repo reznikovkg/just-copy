@@ -14,6 +14,7 @@
           v-model="getSelectedElements[index]"
           :options="select.options"
           :placeholder="select.placeholder"
+          @on-selected-option-changed="($event) => onSelectedElementChanged($event, index)"
         >
         </SelectComponent>
       </div>
@@ -31,13 +32,21 @@ export default {
     SelectComponent,
   },
   computed: {
-    ...mapGetters("iceCream", ["getIceCreamSelects", "getSelectedElements"]),
+    ...mapGetters("iceCream", [
+      "getIceCreamSelects", 
+      "getSelectedElements"]),
   },
   mounted() {
     this.loadIceCreamSelects();
   },
   methods: {
-    ...mapActions("iceCream", ["loadIceCreamSelects", "setSelectedElements"]),
+    ...mapActions("iceCream", [
+      "loadIceCreamSelects",
+      "setSelectedElementByIndex",
+    ]),
+    onSelectedElementChanged(e, index) {
+      this.setSelectedElementByIndex({ index: index, value: e });
+    },
   },
 };
 </script>
