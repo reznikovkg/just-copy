@@ -1,6 +1,5 @@
 <template>
-  <div class="CheckBox" name="checkbox" :class="{ enabled: value }" @click="check" >
-  </div>
+  <div class="checkbox" :class="{enabled: value,'checkbox--disabled': disabled}" @click="() => check()"><label>{{label}}</label></div>
 </template>
 
 <script>
@@ -11,18 +10,21 @@ export default {
     event: "change"
   },
   props: {
-    value: Boolean
+    value: Boolean,
+    label: String,
+    disabled: {
+      type: Boolean,
+      default: false,
+    }
   },
   methods: {
-    check: function () {
+    check () {
       this.$emit("change", !this.value);
     }
   }
 }
 
-
 </script>
-
 
 <style scoped lang="less">
   @import "styles/styles.less";

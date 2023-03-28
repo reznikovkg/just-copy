@@ -18,11 +18,9 @@ export default new Vuex.Store({
       },
     ]
   },
-
   getters: {
     getSwitches: (state) => state.switches,
   },
-
   mutations: {
     addSwitch: (state, payload) => {
       state.switches.push(payload)
@@ -31,7 +29,6 @@ export default new Vuex.Store({
       state.lastSelectedSwitch = payload
     }
   },
-
   actions: {
     addSwitch: ({ commit }, payload) => {
       commit('addSwitch', payload)

@@ -1,28 +1,32 @@
 @import "./../../../../_constants/less/vars.less";
-.SwitchButton {
-	height: 26px;
-	display: inline-block;
-	width: calc(25px * 2);
-	border-radius: 35px;
-	transition: 0.3s;
-	margin-bottom: 20px;
-	margin-top:20px;
-	cursor: pointer;
-	background-color: @switch_background_color_1;
-.Circle {
-	height: calc(25px - (2 * 2px));
-	width: calc(25px - (2 * 2px));
-	border: 2px solid rgb(212, 206, 206);
-	border-radius: calc(20px - (2 * 2px));
-	background: red;
-	transition: 0.3s;
-	background-color: @switch_background_color_2;
+
+.switch-button {
+  height: 26px;
+  display: inline-block;
+  width: calc(25px * 2);
+  border-radius: 35px;
+  transition: 0.3s;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  background-color: @switch_background_color_1;
+
+  .switch-button_circle {
+    height: calc(25px - (2 * 2px));
+    width: calc(25px - (2 * 2px));
+    border: 2px solid rgb(212, 206, 206);
+    border-radius: calc(20px - (2 * 2px));
+    background: red;
+    transition: 0.3s;
+    background-color: @switch_background_color_2;
+  }
 }
-}
-.SwitchButton.enabled {
-	background-color: @switch_background_color_3;
-	.Circle {
-		background: white;
-		transform: translateX(calc(calc(25px - (2 * 2px)) + (2 *2px)));
-	}
+
+.switch-button.enabled {
+  background-color: @switch_background_color_3;
+
+  .switch-button_circle {
+    background: white;
+    transform: translateX(calc(calc(25px - (2 * 2px)) + (2 *2px)));
+  }
 }

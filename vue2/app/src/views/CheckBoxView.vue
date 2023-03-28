@@ -1,51 +1,53 @@
 <template>
   <div id="app">
-    <CheckBox v-model="switch1"></CheckBox>
+    <CheckBox v-model="switch1" label="checkbox"></CheckBox>
+    <CheckBox v-model="switch3" label="checkbox2" :disabled="true"></CheckBox>
     <SwitchButton v-model="switch1"></SwitchButton>
   </div>
 </template>
 
-  <script>
-  import { mapGetters, mapActions } from "vuex";
-  import SwitchButton from"../../../components/switch/SwitchButton.vue";
-  import CheckBox from "../../../components/checkbox/Checkbox.vue";
-  export default {
-    name: 'CustomCheckbox',
-    components: {
-     SwitchButton,
-     CheckBox
-    },
-    data(){
+<script>
+import { mapGetters, mapActions } from "vuex";
+import SwitchButton from "../../../components/switch/SwitchButton.vue";
+import CheckBox from "../../../components/checkbox/Checkbox.vue";
+export default {
+  name: 'CustomCheckbox',
+  components: {
+    SwitchButton,
+    CheckBox
+  },
+  data() {
     return {
-      switch1:false,
+      switch1: false,
+      switch3: true
     };
   },
   computed: {
-    switches(){
-        return this.$store.getters['switches/getSwitches']
+    switches() {
+      return this.$store.getters['switches/getSwitches']
     },
     ...mapGetters('switches', [
       'getLastSelectedSwitch'
     ]),
     switch2: {
-      get(){
+      get() {
         return this.getLastSelectedSwitch;
       },
-      set(val){
+      set(val) {
         this.setLastSelectedSwitch(val);
       }
     }
   },
-  methods:{
-    ...mapActions('switches',[
+  methods: {
+    ...mapActions('switches', [
       'setLastSelectedSwitch'
     ]),
   },
 };
-  </script>
-  <style lang="less">
-  #app {
-    font-family: Lato, sans-serif;
-  }
-  </style>
+</script>
+<style lang="less">
+#app {
+  font-family: Lato, sans-serif;
+}
+</style>
   

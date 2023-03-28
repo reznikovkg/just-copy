@@ -1,7 +1,7 @@
 <template>
-	<div class="SwitchButton" :class="{ enabled: value }" @click="toggle">
-	<div class="Circle"></div>
-	</div>
+  <div class="switch-button" :class="{ enabled: value }" @click="() => toggle()">
+    <div class="switch-button_circle"></div>
+  </div>
 </template>
 
 <script>
@@ -15,7 +15,7 @@ export default {
     value: Boolean
   },
   methods: {
-    toggle: function () {
+    toggle() {
       this.$emit("change", !this.value);
     }
   }
