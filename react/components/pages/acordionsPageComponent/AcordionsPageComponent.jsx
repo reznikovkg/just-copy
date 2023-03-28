@@ -1,7 +1,7 @@
 import React from 'react';
 import ContainerComponent from "../../containerComponent/containerComponent";
-import {data_1, data_2} from "../../../data/data";
-import Store from "../../../store/Store";
+import {data_1, data_2} from "../../../app/src/data/data";
+import Store from "../../../app/src/store/Store";
 import {Link} from "react-router-dom";
 import LinkComponent from "../../linkComponent/LinkComponent";
 

@@ -1,4 +1,4 @@
-import ContainerComponent from "../components/containerComponent/containerComponent";
+import ContainerComponent from "../../../components/containerComponent/containerComponent";
 import React from "react";
 
 
