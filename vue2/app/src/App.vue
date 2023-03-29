@@ -14,4 +14,11 @@ export default {
 </script>
 
 <style>
+    body, h1, p {
+        padding: 0;
+        margin: 0;
+    }
+    div#app {
+      height: 100vh;
+    }
 </style>

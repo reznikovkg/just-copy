@@ -6,6 +6,9 @@
     <p><router-link :to="{ name: 'select' }">
       Select
     </router-link></p>
+    <p><router-link :to="{ name: 'modal' }">
+      Modal
+    </router-link></p>
   </div>
 </template>
 

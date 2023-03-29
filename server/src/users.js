@@ -2,30 +2,26 @@ let users = [
     {
         id: 1,
         name: "Nikita",
-        surname: "Averochkin",
         age: 21,
-        task: "modal"
+        task: "beautiful modal"
     },
     {
         id: 2,
         name: "Sasha",
-        surname: "Legezin",
         age: 21,
-        task: "accordeon"
+        task: "handsome modal"
     },
     {
         id: 3,
         name: "Ilya",
-        surname: "Kram",
         age: 20,
-        task: "something"
+        task: "huge modal"
     },
     {
         id: 4,
         name: "Pasha",
-        surname: "Rub",
         age: 23,
-        task: "react"
+        task: "obvious modal"
     }
 ]
 
