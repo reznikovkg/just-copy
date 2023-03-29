@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5fa8bcb4-b7f8-47b0-a700-8eba8d058d5f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/react/app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/react/app/src/components/acordionComponent/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/app/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/app/src/data/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/app/src/data/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/app/src/store/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/app/src/store/Store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/components/boxComponent/boxComponent.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/components/boxComponent/boxStyle.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/components/containerComponent/containerComponent.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/components/containerComponent/containerStyle.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/components/iconComponent/iconComponent.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/components/linkComponent/LinkComponent.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/components/linkComponent/LinkStyle.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/components/pages/acordionsPageComponent/AcordionsPageComponent.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/components/pages/mainPageComponent/MainPageComponent.jsx" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="SCSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2NI35FFmL2cXTBWCbTMwNZI0Gfu" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/sashasam/WebVSU/just-copy/react/app/src&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/react/app/src" />
+      <recent name="$PROJECT_DIR$/react/app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/react/app" />
+      <recent name="$PROJECT_DIR$/react/app/src/components/containerComponent" />
+      <recent name="$PROJECT_DIR$/react/app/src/components/pages" />
+      <recent name="$PROJECT_DIR$/react" />
+      <recent name="$PROJECT_DIR$/react/app/src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5fa8bcb4-b7f8-47b0-a700-8eba8d058d5f" name="Changes" comment="" />
+      <created>1679337583496</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679337583496</updated>
+      <workItem from="1679337584655" duration="13000" />
+      <workItem from="1679761389737" duration="1102000" />
+      <workItem from="1679844208586" duration="96000" />
+      <workItem from="1680007330944" duration="8025000" />
+      <workItem from="1680069879595" duration="307000" />
+      <workItem from="1680070199067" duration="1225000" />
+      <workItem from="1680071435175" duration="3528000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

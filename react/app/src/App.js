@@ -1,18 +1,18 @@
 
 import './AppStyle.scss'
-
-import MainPageComponent from "../../components/pages/mainPageComponent/MainPageComponent";
 import {Route, Routes} from "react-router-dom";
 import React from "react";
-import AcordionsPageComponent from "../../components/pages/acordionsPageComponent/AcordionsPageComponent";
+import MainPageComponent from "./components/pages/MainPageComponent";
+import AcordionPageComponent from "./components/pages/AcordionPageComponent";
+
 function App() {
   return (
     <div className="App">
-            <Routes>
-                <Route exact path='/' element={<MainPageComponent />}/>
-                <Route  path='/main' element={<MainPageComponent />}/>
-                <Route  path='/acordions' element={<AcordionsPageComponent />}/>
-            </Routes>
+        <Routes>
+            <Route exact path='/' element={<MainPageComponent />}/>
+            <Route  path='/main' element={<MainPageComponent />}/>
+            <Route  path='/acordions' element={<AcordionPageComponent />}/>
+        </Routes>
     </div>
   );
 }

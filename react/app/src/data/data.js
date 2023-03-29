@@ -1,5 +1,6 @@
-import ContainerComponent from "../../../components/containerComponent/containerComponent";
+
 import React from "react";
+import AcordionComponent from "../components/acordionComponent/AcordionComponent";
 
 
 export const data_1 =[
@@ -32,6 +33,6 @@ export const data_2 =[
     {
         id : 3,
         title: "Заголовок 3",
-        content : <ContainerComponent data={data_1}/>
+        content : <AcordionComponent data={data_1}/>
     },
 ]
