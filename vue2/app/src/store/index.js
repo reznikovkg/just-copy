@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import berries from './berries'
 import users from './users'
 import exp from './exp'
+import tabs1 from './tabs1'
+import tabs2 from './tabs2'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -32,6 +34,8 @@ export default new Vuex.Store({
   modules: {
     users,
     berries,
-    exp
+    exp,
+    tabs1,
+    tabs2
   }
 })

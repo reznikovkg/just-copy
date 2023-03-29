@@ -3,9 +3,6 @@
         <div class="tabs__nav">
             <div v-for="(tab, index) in tabs" :key="index" class="tabs__tab" :class="{ 'tabs__tab--active': activeTab === index }" @click="changeTab(index)">{{ tab.title }}</div>
         </div>
-      <!-- <div class="tab-content">
-        <div v-html="currentTab.content"></div>
-      </div> -->
         <div class="tabs__content">
             <div v-for="(tab, index) in tabs" :key="index" class="tabs__pane" :class="{ 'tabs__pane--active': activeTab === index }" v-html="tab.content"></div>
         </div>
@@ -20,14 +17,14 @@ export default {
             required: true
         },
         activeTabIndex: {
-            type: String,
+            type: Number,
             required: false,
-            default: "0"
+            default: 0
         }
     },
     data() {
         return {
-            activeTab: Number(this.activeTabIndex)
+            activeTab: this.activeTabIndex
         }
     },
     methods: {
