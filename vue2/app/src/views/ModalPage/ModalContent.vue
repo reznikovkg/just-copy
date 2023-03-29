@@ -9,7 +9,7 @@
         <div class="modal-user" v-for="mu in getModalUsers" :key="mu.id">
             <h3>{{mu.name}} {{mu.age}}</h3>
             <p>{{mu.task}}</p>
-            <p @click="deleteMU(mu.id)" style="color: red; cursor: pointer">Удалить пользователя</p>
+            <p @click="deleteMU($event, mu.id)" style="color: red; cursor: pointer">Удалить пользователя</p>
         </div>
     </div>
 </template>
@@ -33,21 +33,19 @@ export default {
         onNameChange(e) {
             this.name = e.target.value;
         },
-        deleteMU(id) {
+        deleteMU(e, id) {
+            e.stopPropagation()
             this.deleteModalUser(id)
         },
         addMU() {
             if (this.name && (this.age !== null && this.age !== undefined) && this.task) {
-                this.addModalUser({user: {name: this.name, age: this.age, task: this.task}})
+                this.addModalUser({name: this.name, age: this.age, task: this.task})
             }
         },
-        ...mapActions("modalUsers", ["fetchAllModalUsers", "addModalUser", "deleteModalUser", "fetchModalUser"]),
+        ...mapActions("modalUsers", ["addModalUser", "deleteModalUser"]),
     },
     computed: {
         ...mapGetters("modalUsers", ["getModalUsers", "getSelectedModalUser"])
-    },
-    mounted() {
-        this.fetchAllModalUsers()
     }
 }
 </script>

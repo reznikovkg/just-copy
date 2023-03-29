@@ -1,14 +1,37 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {API_BASE} from "@/constants";
-import axios from "axios";
 
 Vue.use(Vuex)
 
 export default {
     namespaced: true,
     state: {
-        modalUsers: [],
+        modalUsers: [
+            {
+                id: "1",
+                name: "Nikita",
+                age: 21,
+                task: "beautiful modal"
+            },
+            {
+                id: "2",
+                name: "Sasha",
+                age: 21,
+                task: "handsome modal"
+            },
+            {
+                id: "3",
+                name: "Ilya",
+                age: 20,
+                task: "huge modal"
+            },
+            {
+                id: "4",
+                name: "Pasha",
+                age: 23,
+                task: "obvious modal"
+            }
+        ],
         selectedModalUser: {}
     },
     getters: {
@@ -16,29 +39,26 @@ export default {
         getSelectedModalUser: (state) => state.selectedModalUser
     },
     actions: {
-        fetchAllModalUsers: async ({ commit }) => {
-            const modalUsers = await axios.get(`${API_BASE}/users`);
-            commit('setModalUsers', modalUsers.data)
+        getModalUser: ({commit}, payload) => {
+            commit('getModalUser', payload)
         },
-        fetchModalUser: async ({commit}, payload) => {
-            const modalUser = await axios.get(`${API_BASE}/user?id=${payload}`);
-            commit('setModalUser', modalUser.data)
+        addModalUser: ({commit}, payload) => {
+            commit('addModalUser', payload)
         },
-        addModalUser: async ({commit}, payload) => {
-            const modalUsers = await axios.post(`${API_BASE}/addUser`, payload);
-            commit('setModalUsers', modalUsers.data)
-        },
-        deleteModalUser: async ({commit}, payload) => {
-            const modalUsers = await axios.delete(`${API_BASE}/removeUser?id=${payload}`);
-            commit('setModalUsers', modalUsers.data)
+        deleteModalUser: ({commit}, payload) => {
+            commit('deleteModalUser', payload)
         }
     },
     mutations: {
-        setModalUsers: (state, payload) => {
-            state.modalUsers = payload
+        getModalUser: (state, payload) => {
+            return state.modalUsers.find(u => u.id === payload)
         },
-        setModalUser: (state, payload) => {
-            state.selectedModalUser = payload
-        }
+        addModalUser: (state, payload) => {
+            const newId = state.modalUsers.length ? (+state.modalUsers[state.modalUsers.length - 1].id + 1 + "") : "1"
+            state.modalUsers.push({id: newId,...payload})
+        },
+        deleteModalUser: (state, payload) => {
+            state.modalUsers = state.modalUsers.filter(u => u.id !== payload)
+        },
     }
 }
