@@ -1,6 +1,6 @@
 <template>
   <div class="switch-button" :class="{ enabled: value,'switch-button--disabled': disabled}" @click="() => toggle()">
-    <div class="switch-button_circle"></div>
+    <div class="switch-button_circle"/>
   </div>
 </template>
 

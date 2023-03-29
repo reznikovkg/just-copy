@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <CheckBox v-model="switch1" label="checkbox"></CheckBox>
-    <CheckBox v-model="switch3" label="checkbox2" :disabled="true"></CheckBox>
-    <SwitchButton v-model="switch1"></SwitchButton>
+    <CheckBox v-model="switch1" label="checkbox"/>
+    <CheckBox v-model="switch3" label="checkbox2" :disabled="true"/>
+    <SwitchButton v-model="switch1"/>
   </div>
 </template>
 
