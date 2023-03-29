@@ -29,7 +29,7 @@ export default {
             commit('setModalUsers', modalUsers.data)
         },
         deleteModalUser: async ({commit}, payload) => {
-            const modalUsers = await axios.delete(`${API_BASE}/removeUser`, payload);
+            const modalUsers = await axios.delete(`${API_BASE}/removeUser?id=${payload}`);
             commit('setModalUsers', modalUsers.data)
         }
     },

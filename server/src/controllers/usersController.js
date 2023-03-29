@@ -1,4 +1,5 @@
 const { getUser, getAllUsers, addUser, removeUser } = require("../users")
+const { v4: uuidv4 } = require('uuid');
 
 class UsersController {
     getAllUsers(req, res) {
@@ -13,6 +14,10 @@ class UsersController {
     getUser(req, res) {
         try {
             const { id } = req.query
+            if (!id) {
+                return res.status(400).json({ message: "Bad request" });
+            }
+
             const user = getUser(id)
             return res.json(user)
         } catch (e) {
@@ -23,7 +28,11 @@ class UsersController {
     addUser(req, res) {
         try {
             const { user } = req.body
-            const usersData = addUser(user);
+            if (!user) {
+                return res.status(400).json({ message: "Bad request" });
+            }
+
+            const usersData = addUser({ id: uuidv4(), ...user});
             return res.json(usersData)
         } catch (e) {
             return res.status(500).json({ message: "Ошибка добавления пользователя" });
@@ -32,8 +41,16 @@ class UsersController {
 
     removeUser(req, res) {
         try {
-            const { id } = req.body
+            const { id } = req.query
+
+            if (!id) {
+                return res.status(400).json({ message: "Bad request" });
+            }
+
             const usersData = removeUser(id);
+
+            console.log(usersData)
+
             return res.json(usersData)
         } catch (e) {
             return res.status(500).json({ message: "Ошибка удаления пользователя" });

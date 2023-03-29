@@ -7,21 +7,22 @@
             :is-visible="isVisible"
             @setIsVisible="setIsVisible"
         >
-            <span>text</span>
+            <ModalContent/>
         </ModalComponent>
     </div>
 </template>
 
 <script>
-
-import ModalComponent from '../../../components/modal/ModalComponent.vue'
+import ModalComponent from '../../../../components/modal/ModalComponent.vue'
+import ModalContent from "./ModalContent.vue";
 export default {
     name: 'ModalPage',
     components: {
-        ModalComponent
+        ModalComponent,
+        ModalContent
     },
     data: () => ({
-        isVisible: false,
+        isVisible: false
     }),
     methods: {
         setIsVisible({ event, value }) {

@@ -62,7 +62,7 @@ export default {
             }
         }
     },
-    updated: function () {
+    updated() {
         const modalWrapper = this.$refs["modal-wrapper"];
         if (modalWrapper) {
             modalWrapper.focus()

@@ -23,7 +23,7 @@ const routes = [
   {
     path: '/modal',
     name: 'modal',
-    component: () => import(/* webpackChunkName: "select" */ '../views/ModalPage.vue')
+    component: () => import(/* webpackChunkName: "select" */ '../views/ModalPage/ModalPage.vue')
   },
 ]
 

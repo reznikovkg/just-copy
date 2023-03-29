@@ -9,10 +9,11 @@ const startHttpServer = async () => {
         const app = express();
 
         app.use(express.json());
-        app.use(cors({
-                origin: "*"
-            }
-        ));
+        app.use(
+            cors({
+                origin: "*",
+            })
+        );
         app.use(router);
 
         app.listen(PORT, () => console.log(`CHAT SERVICE STARTED AT PORT ${PORT}`));
