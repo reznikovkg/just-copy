@@ -25,6 +25,11 @@ const routes = [
     name: 'select',
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
   },
+  {
+    path: '/modal',
+    name: 'modal',
+    component: () => import(/* webpackChunkName: "modal" */ '../views/ModalPage.vue')
+  },
 ]
 
 const router = new VueRouter({
