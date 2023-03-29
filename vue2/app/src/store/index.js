@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import berries from './berries'
 import users from './users'
 import modalUsers from "./modalUsers";
-
+import exp from './exp'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
