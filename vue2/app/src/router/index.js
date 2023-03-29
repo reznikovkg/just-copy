@@ -25,6 +25,11 @@ const routes = [
     name: 'select',
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
   },
+  {
+    path: '/progress',
+    name: 'progress',
+    component: () => import(/* webpackChunkName: "progress" */ '../views/ProgressPage.vue')
+  },
 ]
 
 const router = new VueRouter({
