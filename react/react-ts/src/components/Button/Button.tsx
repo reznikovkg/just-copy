@@ -4,7 +4,7 @@ import "./style.scss";
 
 export const Button: FC<IButton> = ({ text = "", onClick }): ReactElement => {
   return (
-    <button onClick={onClick} className={"button"}>
+    <button onClick={onClick} className={"btn"}>
       {text}
     </button>
   );
