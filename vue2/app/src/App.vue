@@ -1,17 +1,18 @@
 <template>
-  <div id="app">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-    </nav>
-    <RouterView/>
-  </div>
-</template>
-
-<script>
+  <MyTabs :tabs="tabs" :description="description"></MyTabs>
+ </template>
+<script >
+import MyTabs from "../../components/tabs/MyTabs.vue"
 export default {
-  name: 'App'
+  components:{
+    MyTabs
+  },
+  data() {
+      return {
+        tabs:["Профиль","Избранное","Настройки"],
+        description:["Информация о профиле!","Информация об избранном!"],
+      }
+  },
 }
 </script>
-
-<style>
-</style>
+<style scoped></style>

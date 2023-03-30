@@ -1,0 +1,10 @@
+.tabs-wrapper {
+    overflow: hidden;
+    display: flex;
+    border: 3px solid #85c9c1;
+    background-color: #d4f3ef;
+  }
+  .tabs-wrapper>div {
+    position: relative;
+    margin-right: 10px;
+  }
