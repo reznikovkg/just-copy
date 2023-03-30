@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-    </nav>
-    <RouterView/>
+    <RangeInput />
   </div>
 </template>
 
 <script>
+import RangeInput from "../../components/range-input/RangeInput.vue"
+
 export default {
-  name: 'App'
+  components: {
+    RangeInput
+  }
 }
+
+
 </script>
 
-<style>
-</style>
+<style></style>
