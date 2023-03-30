@@ -25,6 +25,11 @@ const routes = [
     name: 'select',
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
   },
+  {
+    path: '/notifications',
+    name: 'notifications',
+    component: () => import(/* webpackChunkName: "select" */ '../views/NotificationPage.vue')
+  },
 ]
 
 const router = new VueRouter({

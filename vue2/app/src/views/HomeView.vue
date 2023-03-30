@@ -9,6 +9,9 @@
     <p><router-link :to="{ name: 'select' }">
       Select
     </router-link></p>
+    <router-link :to="{name:'notifications'}">
+      Notification
+    </router-link>
   </div>
 </template>
 
