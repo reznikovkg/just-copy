@@ -2,51 +2,46 @@
     <div class="tabs-page">
         <h1>Example of using Tabs with active-tab-index parameter</h1>
         <h2>Tabs can accept html as content (tab 3)</h2>
-        <Tabs :tabs="tabs1" :active-tab-index="activeTab1"></Tabs>
+        <Tabs :tabs="tabs[0].tabs" :active-tab-index="tabs[0].activeTab"/>
         <h1>Another Tab with same content to show that they can be used anywhere</h1>
-        <Tabs :tabs="tabs1"></Tabs>
+        <Tabs :tabs="tabs[1].tabs"/>
         <h1>Also you can dynamically add new tabs</h1>
-        <Tabs :tabs="tabs2" :active-tab-index="activeTab2" @tabChanged="tabChanged"></Tabs>
-        <button class="tabs-button" @click="addTab">Add Tab</button>
-        <h2>You can use tabChanged event to use it in Parent component</h2>
-        <h1>Selected Tab index: {{ tabId }}</h1>
+        <h2>You can use tabSwitched event to use it in Parent component</h2>
+        <div v-for="(i, index) in tabs" :key="index">
+            <Tabs :tabs="i.tabs" :active-tab-index="i.activeTab" @tabSwitched="(tabIndex) => tabSwitched(index, tabIndex)"/>
+            <h1>Selected Tab index: {{ tabs[index].activeTab }}</h1>
+            <button class="tabs-button" @click="addTabByTabsIndex(index)">Add Tab</button>
+        </div>
     </div>
 </template>
 
 <script>
 import Tabs from '../../../components/Tabs/Tabs.vue'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: "TabsPage",
     components: {
         Tabs
     },
-    data() {
-        return {
-            tabId: 0
-        }
-    },
     computed: {
-        tabs1() {
-            return this.$store.getters['tabs1/getTabs']
+        ...mapGetters('tabs', [
+            'getTabs',
+        ]),
+        tabs() {
+            return this.getTabs
         },
-        tabs2() {
-            return this.$store.getters['tabs2/getTabs']
-        },
-        activeTab1() {
-            return this.$store.getters['tabs1/getActiveTab']
-        },
-        activeTab2() {
-            return this.$store.getters['tabs2/getActiveTab']
-        }
     },
     methods: {
-        addTab() {
-            this.$store.dispatch('tabs2/addTab', {title: 'Generic Tab', content: 'Generic content'})
+        ...mapActions('tabs', [
+            'addTab',
+            'setActiveTab'
+        ]),
+        addTabByTabsIndex(index) {
+            this.addTab({index, tab: {title: 'Generic Tab', content: 'Generic content'}})
         },
-        tabChanged(index) {
-            this.tabId = index
-            this.$store.dispatch('tabs2/setActiveTab', index)
+        tabSwitched(tabsIndex, tabIndex) {
+            this.setActiveTab({tabsIndex, tabIndex})
         },
     }
 }

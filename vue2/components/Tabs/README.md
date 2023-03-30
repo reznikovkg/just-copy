@@ -46,4 +46,4 @@ ___
 ## Tabs Events
 |Event Name|Description|Parameters|
 |:-:|:-:|:-:|
-|tabChanged|triggers when tab changed|index - index of new selected tab|
+|tabSwitched|triggers when tab was switched|index - index of new selected tab|

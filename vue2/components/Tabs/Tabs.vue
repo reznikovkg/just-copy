@@ -1,10 +1,20 @@
 <template>
     <div class="tabs">
         <div class="tabs__nav">
-            <div v-for="(tab, index) in tabs" :key="index" class="tabs__tab" :class="{ 'tabs__tab--active': activeTab === index }" @click="changeTab(index)">{{ tab.title }}</div>
+            <div 
+                v-for="(tab, index) in tabs" 
+                :key="index" class="tabs__tab" 
+                :class="{ 'tabs__tab--active': activeTab === index }" 
+                @click="changeTab(index)"
+                >{{ tab.title }}
+            </div>
         </div>
         <div class="tabs__content">
-            <div v-for="(tab, index) in tabs" :key="index" class="tabs__pane" :class="{ 'tabs__pane--active': activeTab === index }" v-html="tab.content"></div>
+            <div 
+                v-for="(tab, index) in tabs" 
+                :key="index" class="tabs__pane" 
+                :class="{ 'tabs__pane--active': activeTab === index }" 
+                v-html="tab.content"></div>
         </div>
     </div>
 </template>
@@ -30,7 +40,7 @@ export default {
     methods: {
         changeTab(index) {
             this.activeTab = index
-            this.$emit('tabChanged', this.activeTab)
+            this.$emit('tabSwitched', this.activeTab)
         }
     }
 }
