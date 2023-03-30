@@ -1,0 +1,21 @@
+.tabs-wrapper {
+    /* display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: left;
+    -ms-flex-pack: left;
+    justify-content: left;
+    width: 100%; */
+    overflow: hidden;
+    display: flex;
+    border: 3px solid #85c9c1;
+    background-color: #d4f3ef;
+  }
+  
+  .tabs-wrapper>div {
+    position: relative;
+    margin-right: 10px;
+  }

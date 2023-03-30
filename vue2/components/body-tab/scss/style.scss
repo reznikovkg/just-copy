@@ -1,0 +1,30 @@
+$_blue:3px solid #85c9c1;
+
+.BodyTab {            
+  padding: 6px 12px;
+  border: $_blue;
+  border-top: none;
+  width: $_100ps;
+}
+
+// .BodyTab {
+//     position: relative;
+//     z-index: 1;
+//     width: $_100ps;
+//     padding: 16px;
+//     background-color: #fff;
+//     border-radius: 0 0 4px 4px;
+//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//   }
+  
+//   .BodyTab:before {
+//     content: "";
+//     position: absolute;
+//     z-index: -1;
+//     top: 0;
+//     left: 0;
+//     width: $_100ps;
+//     height: $_100ps;
+//     background-color: #eee;
+//     border-radius: 4px 4px 0 0;
+//   }

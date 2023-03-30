@@ -1,33 +1,26 @@
-<template>
-    <button class="btn" :class="['btn--' + type, 'btn--' + size]" @click="() => actionClick()">
-        <slot>Button</slot>
-    </button>
-</template>
+<script >
 
-<script>
-export default {
-    name: 'Button',
-    props: {
-        type: {
-            type: String,
-            // default, error, warning, success
-            default: 'default'
-        },
-        size: {
-            type: String,
-            // small, medium, large
-            default: 'medium'
-        }
-
-    },
-    methods: {
-        actionClick () {
-            this.$emit('click')
-        }
+export default{
+  props:{
+    tab:{
+       default: "",
+       required: false
     }
+  },
+  methods:{
+    click(){
+      this.$emit("create",this.tab)
+    }
+  }
 }
 </script>
 
-<style lang="less">
-    @import "styles/styles.less";
+<template>
+  <button class="btn" @click="click">
+    
+    {{ this.tab }}
+  </button>
+</template>
+
+<style src="./css/style.css" scoped>
 </style>

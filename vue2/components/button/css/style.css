@@ -1,0 +1,25 @@
+.btn {
+    /* border: none;
+    border-radius: 4px 4px 0 0;
+    padding: 8px 16px;
+    cursor: pointer; */
+    background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        
+  }
+  
+/* .btn:hover {
+  background-color: #7dbbb8;
+} */
+
+  /*.active {
+    background-color: #fff;
+    color: #333;
+    border-bottom: 2px solid #333;
+    
+  }*/
