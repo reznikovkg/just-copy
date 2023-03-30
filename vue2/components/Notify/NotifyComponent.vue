@@ -1,16 +1,17 @@
 <template>
   <div class="notification-container">
     <notification
-      v-for="item in notifications"
+      v-for="item in getNotifications()"
       :key="item.id"
       :content="item.content"
-      :width="350"
+      :width="'350'"
     >
     </notification>
   </div>
 </template>
 
 <script>
+import {  mapGetters } from "vuex";
 import NotificationComponent from "../Notification/NotificationComponent.vue";
 
 export default {
@@ -18,12 +19,6 @@ export default {
     notification: NotificationComponent,
   },
 
-  props: {
-    notifications: {
-      type: Array,
-      default: [],
-    },
-  },
 
   data() {
     return {};
@@ -32,6 +27,9 @@ export default {
     hideNotification(id) {
       this.list = this.list.filter((x) => x.id != id);
     },
+    ...mapGetters("notifications", [
+      "getNotifications",
+    ]),
   },
 };
 </script>

@@ -3,7 +3,6 @@
     <h1>Select</h1>
     <div style="max-width: 400px">
       <NotifyComponent 
-        :notifications="getNotifications"
         >
       </NotifyComponent>
       <button 
@@ -16,7 +15,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import {  mapActions } from "vuex";
 import NotifyComponent from "../../../components/Notify/NotifyComponent.vue";
 
 export default {
@@ -32,12 +31,7 @@ export default {
       },
     };
   },
-  computed: {
-    ...mapGetters("notifications", [
-      "getNotifications",
-      "getNotificationsCount",
-    ]),
-  },
+ 
   methods: {
     ...mapActions("notifications", ["addNotification"]),
   },
