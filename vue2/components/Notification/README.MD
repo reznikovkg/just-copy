@@ -55,8 +55,8 @@ export default {
 </script>
 ```
 ### Notification creating
-![Notification creating](DocAssets/30.03.2023_20.55.48_REC.gif)
 
+![30 03 2023_20 55 48_REC](https://user-images.githubusercontent.com/67105296/228926251-eaff47f2-ae20-4aac-a41a-1d29c0985a24.gif)
 
 ___
 ## Select Attributes
