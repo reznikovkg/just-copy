@@ -1,0 +1,74 @@
+.notification  {
+
+    &__box{
+    width: 300px;
+    padding: 10px 13px ;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ebeef5;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+    &__box:first-child {
+    margin-top: 10px;
+}
+    &__title {
+    font-weight: 700;
+    font-size: 16px;
+    color: #303133;
+    margin: 0;
+    text-align: left;
+
+}
+
+    &__content {
+    font-size: 14px;
+    line-height: 21px;
+    margin: 6px 0 0;
+    color: #606266;
+    text-align: justify;
+}
+
+    &__content p {
+    margin: 0 px;
+}
+
+    &__closebtn {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    cursor: pointer;
+}
+
+
+
+}
+
+.keyframes(@name; @arguments) {
+    @-moz-keyframes @name { @arguments(); }
+    @-webkit-keyframes @name { @arguments(); }
+    @keyframes @name { @arguments(); }
+}
+
+.animation(@arguments) {
+    -webkit-animation: @arguments;
+    -moz-animation: @arguments;
+    animation: @arguments;
+}
+
+.fade-enter-active{
+    .keyframes(fade-in;{
+        0% { opacity: 0;transform: translateX(200px); }
+        100% { opacity: 1; transform: translateX(0);}
+        });
+    .animation(fade-in 0.2s linear normal)    
+}
+
+.fade-leave-active{
+    .keyframes(fade-out;{
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+        });
+    .animation(fade-out 0.5s forwards normal) 
+}
