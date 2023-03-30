@@ -1,8 +1,8 @@
 <template>
     <div>
-        <ButtonComponent v-for="(modal, index) in modalsData" :key="'button'+index" @click="() => addModal(modal)" size="large">
+        <Button v-for="(modal, index) in modalsData" :key="'button'+index" @click="() => addModal(modal)" size="large">
             {{ modal.name }}
-        </ButtonComponent>
+        </Button>
         <div v-for="(modal, index) in getModals" :key="'modal'+index" style="margin: 10px">
             <Modal with-close-button :title="modal.name" :index="index">
                 <p>
@@ -11,28 +11,34 @@
                 <p>
                     <a target="_blank" :href="modal.link">Link</a>
                 </p>
-                <ButtonComponent v-for="(modal, index) in modalsData" :key="'button'+index" @click="() => addModal(modal)" size="large">
+                <Button v-for="(modal, index) in modalsData" :key="'button'+index" @click="() => addModal(modal)" size="large">
                     {{ modal.name }}
-                </ButtonComponent>
+                </Button>
             </Modal>
         </div>
     </div>
 </template>
 
 <script>
-import ButtonComponent from "../../../components/button/Button.vue";
+import Button from "../../../components/button/Button.vue";
 import Modal from "../../../components/modalWindow/Modal.vue";
 import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: 'ModalPage',
     components: {
-        ButtonComponent,
+        Button,
         Modal,
     },
-    data() {
-        return {
-            modalsData: [{
+    computed: {
+        Button() {
+            return Button
+        },
+        ...mapGetters('modals', [
+            'getModals',
+        ]),
+        modalsData() {
+            return [{
                 link: 'https://react.dev/',
                 name: 'React',
                 description: 'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable and easier to debug. Component-Based.'
@@ -46,11 +52,6 @@ export default {
                 description: 'Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications. APIs. With a myriad of HTTP utility methods and middleware at your disposal, creating a robust API is quick and easy. Performance. Express provides a thin layer of fundamental web application features, without obscuring Node.js features that you know and love. Frameworks. Many popular frameworks are based on Express.'
             }]
         }
-    },
-    computed: {
-        ...mapGetters('modals', [
-            'getModals',
-        ]),
     },
     mounted() {
         this.$root.$on('addModal', (data) => this.addModal(data));

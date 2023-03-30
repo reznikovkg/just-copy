@@ -19,15 +19,21 @@
             </svg>
           </div>
         </div>
-        <slot></slot>
+          <component :is="$props.content"></component>
+        <slot v-if="!$props.content"></slot>
       </div>
     </div>
   </Transition>
 </template>
 
 <script>
+import ButtonComponent from "../button/Button.vue";
+
 export default {
   name: `Modal`,
+  components: {
+      ButtonComponent,
+  },
   props: {
     title: {
       type: String,
@@ -38,8 +44,11 @@ export default {
       default: false,
     },
     index: {
-      type: Number,
-    }
+        type: Number,
+    },
+    content: {
+      type: String | Object,
+    },
   },
   methods: {
     onClose(e) {
