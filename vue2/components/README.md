@@ -9,21 +9,37 @@ checkbox is checked
 
 ![image](https://user-images.githubusercontent.com/46415000/225363439-f6464ec0-214c-47d4-a126-7c9341199534.png)
 
+checkbox is disabled
+
+![image](https://user-images.githubusercontent.com/46415000/228894214-5aaf40e3-68f8-424d-9385-75e2749601a2.png)
+
+
 Этот компонент представляет из себя чекбокс, при нажатии на который он меняет цвет и изображение внутри.
-Данный компонент содержит prop - value типа boolean, обозначающий текущее состояние чекбокса и событие "change", которое отвечают за изменение чекбокса в методе "check".
+Данный компонент содержит prop - value типа boolean, обозначающий текущее состояние чекбокса, prop типа boolean disabled, отвечающий за отключение компонента и событие "change", которое отвечает за изменение чекбокса в методе "check".
 ```
- model: {
-    prop: "value",
-    event: "change"
+<template>
+  <div id="app">
+    <CheckBox v-model="switch1" label="checkbox"/>
+    <CheckBox v-model="switch2" label="checkbox2" :disabled="true"/>
+  </div>
+</template>
+
+<script>
+import CheckBox from "../../../components/checkbox/Checkbox.vue";
+export default {
+  name: 'CustomCheckbox',
+  components: {
+    CheckBox
   },
-  props: {
-    value: Boolean
-  },
-  methods: {
-    check: function () {
-      this.$emit("change", !this.value);
-    }
+  data() {
+    return {
+      switch1: false,
+      switch2: true
+    };
   }
+};
+</script>
+  
 ```
 Импорт компонента и использование компонента производятся с помощью данных команд
 ```
@@ -41,21 +57,34 @@ switch is checked
 
 ![image](https://user-images.githubusercontent.com/46415000/227205372-167e884e-748d-4836-b904-914ee38d1d92.png)
 
+switch is disabled
+
+![image](https://user-images.githubusercontent.com/46415000/228895706-0be07482-77f5-451a-83dc-c9a7e4071cb2.png)
+
+
  Компонент представляет из себя кнопку-переключатель, при нажатии на которую изменяется её цвет и проигрывается анимация.
- Данный компонент содержит prop - value типа boolean, обозначающий текущее состояние переключателя и событие "change", которое отвечают за изменение переключателя в методе "toggle".
+ Данный компонент содержит prop - value типа boolean, обозначающий текущее состояние переключателя, prop типа boolean disabled, отвечающий за отключение компонента и событие "change", которое отвечают за изменение переключателя в методе "toggle".
 ```
- model: {
-    prop: "value",
-    event: "change"
+ <template>
+  <div id="app">
+    <SwitchButton v-model="switch1"/>
+  </div>
+</template>
+
+<script>
+import SwitchButton from "../../../components/switch/SwitchButton.vue";
+export default {
+  name: 'CustomCheckbox',
+  components: {
+    SwitchButton
   },
-  props: {
-    value: Boolean
-  },
-  methods: {
-    toggle: function () {
-      this.$emit("change", !this.value);
-    }
+  data() {
+    return {
+      switch1: false,
+    };
   }
+};
+</script>
   ```
   Импорт компонента и использование компонента производятся с помощью данных команд
 ```
