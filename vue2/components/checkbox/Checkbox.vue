@@ -1,5 +1,7 @@
 <template>
-  <div class="checkbox" :class="{enabled: value,'checkbox--disabled': disabled}" @click="() => check()">
+  <div class="checkbox"
+   :class="{enabled: value,'checkbox--disabled': disabled}"
+    @click="check">
     <div class="checkbox__labels">
       <label>
         {{label}}
@@ -11,10 +13,6 @@
 <script>
 export default {
   name: "CustomCheckbox",
-  model: {
-    prop: "value",
-    event: "change"
-  },
   props: {
     value: Boolean,
     label: String,
@@ -26,7 +24,7 @@ export default {
   methods: {
     check () {
       if (!this.disabled) {
-      this.$emit("change", !this.value);
+        this.$emit("change", this.label);
       }
     }
   }

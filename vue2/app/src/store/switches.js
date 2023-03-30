@@ -3,18 +3,19 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export default {
   namespaced:true,
   state: {
-    lastSelectedSwitch:"",
     switches: [
       {
         name: "switch1",
-        value: "false",
+        value: false,
+        disabled: false
       },
       {
         name: "switch2",
-        value: "true",
+        value: true,
+        disabled: true
       },
     ]
   },
@@ -25,16 +26,32 @@ export default new Vuex.Store({
     addSwitch: (state, payload) => {
       state.switches.push(payload)
     },
-    setLastSelectedSwitch: (state, payload) => {
-      state.lastSelectedSwitch = payload
-    }
+    deleteSwitch: (state, payload) => {
+      state.switches = state.switches.filter(sw => sw.name !== payload)
+    },
+    changeSwitch: (state, payload) => {
+      const switchIndex = state.switches.findIndex(sw => sw.name === payload);
+      state.switches = state.switches.map((sw, i) => {
+        if (i === switchIndex) {
+          return {
+            ...sw,
+            value: !sw.value
+          }
+        } else {
+          return sw;
+        }
+      })
+    },
   },
   actions: {
     addSwitch: ({ commit }, payload) => {
       commit('addSwitch', payload)
     },
-    setLastSelectedSwitch: ({ commit }, payload) => {
-      commit('setLastSelectedSwitch', payload)
+    deleteSwitch: ({ commit }, payload) => {
+      commit('deleteSwitch', payload)
+    },
+    changeSwitch: ({ commit }, payload) => {
+      commit('changeSwitch', payload)
     }
   },
-});
+};

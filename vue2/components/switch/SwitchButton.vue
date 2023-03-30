@@ -1,5 +1,7 @@
 <template>
-  <div class="switch-button" :class="{ enabled: value,'switch-button--disabled': disabled}" @click="() => toggle()">
+  <div class="switch-button" 
+    :class="{ enabled: value,'switch-button--disabled': disabled}"
+    @click="() => toggle()">
     <div class="switch-button_circle"/>
   </div>
 </template>
@@ -7,12 +9,9 @@
 <script>
 export default {
   name: "SwitchButton",
-  model: {
-    prop: "value",
-    event: "change"
-  },
   props: {
     value: Boolean,
+      label: String,
     disabled: {
       type: Boolean,
       default: false,
@@ -21,7 +20,7 @@ export default {
   methods: {
     toggle() {
       if (!this.disabled) {
-      this.$emit("change", !this.value);
+        this.$emit("change", this.label);
       }
     }
   }

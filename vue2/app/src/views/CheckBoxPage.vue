@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <CheckBox v-model="switch1" label="checkbox"/>
-    <CheckBox v-model="switch3" label="checkbox2" :disabled="true"/>
-    <SwitchButton v-model="switch1"/>
+      <div v-for="(sw, index) in getSwitches" :key="sw.name">
+          <CheckBox :label="sw.name" :value="sw.value" :disabled="sw.disabled" @change="change" />
+          <div v-if="index === 0">
+              <SwitchButton :label="sw.name" :value="sw.value" @change="change"/>
+          </div>
+      </div>
   </div>
 </template>
 
@@ -16,31 +19,17 @@ export default {
     SwitchButton,
     CheckBox
   },
-  data() {
-    return {
-      switch1: false,
-      switch3: true
-    };
-  },
   computed: {
-    switches() {
-      return this.$store.getters['switches/getSwitches']
-    },
     ...mapGetters('switches', [
-      'getLastSelectedSwitch'
+      'getSwitches'
     ]),
-    switch2: {
-      get() {
-        return this.getLastSelectedSwitch;
-      },
-      set(val) {
-        this.setLastSelectedSwitch(val);
-      }
-    }
   },
   methods: {
+      change(name) {
+          this.changeSwitch(name);
+      },
     ...mapActions('switches', [
-      'setLastSelectedSwitch'
+      'addSwitch', 'deleteSwitch', 'changeSwitch'
     ]),
   },
 };
