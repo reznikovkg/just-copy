@@ -62,22 +62,6 @@ export default {
   },
 };
 </script>
-<style lang="less">
-#app {
-  font-family: Lato, sans-serif;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  &__input {
-    width: 200px
-  }
-
-  &__button {
-    margin-left: 40px;
-  }
-}</style>
+<style>
+</style>
   
