@@ -9,14 +9,15 @@
                 >{{ tab.title }}
             </div>
         </div>
-        <div class="tabs__content">
-            <div 
+            <transition-group name="tabs__tab-switch" class="tabs__content">
+                <div 
                 v-for="(tab, index) in tabs" 
-                :key="index" class="tabs__pane" 
+                :key="index" class="tabs__pane"
                 :class="{ 'tabs__pane--active': activeTab === index }" 
+                v-if="activeTab === index"
                 v-html="tab.content"></div>
+            </transition-group>
         </div>
-    </div>
 </template>
   
 <script>
