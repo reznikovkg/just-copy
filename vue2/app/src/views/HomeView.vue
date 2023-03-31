@@ -12,8 +12,14 @@
     <router-link :to="{name:'notifications'}">
       Notification
     </router-link>
+    <p><router-link :to="{ name: 'progress' }">
+      Progress
+    </router-link></p>
     <p><router-link :to="{ name: 'tabs' }">
       Tabs
+    </router-link></p>
+    <p><router-link :to="{ name: 'modal' }">
+      Modal
     </router-link></p>
   </div>
 </template>

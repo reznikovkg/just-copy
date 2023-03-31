@@ -1,33 +1,27 @@
 <template>
   <div class="notification-container">
-    <notification
+    <NotificationComponent
       v-for="item in getNotifications"
       :key="item.id"
       :content="item.content"
       :width="'350'"
     >
-    </notification>
+    </NotificationComponent>
   </div>
 </template>
 
 <script>
 import {  mapGetters } from "vuex";
 import NotificationComponent from "../Notification/NotificationComponent.vue";
+import NotificationComponent from "../Notification/NotificationComponent.vue";
 
 export default {
-  components: {
-    notification: NotificationComponent,
-  },
-  methods: {
-    hideNotification(id) {
-      this.list = this.list.filter((x) => x.id != id);
-    }
-  },
-  computed:{
-    ...mapGetters("notifications", [
-      "getNotifications",
-    ]),
-  }
+    computed: {
+        ...mapGetters("notifications", [
+            "getNotifications",
+        ]),
+    },
+    components: { NotificationComponent }
 };
 </script>
 

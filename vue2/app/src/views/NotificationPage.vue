@@ -2,13 +2,9 @@
   <div class="about">
     <h1>Select</h1>
     <div style="max-width: 400px">
-      <NotifyComponent 
-        >
-      </NotifyComponent>
-      <button 
-      @click="() => addNotification(values)"
-      >
-      Click
+      <NotifyComponent/>
+      <button @click="() => addNotification(values)">
+        Click
       </button>
     </div>
   </div>
