@@ -6,24 +6,26 @@
       <ProgressBar
         v-model="progressOptions1"
         :showTip="true"
+        ref="ProgressBar1"
       > 
       </ProgressBar>
-      <Button @click="() => decrease1(10)" >
+      <Button @click="() => this.$refs.ProgressBar1.decrease(10)" >
         -10
       </Button>
-      <Button @click="() => increase1(10)" >
+      <Button @click="() => this.$refs.ProgressBar1.increase(10)" >
         +10
       </Button>
       <h2>Progress without percent and red line</h2>
       <ProgressBar
         v-model="progressOptions2"
         :showTip="false"
+        ref="ProgressBar2"
       > 
       </ProgressBar>
-      <Button @click="() => decrease2(10)" >
+      <Button @click="() => this.$refs.ProgressBar2.decrease(10)" >
         -10
       </Button>
-      <Button @click="() => increase2(10)" >
+      <Button @click="() => this.$refs.ProgressBar2.increase(10)" >
         +10
       </Button>
       <h2>Progress with percent and broad line and different colors</h2>
@@ -32,12 +34,13 @@
         :showTip="true"
         :height="50"
         :colorFunc=color
+        ref="ProgressBar3"
       > 
       </ProgressBar>
-      <Button @click="() => decrease3(10)" >
+      <Button @click="() => this.$refs.ProgressBar3.decrease(10)" >
         -10
       </Button>
-      <Button @click="() => increase3(10)" >
+      <Button @click="() => this.$refs.ProgressBar3.increase(10)" >
         +10
       </Button>
       <h2>Progress with all props</h2>
@@ -48,12 +51,13 @@
         :colorFunc=color
         :innerStrokeColor="'black'"
         :width="400"
+        ref="ProgressBar4"
       > 
       </ProgressBar>
-      <Button @click="() => decrease4(20)" >
+      <Button @click="() => this.$refs.ProgressBar4.decrease(20)" >
         -20
       </Button>
-      <Button @click="() => increase4(20)" >
+      <Button @click="() => this.$refs.ProgressBar4.increase(20)" >
         +20
       </Button>
     </div>
@@ -78,44 +82,6 @@
         }
       },
       methods: {
-        increase1(change) {
-          this.progressOptions1 = this.increase(this.progressOptions1, change);
-        },
-        decrease1(change) {
-          this.progressOptions1 = this.decrease(this.progressOptions1, change);
-        },
-        increase2(change) {
-          this.progressOptions2 = this.increase(this.progressOptions2, change);
-        },
-        decrease2(change) {
-          this.progressOptions2 = this.decrease(this.progressOptions2, change);
-        },
-        increase3(change) {
-          this.progressOptions3 = this.increase(this.progressOptions3, change);
-        },
-        decrease3(change) {
-          this.progressOptions3 = this.decrease(this.progressOptions3, change);
-        },
-        increase4(change) {
-          this.progressOptions4 = this.increase(this.progressOptions4, change);
-        },
-        decrease4(change) {
-          this.progressOptions4 = this.decrease(this.progressOptions4, change);
-        },
-        increase(value, change) {
-          value += change;
-          if(value > 100) {
-            value = 100;
-          }
-          return value;
-        },
-        decrease(value, change) {
-          value -= change;
-          if(value < 0){
-            value = 0;
-          }
-          return value;
-        },
         color(percentage) {
           var second = 13 + percentage * 4;
           if(second > 255) {

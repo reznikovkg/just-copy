@@ -41,6 +41,10 @@ export default {
       default: "#d6efff"
     }
   },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   computed: {
     percent() {
       return this.value.toFixed()
@@ -76,7 +80,19 @@ export default {
   methods: {
     color() {
       return "rgb(255, 0, 0)";
-    } 
+    },
+    increase(change) {
+      this.$emit(
+        'change',
+        this.value + change > 100 ? 100 : this.value + change
+      )
+    },
+    decrease(change) {
+      this.$emit(
+        'change',
+        this.value - change < 0 ? 0 : this.value - change
+      )
+    },
   }
 };
 </script>
