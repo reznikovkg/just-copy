@@ -30,6 +30,10 @@ const routes = [
     name: 'modal',
     component: () => import(/* webpackChunkName: "select" */ '../views/ModalPage/ModalPage.vue')
   },
+    path: '/Tabs',
+    name: 'tabs',
+    component: () => import(/* webpackChunkName: "select" */ '../views/TabsPage.vue')
+  },
 ]
 
 const router = new VueRouter({
