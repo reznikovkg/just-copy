@@ -4,6 +4,7 @@ import berries from './berries'
 import users from './users'
 import exp from './exp'
 import switches from "./switches";
+import modalUsers from "./modalUsers";
 import tabs from './tabs'
 Vue.use(Vuex)
 
@@ -37,5 +38,7 @@ export default new Vuex.Store({
     exp,
     switches,
     tabs,
+    modalUsers,
+    tabs
   }
 })

@@ -31,6 +31,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
   },
   {
+    path: '/modal',
+    name: 'modal',
+    component: () => import(/* webpackChunkName: "select" */ '../views/ModalPage/ModalPage.vue')
+  },
+  {
     path: '/progress',
     name: 'progress',
     component: () => import(/* webpackChunkName: "progress" */ '../views/ProgressPage.vue')
