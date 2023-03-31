@@ -38,14 +38,20 @@ export default {
     };
   },
   methods: {
-    ...mapActions("notifications", ["deleteNotification"]),
-    ...mapGetters("notifications", ["getInterval"]),
+    ...mapActions("notifications",[
+      "deleteNotification"
+    ]),
+  },
+  computed:{
+    ...mapGetters("notifications", [
+      "getInterval"
+    ]),
   },
   mounted(){
-      setTimeout(() => {
-        this.deleteNotification(this.$vnode.key);
-      }, this.getInterval());
-    }
+    setTimeout(() => {
+      this.deleteNotification(this.$vnode.key);
+    }, this.getInterval);
+  }
 };
 </script>
 
