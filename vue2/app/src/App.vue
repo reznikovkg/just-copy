@@ -1,7 +1,9 @@
 <template>
-  <MyTabs :tabs="tabs" :description="description"></MyTabs>
- </template>
-<script >
+  <div>
+    <MyTabs :tabs="tabs" :description="description"></MyTabs>
+  </div>
+</template>
+<script>
 import MyTabs from "../../components/tabs/MyTabs.vue"
 export default {
   components:{
@@ -9,8 +11,10 @@ export default {
   },
   data() {
       return {
-        tabs:["Профиль","Избранное","Настройки"],
-        description:["Информация о профиле!","Информация об избранном!"],
+        tabs:[{name: 'Профиль', content: 'Информация о профиле!'},
+        {name: 'Избранное', content: 'Информация об избранном!'},
+        {name: 'Настройки', content: 'Информация о настройках!'}
+        ]
       }
   },
 }

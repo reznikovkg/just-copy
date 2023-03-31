@@ -2,23 +2,23 @@
   <div class="tabs">
     <div class="tabs-wrapper">
       <div v-for="tab in tabs" v-bind:key="tab.id">
-        <Button  @create="setDescription" :tab="tab"></Button>
+        <button class="btn" @click="setDescription(tab)">
+          {{ tab.name }}
+        </button>
       </div>
     </div>
-    <BodyTab class="BodyTab" :description="activeDescription"></BodyTab>
+    <div class="BodyTab">
+        <p>
+          {{ this.activeDescription }}
+        </p>
+    </div>
   </div>
 </template>
-<script >
-import Button from  "../button-tab/Button.vue"
-import BodyTab from "../body-tab/BodyTab.vue"
+<script>
 export default {
-  components:{
-    Button,
-    BodyTab
-  },
   data(){
     return {
-      activeDescription:this.description[0],
+      activeDescription:this.tabs[0].content,
     }
   },
   props:{
@@ -26,16 +26,12 @@ export default {
       type:Array,
       requared:true,
     },
-    description:{
-      type:Array,
-      requared:true,
-    }
   },
   methods: {
     setDescription(desk){
-      this.activeDescription= this.description[this.tabs.indexOf(desk)];
+      this.activeDescription=desk.content;
     }
-  },
+  }
 }
 </script>
 <style src="./css/style.css" scoped></style>

@@ -1,12 +1,27 @@
 $blue: 3px solid #85c9c1;
+$bg-color:inherit;
 .tabs-wrapper {
   overflow: hidden;
   display: flex;
   border: $blue;
   background-color: #d4f3ef;
 }
-
 .tabs-wrapper>div {
   position: relative;
   margin-right: 10px;
+}
+.btn {
+  background-color: $bg-color;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+.BodyTab {            
+  padding: 6px 12px;
+  border: $_blue;
+  border-top: none;
+  width: $_100ps;
 }
