@@ -1,11 +1,22 @@
 <template>
   <div id="app">
-      <div v-for="(sw, index) in getSwitches" :key="sw.name">
-          <CheckBox :label="sw.name" :value="sw.value" :disabled="sw.disabled" @change="change" />
-          <div v-if="index === 0">
-              <SwitchButton :label="sw.name" :value="sw.value" @change="change"/>
-          </div>
+    <div class="container">
+      <div>
+        <input @change="e => setInputValue(e)" class="container__input" placeholder="enter name" />
+        <select :value="selectValue" @change="e => setSelectValue(e)">
+          <option :value="switchesTypes.SWITCH">switch</option>
+          <option :value="switchesTypes.CHECKBOX">checkbox</option>
+        </select>
+        <button @click="() => addSW()">Добавить</button>
       </div>
+      <div v-for="(sw) in getSwitches" :key="sw.name">
+        <CheckBox v-if="sw.type === switchesTypes.CHECKBOX" :label="sw.name" :value="sw.value" :disabled="sw.disabled"
+          @change="() => change(sw.name)" />
+        <SwitchButton v-else-if="sw.type === switchesTypes.SWITCH" :label="sw.name" :value="sw.value"
+          @change="() => change(sw.name)" />
+        <button class="container__button" @click="() => deleteSwitch(sw.name)">delete switch</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,21 +24,38 @@
 import { mapGetters, mapActions } from "vuex";
 import SwitchButton from "../../../components/switch/SwitchButton.vue";
 import CheckBox from "../../../components/checkbox/Checkbox.vue";
+import { switchesTypes } from "@/constants";
 export default {
   name: 'CustomCheckbox',
+  data: () => ({
+    inpValue: "",
+    selectValue: switchesTypes.SWITCH
+  }),
   components: {
     SwitchButton,
     CheckBox
   },
   computed: {
+    switchesTypes() {
+      return switchesTypes
+    },
     ...mapGetters('switches', [
       'getSwitches'
     ]),
   },
   methods: {
-      change(name) {
-          this.changeSwitch(name);
-      },
+    setSelectValue(e) {
+      this.selectValue = e.target.value
+    },
+    setInputValue(e) {
+      this.inpValue = e.target.value
+    },
+    change(name) {
+      this.changeSwitch(name);
+    },
+    addSW() {
+      this.addSwitch({ name: this.inpValue, type: this.selectValue })
+    },
     ...mapActions('switches', [
       'addSwitch', 'deleteSwitch', 'changeSwitch'
     ]),
@@ -38,5 +66,18 @@ export default {
 #app {
   font-family: Lato, sans-serif;
 }
-</style>
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__input {
+    width: 200px
+  }
+
+  &__button {
+    margin-left: 40px;
+  }
+}</style>
   

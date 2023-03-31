@@ -1,21 +1,36 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { switchesTypes } from "@/constants";
 
 Vue.use(Vuex)
 
 export default {
-  namespaced:true,
+  namespaced: true,
   state: {
     switches: [
       {
         name: "switch1",
+        type: switchesTypes.SWITCH,
+        value: false,
+        disabled: false
+      },
+      {
+        name: "checkbox1",
+        type: switchesTypes.CHECKBOX,
         value: false,
         disabled: false
       },
       {
         name: "switch2",
+        type: switchesTypes.SWITCH,
         value: true,
         disabled: true
+      },
+      {
+        name: "checkbox2",
+        type: switchesTypes.CHECKBOX,
+        value: false,
+        disabled: false
       },
     ]
   },
@@ -24,7 +39,7 @@ export default {
   },
   mutations: {
     addSwitch: (state, payload) => {
-      state.switches.push(payload)
+      state.switches.push({ ...payload, value: true, disabled: false })
     },
     deleteSwitch: (state, payload) => {
       state.switches = state.switches.filter(sw => sw.name !== payload)

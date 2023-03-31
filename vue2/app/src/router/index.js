@@ -22,8 +22,8 @@ const routes = [
   },
   {
     path: '/checkbox',
-    name: 'CheckBox',
-    component: () => import(/* webpackChunkName: "select" */ '../views/CheckBoxPage.vue')
+    name: 'checkbox',
+    component: () => import(/* webpackChunkName: "checkbox" */ '../views/CheckBoxPage.vue')
   },
   {
     path: '/select',
