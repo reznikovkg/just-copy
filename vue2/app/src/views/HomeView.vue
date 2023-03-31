@@ -9,8 +9,9 @@
     <p><router-link :to="{ name: 'select' }">
       Select
     </router-link></p>
-    <p><router-link :to="{ name: 'checkbox' }">
+    <router-link :to="{ name: 'checkbox' }">
       Checkboxes
+    </router-link>
     <p><router-link :to="{ name: 'tabs' }">
       Tabs
     </router-link></p>

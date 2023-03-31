@@ -35,7 +35,7 @@ export default new Vuex.Store({
     users,
     berries,
     exp,
-    switches
+    switches,
     tabs,
   }
 })
