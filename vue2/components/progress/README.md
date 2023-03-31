@@ -13,12 +13,13 @@
         :colorFunc=color
         :innerStrokeColor="'black'"
         :width="400"
+        ref="ProgressBar4"
       > 
       </ProgressBar>
-      <Button @click="() => decrease4(20)" >
+      <Button @click="() => this.$refs.ProgressBar4.decrease(20)" >
         -20
       </Button>
-      <Button @click="() => increase4(20)" >
+      <Button @click="() => this.$refs.ProgressBar4.increase(20)" >
         +20
       </Button>
     </div>
@@ -40,26 +41,6 @@ import ProgressBar from "../../../components/progress/Progress.vue";
         }
       },
       methods: {
-        increase4(change) {
-          this.progressOptions4 = this.increase(this.progressOptions4, change);
-        },
-        decrease4(change) {
-          this.progressOptions4 = this.decrease(this.progressOptions4, change);
-        },
-        increase(value, change) {
-          value += change;
-          if(value > 100) {
-            value = 100;
-          }
-          return value;
-        },
-        decrease(value, change) {
-          value -= change;
-          if(value < 0){
-            value = 0;
-          }
-          return value;
-        },
         color(percentage) {
           var second = 13 + percentage * 4;
           if(second > 255) {
