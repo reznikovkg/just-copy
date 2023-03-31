@@ -12,6 +12,9 @@
     <router-link :to="{ name: 'checkbox' }">
       Checkboxes
     </router-link>
+    <p><router-link :to="{ name: 'progress' }">
+      Progress
+    </router-link></p>
     <p><router-link :to="{ name: 'tabs' }">
       Tabs
     </router-link></p>

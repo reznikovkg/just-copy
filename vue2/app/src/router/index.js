@@ -31,6 +31,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
   },
   {
+    path: '/progress',
+    name: 'progress',
+    component: () => import(/* webpackChunkName: "progress" */ '../views/ProgressPage.vue')
+  },
+  {
     path: '/Tabs',
     name: 'tabs',
     component: () => import(/* webpackChunkName: "select" */ '../views/TabsPage.vue')
