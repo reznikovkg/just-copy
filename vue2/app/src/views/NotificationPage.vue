@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Select</h1>
+    <h1>Notification</h1>
     <div style="max-width: 400px">
       <NotifyComponent/>
       <button @click="() => addNotification(values)">
