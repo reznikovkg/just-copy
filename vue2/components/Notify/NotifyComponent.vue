@@ -13,7 +13,6 @@
 <script>
 import {  mapGetters } from "vuex";
 import NotificationComponent from "../Notification/NotificationComponent.vue";
-import NotificationComponent from "../Notification/NotificationComponent.vue";
 
 export default {
     computed: {

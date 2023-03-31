@@ -36,12 +36,8 @@ export default new Vuex.Store({
     users,
     berries,
     exp,
-<<<<<<< HEAD
     notifications,
     tabs,
-=======
     modalUsers,
-    tabs
->>>>>>> 4587d6cccbc95435ad1fe984be0e2ee1e5d47eb5
   }
 })
