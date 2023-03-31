@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button :disabled="isVisible" @click="e => setIsVisible({event: e, value: true})">Открыть</button>
+        <button :disabled="isVisible" @click="(e) => setIsVisible({event: e, value: true})">Открыть</button>
         <ModalComponent
             title="Модальное окно"
             okBtnText="Ок"
