@@ -29,16 +29,13 @@ export default {
         },
         addMU() {
             if (this.name && (this.age !== null && this.age !== undefined) && this.task) {
-                this.addModalUser({user: {name: this.name, age: this.age, task: this.task}})
+                this.addModalUser({name: this.name, age: this.age, task: this.task})
             }
         },
-        ...mapActions("modalUsers", ["fetchAllModalUsers", "addModalUser", "deleteModalUser", "fetchModalUser"]),
+        ...mapActions("modalUsers", ["addModalUser", "deleteModalUser"]),
     },
     computed: {
         ...mapGetters("modalUsers", ["getModalUsers", "getSelectedModalUser"])
-    },
-    mounted() {
-        this.fetchAllModalUsers()
     }
 }
 </script>
