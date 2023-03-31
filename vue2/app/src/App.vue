@@ -18,7 +18,4 @@ export default {
         padding: 0;
         margin: 0;
     }
-    div#app {
-      height: 100vh;
-    }
 </style>
