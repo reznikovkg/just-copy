@@ -9,12 +9,14 @@
     <p><router-link :to="{ name: 'select' }">
       Select
     </router-link></p>
+    <router-link :to="{ name: 'checkbox' }">
+      Checkboxes
+    </router-link>
     <p><router-link :to="{ name: 'tabs' }">
       Tabs
     </router-link></p>
   </div>
 </template>
-
 <script>
 export default {
   name: 'HomeView'
