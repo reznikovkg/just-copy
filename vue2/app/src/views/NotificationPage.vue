@@ -31,10 +31,10 @@ export default {
       },
     };
   },
- 
   methods: {
-    ...mapActions("notifications", ["addNotification"]),
+    ...mapActions("notifications", [
+      "addNotification"
+    ]),
   },
 };
-
 </script>

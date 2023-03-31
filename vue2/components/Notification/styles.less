@@ -8,11 +8,11 @@
     border: 2px solid #ebeef5;
     position: relative;
     margin-bottom: 10px;
-}
+    }
 
     &__box:first-child {
     margin-top: 10px;
-}
+    }
     &__title {
     font-weight: 700;
     font-size: 16px;
@@ -20,7 +20,7 @@
     margin: 0;
     text-align: left;
 
-}
+    }
 
     &__content {
     font-size: 14px;
@@ -28,47 +28,28 @@
     margin: 6px 0 0;
     color: #606266;
     text-align: justify;
-}
+    }
 
     &__content p {
     margin: 0 px;
-}
+    }
 
     &__closebtn {
     position: absolute;
     top: 0px;
     right: 5px;
     cursor: pointer;
-}
-
-
-
-}
-
-.keyframes(@name; @arguments) {
-    @-moz-keyframes @name { @arguments(); }
-    @-webkit-keyframes @name { @arguments(); }
-    @keyframes @name { @arguments(); }
-}
-
-.animation(@arguments) {
-    -webkit-animation: @arguments;
-    -moz-animation: @arguments;
-    animation: @arguments;
+    }
 }
 
 .fade-enter-active{
-    .keyframes(fade-in;{
-        0% { opacity: 0;transform: translateX(200px); }
-        100% { opacity: 1; transform: translateX(0);}
-        });
-    .animation(fade-in 0.2s linear normal)    
+    opacity: 1;
+    transform: translateX(0px);
+    transition:transform 3s linear;
+    
 }
 
 .fade-leave-active{
-    .keyframes(fade-out;{
-        0% { opacity: 1; }
-        100% { opacity: 0; }
-        });
-    .animation(fade-out 0.5s forwards normal) 
+    opacity: 0;
+    transition:opacity 0.5s linear;
 }

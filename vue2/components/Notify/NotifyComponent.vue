@@ -1,7 +1,7 @@
 <template>
   <div class="notification-container">
     <notification
-      v-for="item in getNotifications()"
+      v-for="item in getNotifications"
       :key="item.id"
       :content="item.content"
       :width="'350'"
@@ -18,19 +18,16 @@ export default {
   components: {
     notification: NotificationComponent,
   },
-
-
-  data() {
-    return {};
-  },
   methods: {
     hideNotification(id) {
       this.list = this.list.filter((x) => x.id != id);
-    },
+    }
+  },
+  computed:{
     ...mapGetters("notifications", [
       "getNotifications",
     ]),
-  },
+  }
 };
 </script>
 
