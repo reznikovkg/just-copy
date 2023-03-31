@@ -30,6 +30,11 @@ const routes = [
     name: 'select',
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
   },
+  {
+    path: '/Tabs',
+    name: 'tabs',
+    component: () => import(/* webpackChunkName: "select" */ '../views/TabsPage.vue')
+  },
 ]
 
 const router = new VueRouter({

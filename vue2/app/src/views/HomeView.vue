@@ -11,6 +11,8 @@
     </router-link></p>
     <p><router-link :to="{ name: 'checkbox' }">
       Checkboxes
+    <p><router-link :to="{ name: 'tabs' }">
+      Tabs
     </router-link></p>
   </div>
 </template>
