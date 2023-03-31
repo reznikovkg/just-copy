@@ -16,6 +16,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "btn" */ '../views/BtnPage.vue')
   },
   {
+    path: '/exp',
+    name: 'exp',
+    component: () => import(/* webpackChunkName: "btn" */ '../views/ExpressPage.vue')
+  },
+  {
     path: '/select',
     name: 'select',
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
@@ -24,6 +29,16 @@ const routes = [
     path: '/modal',
     name: 'modal',
     component: () => import(/* webpackChunkName: "select" */ '../views/ModalPage/ModalPage.vue')
+  },
+  {
+    path: '/progress',
+    name: 'progress',
+    component: () => import(/* webpackChunkName: "progress" */ '../views/ProgressPage.vue')
+  },
+  {
+    path: '/Tabs',
+    name: 'tabs',
+    component: () => import(/* webpackChunkName: "select" */ '../views/TabsPage.vue')
   },
 ]
 
