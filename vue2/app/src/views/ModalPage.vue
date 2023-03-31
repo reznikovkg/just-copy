@@ -31,9 +31,6 @@ export default {
         Modal,
     },
     computed: {
-        Button() {
-            return Button
-        },
         ...mapGetters('modals', [
             'getModals',
         ]),
