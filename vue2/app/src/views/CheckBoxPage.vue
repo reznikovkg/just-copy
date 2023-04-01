@@ -35,26 +35,33 @@ export default {
     CheckBox
   },
   computed: {
+    ...mapGetters(
+      'switches',
+      [
+        'getSwitches'
+      ]),
     switchesTypes() {
       return switchesTypes
     },
-    ...mapGetters('switches', [
-      'getSwitches'
-    ]),
   },
   methods: {
+    ...mapActions(
+      'switches',
+      [
+        'addSwitch',
+        'deleteSwitch',
+        'changeSwitch'
+      ]),
     change(name) {
       this.changeSwitch(name);
     },
     addSW() {
       this.addSwitch({ name: this.inpValue, type: this.selectValue })
     },
-    ...mapActions('switches', [
-      'addSwitch', 'deleteSwitch', 'changeSwitch'
-    ]),
   },
 };
 </script>
+
 <style lang="less">
 .container {
   display: flex;
@@ -68,5 +75,5 @@ export default {
   &__button {
     margin-left: 40px;
   }
-}</style>
-  
+}
+</style>

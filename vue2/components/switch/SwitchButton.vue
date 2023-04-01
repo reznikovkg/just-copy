@@ -1,8 +1,8 @@
 <template>
   <div class="switch-button" 
-    :class="{ enabled: value,'switch-button--disabled': disabled}" @click="() => toggle()"
-  >
-    <div class="switch-button_circle"/>
+    :class="{ enabled: value,'switch-button--disabled': disabled}"
+    @click="() => toggle()">
+    <div class="switch-button__circle"/>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   props: {
     value: Boolean,
-      label: String,
+    label: String,
     disabled: {
       type: Boolean,
       default: false,
