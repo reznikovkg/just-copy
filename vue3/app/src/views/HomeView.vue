@@ -3,6 +3,9 @@
         <router-link :to="{ name: 'btn' }">
             Btn
         </router-link>
+        <router-link :to="{ name: 'rating' }">
+            Rating
+        </router-link>
     </div>
 </template>
 
