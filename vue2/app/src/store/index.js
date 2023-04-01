@@ -4,6 +4,7 @@ import berries from './berries'
 import users from './users'
 import exp from './exp'
 import tabs from './tabs'
+import tabsExpress from './tabsExpress'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -35,5 +36,6 @@ export default new Vuex.Store({
     berries,
     exp,
     tabs,
+    tabsExpress
   }
 })

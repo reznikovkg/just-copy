@@ -30,6 +30,11 @@ const routes = [
     name: 'tabs',
     component: () => import(/* webpackChunkName: "select" */ '../views/TabsPage.vue')
   },
+  {
+    path: '/TabsExpress',
+    name: 'tabsExpress',
+    component: () => import(/* webpackChunkName: "select" */ '../views/TabsExpressPage.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -12,6 +12,9 @@
     <p><router-link :to="{ name: 'tabs' }">
       Tabs
     </router-link></p>
+    <p><router-link :to="{ name: 'tabsExpress' }">
+      ExpressTabs
+    </router-link></p>
   </div>
 </template>
 
