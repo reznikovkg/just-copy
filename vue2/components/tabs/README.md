@@ -1,36 +1,49 @@
 # Tabs
- 
-This component allows to show information from tabs 
-## Usage
-```js
+
+## Basic usage
+```vue
 <template>
   <div>
-    <MyTabs :tabs="tabs" :description="description"/>
+    <Tabs :tabs="tabs1" :active-tab-index="activeTab"></Tabs>
   </div>
 </template>
+  
 <script>
-import MyTabs from "../../components/tabs/MyTabs.vue"
+import Tabs from './components/Tabs10.vue';
+  
 export default {
   components: {
-    MyTabs
+      Tabs
   },
   data() {
-      return {
-        tabs:[{name: 'Профиль', content: 'Информация о профиле!'},
-        {name: 'Избранное', content: 'Информация об избранном!'},
-        {name: 'Настройки', content: 'Информация о настройках!'}
-        ]
-      }
+    return {
+      tabs1: [
+        { title: 'Tab 1', content: 'Tab 1 content' },
+        { title: 'Tab 2', content: 'Tab 2 content' },
+        { title: 'Tab 3', content: 'Tab 3 content' },
+      ],
+      activeTab: 0
+    }
   },
 }
 </script>
-
 ```
-## Tabs component will look like this:
-![Tab](DocAssets/tab.png)
+
+## Resulting Tabs component will look like this:
+### Regular Tabs with mouse hover
+![Regular Tabs with mouse hover](DocAssets/tab.png)
+### Tab changed
+![Tab changed](DocAssets/tab-changed.png)
 
 ## Tabs Attributes
 
-|Attribute|Description|Type|Accepted Values|Default|Required|
-|:-:|:-:|:-:|:-:|:-:|:-:|
-|tabs|data source|Array|—|—|True|
+|Attribute|Description|Type|Accepted Values|Default|
+|:-:|:-:|:-:|:-:|:-:|
+|tabs|data source|Array|—|—|
+|active-tab-index|index of selected tab|Number|—|0|
+
+___
+## Tabs Events
+|Event Name|Description|Parameters|
+|:-:|:-:|:-:|
+|tabSwitched|triggers when tab was switched|index - index of new selected tab|
