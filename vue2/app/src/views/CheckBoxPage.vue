@@ -10,8 +10,8 @@
               <button @click="() => addSW()">Добавить</button>
           </div>
           <div v-for="(sw) in getSwitches" :key="sw.name">
-              <CheckBox v-if="sw.type === switchesTypes.CHECKBOX" :label="sw.name" :value="sw.value" :disabled="sw.disabled" @change="change" />
-              <SwitchButton v-else-if="sw.type === switchesTypes.SWITCH"  :label="sw.name" :value="sw.value" @change="change"/>
+              <CheckBox v-if="sw.type === switchesTypes.CHECKBOX" :label="sw.name" v-model="sw.value" :disabled="sw.disabled" @change="change" />
+              <SwitchButton v-else-if="sw.type === switchesTypes.SWITCH" :label="sw.name" v-model="sw.value" @change="change"/>
               <button class="container__button" @click="() => deleteSwitch(sw.name)">delete switch</button>
           </div>
       </div>

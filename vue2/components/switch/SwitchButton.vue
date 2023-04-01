@@ -1,7 +1,7 @@
 <template>
   <div class="switch-button" 
-    :class="{ enabled: value,'switch-button--disabled': disabled}"
-    @click="() => toggle()">
+    :class="{ enabled: value,'switch-button--disabled': disabled}" @click="() => toggle()"
+  >
     <div class="switch-button_circle"/>
   </div>
 </template>
@@ -9,6 +9,10 @@
 <script>
 export default {
   name: "SwitchButton",
+  model: {
+    prop: 'value',
+    event: 'click'
+  },
   props: {
     value: Boolean,
       label: String,

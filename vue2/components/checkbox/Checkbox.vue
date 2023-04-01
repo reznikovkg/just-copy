@@ -1,7 +1,6 @@
 <template>
   <div class="checkbox"
-   :class="{enabled: value,'checkbox--disabled': disabled}"
-    @click="check">
+   :class="{enabled: value,'checkbox--disabled': disabled}" @click="() => check()">
     <div class="checkbox__labels">
       <label>
         {{label}}
@@ -13,6 +12,10 @@
 <script>
 export default {
   name: "CustomCheckbox",
+  model: {
+    prop: 'value',
+    event: 'click'
+  },
   props: {
     value: Boolean,
     label: String,
