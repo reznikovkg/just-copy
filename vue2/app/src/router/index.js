@@ -45,6 +45,11 @@ const routes = [
     name: 'tabs',
     component: () => import(/* webpackChunkName: "select" */ '../views/TabsPage.vue')
   },
+  {
+    path: '/modal2',
+    name: 'modal2',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/ModalPage.vue')
+  },
 ]
 
 const router = new VueRouter({

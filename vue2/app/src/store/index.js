@@ -6,6 +6,8 @@ import exp from './exp'
 import switches from "./switches";
 import modalUsers from "./modalUsers";
 import tabs from './tabs'
+import modals from "./modals";
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -39,6 +41,7 @@ export default new Vuex.Store({
     switches,
     tabs,
     modalUsers,
-    tabs
+    tabs,
+    modals,
   }
 })
