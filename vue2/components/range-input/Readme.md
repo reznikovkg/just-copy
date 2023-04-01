@@ -153,6 +153,8 @@ export default {
 
 <style src="./css/style.css" scoped></style>
   ```
-
+![фоточка](https://github.com/kirill-vatutin/just-copy/blob/number-input/vue2/components/range-input/DocAssets/2023-04-01_23-42-15.png)
+![фоточка2](https://github.com/kirill-vatutin/just-copy/blob/number-input/vue2/components/range-input/DocAssets/2023-04-01_23-41-36.png)
+![фоточка3](https://github.com/kirill-vatutin/just-copy/blob/number-input/vue2/components/range-input/DocAssets/2023-04-01_23-42-45.png)
 
 
