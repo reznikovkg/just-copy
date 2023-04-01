@@ -14,12 +14,11 @@
         </button>
     </div>
 </template>
-
 <script>
 export default {
     data() {
         return {
-            localValue: this.valueInput,
+            localValue: 0,
         }
     },
     props: {
@@ -60,6 +59,9 @@ export default {
             return Number(this.localValue.toFixed(this.fixed));
         },
     },
+    mounted() {
+        this.localValue = this.valueInput;
+    },
     methods: {
         formattedValue(event) {
             const parsedValue = parseFloat(event.target.value);
@@ -75,15 +77,15 @@ export default {
         increment() {
             const step = Number(this.step);
             if (!this.isLockPlus){
-            this.localValue += step;
-            this.$emit("create", this.localValue);
+              this.localValue += step;
+              this.$emit("create", this.localValue);
             }
         },
         decrement() {
             const step = Number(this.step);
             if (!this.isLockMinus){ 
-            this.localValue -= step;
-            this.$emit("create", this.localValue);
+              this.localValue -= step;
+              this.$emit("create", this.localValue);
             }
         },
 
@@ -91,6 +93,6 @@ export default {
 }
 
 </script>
-
-<style src="./css/style.css" scoped></style>
-  
+<style lang="scss" scoped>
+   @import "./styles/style.scss";
+</style>

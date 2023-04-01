@@ -1,31 +1,41 @@
+$grey-color: #666;
+$border-black: 1.5px solid rgba(12, 48, 120, 0.225);
+
 .number-input__operation {
   padding: 0.6rem;
   margin: 0;
   border: none;
   background-color: #f5f7fa;
-  color: #666;
+  color: $grey-color;
   height: 100%;
-}
-.number-input__operation:first-child {
-  border-right: 1.5px solid rgba(12, 48, 120, 0.225);
-}
-.number-input__operation:last-child {
-  border-left: 1.5px solid rgba(12, 48, 120, 0.225);
-}
-.number-input__operation:hover {
-  border-color: #ccc;
+
+  &:first-child {
+    border-right: $border-black ;
+  }
+
+  &:last-child {
+    border-left: $border-black;
+  }
+
+  &:hover {
+    border-color: #ccc;
+  }
+
 }
 
 .number-input {
-  -ms-flex-align: center;
+  display: inline-flex;
   align-items: center;
-  border: 1.5px solid rgba(12, 48, 120, 0.225);
+  border: $border-black;
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 10px;
-}
-.number-input:focus-within, .number-input:hover {
-  border-color: #666;
+
+  &:focus-within,
+  &:hover {
+    border-color: $grey-color;
+  }
+
 }
 
 .numper-input__value {
@@ -36,10 +46,13 @@
   padding: 0.5rem;
   border: none;
   outline: none;
-  color: #666;
+  color: $grey-color;
 }
 
 .number-input__operation-active {
   cursor: not-allowed;
   color: rgb(188, 186, 186);
 }
+
+
+
