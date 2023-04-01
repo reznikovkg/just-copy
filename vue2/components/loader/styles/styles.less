@@ -1,0 +1,44 @@
+.loader__div
+{
+    background-color: #13010c94;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+}
+.loader__image
+{
+    animation: spin 1.5s ease-in-out infinite;
+    width: 128px;
+    height: 128px;
+}
+.loader__text
+{
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #fdfdfd ;
+}
+.loader__button
+{
+    color:white;
+    border: 1.5px solid #3a3a3a;
+    border-radius: 20px;
+    cursor: pointer;
+}
+@keyframes spin
+{
+    0%
+    {
+      transform: rotate(0deg);
+    }
+    100%
+    {
+      transform: rotate(360deg);
+    }
+}

@@ -9,6 +9,9 @@
     <p><router-link :to="{ name: 'select' }">
       Select
     </router-link></p>
+    <p><router-link :to="{ name: 'loader' }">
+      Loader
+    </router-link></p>
   </div>
 </template>
 
