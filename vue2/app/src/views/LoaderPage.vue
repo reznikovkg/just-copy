@@ -1,36 +1,27 @@
 <template>
+  <div>
+    <h1>Loaders:</h1>
     <div>
-      <h1>Loaders:</h1>
-      <div>
-        <p>Loader без параметров</p>
-        <Loader></Loader>        
-        <br>
-        <br>
-        <Loader loaderStyle="red"></Loader>
-        <Loader loaderStyle="long"></Loader>
-        <Loader loaderStyle="wide"></Loader>  
-        <Loader loaderStyle="rus"></Loader>
-        <Loader loaderStyle="blank"></Loader>
-        <Loader loaderStyle="fav"></Loader>
-      </div>
+      <p>Loader без параметров</p>
+      <Loader></Loader>
+      <br />
+      <br />
+      <Loader loaderStyle="red"></Loader>
+      <Loader loaderStyle="long"></Loader>
+      <Loader loaderStyle="wide"></Loader>
+      <Loader loaderStyle="rus"></Loader>
+      <Loader loaderStyle="blank"></Loader>
+      <Loader loaderStyle="fav"></Loader>
     </div>
-  </template>
+  </div>
+</template>
     
 <script>
-import Loader from '../../../components/loader/Loader.vue'
-import { mapGetters } from "vuex";
+import Loader from "../../../components/loader/Loader.vue";
 export default {
-    name: "LoaderPage",
-    components: {
-        Loader
-    },
-    computed: {
-        ...mapGetters('loaders', [
-            'getLoaders',
-        ]),
-        loaders() {
-            return this.getLoaders
-        },
-    }
-}
+  name: "LoaderPage",
+  components: {
+    Loader,
+  },
+};
 </script>

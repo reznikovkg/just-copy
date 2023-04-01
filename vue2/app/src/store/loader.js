@@ -5,12 +5,9 @@ Vue.use(Vuex)
 
 export default {
     namespaced: true,
-    state:
-    {
-        loaders:
-        {
-            "default":
-            {
+    state: {
+        loaders: {
+            default: {
                 buttonText: "Default",
                 buttonWidth: "100",
                 buttonHeight: "75",
@@ -19,8 +16,7 @@ export default {
                 loaderText: "Loading...",
                 loaderDuration: "3"
             },
-            "red":
-            {
+            red: {
                 buttonText: "Red",
                 buttonWidth: "100",
                 buttonHeight: "75",
@@ -29,8 +25,7 @@ export default {
                 loaderText: "Loading",
                 loaderDuration: "2"
             },
-            "long":
-            {
+            long: {
                 buttonText: "Long Pause",
                 buttonWidth: "100",
                 buttonHeight: "75",
@@ -39,9 +34,8 @@ export default {
                 loaderText: "Loading...",
                 loaderDuration: "10"
             },
-            "wide":
-            {
-                
+            wide: {
+
                 buttonText: "Wide button",
                 buttonWidth: "400",
                 buttonHeight: "100",
@@ -50,8 +44,7 @@ export default {
                 loaderText: "Loading...",
                 loaderDuration: "2"
             },
-            "blank":
-            {
+            blank: {
                 buttonText: "",
                 buttonWidth: "50",
                 buttonHeight: "35",
@@ -60,8 +53,7 @@ export default {
                 loaderText: "Loading...",
                 loaderDuration: "3"
             },
-            "rus":
-            {
+            rus: {
                 buttonText: "На русском",
                 buttonWidth: "200",
                 buttonHeight: "76",
@@ -70,8 +62,7 @@ export default {
                 loaderText: "Загрузка...",
                 loaderDuration: "3"
             },
-            "fav":
-            {
+            fav: {
                 buttonText: "лягушка",
                 buttonWidth: "200",
                 buttonHeight: "76",
@@ -83,9 +74,7 @@ export default {
         }
     },
     getters: {
-        getLoaders: state => {
-            return state.loaders
-        },
+        getLoaders: state => state.loaders,
         getLoadersNumber: state => state.loaders.length
     },
     mutations: {
