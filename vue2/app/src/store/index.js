@@ -3,7 +3,12 @@ import Vuex from 'vuex'
 import berries from './berries'
 import users from './users'
 import exp from './exp'
-import loaders from './loader'
+import notifications from './notifications'
+import modalUsers from "./modalUsers";
+import tabs from './tabs'
+import modals from "./modals";
+import loaders from "./loader"
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -34,6 +39,10 @@ export default new Vuex.Store({
     users,
     berries,
     exp,
-    loaders
+    notifications,
+    tabs,
+    modalUsers,
+    modals,
+    loaders,
   }
 })

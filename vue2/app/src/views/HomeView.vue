@@ -9,9 +9,24 @@
     <p><router-link :to="{ name: 'select' }">
       Select
     </router-link></p>
+    <router-link :to="{name:'notifications'}">
+      Notification
+    </router-link>
+    <p><router-link :to="{ name: 'progress' }">
+      Progress
+    </router-link></p>
+    <p><router-link :to="{ name: 'tabs' }">
+      Tabs
+    </router-link></p>
+    <p><router-link :to="{ name: 'modal' }">
+      Modal
+    </router-link></p>
+    <p><router-link :to="{ name: 'modal2' }">
+        Modal2
+    </router-link></p>
     <p><router-link :to="{ name: 'loader' }">
       Loader
-    </router-link></p>
+      </router-link></p>
   </div>
 </template>
 
