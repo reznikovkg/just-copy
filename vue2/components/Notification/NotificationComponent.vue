@@ -8,7 +8,7 @@
       <div class="notification__group">
         <h2 class="notification__title">{{ content.title }}</h2>
         <div class="notification__content">
-          <p>{{ content.content }}</p>
+          <p class="notification__content__text">{{ content.content }}</p>
         </div>
         <div
           class="notification__closebtn"
