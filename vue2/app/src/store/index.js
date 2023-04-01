@@ -6,6 +6,8 @@ import exp from './exp'
 import notifications from './notifications'
 import modalUsers from "./modalUsers";
 import tabs from './tabs'
+import modals from "./modals";
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -39,5 +41,6 @@ export default new Vuex.Store({
     notifications,
     tabs,
     modalUsers,
+    modals,
   }
 })
