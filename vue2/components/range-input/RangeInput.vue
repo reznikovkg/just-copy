@@ -1,8 +1,16 @@
+<template>
+  <div class="num-input-container">
+    <NumberInput :fixed="2" :step="0.1" :max="max" :min="min"/>
+    max<NumberInput :valueInput="max" @create="setMax"></NumberInput>
+    min<NumberInput :valueInput="min" @create="setMin"></NumberInput>
+  </div>
+</template>
+
 <script>
 import NumberInput from "../number-input/NumberInput.vue"
 export default {
   components: {
-    NumberInput
+    NumberInput,
   },
   props:{
     maxValue:{
@@ -17,8 +25,7 @@ export default {
   data(){
     return {
         max:this.maxValue,
-        min:this.minValue
-        
+        min:this.minValue,  
     }
   },
   methods:{
@@ -29,18 +36,7 @@ export default {
     this.min = min;
   }
 }
-
 }
 </script>
 
-<template>
-  <div class="num-input-container">
-    <NumberInput :fixed="2" :step="0.1" :max="max" :min="min"/>
-    max<NumberInput :valueInput="max" @create="setMax"></NumberInput>
-    min<NumberInput :valueInput="min" @create="setMin"></NumberInput>
-  </div>
-</template>
-
-<style  src="./css/style.css" scoped>
-
-</style>
+<style  src="./css/style.css" scoped></style>

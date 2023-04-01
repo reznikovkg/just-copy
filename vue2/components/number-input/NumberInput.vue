@@ -1,3 +1,20 @@
+<template>
+    <div class="number-input">
+        <button :class="{ 'number-input__operation-active': isLockMinus }"
+                class="number-input__operation"
+                @click="decrement">-</button>
+        <input  :value="current"
+                type="text"
+                @keyup.enter="formattedValue"
+                @blur="formattedValue"
+                class="numper-input__value" />
+        <button :class="{'number-input__operation-active': isLockPlus }"
+                class="number-input__operation"
+                @click="increment">+
+        </button>
+    </div>
+</template>
+
 <script>
 export default {
     data() {
@@ -7,91 +24,73 @@ export default {
     },
     props: {
         fixed: {
-            type:Number,
+            type: Number,
             default: 0,
             required: false,
         },
         valueInput: {
-            type:Number,
+            type: Number,
             default: 0,
             required: false,
         },
         max: {
-            type:Number,
+            type: Number,
             default: Number.POSITIVE_INFINITY,
             required: false
         },
         min: {
-            type:Number,
+            type: Number,
             default: Number.NEGATIVE_INFINITY,
             required: false
         },
         step: {
-            type:Number,
+            type: Number,
             default: 1,
             required: false
         }
     },
     computed: {
-        isLockPlus: function () {
+        isLockPlus() {
             return this.max <= Number(this.localValue.toFixed(this.fixed));
         },
-        isLockMinus: function () {
+        isLockMinus() {
             return this.min >= Number(this.localValue.toFixed(this.fixed));
         },
-        current:function(){
+        current() {
             return Number(this.localValue.toFixed(this.fixed));
-        }
-
+        },
     },
     methods: {
-        formattedValue(event,l) {
-            
+        formattedValue(event) {
             const parsedValue = parseFloat(event.target.value);
-            if (isNaN(parsedValue)){
-                event.target.value=this.localValue;
+            if (isNaN(parsedValue)) {
+                event.target.value = this.localValue;
             }
-            else if (parsedValue<this.min ) {
-              this.localValue=this.min;
-            }else if (parsedValue>this.max) {
-                this.localValue=this.max;
+            else {
+                if (parsedValue <= this.max && parsedValue >= this.min) this.localValue = parsedValue;
+                else this.localValue = parsedValue < this.min ? this.min : this.max;
             }
-            else this.localValue=parsedValue;
             this.$emit("create", Number(this.localValue));
         },
-
         increment() {
-            const fixed = this.fixed;
-            const stepNumber = Number(this.step);
-            const value = Number(this.localValue);
-            if (Number(value.toFixed(fixed)) + stepNumber <= Number(this.max)) {
-                this.localValue += stepNumber;
-                this.$emit("create", this.localValue);
+            const step = Number(this.step);
+            if (!this.isLockPlus){
+            this.localValue += step;
+            this.$emit("create", this.localValue);
             }
         },
         decrement() {
-            const fixed = this.fixed;
-            const stepNumber = Number(this.step);
-            const value = Number(this.localValue);
-            if (Number(value.toFixed(fixed)) - stepNumber >= Number(this.min)) {
-                this.localValue -= stepNumber;
-                this.$emit("create", this.localValue);
+            const step = Number(this.step);
+            if (!this.isLockMinus){ 
+            this.localValue -= step;
+            this.$emit("create", this.localValue);
             }
         },
 
     },
 }
+
 </script>
-<template>
-    <div class="number-input">
-
-        <button :class="{ active: isLockMinus }" class="operation " @click="decrement">-</button>
-        <input :value="current" type="text"
-            @keyup.enter="formattedValue" @blur="formattedValue" class="value" />
-        <button :class="{ active: isLockPlus }" class="operation" @click="increment">+</button>
-    </div>
-</template>
-
 
 <style src="./css/style.css" scoped></style>
   

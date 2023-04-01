@@ -1,53 +1,55 @@
-$grey-color:#666;
-$border-black:1.5px solid rgba(12, 48, 120, 0.225);
+$grey-color: #666;
+$border-black: 1.5px solid rgba(12, 48, 120, 0.225);
 
-.operation {
-    padding: 0.6rem;
-    margin: 0;
-    border: none;
-    background-color: #f5f7fa;
-    color: $grey-color;
-    height: 100%;
+.number-input__operation {
+  padding: 0.6rem;
+  margin: 0;
+  border: none;
+  background-color: #f5f7fa;
+  color: $grey-color;
+  height: 100%;
+
+  &:first-child {
+    border-right: $border-black ;
   }
-  
-  .number-input {
-    display: inline-flex;
-    align-items: center;
-    border: $border-black;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-  
-  input.value {
-    height: 100%;
-    width: 40px;
-    margin: 0 5px;
-    text-align: center;
-    padding: 0.5rem;
-    border: none;
-    outline: none;
-    color: $grey-color;
-  }
-  
-  .number-input:focus-within,
-  .number-input:hover {
-    border-color: $grey-color;
-  }
-  
-  .operation:first-child {
-    border-right:$border-black ;
-  }
-  
-  .operation:last-child {
+
+  &:last-child {
     border-left: $border-black;
   }
-  
-  input.value:hover {
+
+  &:hover {
     border-color: #ccc;
   }
 
-  .active{
-    cursor:not-allowed;
-    color:rgb(188, 186, 186);
+}
+
+.number-input {
+  display: inline-flex;
+  align-items: center;
+  border: $border-black;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+
+  &:focus-within,
+  &:hover {
+    border-color: $grey-color;
   }
+
+}
+
+.numper-input__value {
+  height: 100%;
+  width: 40px;
+  margin: 0 5px;
+  text-align: center;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  color: $grey-color;
+}
+
+.number-input__operation-active {
+  cursor: not-allowed;
+  color: rgb(188, 186, 186);
+}
