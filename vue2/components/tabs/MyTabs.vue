@@ -2,36 +2,41 @@
   <div class="tabs">
     <div class="tabs-wrapper">
       <div v-for="tab in tabs" v-bind:key="tab.id">
-        <button class="btn" @click="setDescription(tab)">
+        <button class="tabs-wrapper-btn " @click="() => setDescription(tab)">
           {{ tab.name }}
         </button>
       </div>
     </div>
-    <div class="BodyTab">
+    <div class = "tabs-body">
         <p>
           {{ this.activeDescription }}
         </p>
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  data(){
-    return {
-      activeDescription:this.tabs[0].content,
-    }
-  },
-  props:{
-    tabs:{
+  props: {
+    tabs: {
       type:Array,
-      requared:true,
+      required:true,
     },
+  },
+  data() {
+    return {
+      activeDescription:this.tabs[0].content
+    }
   },
   methods: {
     setDescription(desk){
       this.activeDescription=desk.content;
+
     }
   }
 }
 </script>
-<style src="./css/style.css" scoped></style>
+
+<style lang="scss" scoped>
+ @import '../tabs/scss/style.scss';
+</style>

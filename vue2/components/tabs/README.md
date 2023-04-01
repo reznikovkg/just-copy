@@ -1,9 +1,13 @@
+# Tabs
+ 
+This component allows to show information from tabs 
+## Usage
+```js
 <template>
   <div>
-    <MyTabs :tabs="tabs"/>
+    <MyTabs :tabs="tabs" :description="description"/>
   </div>
 </template>
-
 <script>
 import MyTabs from "../../components/tabs/MyTabs.vue"
 export default {
@@ -20,3 +24,13 @@ export default {
   },
 }
 </script>
+
+```
+## Tabs component will look like this:
+![Tab](DocAssets/tab.png)
+
+## Tabs Attributes
+
+|Attribute|Description|Type|Accepted Values|Default|Required|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|tabs|data source|Array|—|—|True|
