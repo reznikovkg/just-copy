@@ -1,15 +1,15 @@
 <template>
     <div class="number-input">
         <button :class="{ 'number-input__operation-active': isLockMinus }"
-                class="number-input__operation"
+                 class="number-input__operation"
                 @click="decrement">-</button>
-        <input  :value="current"
+        <input :value="current"
                 type="text"
-                @keyup.enter="formattedValue"
-                @blur="formattedValue"
-                class="numper-input__value" />
-        <button :class="{'number-input__operation-active': isLockPlus }"
-                class="number-input__operation"
+               @keyup.enter="formattedValue"
+               @blur="formattedValue"
+            class="numper-input__value" />
+        <button :class="{ 'number-input__operation-active': isLockPlus }"
+                 class="number-input__operation"
                 @click="increment">+
         </button>
     </div>
@@ -76,16 +76,16 @@ export default {
         },
         increment() {
             const step = Number(this.step);
-            if (!this.isLockPlus){
-              this.localValue += step;
-              this.$emit("create", this.localValue);
+            if (!this.isLockPlus) {
+                this.localValue += step;
+                this.$emit("create", this.localValue);
             }
         },
         decrement() {
             const step = Number(this.step);
-            if (!this.isLockMinus){ 
-              this.localValue -= step;
-              this.$emit("create", this.localValue);
+            if (!this.isLockMinus) {
+                this.localValue -= step;
+                this.$emit("create", this.localValue);
             }
         },
 
@@ -94,5 +94,5 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-   @import "./styles/style.scss";
+@import "./styles/style.scss";
 </style>

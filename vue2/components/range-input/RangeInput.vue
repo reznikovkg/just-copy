@@ -1,6 +1,6 @@
 <template>
   <div class="num-input-container">
-    <NumberInput :fixed="2" :step="0.1" :max="max" :min="min"/>
+    <NumberInput :fixed="2" :step="0.1" :max="max" :min="min" />
     max<NumberInput :valueInput="max" @create="setMax"></NumberInput>
     min<NumberInput :valueInput="min" @create="setMin"></NumberInput>
   </div>
@@ -12,33 +12,33 @@ export default {
   components: {
     NumberInput,
   },
-  props:{
-    maxValue:{
-      default:10,
-      required:false,
+  props: {
+    maxValue: {
+      default: 10,
+      required: false,
     },
-    minValue:{
-      default:-10,
-      required:false,
+    minValue: {
+      default: -10,
+      required: false,
     }
   },
-  data(){
+  data() {
     return {
-        max:this.maxValue,
-        min:this.minValue,  
+      max: this.maxValue,
+      min: this.minValue,
     }
   },
-  methods:{
-  setMax(max){
-    this.max = max;
-  },
-  setMin(min){
-    this.min = min;
+  methods: {
+    setMax(max) {
+      this.max = max;
+    },
+    setMin(min) {
+      this.min = min;
+    }
   }
-}
 }
 </script>
 
 <style lang="scss" scoped>
-   @import "./styles/style.scss";
+@import "./styles/style.scss";
 </style>

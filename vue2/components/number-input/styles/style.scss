@@ -1,28 +1,6 @@
 $grey-color: #666;
 $border-black: 1.5px solid rgba(12, 48, 120, 0.225);
 
-.number-input__operation {
-  padding: 0.6rem;
-  margin: 0;
-  border: none;
-  background-color: #f5f7fa;
-  color: $grey-color;
-  height: 100%;
-
-  &:first-child {
-    border-right: $border-black ;
-  }
-
-  &:last-child {
-    border-left: $border-black;
-  }
-
-  &:hover {
-    border-color: #ccc;
-  }
-
-}
-
 .number-input {
   display: inline-flex;
   align-items: center;
@@ -30,7 +8,27 @@ $border-black: 1.5px solid rgba(12, 48, 120, 0.225);
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 10px;
-
+  &.number-input__operation{
+    padding: 0.6rem;
+    margin: 0;
+    border: none;
+    background-color: #f5f7fa;
+    color: $grey-color;
+    height: 100%;
+  
+    &:first-child {
+      border-right: $border-black ;
+    }
+  
+    &:last-child {
+      border-left: $border-black;
+    }
+  
+    &:hover {
+      border-color: #ccc;
+    }
+  
+  }
   &:focus-within,
   &:hover {
     border-color: $grey-color;
@@ -53,6 +51,3 @@ $border-black: 1.5px solid rgba(12, 48, 120, 0.225);
   cursor: not-allowed;
   color: rgb(188, 186, 186);
 }
-
-
-
