@@ -4,9 +4,8 @@
       v-for="item in getNotifications"
       :key="item.id"
       :content="item.content"
-      :width="'350'"
-    >
-    </NotificationComponent>
+      width="350"
+    />
   </div>
 </template>
 
@@ -15,15 +14,15 @@ import {  mapGetters } from "vuex";
 import NotificationComponent from "../Notification/NotificationComponent.vue";
 
 export default {
-    computed: {
-        ...mapGetters("notifications", [
-            "getNotifications",
-        ]),
-    },
-    components: { NotificationComponent }
+  components: { NotificationComponent },
+  computed: {
+    ...mapGetters("notifications", [
+        "getNotifications",
+    ]),
+  },
 };
 </script>
 
 <style scoped lang="less">
-@import "styles.less";
+@import "styles/styles.less";
 </style>

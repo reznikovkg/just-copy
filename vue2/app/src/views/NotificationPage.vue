@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div>
     <h1>Notification</h1>
     <div style="max-width: 400px">
       <NotifyComponent/>

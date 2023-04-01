@@ -56,5 +56,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "styles.less";
+@import "styles/styles.less";
 </style>
