@@ -9,9 +9,6 @@
     <p><router-link :to="{ name: 'select' }">
       Select
     </router-link></p>
-    <router-link :to="{ name: 'checkbox' }">
-      Checkboxes
-    </router-link>
     <router-link :to="{name:'notifications'}">
       Notification
     </router-link>
@@ -29,6 +26,7 @@
     </router-link></p>
   </div>
 </template>
+
 <script>
 export default {
   name: 'HomeView'

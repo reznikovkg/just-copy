@@ -1,21 +1,18 @@
 <template>
   <div id="app">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-    </nav>
-    <RouterView/>
+    <MainInput />
   </div>
 </template>
 
 <script>
+import MainInput from "../../components/main-input/MainInput.vue"
+
 export default {
-  name: 'App'
+  components: {
+    MainInput
+  }
 }
+
+
 </script>
 
-<style>
-    body {
-        padding: 0;
-        margin: 0;
-    }
-</style>
