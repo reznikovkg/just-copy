@@ -1,5 +1,5 @@
 <template>
-  <div class="loader" v-if="loading" :style="positionStyles">
+  <div class="loader" v-if="loading" :style="{...positionStyles, ...loaderImageStyles}">
     <span class="loader__percents" v-if="percents !== false">{{ percents + '%' }}</span>
     <button class="loader__button" v-if="showStopBtn" @click="stop">stop</button>
   </div>
@@ -27,6 +27,10 @@ export default {
       type: Boolean,
       default: false
     },
+    loaderImage: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {
@@ -38,6 +42,12 @@ export default {
       return {
         position: this.isGlobal ? 'fixed' : 'absolute'
       }
+    },
+    loaderImageStyles() {
+      console.log(this.loaderImage)
+      return this.loaderImage ? {
+        'background-image': `url(${this.loaderImage})`,
+      } : {};
     }
   },
   emits: ['prevented'],
@@ -78,6 +88,7 @@ export default {
   background-image: url("./images/loader.svg");
   background-position: center calc(50% - 35px);
   background-repeat: no-repeat;
+  background-size: 50px;
 
   color: white;
 

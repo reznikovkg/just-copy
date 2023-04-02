@@ -29,6 +29,7 @@
           isGlobal
           showStopBtn
           @prevented="block3 = false"
+          loaderImage="https://samherbert.net/svg-loaders/svg-loaders/ball-triangle.svg"
       />
     </div>
   </div>
