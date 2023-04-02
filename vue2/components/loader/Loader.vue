@@ -44,7 +44,6 @@ export default {
       }
     },
     loaderImageStyles() {
-      console.log(this.loaderImage)
       return this.loaderImage ? {
         'background-image': `url(${this.loaderImage})`,
       } : {};
