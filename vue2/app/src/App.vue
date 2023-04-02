@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MyTabs from "../../components/tabs/MyTabs.vue"
+import MyTabs from "../../components/Tabs/MyTabs.vue";
 export default {
   components: {
     MyTabs

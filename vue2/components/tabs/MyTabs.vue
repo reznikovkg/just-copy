@@ -1,13 +1,13 @@
 <template>
   <div class="tabs">
     <div class="tabs__wrapper">
-      <div v-for="tab in tabs" v-bind:key="tab.id">
-        <button class="tabs__wrapper-btn" @click="() => setDescription(tab)">
+      <div v-for="tab in tabs" :key="tab.id">
+        <button class="tabs__btn" @click="() => setDescription(tab)">
           {{ tab.name }}
         </button>
       </div>
     </div>
-    <div class = "tabs__body">
+    <div class="tabs__body">
         <p>
           {{ this.activeDescription }}
         </p>
@@ -30,13 +30,12 @@ export default {
   },
   methods: {
     setDescription(desk){
-      this.activeDescription=desk.content;
-
+      this.activeDescription = desk.content;
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
- @import '../tabs/scss/style.scss';
+ @import 'scss/style.scss';
 </style>
