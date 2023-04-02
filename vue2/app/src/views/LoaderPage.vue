@@ -1,10 +1,12 @@
 <template>
   <div class="loader-blocks">
+    <h1 style="font-size: 60px" v-if="isGlobalLoaderActive">GLOBAL <br> LOADER <br> ACTIVATED</h1>
+
     <div class="loader-blocks__block">
       <h2>LOAD THIS BLOCK</h2>
       <button @click.prevent="blocking1()">click</button>
       <LoaderComponent
-          v-model="block1"
+          :loading="block1"
           :percents="block1Percents"
       />
     </div>
@@ -12,17 +14,21 @@
       <h2>LOAD THIS BLOCK</h2>
       <button @click.prevent="blocking2()">click</button>
       <LoaderComponent
-          v-model="block2"
+          :loading="block2"
           :percents="block2Percents"
+          showStopBtn
+          @prevented="block2 = false"
       />
     </div>
     <div class="loader-blocks__block">
       <h2>LOAD THE PAGE</h2>
       <button @click.prevent="blocking3()">click</button>
       <LoaderComponent
-          v-model="block3"
+          :loading="block3"
           :percents="block3Percents"
           isGlobal
+          showStopBtn
+          @prevented="block3 = false"
       />
     </div>
   </div>
@@ -30,6 +36,7 @@
 
 <script>
 import LoaderComponent from '../../../components/loader/Loader.vue'
+import {mapGetters} from "vuex";
 
 export default {
   name: 'LoaderPage',
@@ -51,24 +58,29 @@ export default {
       this.block1 = true;
       this.block1Percents = 0;
       for (let i = 0; i <= 100; i++) {
-        setTimeout(() => this.block1Percents = i, i * 30);
+        setTimeout(() => this.block1Percents = i, i * 10);
       }
 
-      setTimeout(() => this.block1 = false, 3500)
+      setTimeout(() => this.block1 = false, 1500)
     },
     blocking2() {
       this.block2 = true;
-      setTimeout(() => this.block2 = false, 3500)
+      setTimeout(() => this.block2 = false, 2500)
     },
     blocking3() {
       this.block3 = true;
       this.block3Percents = 0;
-      for (let i = 0; i <= 100; i++) {
-        setTimeout(() => this.block3Percents = i, i * 30);
+      for (let i = 0; i <= 100; i+=2) {
+        setTimeout(() => this.block3Percents = i, i * 10);
       }
 
-      setTimeout(() => this.block3 = false, 3500)
-    }
+      setTimeout(() => this.block3 = false, 1500)
+    },
+  },
+  computed: {
+    ...mapGetters('loaders', [
+      'isGlobalLoaderActive',
+    ]),
   }
 }
 </script>

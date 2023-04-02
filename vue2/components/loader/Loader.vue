@@ -1,7 +1,7 @@
 <template>
   <div class="loader" v-if="loading" :style="positionStyles">
     <span class="loader__percents" v-if="percents !== false">{{ percents + '%' }}</span>
-    <button class="loader__button" v-if="showStopBtn">stop</button>
+    <button class="loader__button" v-if="showStopBtn" @click="stop">stop</button>
   </div>
 </template>
 
@@ -10,10 +10,6 @@ import {mapActions} from "vuex";
 
 export default {
   name: 'LoaderComponent',
-  model: {
-    prop: 'loading',
-    event: 'prevent'
-  },
   props: {
     loading: {
       type: Boolean,
@@ -44,11 +40,20 @@ export default {
       }
     }
   },
+  emits: ['prevented'],
   methods: {
-    // ...mapActions('loaders', {
-    //   activateGlobalLoader: 'activateGlobalLoaderAction',
-    //   deactivateGlobalLoader: 'deactivateGlobalLoaderAction',
-    // }),
+    ...mapActions('loaders', {
+      activateGlobalLoader: 'activateGlobalLoaderAction',
+      deactivateGlobalLoader: 'deactivateGlobalLoaderAction',
+    }),
+    stop() {
+      this.$emit('prevented')
+    }
+  },
+  updated() {
+    if (this.isGlobal) {
+      this.loading ? this.activateGlobalLoader() : this.deactivateGlobalLoader();
+    }
   }
 }
 </script>
