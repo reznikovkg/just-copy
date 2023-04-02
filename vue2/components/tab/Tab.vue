@@ -34,7 +34,6 @@
     },
   }
 </script> 
-<!-- <style src = "./css/style.css" scoped/> -->
 <style lang="scss" scoped>
- @import '../tab/scss/style.scss';
+  @import '../tab/scss/style.scss';
 </style>

@@ -21,9 +21,9 @@ $violet-color2: rgb(53, 21, 104);
   font-size: 20px;
   color:rgb(58, 25, 112);
   border: 2px solid $transparent-color;
-}
-.tab-button:hover{
-  border: 2px solid $violet-color;
+  &:hover{
+    border: 2px solid $violet-color;
+  }
 }
 .active{
   background-color: $violet-color; 
