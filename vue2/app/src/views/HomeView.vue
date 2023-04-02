@@ -25,7 +25,10 @@
       Modal
     </router-link></p>
     <p><router-link :to="{ name: 'modal2' }">
-        Modal2
+      Modal2
+    </router-link></p>
+    <p><router-link :to="{ name: 'loader' }">
+      Loader
     </router-link></p>
   </div>
 </template>
