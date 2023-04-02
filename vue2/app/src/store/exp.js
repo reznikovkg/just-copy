@@ -17,6 +17,13 @@ export default {
     setProducts: (state, payload) => {
       state.products = payload
     },
+    removeProduct: (state, payload) => {
+      const index = state.products.findIndex(item => (item.id === payload.id))
+
+      if (state.products[index]) {
+        delete state.products.splice(index, 1);
+      }
+    },
     // eslint-disable-next-line
     setProductById: (state, payload) => {
       // TODO 
@@ -28,8 +35,13 @@ export default {
   },
   actions: {
     loadProducts: ({ commit }) => {
-      axios.get(domen + '/json').then((response) => {
+      return axios.get(domen + '/json').then((response) => {
         commit('setProducts', response.data)
+      })
+    },
+    removeProductAction: ({ commit }, payload) => {
+      return axios.delete(domen + '/json/' + payload.id).then(() => {
+        commit('removeProduct', payload)
       })
     }
   }
