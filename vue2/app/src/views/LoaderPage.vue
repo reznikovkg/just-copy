@@ -56,8 +56,10 @@ export default {
     },
     removeProduct(id) {
       this.blockProducts.push(id);
-      this.$store.dispatch('exp/removeProductAction', {id})
-        .then(() => {
+      this.$store.dispatch('exp/removeProductAction', {id}).catch(() => {
+        alert('Removing error');
+      })
+        .finally(() => {
           const index = this.blockProducts.indexOf(id);
           if (index > -1) {
             this.blockProducts.splice(index, 1);
