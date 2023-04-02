@@ -9,9 +9,7 @@ export default {
         globalLoaderActive: false
     },
     getters: {
-        isGlobalLoaderActive: ({globalLoaderActive}) => {
-            return globalLoaderActive
-        }
+        isGlobalLoaderActive: ({globalLoaderActive}) => globalLoaderActive
     },
     mutations: {
         activateGlobalLoader: (state) => {
@@ -23,10 +21,10 @@ export default {
     },
     actions: {
         activateGlobalLoaderAction(context) {
-            context.commit('updateLoader');
+            context.commit('activateGlobalLoader');
         },
         deactivateGlobalLoaderAction(context) {
-            context.commit('updateLoader');
+            context.commit('deactivateGlobalLoader');
         },
     }
 }
