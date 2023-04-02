@@ -1,5 +1,5 @@
-
 from django.urls import path, include
+
 urlpatterns = [
-    path('api/', include('acordion.urls'))
+    path('api/', include('accordionApp.urls'))
 ]
