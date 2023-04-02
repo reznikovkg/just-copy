@@ -9,6 +9,9 @@
     <p><router-link :to="{ name: 'select' }">
       Select
     </router-link></p>
+    <router-link :to="{ name: 'checkbox' }">
+      Checkboxes
+    </router-link>
     <router-link :to="{name:'notifications'}">
       Notification
     </router-link>
@@ -22,14 +25,16 @@
       Modal
     </router-link></p>
     <p><router-link :to="{ name: 'modal2' }">
-        Modal2
+      Modal2
+    </router-link></p>
+    <p><router-link :to="{ name: 'loader' }">
+      Loader
     </router-link></p>
     <p><router-link :to="{ name: 'loader' }">
       Loader
       </router-link></p>
   </div>
 </template>
-
 <script>
 export default {
   name: 'HomeView'

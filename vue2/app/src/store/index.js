@@ -3,11 +3,13 @@ import Vuex from 'vuex'
 import berries from './berries'
 import users from './users'
 import exp from './exp'
+import switches from "./switches";
 import notifications from './notifications'
 import modalUsers from "./modalUsers";
 import tabs from './tabs'
 import modals from "./modals";
-import loaders from "./loader"
+import loaders from "./loaders";
+import loaderSemenov from "./loaderSemenov";
 
 Vue.use(Vuex)
 
@@ -39,10 +41,12 @@ export default new Vuex.Store({
     users,
     berries,
     exp,
+    switches,
     notifications,
     tabs,
     modalUsers,
     modals,
     loaders,
+    loaderSemenov
   }
 })

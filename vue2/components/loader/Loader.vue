@@ -1,58 +1,100 @@
 <template>
-  <div style="padding: 5px">
-    <button
-      :class="['loader__button']"
-      @click="() => loaderStart(loaderStyle)"
-      :style="{
-        backgroundColor: loaders[loaderStyle].buttonColor,
-        width: loaders[loaderStyle].buttonWidth + 'px',
-        height: loaders[loaderStyle].buttonHeight + 'px',
-      }"
-    >
-      {{ loaders[loaderStyle].buttonText }}
-    </button>
-    <div v-if="isLoading" class="loader__div">
-      <img :src="loaders[loaderStyle].loaderImage" class="loader__image" />
-      <p class="loader__text">{{ loaders[loaderStyle].loaderText }}</p>
-    </div>
+  <div class="loader" v-if="loading" :style="{...positionStyles, ...loaderImageStyles}">
+    <span class="loader__percents" v-if="percents !== false">{{ percents + '%' }}</span>
+    <button class="loader__button" v-if="showStopBtn" @click="stop">stop</button>
   </div>
 </template>
 
-
 <script>
-import { mapGetters, mapActions } from "vuex";
+import {mapActions} from "vuex";
+
 export default {
-  name: "Loader",
+  name: 'LoaderComponent',
   props: {
-    loaderStyle: {
-      type: String,
-      default: "default",
+    loading: {
+      type: Boolean,
+      default: false
     },
+    percents: {
+      type: [Number, Boolean],
+      default: 0
+    },
+    isGlobal: {
+      type: Boolean,
+      default: false
+    },
+    showStopBtn: {
+      type: Boolean,
+      default: false
+    },
+    loaderImage: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {
-      isLoading: false,
-    };
+      storeLoaderId: false
+    }
   },
   computed: {
-    ...mapGetters("loaders", ["getLoaders"]),
-    loaders() {
-      return this.getLoaders;
+    positionStyles() {
+      return {
+        position: this.isGlobal ? 'fixed' : 'absolute'
+      }
     },
+    loaderImageStyles() {
+      console.log(this.loaderImage)
+      return this.loaderImage ? {
+        'background-image': `url(${this.loaderImage})`,
+      } : {};
+    }
   },
+  emits: ['prevented'],
   methods: {
-    ...mapActions("loaders", ["addLoader"]),
-    loaderStart(loaderName) {
-      let loader = this.getLoaders[loaderName];
-      this.isLoading = true;
-      setTimeout(() => {
-        this.isLoading = false;
-      }, loader.loaderDuration * 1000);
-    },
+    ...mapActions('loaders', {
+      activateGlobalLoader: 'activateGlobalLoaderAction',
+      deactivateGlobalLoader: 'deactivateGlobalLoaderAction',
+    }),
+    stop() {
+      this.$emit('prevented')
+    }
   },
-};
+  updated() {
+    if (this.isGlobal) {
+      this.loading ? this.activateGlobalLoader() : this.deactivateGlobalLoader();
+    }
+  }
+}
 </script>
 
-<style lang="less">
-@import "styles/styles.less";
+<style lang="less" scoped>
+.loader {
+  top: 0;
+  left: 0;
+  z-index: 10000;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 35px;
+
+  background-color: #000000D8;
+  background-image: url("./images/loader.svg");
+  background-position: center calc(50% - 35px);
+  background-repeat: no-repeat;
+  background-size: 50px;
+
+  color: white;
+
+  &__percents {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
 </style>

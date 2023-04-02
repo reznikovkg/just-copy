@@ -21,6 +21,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "btn" */ '../views/ExpressPage.vue')
   },
   {
+    path: '/checkbox',
+    name: 'checkbox',
+    component: () => import(/* webpackChunkName: "checkbox" */ '../views/CheckBoxPage.vue')
+  },
+  {
     path: '/select',
     name: 'select',
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
@@ -53,7 +58,12 @@ const routes = [
   {
     path: '/loader',
     name: 'loader',
-    component: () => import(/* webpackChunkName: "select" */ '../views/LoaderPage.vue')
+    component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPage.vue')
+  },
+  {
+    path: '/loaderSemenov',
+    name: 'loaderSemenov',
+    component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPageSemenov.vue')
   },
 ]
 
