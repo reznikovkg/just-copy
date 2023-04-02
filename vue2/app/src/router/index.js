@@ -35,6 +35,11 @@ const routes = [
     name: 'tabs',
     component: () => import(/* webpackChunkName: "select" */ '../views/TabsPage.vue')
   },
+  {
+    path: '/progressExpress',
+    name: 'progressExpress',
+    component: () => import(/* webpackChunkName: "select" */ '../views/ProgressExpressPage')
+  }
 ]
 
 const router = new VueRouter({

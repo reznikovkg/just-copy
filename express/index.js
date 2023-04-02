@@ -6,28 +6,20 @@ app.use(cors());
 
 const db = [
   {
-    id: '123',
-    name: 'Utug',
-    type: 'switch',
-    value: 123,
+    id: '1',
+    value: 12,
   },
   {
-    id: '1233',
-    name: 'Utug1',
-    type: 'checkbox',
-    value: 123,
+    id: '2',
+    value: 45,
   },
   {
-    id: '123',
-    name: 'Utug',
-    type: 'switch',
-    value: 123,
+    id: '3',
+    value: 60,
   },
   {
-    id: '1233',
-    name: 'Utug1',
-    type: 'checkbox',
-    value: 123,
+    id: '4',
+    value: 100,
   },
 ]
 
@@ -37,10 +29,6 @@ app.get('/', (req, res) => {
 
 app.get('/json', (req, res) => {
   setTimeout(() => {
-    if (req.query && req.query.cat) {
-        return res.json(db.filter(item => (item.cat === req.query.cat)))
-    }
-  
     res.json(db)
   }, 3000)
 })

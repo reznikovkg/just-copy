@@ -15,6 +15,9 @@
     <p><router-link :to="{ name: 'tabs' }">
       Tabs
     </router-link></p>
+    <p><router-link :to="{ name: 'progressExpress' }">
+      ExpressProgress
+    </router-link></p>
   </div>
 </template>
 
