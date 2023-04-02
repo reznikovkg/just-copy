@@ -1,13 +1,13 @@
 <template>
   <div class="tabs">
-    <div class="tabs-wrapper">
+    <div class="tabs__wrapper">
       <div v-for="tab in tabs" v-bind:key="tab.id">
-        <button class="tabs-wrapper-btn " @click="() => setDescription(tab)">
+        <button class="tabs__wrapper-btn" @click="() => setDescription(tab)">
           {{ tab.name }}
         </button>
       </div>
     </div>
-    <div class = "tabs-body">
+    <div class = "tabs__body">
         <p>
           {{ this.activeDescription }}
         </p>
