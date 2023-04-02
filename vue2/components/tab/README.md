@@ -1,3 +1,6 @@
+# Tab
+## Basic usage
+```js
 <template>
   <div>
     <h1 class="myText">Города России</h1>
@@ -31,3 +34,15 @@
       color:rgb(51, 21, 99);
   }
 </style>
+```
+
+## Resulting Tab component will look like this:
+### Tab changed
+![Tab changed](docAssets/Tabs1.png)
+### Regular Tab with mouse hover
+![Regular Tab with mouse hover](docAssets/Tabs.png)
+
+## Tab Attributes
+|Attribute|Description|Type|Accepted Values|Default|
+|:-:|:-:|:-:|:-:|:-:|
+|content|data source|Array|—|—|
