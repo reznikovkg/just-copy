@@ -21,9 +21,24 @@ const routes = [
     component: () => import(/* webpackChunkName: "btn" */ '../views/ExpressPage.vue')
   },
   {
+    path: '/checkbox',
+    name: 'checkbox',
+    component: () => import(/* webpackChunkName: "checkbox" */ '../views/CheckBoxPage.vue')
+  },
+  {
     path: '/select',
     name: 'select',
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
+  },
+  {
+    path: '/notifications',
+    name: 'notifications',
+    component: () => import(/* webpackChunkName: "select" */ '../views/NotificationPage.vue')
+  },
+  {
+    path: '/modal',
+    name: 'modal',
+    component: () => import(/* webpackChunkName: "select" */ '../views/ModalPage/ModalPage.vue')
   },
   {
     path: '/progress',
@@ -39,7 +54,12 @@ const routes = [
     path: '/progressExpress',
     name: 'progressExpress',
     component: () => import(/* webpackChunkName: "select" */ '../views/ProgressExpressPage')
-  }
+  },
+  {
+    path: '/modal2',
+    name: 'modal2',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/ModalPage.vue')
+  },
 ]
 
 const router = new VueRouter({
