@@ -6,30 +6,27 @@ Vue.use(Vuex)
 export default {
     namespaced: true,
     state: {
-        loaders: {}
+        globalLoaderActive: false
     },
     getters: {
-        getLoaders: ({loaders}) => loaders,
+        isGlobalLoaderActive: ({globalLoaderActive}) => {
+            return globalLoaderActive
+        }
     },
     mutations: {
-        updateLoader: (state, {loaderId, percent = 0}) => {
-            state.loaders[loaderId] = percent;
+        activateGlobalLoader: (state) => {
+            state.globalLoaderActive = true;
         },
-        removeLoader: (state, {loaderId}) => {
-            delete state.loaders[loaderId]
+        deactivateGlobalLoader: (state) => {
+            state.globalLoaderActive = false;
         }
     },
     actions: {
-        addLoaderAction(context) {
-            const loaderId = '' + Date.now() + Math.floor(Math.random() * 1000000);
-            context.commit('updateLoader', {loaderId});
-            return loaderId;
+        activateGlobalLoaderAction(context) {
+            context.commit('updateLoader');
         },
-        updateLoaderAction(context, payload) {
-            context.commit('updateLoader', payload);
-        },
-        removeLoaderAction (context, payload) {
-            context.commit('removeLoader', payload);
+        deactivateGlobalLoaderAction(context) {
+            context.commit('updateLoader');
         },
     }
 }
