@@ -30,8 +30,8 @@
     <p><router-link :to="{ name: 'loader' }">
       Loader
     </router-link></p>
-    <p><router-link :to="{ name: 'loader' }">
-      Loader
+    <p><router-link :to="{ name: 'loaderSemenov' }">
+      LoaderSemenov
       </router-link></p>
   </div>
 </template>
