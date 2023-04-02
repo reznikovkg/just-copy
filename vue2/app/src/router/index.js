@@ -55,6 +55,11 @@ const routes = [
     name: 'modal2',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/ModalPage.vue')
   },
+  {
+    path: '/tabsKiseleva',
+    name: 'tabsKiseleva',
+    component: () => import('../views/TabsKiseleva.vue')
+  },
 ]
 
 const router = new VueRouter({
