@@ -1,28 +1,47 @@
-import React, { createContext } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import StarRating from "./StarRating";
+import { FaStar } from "react-icons/fa";
 
-export const StarRatingContext = createContext();
-export default function StarRatingCo({ maxValue }) {
+export default function StarRating({ maxValue, onRatingChange }) {
+  const [rating, setRating] = useState(null);
+  const [hover, setHover] = useState(null);
+
+  const handleRatingChange = (value) => {
+    setRating(value);
+    onRatingChange(value);
+  };
+
   return (
-    <>
-      <StarRatingContext.Provider
-        value={{
-          maxValue,
-        }}
-      >
-        <>
-          <StarRating />
-        </>
-      </StarRatingContext.Provider>
-    </>
+    <div>
+      {[...Array(maxValue)].map((star, i) => {
+        const ratingValue = i + 1;
+        return (
+          <label key={i}>
+            <input
+              type="radio"
+              name="rating"
+              value={ratingValue}
+              onClick={() => handleRatingChange(ratingValue)}
+            />
+            <FaStar
+              color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+              size={100}
+              onMouseEnter={() => setHover(ratingValue)}
+              onMouseLeave={() => setHover(null)}
+            />
+          </label>
+        );
+      })}
+      <p>Рейтинг: {rating}</p>
+    </div>
   );
 }
 
-StarRatingCo.propTypes = {
+StarRating.propTypes = {
   maxValue: PropTypes.number,
+  onRatingChange: PropTypes.func.isRequired,
 };
 
-StarRatingCo.defaultProps = {
+StarRating.defaultProps = {
   maxValue: 5,
 };

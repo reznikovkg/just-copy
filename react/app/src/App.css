@@ -1,16 +1,10 @@
-.App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
+@import "index.css";
 
-.star{
+.star {
   cursor: pointer;
   transition: color 200ms;
 }
 
-input[type = "radio"]{
+input[type="radio"] {
   display: none;
 }
-
