@@ -75,6 +75,11 @@ const routes = [
     name: 'tabsSviridov',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
+  {
+    path: '/range',
+    name: 'range',
+    component: () => import(/* webpackChunkName: "range" */ '../views/RangeInputPage.vue')
+  },
 ]
 
 const router = new VueRouter({

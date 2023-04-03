@@ -39,6 +39,9 @@
     <p><router-link :to="{ name: 'tabsSviridov' }">
       TabsSviridov
     </router-link></p>
+    <p><router-link :to="{ name: 'range' }">
+      RangeInput
+    </router-link></p>
   </div>
 </template>
 <script>
