@@ -1,11 +1,12 @@
 <template>
     <div>
-        <div v-for="(content, index) in tabs" :key="index">
+        <div v-for="(content, index) in getTabs" :key="index">
             <Tab :content="content.content"/>
         </div>
     </div>
 </template>
-<script >
+
+<script>
 import Tab from "../../../components/tab/Tab.vue"
 import { mapGetters } from "vuex";
 export default {
@@ -15,10 +16,7 @@ export default {
     computed: {
         ...mapGetters('tabsKiseleva', [
             'getTabs',
-        ]),
-        tabs() {
-            return this.getTabs
-        },
+        ])
     },
 }
 </script>

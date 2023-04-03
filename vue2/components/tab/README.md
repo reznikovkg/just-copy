@@ -7,6 +7,7 @@
     <Tab :content="content"/>
   </div>
 </template>
+
 <script >
   import Tab from "../../components/tab/Tab.vue"
   export default {
@@ -28,12 +29,6 @@
     },
   }
 </script>
-<style>
-  .myText{
-      padding: 0px 25px;
-      color:rgb(51, 21, 99);
-  }
-</style>
 ```
 
 ## Resulting Tab component will look like this:
