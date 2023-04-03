@@ -55,6 +55,16 @@ const routes = [
     name: 'modal2',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/ModalPage.vue')
   },
+  {
+    path: '/loader',
+    name: 'loader',
+    component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPage.vue')
+  },
+  {
+    path: '/progress-an',
+    name: 'progressAn',
+    component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
+  },
 ]
 
 const router = new VueRouter({
