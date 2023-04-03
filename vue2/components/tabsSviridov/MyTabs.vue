@@ -1,16 +1,16 @@
 <template>
   <div class="tabs">
     <div class="tabs__wrapper">
-      <div v-for="tab in tabs" :key="tab.id">
+      <div v-for="(tab, index) in tabs" :key="index">
         <button class="tabs__btn" @click="() => setDescription(tab)">
           {{ tab.name }}
         </button>
       </div>
     </div>
     <div class="tabs__body">
-        <p>
-          {{ this.activeDescription }}
-        </p>
+      <p>
+        {{ content }}
+      </p>
     </div>
   </div>
 </template>
@@ -20,22 +20,18 @@ export default {
   props: {
     tabs: {
       type:Array,
-      required:true,
+      required:true
     },
-  },
-  data() {
-    return {
-      activeDescription: null
+    content: {
+      type:String,
+      required:true
     }
   },
   methods: {
     setDescription(desk){
-      this.activeDescription = desk.content;
+      this.$emit('switched',desk.content)
     }
   },
-  mounted() {
-    this.activeDescription = this.tabs[0].content;
-  }
 }
 </script>
 

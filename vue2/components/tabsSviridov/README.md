@@ -33,3 +33,11 @@ export default {
 |Attribute|Description|Type|Accepted Values|Default|Required|
 |:-:|:-:|:-:|:-:|:-:|:-:|
 |tabs|data source|Array|—|—|True|
+|content|content|String|—|—|True|
+
+___
+## Tabs Events
+|Event Name|Description|Parameters|
+|:-:|:-:|:-:|
+|switched|triggers when tab was switched|content - tab content|
+___
