@@ -8,6 +8,7 @@ import notifications from './notifications'
 import modalUsers from "./modalUsers";
 import tabs from './tabs'
 import modals from "./modals";
+import loaders from "./loaders";
 import tabsKiseleva from './tabsKiseleva';
 
 Vue.use(Vuex)
@@ -45,6 +46,7 @@ export default new Vuex.Store({
     tabs,
     modalUsers,
     modals,
+    loaders,
     tabsKiseleva,
   }
 })
