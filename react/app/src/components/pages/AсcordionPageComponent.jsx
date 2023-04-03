@@ -5,7 +5,7 @@ import {data_1, data_2} from "../../data/data";
 import Store from "../../store/Store";
 
 
-const AcordionPageComponent = () => {
+const AсcordionPageComponent = () => {
     return (
         <div className="acordion_page">
             <AccordionComponent data={data_2}/>
@@ -16,4 +16,4 @@ const AcordionPageComponent = () => {
     );
 };
 
-export default AcordionPageComponent;
+export default AсcordionPageComponent;
