@@ -30,6 +30,9 @@
     <p><router-link :to="{ name: 'loader' }">
       Loader
     </router-link></p>
+    <p><router-link :to="{ name: 'loaderSemenov' }">
+      LoaderSemenov
+      </router-link></p>
     <p><router-link :to="{ name: 'progressAn' }">
       Progress 2
     </router-link></p>
