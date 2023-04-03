@@ -1,7 +1,7 @@
 import React from 'react';
 import BoxComponent from "../boxComponent/boxComponent";
-import'./AcordionStyle.scss'
-const AcordionComponent = ({data}) => {
+import'./AccordionStyle.scss'
+const AccordionComponent = ({data}) => {
     return (
         <div className="acordion">
             {data.map( (item)=>{
@@ -11,4 +11,4 @@ const AcordionComponent = ({data}) => {
     );
 };
 
-export default AcordionComponent;
+export default AccordionComponent;

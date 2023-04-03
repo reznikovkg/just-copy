@@ -21,7 +21,7 @@ data | array |  | | массив данных
 Пример использования данных props:
 
 ```react
-  <AcordionComponent data={data_2}/>
+  <AccordionComponent data={data_2}/>
 ```
 
 Пример массива данных

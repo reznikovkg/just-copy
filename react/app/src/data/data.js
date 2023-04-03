@@ -1,6 +1,6 @@
 
 import React from "react";
-import AcordionComponent from "../components/acordionComponent/AcordionComponent";
+import AccordionComponent from "../components/accordionComponent/AccordionComponent";
 
 
 export const data_1 =[
@@ -33,6 +33,6 @@ export const data_2 =[
     {
         id : 3,
         title: "Заголовок 3",
-        content : <AcordionComponent data={data_1}/>
+        content : <AccordionComponent data={data_1}/>
     },
 ]
