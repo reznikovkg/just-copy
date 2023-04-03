@@ -56,6 +56,21 @@ const routes = [
     component: () => import(/* webpackChunkName: "modal2" */ '../views/ModalPage.vue')
   },
   {
+    path: '/loader',
+    name: 'loader',
+    component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPage.vue')
+  },
+  {
+    path: '/progress-an',
+    name: 'progressAn',
+    component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
+  },
+  {
+    path: '/tabsKiseleva',
+    name: 'tabsKiseleva',
+    component: () => import('../views/TabsKiseleva.vue')
+  },
+  {
     path: '/tabsSviridov',
     name: 'tabsSviridov',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
