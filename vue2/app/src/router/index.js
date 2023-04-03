@@ -70,6 +70,11 @@ const routes = [
     name: 'tabsKiseleva',
     component: () => import('../views/TabsKiseleva.vue')
   },
+  {
+    path: '/tabsSviridov',
+    name: 'tabsSviridov',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
+  },
 ]
 
 const router = new VueRouter({
