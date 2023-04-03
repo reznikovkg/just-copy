@@ -14,7 +14,7 @@ export default {
     MyTabs
   },
   computed: {
-    ...mapGetters('tabsSviridov', [
+    ...mapGetters('tabsSviridovExpress', [
       'getTabs',
       'getActiveDescriptions',
     ]),
@@ -23,12 +23,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions('tabsSviridov', [
-      'setActiveDescription'
+    ...mapActions('tabsSviridovExpress', [
+      'setActiveDescription',
+      'loadTabs'
     ]),
     tabSwitched(index, content) {
       this.setActiveDescription({index, content})
     },
+  },
+  mounted() {
+    this.loadTabs()
   }
 }
 </script>
