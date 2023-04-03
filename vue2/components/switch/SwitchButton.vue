@@ -16,6 +16,7 @@ export default {
   props: {
     value: Boolean,
     label: String,
+    id: String,
     disabled: {
       type: Boolean,
       default: false,
@@ -24,7 +25,7 @@ export default {
   methods: {
     toggle() {
       if (!this.disabled) {
-        this.$emit("change", this.label);
+        this.$emit("change", this.id);
       }
     }
   }

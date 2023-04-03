@@ -9,11 +9,11 @@
         </select>
         <button @click="() => addSW()">Добавить</button>
       </div>
-      <div v-for="(sw) in getSwitches" :key="sw.name">
-        <CheckBox v-if="sw.type === switchesTypes.CHECKBOX" :label="sw.name" v-model="sw.value" :disabled="sw.disabled"
-          @change="change" />
-        <SwitchButton v-else-if="sw.type === switchesTypes.SWITCH" :label="sw.name" v-model="sw.value" @change="change" />
-        <button class="container__button" @click="() => deleteSwitch(sw.name)">delete switch</button>
+      <div v-for="(sw) in getSwitches" :key="sw.id">
+        <CheckBox v-if="sw.type === switchesTypes.CHECKBOX" :label="sw.name" v-model="sw.value" :disabled="sw.disabled" :id="sw.id"
+          @change="change" @click="() => deleteSwitch(sw.id)"/>
+        <SwitchButton v-else-if="sw.type === switchesTypes.SWITCH" :label="sw.name" v-model="sw.value" :id="sw.id" @change="change" />
+        <button class="container__button" @click="() => deleteSwitch(sw.id)">delete switch</button>
       </div>
     </div>
   </div>
@@ -48,17 +48,21 @@ export default {
     ...mapActions(
       'switches',
       [
-        'addSwitch',
+        'fetchAllSwitches',
         'deleteSwitch',
-        'changeSwitch'
+        'changeSwitch',
+        'addSwitch'
       ]),
-    change(name) {
-      this.changeSwitch(name);
+    change(id) {
+      this.changeSwitch({id});
     },
     addSW() {
-      this.addSwitch({ name: this.inpValue, type: this.selectValue })
+      this.addSwitch({_switch: { name: this.inpValue, type: this.selectValue, value: false, disabled: false }})
     },
   },
+  mounted() {
+    this.fetchAllSwitches()
+  }
 };
 </script>
 
