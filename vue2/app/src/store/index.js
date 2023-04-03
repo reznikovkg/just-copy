@@ -10,6 +10,8 @@ import tabs from './tabs'
 import modals from "./modals";
 import loaders from "./loaders";
 import loaderSemenov from "./loaderSemenov";
+import tabsKiseleva from './tabsKiseleva';
+import tabsSviridov from './tabsSviridov';
 
 Vue.use(Vuex)
 
@@ -47,6 +49,8 @@ export default new Vuex.Store({
     modalUsers,
     modals,
     loaders,
-    loaderSemenov
+    loaderSemenov,
+    tabsKiseleva,
+    tabsSviridov,
   }
 })

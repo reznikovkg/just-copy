@@ -1,30 +1,44 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import axios from "axios";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
+
+const BASE_URL = "http://localhost:3000";
 
 export default {
-    namespaced: true,
-    state: {
-        modals: []
+  namespaced: true,
+  state: {
+    modals: [],
+  },
+  getters: {
+    getModals: ({ modals }) => modals,
+  },
+  mutations: {
+    addModal: (state, payload) => {
+      state.modals.push(payload);
     },
-    getters: {
-        getModals: ({modals}) => modals,
+    removeModal: (state) => {
+      state.modals.splice(state.modals.length - 1, 1);
     },
-    mutations: {
-        addModal: (state, payload) => {
-            state.modals.push(payload);
-        },
-        removeModal: (state, payload) => {
-            state.modals.splice(payload, 1);
-        },
+    setModals: (state, payload) => {
+      state.modals = payload;
     },
-    actions: {
-        addModalAction: (context, payload) => {
-            context.commit('addModal', payload);
-        },
-        removeModalAction: (context, payload) => {
-            context.commit('removeModal', payload);
-        },
-    }
-}
+  },
+  actions: {
+    fetchAllModalsAction: async (context) => {
+      const res = await axios.get(`${BASE_URL}/modals`);
+      context.commit("setModals", res.data);
+    },
+    addModalAction: async (context, payload) => {
+      const res = await axios.post(`${BASE_URL}/modals`, payload);
+      context.commit("addModal", res.data);
+    },
+    removeModalAction: async (context) => {
+      const res = await axios.delete(`${BASE_URL}/modals`);
+      if (res.status === 200) {
+        context.commit("removeModal");
+      }
+    },
+  },
+};
