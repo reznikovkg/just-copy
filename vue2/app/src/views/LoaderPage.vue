@@ -17,7 +17,6 @@
 
       <button @click.prevent="blocking2(3000)">Load page</button>
       <LoaderComponent
-          :loading="loading2"
           canBeStopped
           blockPage
           @stopped="stopBlocking2()"
@@ -38,7 +37,6 @@ export default {
     return {
       loading1: false,
       loading1Value: 0,
-      loading2: false,
       loading2Timeout: 0,
     }
   },
@@ -56,14 +54,14 @@ export default {
       }, time - 1000)
     },
     blocking2(time) {
-      this.loading2 = true;
+      this.$store.dispatch('loaders/activateGlobalLoaderAction');
 
       this.loading2Timeout = this.loaderTimeout = setTimeout(() => {
-        this.loading2 = false
+        this.$store.dispatch('loaders/deactivateGlobalLoaderAction');
       }, time)
     },
     stopBlocking2() {
-      this.loading2 = false;
+      this.$store.dispatch('loaders/deactivateGlobalLoaderAction');
       clearTimeout(this.loading2Timeout);
     }
   },
@@ -71,17 +69,17 @@ export default {
 </script>
 
 <style lang="less">
-  .loader-blocks {
-    padding: 10px;
+.loader-blocks {
+  padding: 10px;
 
-    &__block {
-      position: relative;
-      overflow: hidden;
-      min-height: 200px;
-      padding: 15px;
-      margin-bottom: 15px;
-      background-color: #f6f6f6;
-      border: 1px solid #dbdbdb;
-     }
+  &__block {
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f6f6f6;
+    border: 1px solid #dbdbdb;
   }
+}
 </style>

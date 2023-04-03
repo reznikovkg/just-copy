@@ -1,7 +1,7 @@
 <template>
-  <div class="loader" v-if="this.loading" :style="position">
-    <span class="loader__percents" v-if="this.showPercents">{{ this.percents + '%' }}</span>
-    <button class="loader__button" v-if="this.canBeStopped" @click.prevent="stop">Stop</button>
+  <div class="loader" v-if="showLoader" :style="position">
+    <span class="loader__percents" v-if="showPercents">{{ percents + '%' }}</span>
+    <button class="loader__button" v-if="canBeStopped" @click.prevent="stop">Stop</button>
   </div>
 </template>
 
@@ -35,6 +35,13 @@ export default {
   },
   emits: ['stopped'],
   computed: {
+    showLoader() {
+      if(this.blockPage) {
+        return this.$store.getters['loaders/isGlobalLoaderActive']
+      } else {
+        return this.loading
+      }
+    },
     position() {
       return {
         position: this.blockPage ? 'fixed' : 'absolute'
