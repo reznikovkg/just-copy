@@ -1,0 +1,37 @@
+@blue-color: rgba(0, 0, 255, 0.2);
+@purple-color: #cfc5f0a1;
+@violet-color: #47208f49;
+@transparent-color: #ececec00;
+@violet-color2: rgb(53, 21, 104);
+.tab {
+  border: 1px solid @blue-color;
+  width: 80%;
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    background-color: @purple-color;
+  }
+  &__button {
+    background-color: #cfc5f0;
+    border: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 20px;
+    color:rgb(58, 25, 112);
+    border: 2px solid @transparent-color;
+    &:hover {
+        border: 2px solid @violet-color;
+    }
+    &__active {
+      background-color: @violet-color; 
+      border: 2px solid #47208f10;
+    }
+  }
+  &__description {
+    padding: 6px 12px;
+    border: 1px solid rgba(0, 0, 255, 0.2);
+    color: @violet-color2;
+    font-size: 17px;
+  }
+}
