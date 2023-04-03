@@ -8,15 +8,23 @@
 
 <script>
 import Tab from "../../../components/tab/Tab.vue"
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
     components:{
         Tab
     },
     computed: {
-        ...mapGetters('tabsKiseleva', [
+        ...mapGetters('tabsKiselevaExp', [
             'getTabs',
         ])
     },
+    methods: {
+        ...mapActions('tabsKiselevaExp', [
+        'loadTabs'
+    ]),
+    },
+    mounted() {
+        this.loadTabs()
+    }
 }
 </script>
