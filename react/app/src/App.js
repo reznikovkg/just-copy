@@ -11,7 +11,7 @@ function App() {
         <Routes>
             <Route exact path='/' element={<MainPageComponent />}/>
             <Route  path='/main' element={<MainPageComponent />}/>
-            <Route  path='/acordions' element={<AсcordionPageComponent />}/>
+            <Route  path='/acсordions' element={<AсcordionPageComponent />}/>
         </Routes>
     </div>
   );
