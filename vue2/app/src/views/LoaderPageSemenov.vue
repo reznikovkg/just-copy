@@ -40,7 +40,9 @@ export default {
     },
   },
   mounted() {
-    this.loaderStart("long");
+    if(document.readyState != 'complete')
+      this.loaderStart("long");
+      
     document.onreadystatechange = () => {
       if (document.readyState == 'complete') {
         this.loaderStop();
