@@ -9,13 +9,10 @@
     &__label {
         position: relative;
     }
-
-
     &__sign {
         padding-left: 100px;
         padding-right: 10px;
     }
-
     &__panel {
         display: flex;
         height: 40px;
@@ -27,9 +24,6 @@
         border-bottom: 1px solid #ced0d7;
     }
 }
-
-
-
 
 .rotate {
     transform: rotate(90deg);

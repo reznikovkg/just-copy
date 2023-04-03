@@ -1,19 +1,19 @@
 import React from 'react';
-import AcordionComponent from "../acordionComponent/AcordionComponent";
+import AccordionComponent from "../accordionComponent/AccordionComponent";
 import LinkComponent from "../linkComponent/LinkComponent";
 import {data_1, data_2} from "../../data/data";
 import Store from "../../store/Store";
 
 
-const AcordionPageComponent = () => {
+const AсcordionPageComponent = () => {
     return (
         <div className="acordion_page">
-            <AcordionComponent data={data_2}/>
-            <AcordionComponent data={data_1}/>
-            <AcordionComponent data={Store.getDatas()}/>
+            <AccordionComponent data={data_2}/>
+            <AccordionComponent data={data_1}/>
+            <AccordionComponent data={Store.getDatas()}/>
             <LinkComponent link="/"> Наглавную </LinkComponent>
         </div>
     );
 };
 
-export default AcordionPageComponent;
+export default AсcordionPageComponent;
