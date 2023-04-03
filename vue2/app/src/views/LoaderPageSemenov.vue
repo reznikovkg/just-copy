@@ -3,15 +3,15 @@
     <h1>Loaders:</h1>
     <div style="padding: 5px">
       <Loader ref="loaderSemenov" />
-      <button :class="['loader__button']" @click="() => loaderStart('default')">
+      <button class="loader__button" @click="() => loaderStart('default')">
         Default
       </button>
       <Loader ref="loader" />
-      <button :class="['loader__button']" @click="() => loaderStart('fav')">
+      <button class="loader__button" @click="() => loaderStart('fav')">
         Der Frosch
       </button>
       <Loader ref="loader" />
-      <button :class="['loader__button']" @click="() => loaderStart('long')">
+      <button :class="loader__button" @click="() => loaderStart('long')">
         Long Loading
       </button>
     </div>
@@ -42,7 +42,7 @@ export default {
   mounted() {
     if(document.readyState != 'complete')
       this.loaderStart("long");
-      
+
     document.onreadystatechange = () => {
       if (document.readyState == 'complete') {
         this.loaderStop();
@@ -51,7 +51,3 @@ export default {
   },
 };
 </script>
-
-<style lang="less">
-@import "../../../components/loaderSemenov/styles/styles.less";
-</style>
