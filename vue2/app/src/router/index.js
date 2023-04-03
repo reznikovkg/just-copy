@@ -65,6 +65,11 @@ const routes = [
     name: 'progressAn',
     component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
   },
+  {
+    path: '/accordion',
+    name: 'accordion',
+    component: () => import(/* webpackChunkName: "accordion" */ '../views/AccordionPage.vue')
+  },
 ]
 
 const router = new VueRouter({
