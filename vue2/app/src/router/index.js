@@ -65,6 +65,11 @@ const routes = [
     name: 'progressAn',
     component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
   },
+  {
+    path: '/tabsKiseleva',
+    name: 'tabsKiseleva',
+    component: () => import('../views/TabsKiseleva.vue')
+  },
 ]
 
 const router = new VueRouter({
