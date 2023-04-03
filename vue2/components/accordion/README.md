@@ -4,16 +4,25 @@
 
 # Props:
 
-| name           | type   | comments                                                                                        |
-|----------------|--------|-------------------------------------------------------------------------------------------------|
-| infoArrayIndex | Number | Index of this accordion instance. It's used to fetch the data for the accordion from the store. |
+| name           | type              | comments                                                    |
+|----------------|-------------------|-------------------------------------------------------------|
+| elems          | Array of Objects  | Object has fields title and info.                           |
+| activeElems    | Array of booleans | True means that element is open, false - element is closed. |
+| infoArrayIndex | Number            | Index of this accordion instance.                           |
+
+# Emits :
+
+updateElement is emitted on click on the title block of the element, passes an Object with fields aIndex=infoArrayIndex
+and index.
 
 # Usage Example:
 
 ```
 <template>
-  <AccordionComponent :infoArrayIndex =0 />
-  <AccordionComponent :infoArrayIndex =1 />
+  <AccordionComponent :infoArrayIndex=0 
+                      :elems=this.elems
+                      :activeElems=this.active
+                      @updateElement="update($event)"/>
 </template>
 
 <script>
@@ -24,6 +33,30 @@ export default {
   components: {
     AccordionComponent
   }
+  data(){
+    return {
+        elems:
+        [
+            {
+                title: 'title1',
+                info: 'text1'
+            },
+            {
+                title: 'title2',
+                info: 'text2'
+            },
+        ], 
+        active:
+        [
+            true, false
+        ], 
+    }
+  },
+  methods:{
+    update({aIndex, index}){
+        Vue.set(this.active, index, !this.active[index])
+    }
+  },
 }
 </script>
 ```

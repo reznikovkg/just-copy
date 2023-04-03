@@ -40,13 +40,19 @@ export default {
     getters: {
         getElementsData: (state) => (aIndex) => {
             return state.elementsData[aIndex]
-        }, isElementActive: (state) => (aIndex, id) => {
-            return state.activeElements[aIndex][id]
-        }
+        },
+        getActiveElements: (state) => (aIndex) => {
+            return state.activeElements[aIndex]
+        },
     },
     mutations: {
         setElementActive(state, {aIndex, index}) {
             Vue.set(state.activeElements[aIndex], index, !state.activeElements[aIndex][index])
+        }
+    },
+    actions: {
+        setElementActiveAction(context, {aIndex, index}) {
+            context.commit('setElementActive', {aIndex: aIndex, index: index})
         }
     }
 }
