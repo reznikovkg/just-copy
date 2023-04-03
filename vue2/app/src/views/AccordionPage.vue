@@ -2,18 +2,20 @@
   <div>
     <h1>AccordionComponent</h1>
     <h2>Accordion with all elements closed by default: </h2>
-    <AccordionComponent class="acc"
-                        :elems=getElems(0)
-                        :active-elems=getActiveElems(0)
-                        :infoArrayIndex="0"
-                        @updateElement="dispatchSetActive($event)" />
+    <AccordionComponent
+        class="acc"
+        :elems=getElems(0)
+        :active-elems=getActiveElems(0)
+        :infoArrayIndex="0"
+        @updateElement="dispatchSetActive($event)" />
 
       <h2>Accordion with all elements open by default: </h2>
-      <AccordionComponent class="acc"
-                          :elems=getElems(1)
-                          :active-elems=getActiveElems(1)
-                          :infoArrayIndex="1"
-                          @updateElement="dispatchSetActive($event)"/>
+      <AccordionComponent
+          class="acc"
+          :elems=getElems(1)
+          :active-elems=getActiveElems(1)
+          :infoArrayIndex="1"
+          @updateElement="dispatchSetActive($event)" />
   </div>
 </template>
 
