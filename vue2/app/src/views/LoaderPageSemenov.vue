@@ -11,7 +11,7 @@
         Der Frosch
       </button>
       <Loader ref="loader" />
-      <button :class="loader__button" @click="() => loaderStart('long')">
+      <button class="loader__button" @click="() => loaderStart('long')">
         Long Loading
       </button>
     </div>
