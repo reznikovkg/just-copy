@@ -38,7 +38,7 @@ export default {
                 loaderDuration: "3"
             },
             fav: {
-                loaderImage: "https://psv4.userapi.com/c532036/u55205033/docs/d6/f9e851b894b9/file.gif?extra=142kM56E9wZzmCkLUMG1LskSxD4ATxn4V-S41qNMvp_TJ0TH8nIX0I1l56XRusjWy6BYsR7x6fun6_Kc5gJZhstvhYSLMGD1YP68O7hSNj88GBz8keFB-6d9z359S0oxIiRmN2wMJrj5JQSS1eLwqhrT",
+                loaderImage: "https://sun9-50.userapi.com/c532036/u55205033/docs/d6/852f90ebc129/file.gif?extra=w4I38Bqyvt0DeEsssoTu_bXIshbukT5I5kJ2mtabeK_okpuIpzpDguhOJZtp77-Bw4S0B3Al1gIAKkgQd39R43wM_xVXwI6j8P_jczE8yZ8HNjftSSZICN2-8w3yhHP4Ritb09xpDXT7Bso4FIreSD2p_lQ",
                 loaderText: "Загрузка...",
                 loaderDuration: "3"
             }
@@ -46,16 +46,5 @@ export default {
     },
     getters: {
         getLoaders: state => state.loaders,
-        getLoadersNumber: state => state.loaders.length
-    },
-    mutations: {
-        addLoader: (state, payload) => {
-            state.loaders.push(payload)
-        }
-    },
-    actions: {
-        addTab: ({ commit }, payload) => {
-            commit('addLoader', payload)
-        }
     },
 }
