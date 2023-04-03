@@ -60,6 +60,11 @@ const routes = [
     name: 'loader',
     component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPage.vue')
   },
+  {
+    path: '/progress-an',
+    name: 'progressAn',
+    component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
+  },
 ]
 
 const router = new VueRouter({
