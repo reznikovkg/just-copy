@@ -38,12 +38,12 @@ export default {
     };
   },
   methods: {
-    ...mapActions("notifications",[
+    ...mapActions("notificationsExp",[
       "deleteNotification"
     ]),
   },
   computed:{
-    ...mapGetters("notifications", [
+    ...mapGetters("notificationsExp", [
       "getInterval"
     ]),
   },

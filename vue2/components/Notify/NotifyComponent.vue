@@ -16,7 +16,7 @@ import NotificationComponent from "../Notification/NotificationComponent.vue";
 export default {
   components: { NotificationComponent },
   computed: {
-    ...mapGetters("notifications", [
+    ...mapGetters("notificationsExp", [
         "getNotifications",
     ]),
   },
