@@ -3,7 +3,7 @@
         <button :class="{ 'value-input__operation-active': isLockMinus }"
                  class="value-input__operation"
                 @click="decrement">-</button>
-        <input :value="current"
+        <input v-model="current"
                 type="text"
                @keyup.enter="formattedValue"
                @blur="formattedValue"
@@ -50,9 +50,14 @@ export default {
         isLockMinus() {
             return this.min >= Number(this.localValue.toFixed(2));
         },
-        current() {
+        current:{
+        get() {
             return Number(this.localValue.toFixed(2));
         },
+        set(v){
+            this.$emit("change", Number(v));
+        }
+    }
     },
     mounted() {
         this.localValue = this.value;
@@ -65,9 +70,8 @@ export default {
             }
             else {
                 if (parsedValue <= this.max && parsedValue >= this.min) this.localValue = parsedValue;
-                else this.localValue = parsedValue < this.min ? this.min : this.max;
+                else this.current = parsedValue < this.min ? this.min : this.max;
             }
-            this.$emit("create", Number(this.localValue));
         },
         increment() {
             const step = Number(this.step);

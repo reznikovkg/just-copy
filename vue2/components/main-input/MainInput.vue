@@ -1,8 +1,8 @@
 <template>
   <div class="val-input-container">
     <ValueInput v-model="value" :step="0.1" :max="max" :min="min" />
-    Min:<ValueInput :valueInput="min" @create="setMin"></ValueInput>
-    Max:<ValueInput :valueInput="max" @create="setMax"></ValueInput>
+    Min:<ValueInput :value="min" @create="setMin"></ValueInput>
+    Max:<ValueInput :value="max" @create="setMax"></ValueInput>
   </div>
 </template>
 
