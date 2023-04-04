@@ -85,6 +85,11 @@ const routes = [
     name: 'tabsSviridov',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
+  {
+    path: "/board-games-select",
+    name: "boardGamesSelect",
+    component: () => import(/* webpackChunkName: "boardGamesSelect" */ "../views/SelectComponentPage.vue")
+  },
 ]
 
 const router = new VueRouter({

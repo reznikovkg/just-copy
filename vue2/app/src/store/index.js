@@ -12,7 +12,8 @@ import loaders from "./loaders";
 import accordion from "./accordion"
 import loaderSemenov from "./loaderSemenov";
 import tabsKiseleva from './tabsKiseleva';
-import tabsSviridov from './tabsSviridov';
+import tabsSviridov from './tabsSviridov'; 
+import dropdowns from "@/store/dropdowns";
 
 Vue.use(Vuex)
 
@@ -54,5 +55,6 @@ export default new Vuex.Store({
     loaderSemenov,
     tabsKiseleva,
     tabsSviridov,
-  }
-})
+    dropdowns,
+  },
+});
