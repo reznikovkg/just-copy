@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: "Select",
+  name: "SelectComponent2",
   model: {
     props: "selectedItem",
     event: "select-item-change",

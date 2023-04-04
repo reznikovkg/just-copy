@@ -1,21 +1,21 @@
 <template>
-<div style="width: 600px; margin: 12px;">
-<h2>Последняя выбранная игра: {{ getLastSelectedBoardGame }}</h2>
-<Select :items="boardGames" v-model="selectedBoardGameItem"></Select> 
+  <div style="width: 600px; margin: 12px;">
+    <h2>Последняя выбранная игра: {{ getLastSelectedBoardGame }}</h2>
+    <SelectComponent2 :items="boardGames" v-model="selectedBoardGameItem"></SelectComponent2>
 
-<h2>Последняя выбранная книга: {{ getLastSelectedBook }}</h2>
-<Select :items="books" v-model="selectedBookItem"></Select>
-</div>
+    <h2>Последняя выбранная книга: {{ getLastSelectedBook }}</h2>
+    <SelectComponent2 :items="books" v-model="selectedBookItem"></SelectComponent2>
+  </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Select from "../../../components/SelectComponent/Select.vue";
+import SelectComponent2 from "../../../components/SelectComponent/SelectComponent2.vue";
 
 export default {
   name: "SelectPage",
-  components: { 
-    Select,
+  components: {
+    SelectComponent2,
   },
   computed: {
     boardGames() {
@@ -24,7 +24,10 @@ export default {
     books() {
       return this.$store.getters["dropdowns/getBooks"];
     },
-    ...mapGetters("dropdowns", ["getLastSelectedBoardGame", "getLastSelectedBook"]),
+    ...mapGetters("dropdowns", [
+      "getLastSelectedBoardGame",
+      "getLastSelectedBook"
+    ]),
     selectedBoardGameItem: {
       get() {
         return this.getLastSelectedBoardGame;
@@ -32,7 +35,7 @@ export default {
       set(value) {
         this.setLastSelectedBoardGame(value);
       },
-    }, 
+    },
     selectedBookItem: {
       get() {
         return this.getLastSelectedBook;
@@ -40,10 +43,13 @@ export default {
       set(value) {
         this.setLastSelectedBook(value);
       },
-    }, 
+    },
   },
   methods: {
-    ...mapActions("dropdowns", ["setLastSelectedBoardGame", "setLastSelectedBook"]),
+    ...mapActions("dropdowns", [
+      "setLastSelectedBoardGame",
+      "setLastSelectedBook"
+    ]),
   },
 };
 </script>
