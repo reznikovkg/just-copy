@@ -1,0 +1,26 @@
+@background_color_on: blueviolet;
+@border_color: gray;
+@background_color_off: red;
+.checkbox {
+  display: inline-block;
+	width: 15px;
+	height: 15px;
+  color: @background_color_off;
+  background-color: red;
+	border: 1px solid @border_color;
+	border-radius: 4px;
+	background-repeat: no-repeat;
+	background-position: center center;
+  cursor: pointer;
+  transition-duration: 0.5s;
+    &::before {
+        margin-left: 25px;
+        content: "Переключатель";
+    }
+    &.enabled
+    {
+        border-color: @border_color;
+        background-color: @background_color_on;
+        color: @background_color_on;
+    }
+}

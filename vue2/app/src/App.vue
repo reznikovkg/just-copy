@@ -1,21 +1,35 @@
 <template>
   <div id="app">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-    </nav>
-    <RouterView/>
+    <SwitchButton v-model="switch1"></SwitchButton>
+    <CheckBox v-model="switch1"></CheckBox>
   </div>
 </template>
 
 <script>
+import CheckBox from './components/CheckBox-Krivov/CheckBox.vue';
+import SwitchButton from './components/SwitchButton-Krivov/SwitchButton.vue';
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    CheckBox,
+    SwitchButton
+  },
+  data: function()
+  {
+    return{
+      switch1:true
+    }
+  }
 }
 </script>
 
 <style>
-    body {
-        padding: 0;
-        margin: 0;
-    }
+#app {
+  font-family: Lato, sans-serif;
+}
+
+#app .switch-button {
+  margin: 10px 0;
+}
 </style>
