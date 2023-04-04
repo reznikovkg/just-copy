@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import StarRatingCo from "./StarRatingCo";
-import './App.css';
+import "./App.sass";
 
 function App() {
   const [rating, setRating] = useState(null);
@@ -10,8 +10,8 @@ function App() {
   };
 
   return (
-    <div className='App '>
-        <StarRatingCo onRatingChange={handleRatingChange} />
+    <div className="App">
+      <StarRatingCo onRatingChange={handleRatingChange} />
     </div>
   );
 }

@@ -16,11 +16,12 @@ export default function StarRating({ maxValue, onRatingChange }) {
       {[...Array(maxValue)].map((star, i) => {
         const ratingValue = i + 1;
         return (
-          <label key={i}>
+          <label style = {{cursor:'pointer'}} key={i}>
             <input
               type="radio"
               name="rating"
               value={ratingValue}
+              
               onClick={() => handleRatingChange(ratingValue)}
             />
             <FaStar
