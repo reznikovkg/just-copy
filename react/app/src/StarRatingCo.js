@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FaStar } from "react-icons/fa";
+import "./App.sass";
 
 export default function StarRating({ maxValue, onRatingChange }) {
   const [rating, setRating] = useState(null);
@@ -16,12 +17,11 @@ export default function StarRating({ maxValue, onRatingChange }) {
       {[...Array(maxValue)].map((star, i) => {
         const ratingValue = i + 1;
         return (
-          <label style = {{cursor:'pointer'}} key={i}>
+          <label style={{ cursor: "pointer" }} key={i}>
             <input
-              type="radio"
+              className="ratingstar"
               name="rating"
               value={ratingValue}
-              
               onClick={() => handleRatingChange(ratingValue)}
             />
             <FaStar
