@@ -1,0 +1,72 @@
+.accordion__item {
+  border: 1px solid #39ff14;
+  transition: all 0.2s ease 0s;
+  background-color: #39ff14;
+
+  &:hover {
+    background-color: #ff148f;
+    border-color: #ff148f;
+  }
+
+  &--title {
+    font-weight: 500;
+    font-size: 28px;
+    font-family: "Consolas", sans-serif;
+    line-height: 34px;
+    padding: 16px 24px 16px 40px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    justify-content: space-between;
+    gap: 80px;
+    align-items: center;
+    color: black;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease 0s;
+
+    &:after {
+      content: "\002B"; /*+*/
+      font-size: 36px;
+      color: black;
+      float: right;
+      margin-left: 5px;
+    }
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &--hidden {
+    overflow-y: hidden;
+    padding: 0 24px;
+    max-height: 0px;
+    font-size: 18px;
+    transition: max-height 0.2s ease-out;
+  }
+
+  &--open {
+    background-color: #bbffad;
+    color: black;
+
+    .accordion__item {
+      &--title {
+        &:hover {
+          color: rgb(255, 57, 133);
+        }
+
+        &:after {
+          content: "\2212"; /*-*/
+          color: black;
+        }
+      }
+
+      &--hidden {
+        max-height: 1000px;
+      }
+    }
+  }
+}
