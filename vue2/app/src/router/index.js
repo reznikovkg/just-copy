@@ -61,6 +61,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPage.vue')
   },
   {
+    path: '/loaderSemenov',
+    name: 'loaderSemenov',
+    component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPageSemenov.vue')
+  },
+  {
     path: '/progress-an',
     name: 'progressAn',
     component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
