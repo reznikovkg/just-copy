@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <SwitchButton v-model="switch1"></SwitchButton>
-    <CheckBox v-model="switch1"></CheckBox>
+    <SwitchButton v-model="switch1"/>
+    <CheckBox v-model="switch1"/>
   </div>
 </template>
 
