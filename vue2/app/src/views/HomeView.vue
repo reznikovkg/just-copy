@@ -36,6 +36,9 @@
     <p><router-link :to="{ name: 'progressAn' }">
       Progress 2
     </router-link></p>
+    <router-link :to="{ name: 'accordion' }">
+      Accordion
+    </router-link>
     <p><router-link :to="{ name: 'tabsKiseleva' }">
       TabsKiseleva
     </router-link></p>

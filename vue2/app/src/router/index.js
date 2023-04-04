@@ -71,6 +71,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
   },
   {
+    path: '/accordion',
+    name: 'accordion',
+    component: () => import(/* webpackChunkName: "accordion" */ '../views/AccordionPage.vue')
+  },
+  {
     path: '/tabsKiseleva',
     name: 'tabsKiseleva',
     component: () => import('../views/TabsKiseleva.vue')
