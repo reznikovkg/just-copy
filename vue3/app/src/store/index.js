@@ -1,4 +1,9 @@
 import { createStore } from 'vuex'
+import wantedList from './wantedList'
 
 
-export default createStore({})
+export default createStore({
+    modules: {
+        wantedList
+    }
+})

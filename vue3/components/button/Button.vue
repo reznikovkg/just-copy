@@ -1,5 +1,5 @@
 <template>
-    <button class="btn" :class="['btn--' + type, 'btn--' + size]" @click="() => actionClick()">
+    <button class="btn" :class="['btn--' + type, 'btn--' + size]">
         <slot>Button</slot>
     </button>
 </template>
@@ -19,11 +19,6 @@ export default {
             default: 'medium'
         }
 
-    },
-    methods: {
-        actionClick() {
-            this.$emit('click')
-        }
     }
 }
 </script>
