@@ -1,6 +1,6 @@
 <template>
   <div class="val-input-container">
-    <ValueInput :step="0.1" :max="max" :min="min" />
+    <ValueInput v-model="value" :step="0.1" :max="max" :min="min" />
     Min:<ValueInput :valueInput="min" @create="setMin"></ValueInput>
     Max:<ValueInput :valueInput="max" @create="setMax"></ValueInput>
   </div>
@@ -13,6 +13,10 @@ export default {
     ValueInput,
   },
   props: {
+    value:{
+		  default:0,
+		  required:false
+	  },
     maxValue: {
       default: 10,
       required: false,

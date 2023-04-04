@@ -22,7 +22,7 @@ export default {
         }
     },
     props: {
-        valueInput: {
+        value: {
             type: Number,
             default: 0,
             required: false,
@@ -55,7 +55,7 @@ export default {
         },
     },
     mounted() {
-        this.localValue = this.valueInput;
+        this.localValue = this.value;
     },
     methods: {
         formattedValue(event) {
