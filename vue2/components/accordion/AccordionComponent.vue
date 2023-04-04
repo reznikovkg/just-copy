@@ -2,14 +2,14 @@
   <div class="accordion">
     <div v-for="(elem, index) in elems" :key="index">
       <button
-          class="main"
-          :class="{'main--active': activeElems[index]}"
-          @click="$emit('updateElement', {aIndex: infoArrayIndex, index: index})"
+          class="accordion__main"
+          :class="{'accordion__main--active': activeElems[index]}"
+          @click="emitUpdateElement(index)"
           v-html="elem.title">
       </button>
       <p
-          class="info"
-          :class="{'info--expand': activeElems[index]}"
+          class="accordion__info"
+          :class="{'accordion__info--expand': activeElems[index]}"
           v-html="elem.info">
       </p>
     </div>
@@ -24,6 +24,11 @@ export default {
     activeElems: [],
     infoArrayIndex: Number
   },
+  methods:{
+    emitUpdateElement(index){
+      this.$emit('updateElement', {aIndex: this.infoArrayIndex, index: index})
+    }
+  }
 }
 </script>
 
