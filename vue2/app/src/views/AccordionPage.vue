@@ -7,15 +7,15 @@
         :elems=getElems(0)
         :active-elems=getActiveElems(0)
         :infoArrayIndex="0"
-        @updateElement="dispatchSetActive($event)" />
+        @updateElement="dispatchSetActive($event)"/>
 
-      <h2>Accordion with all elements open by default: </h2>
-      <AccordionComponent
-          class="acc"
-          :elems=getElems(1)
-          :active-elems=getActiveElems(1)
-          :infoArrayIndex="1"
-          @updateElement="dispatchSetActive($event)" />
+    <h2>Accordion with all elements open by default: </h2>
+    <AccordionComponent
+        class="acc"
+        :elems=getElems(1)
+        :active-elems=getActiveElems(1)
+        :infoArrayIndex="1"
+        @updateElement="dispatchSetActive($event)"/>
   </div>
 </template>
 
@@ -28,6 +28,9 @@ export default {
   components: {
     AccordionComponent
   },
+  mounted() {
+    this.getData(0)
+  },
   computed: {
     ...mapGetters('accordion', {
       getElems: 'getElementsData',
@@ -36,7 +39,8 @@ export default {
   },
   methods: {
     ...mapActions('accordion', {
-      setActive: 'setElementActiveAction'
+      setActive: 'setElementActiveAction',
+      getData: 'onLoaded'
     }),
     dispatchSetActive({aIndex, index}) {
       this.setActive({aIndex: aIndex, index: index})
