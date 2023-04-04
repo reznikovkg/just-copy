@@ -1,5 +1,6 @@
 <template>
-    <div class="checkbox" name="checkbox" :class="{ enabled: checked }" @click="change" >
+    <div class="checkbox" name="checkbox" :class="{ enabled: checked }"
+    @click="() => change()">
     </div>
 </template>
 
