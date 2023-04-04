@@ -15,9 +15,10 @@
 </template>
 
 <script>
-import Button from "../../../vue2/components/button/Button.vue"
-import StarRating from "../rating/StarRating.vue"
-import { maxImageIndex, wantedLevelMessages } from './constants'
+import Button from "../../../../components/button/Button.vue"
+import StarRating from "../../../../components/rating/StarRating.vue"
+import { wantedLevelMessages } from "./constants"
+import { domain, maxImageIndex } from "../../constants"
 import { mapGetters, mapActions } from "vuex"
 
 
@@ -31,7 +32,16 @@ export default {
         Button,
         StarRating
     },
+    data() {
+        return {
+            rating: 0,
+            currentIndex: 0
+        }
+    },
     computed: {
+        ...mapGetters("wantedList", [
+            "getRatingById"
+        ]),
         wantedMessage() {
             if (this.rating <= 0)
                 return
@@ -40,48 +50,39 @@ export default {
             return messages[getRandomInt(messages.length)]
         },
         currentImage() {
-            return require(`./assets/${this.currentIndex + 1}.jpg`)
+            return `${domain}/image/${this.currentIndex}`
         },
         hasPreview() {
             return this.currentIndex > 0
         },
         hasNext() {
             return this.currentIndex < maxImageIndex
-        },
-        ...mapGetters("wantedList", [
-            "getRatingById"
-        ])
+        }
     },
     methods: {
-        previewClicked() {
+        ...mapActions("wantedList", [
+            "saveRatingById"
+        ]),
+        async previewClicked() {
             --this.currentIndex
-            this.rating = this.$store.getters['wantedList/getRatingById'](this.currentIndex)
+            this.rating = await this.getRatingById(this.currentIndex)
         },
         dropClicked() {
             this.rating = 0
-            this.saveRatingById({
+            return this.saveRatingById({
                 id: this.currentIndex,
                 rating: this.rating
             })
         },
         saveClicked() {
-            this.saveRatingById({
+            return this.saveRatingById({
                 id: this.currentIndex,
                 rating: this.rating
             })
         },
-        nextClicked() {
+        async nextClicked() {
             ++this.currentIndex
-            this.rating = this.$store.getters['wantedList/getRatingById'](this.currentIndex)
-        },
-        ...mapActions("wantedList", [
-            "saveRatingById"
-        ])
-    },
-    data() {
-        return {
-            rating: 0,
-            currentIndex: 0
+            this.rating = await this.getRatingById(this.currentIndex)
         }
     }
 }

@@ -1,21 +1,18 @@
+import axios from 'axios'
+import { domain } from '../constants'
+
+
 export default {
     namespaced: true,
-    state: {
-        ratings: {}
-    },
     getters: {
-        getRatingById: state => payload => {
-            return state.ratings[payload] || 0
-        }
-    },
-    mutations: {
-        saveRatingById: (state, payload) => {
-            state.ratings[payload.id] = payload.rating
+        getRatingById: () => async payload => {
+            let response = await axios.get(`${domain}/rating/${payload}`)
+            return response.data.rating
         }
     },
     actions: {
-        saveRatingById: ({ commit }, payload) => {
-            commit('saveRatingById', payload)
+        saveRatingById: async(_, payload) => {
+            await axios.post(`${domain}/rating/${payload.id}?rating=${payload.rating}`)
         }
     }
 }

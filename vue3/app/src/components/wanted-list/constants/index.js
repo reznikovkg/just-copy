@@ -1,5 +1,3 @@
-export const maxImageIndex = 12
-
 export const wantedLevelMessages = [
     [
         "Man, I'm a real celebrity!",

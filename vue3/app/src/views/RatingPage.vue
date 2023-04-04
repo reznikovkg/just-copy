@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import WantedList from '../../../components/wanted-list/WantedList.vue'
+import WantedList from '../components/wanted-list/WantedList.vue'
 
 
 export default {
