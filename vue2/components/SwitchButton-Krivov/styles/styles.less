@@ -2,14 +2,16 @@
 @background_color_on: blueviolet;
 @border_circle_color: gray;
 @background_circle_color: white;
+
 .switch-button {
   width: 60px;
   height: 30px;
   border-radius: 24px;
   transition-duration: 0.5s;
-  background-color: @background_color_off;
   cursor: pointer;
-  .circle {
+  background-color: @background_color_off;
+  
+  &__circle {
     height: 26px;
     width: 26px;
     border: 2px solid @border_circle_color;
@@ -17,10 +19,11 @@
     transition-duration: 0.5s;
     background-color: @background_circle_color;
   }
-}
-.switch-button.enabled {
-  background-color: @background_color_on;
-  .circle {
-    transform: translateX(30px);
+  
+  &.enabled {
+    background-color: @background_color_on;
+    .switch-button__circle {
+      transform: translateX(30px);
+    }
   }
 }
