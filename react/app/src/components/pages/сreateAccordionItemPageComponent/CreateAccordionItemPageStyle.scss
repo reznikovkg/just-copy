@@ -1,0 +1,25 @@
+.create_accordion_item{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  &__input{
+    padding: 5px;
+    margin: 3px;
+    border-radius: 6px;
+    border-width: 1px;
+  }
+  &__button{
+    padding: 5px;
+    background-color: #49c92f;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    border: none
+  }
+}
+
+.open_modal_window{
+  margin: 30px;
+  padding: 5px;
+  font-size: 20px;
+}

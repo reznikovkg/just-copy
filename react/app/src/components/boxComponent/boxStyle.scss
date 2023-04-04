@@ -33,3 +33,23 @@
     padding-bottom: 20px;
     padding-top: 10px;
 }
+.delete_accordion_item__button{
+    padding: 5px;
+    margin-bottom: 3px;
+    background-color: #ec1132;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    border: none
+}
+
+.update_accordion_item__button{
+    padding: 5px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    background-color: #1732cb;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    border: none
+}

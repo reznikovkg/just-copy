@@ -1,32 +1,31 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, observable} from "mobx";
+import {GetAllAccordionItem} from "../services/AccordionItemService";
 class Store{
-    data_Store = [
 
-        {
-            id : 1,
-            title : "Заголовок 1 стора",
-            content : "Текст 1 стора"
-        },
-        {
-            id : 2,
-            title: "Заголовок 2 стора",
-            content : "Текст 2 стора"
-        },
-
-        {
-            id : 3,
-            title: "Заголовок 3 стора",
-            content : "Текст 3 стора"
-        },
-    ]
+    dataServer = []
 
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this,{}, { autoBind: true });
     }
 
-    getDatas(){
-        return this.data_Store
+
+    getDatasServer(){
+        return this.dataServer
     }
+
+    async getAllAccordionItem(){
+        const response = await GetAllAccordionItem()
+        this.setDataServer(response.data)
+    }
+
+    setDataServer(data){
+        this.dataServer = data
+    }
+
+    addNewAccordionItem(item){
+        this.dataServer = [...this.dataServer, item]
+    }
+
 }
 
 

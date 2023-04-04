@@ -1,12 +1,14 @@
 import LinkComponent from "../linkComponent/LinkComponent";
+import {observer} from "mobx-react-lite";
+import {memo} from "react";
 
 
 const MainPageComponent = () => {
     return (
         <div className="main_page">
-            <LinkComponent link="/acordions" > Акордион </LinkComponent>
+            <LinkComponent link="/accordions" > Акордион </LinkComponent>
         </div>
     );
 };
 
-export default MainPageComponent;
+export default memo(observer(MainPageComponent));
