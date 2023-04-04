@@ -1,6 +1,6 @@
 <template>
-  <div class="switch-button" :class="{ enabled: checked }" @click="change">
-    <div class="circle"></div>
+  <div class="switch-button" :class="{ enabled: checked }" @click="() => change()">
+    <div class="switch-button__circle"/>
   </div>
 </template>
 
