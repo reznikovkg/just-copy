@@ -16,8 +16,7 @@
         :changeTime="1"
         :timingFunction="'cubic-bezier(.29, 1.01, 1, -0.68)'"
         ref="ProgressBar4"
-      > 
-      </ProgressBar>
+      /> 
       <Button @click="() => this.$refs.ProgressBar4.decrease(20)" >
         -20
       </Button>

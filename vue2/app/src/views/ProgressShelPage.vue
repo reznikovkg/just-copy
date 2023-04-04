@@ -7,8 +7,7 @@
         v-model="progressOptions1"
         :showTip="true"
         ref="ProgressBar1"
-    >
-    </ProgressBar>
+    />
     <Button @click="() => this.$refs.ProgressBar1.decrease(10)">
         -10
     </Button>
@@ -20,8 +19,7 @@
         v-model="progressOptions2"
         :showTip="false"
         ref="ProgressBar2"
-    >
-    </ProgressBar>
+    />
     <Button @click="() => this.$refs.ProgressBar2.decrease(10)">
         -10
     </Button>
@@ -35,8 +33,7 @@
         :height="30"
         :colorFunc=color
         ref="ProgressBar3"
-    >
-    </ProgressBar>
+    />
     <Button @click="() => this.$refs.ProgressBar3.decrease(10)">
         -10
     </Button>
@@ -54,8 +51,7 @@
         :changeTime="1"
         :timingFunction="'cubic-bezier(.29, 1.01, 1, -0.68)'"
         ref="ProgressBar4"
-    >
-    </ProgressBar>
+    />
     <Button @click="() => this.$refs.ProgressBar4.decrease(20)">
         -20
     </Button>
@@ -73,8 +69,7 @@
         :changeTime="1"
         :timingFunction="'steps(6, end)'"
         ref="ProgressBar5"
-    >
-    </ProgressBar>
+    />
     <Button @click="() => this.$refs.ProgressBar5.decrease(20)">
         -20
     </Button>
