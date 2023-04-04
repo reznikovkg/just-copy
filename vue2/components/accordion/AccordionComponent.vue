@@ -20,18 +20,24 @@
 export default {
   name: 'AccordionComponent',
   props: {
-    elems: [],
-    activeElems: [],
+    elems: [
+      {
+        title: String,
+        info: String
+      }
+    ],
+    activeElems: [Boolean],
     infoArrayIndex: Number
   },
-  methods:{
-    emitUpdateElement(index){
+  methods: {
+    emitUpdateElement(index) {
       this.$emit('updateElement', {aIndex: this.infoArrayIndex, index: index})
     }
-  }
+  },
+  emits: ['updateElement']
 }
 </script>
 
 <style lang="less">
-  @import "styles/style.less";
+@import "styles/style.less";
 </style>

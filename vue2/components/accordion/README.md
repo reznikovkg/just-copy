@@ -4,11 +4,11 @@
 
 # Props:
 
-| name           | type              | comments                                                    |
-|----------------|-------------------|-------------------------------------------------------------|
-| elems          | Array of Objects  | Object has fields title and info.                           |
-| activeElems    | Array of booleans | True means that element is open, false - element is closed. |
-| infoArrayIndex | Number            | Index of this accordion instance.                           |
+| name           | type      | comments                                                    |
+|----------------|-----------|-------------------------------------------------------------|
+| elems          | [Object]  | Object has String fields title and info.                    |
+| activeElems    | [Boolean] | True means that element is open, false - element is closed. |
+| infoArrayIndex | Number    | Index of this accordion instance.                           |
 
 # Emits :
 
@@ -17,9 +17,10 @@ and index.
 
 # Usage Example:
 
-```
+```vue
+
 <template>
-  <AccordionComponent :infoArrayIndex=0 
+  <AccordionComponent :infoArrayIndex=0
                       :elems=this.elems
                       :activeElems=this.active
                       @updateElement="update($event)"/>
@@ -32,29 +33,29 @@ export default {
   name: 'App',
   components: {
     AccordionComponent
-  }
-  data(){
+  },
+  data() {
     return {
-        elems:
-        [
+      elems:
+          [
             {
-                title: 'title1',
-                info: 'text1'
+              title: 'title1',
+              info: 'text1'
             },
             {
-                title: 'title2',
-                info: 'text2'
+              title: 'title2',
+              info: 'text2'
             },
-        ], 
-        active:
-        [
+          ],
+      active:
+          [
             true, false
-        ], 
+          ],
     }
   },
-  methods:{
-    update({aIndex, index}){
-        Vue.set(this.active, index, !this.active[index])
+  methods: {
+    update({index}) {
+      Vue.set(this.active, index, !this.active[index])
     }
   },
 }
