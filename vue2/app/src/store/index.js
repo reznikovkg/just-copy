@@ -9,7 +9,8 @@ import modalUsers from "./modalUsers";
 import tabs from './tabs'
 import modals from "./modals";
 import loaders from "./loaders";
-import accordion from "./accordion";
+import accordion from "./accordion"
+import loaderSemenov from "./loaderSemenov";
 import tabsKiseleva from './tabsKiseleva';
 import tabsSviridov from './tabsSviridov';
 
@@ -50,6 +51,7 @@ export default new Vuex.Store({
     modals,
     loaders,
     accordion,
+    loaderSemenov,
     tabsKiseleva,
     tabsSviridov,
   }
