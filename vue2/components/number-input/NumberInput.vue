@@ -1,14 +1,14 @@
 <template>
     <div class="number-input">
         <button :class="{ 'number-input__operation--active': isLockMinus }"
-                 class="number-input__operation"
+                class="number-input__operation"
                 @click="decrement">-</button>
-        <input :value="current" type="text"
+        <input :value="current"
                @keyup.enter="formattedValue"
-               @blur="formattedValue"
-            class="numper-input__value" />
+               @blur="formattedValue" type="text"
+            class="number-input__value" />
         <button :class="{ 'number-input__operation--active': isLockPlus }"
-                 class="number-input__operation"
+                class="number-input__operation"
                 @click="increment">+
         </button>
     </div>
@@ -16,13 +16,8 @@
 
 <script>
 export default {
-    data() {
-        return {
-            value: 0,
-        }
-    },
     props: {
-        valueInput: {
+        value: {
             type: Number,
             default: 0,
             required: false,
@@ -54,33 +49,27 @@ export default {
             return Number(this.value.toFixed(2));
         },
     },
-    mounted() {
-        this.value = this.valueInput;
-    },
     methods: {
         formattedValue(event) {
             const parsedValue = parseFloat(event.target.value);
             if (isNaN(parsedValue)) {
-                event.target.value = this.value;
+                event.target.value = this.current;
             }
             else {
                 if (parsedValue <= this.max && parsedValue >= this.min) this.value = parsedValue;
-                else this.value = parsedValue < this.min ? this.min : this.max;
+                else this.$emit("change", Number(parsedValue < this.min ? this.min : this.max));
             }
-            this.$emit("create", Number(this.value));
         },
         increment() {
             const step = Number(this.step);
             if (!this.isLockPlus) {
-                this.value += step;
-                this.$emit("create", this.value);
+                this.$emit("create", this.value + step);
             }
         },
         decrement() {
             const step = Number(this.step);
             if (!this.isLockMinus) {
-                this.value -= step;
-                this.$emit("create", this.value);
+                this.$emit("create", this.value - step);
             }
         },
     },
@@ -90,3 +79,4 @@ export default {
 <style lang="scss" scoped>
 @import "./styles/style.scss";
 </style>
+

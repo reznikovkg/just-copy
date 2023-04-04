@@ -13,8 +13,8 @@ export default {
     getStep: (state) => state.step,
   },
   mutations: {
-    setMax: (state, payload) => state.maxValue = payload,
-    setMin: (state, payload) => state.minValue = payload,
+    setMax: (state, payload) => state.maxValue= payload,
+    setMin: (state, payload) => state.minValue= payload,
     setCurrent: (state, payload) => state.currentValue = payload,
   },
   actions: {

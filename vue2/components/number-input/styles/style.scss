@@ -15,18 +15,25 @@ $border-black: 1.5px solid rgba(12, 48, 120, 0.225);
     border-color: $grey-color;
   }
 
-  .number-input__operation--active {
-    cursor: not-allowed;
+  &__value {
+    height: 100%;
+    width: 40px;
+    margin: 0 5px;
+    text-align: center;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    color: $grey-color;
   }
 
-  .number-input__operation {
+
+  &__operation {
     padding: 0.6rem;
     margin: 0;
     border: none;
     background-color: #f5f7fa;
     color: $grey-color;
     height: 100%;
-
 
     &:first-child {
       border-right: $border-black ;
@@ -39,17 +46,5 @@ $border-black: 1.5px solid rgba(12, 48, 120, 0.225);
     &:hover {
       border-color: #ccc;
     }
-
   }
-}
-
-.numper-input__value {
-  height: 100%;
-  width: 40px;
-  margin: 0 5px;
-  text-align: center;
-  padding: 0.5rem;
-  border: none;
-  outline: none;
-  color: $grey-color;
 }

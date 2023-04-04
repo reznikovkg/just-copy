@@ -1,8 +1,16 @@
 <template>
   <div class="num-input-container">
-    <NumberInput :step="step" :max="max" :min="min" />
-    max<NumberInput :valueInput="max" @create="setMax"></NumberInput>
-    min<NumberInput :valueInput="min" @create="setMin"></NumberInput>
+    <NumberInput v-model.lazy="current"
+                 @create="setCurrent"
+                 :step="step"
+                 :max="max" 
+                 :min="min" />
+    max
+    <NumberInput :value="max"
+                 @create="setMax"/>
+    min
+    <NumberInput :value="min"
+                 @create="setMin"/>
   </div>
 </template>
 
@@ -17,12 +25,14 @@ export default {
     ...mapActions('range',
       {
         setMax: 'setMaxValue',
-        setMin: 'setMinValue'
+        setMin: 'setMinValue',
+        setCurrent:'setCurrentValue'
       }),
   },
   computed: {
     ...mapGetters('range',
       {
+        current:'getCurrent',
         max: 'getMax',
         min: 'getMin',
         step: 'getStep'
