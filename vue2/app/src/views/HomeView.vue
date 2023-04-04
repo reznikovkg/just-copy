@@ -42,6 +42,9 @@
     <p><router-link :to="{ name: 'tabsSviridov' }">
       TabsSviridov
     </router-link></p>
+    <p><router-link :to="{ name: 'notificationsKramarev' }">
+      Notifications Kramarev
+    </router-link></p>
   </div>
 </template>
 <script>

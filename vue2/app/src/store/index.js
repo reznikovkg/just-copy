@@ -12,6 +12,7 @@ import loaders from "./loaders";
 import loaderSemenov from "./loaderSemenov";
 import tabsKiseleva from './tabsKiseleva';
 import tabsSviridov from './tabsSviridov';
+import notificationsKramarev from './notificationsKramarev'
 
 Vue.use(Vuex)
 
@@ -52,5 +53,6 @@ export default new Vuex.Store({
     loaderSemenov,
     tabsKiseleva,
     tabsSviridov,
+    notificationsKramarev
   }
 })

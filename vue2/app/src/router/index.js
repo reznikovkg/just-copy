@@ -80,6 +80,11 @@ const routes = [
     name: 'tabsSviridov',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
+  {
+    path: '/notifications-kramarev',
+    name: 'notificationsKramarev',
+    component: () => import('../views/PageWithNotifications.vue')
+  }
 ]
 
 const router = new VueRouter({
