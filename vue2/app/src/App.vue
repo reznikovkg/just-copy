@@ -8,7 +8,6 @@
 <script>
 import CheckBox from './components/CheckBox-Krivov/CheckBox.vue';
 import SwitchButton from './components/SwitchButton-Krivov/SwitchButton.vue';
-
 export default {
   name: 'App',
   components: {
