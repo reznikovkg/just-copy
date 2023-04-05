@@ -75,6 +75,11 @@ const routes = [
     name: 'tabsSviridov',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
+  {
+    path: '/mainInput',
+    name: 'mainInput',
+    component: () => import(/* webpackChunkName: "mainInput" */ '../views/MainInput.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -11,6 +11,7 @@ import modals from "./modals";
 import loaders from "./loaders";
 import tabsKiseleva from './tabsKiseleva';
 import tabsSviridov from './tabsSviridov';
+import mainInput from './mainInput';
 
 Vue.use(Vuex)
 
@@ -50,5 +51,6 @@ export default new Vuex.Store({
     loaders,
     tabsKiseleva,
     tabsSviridov,
+    mainInput,
   }
 })

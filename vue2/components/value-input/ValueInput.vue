@@ -3,7 +3,7 @@
         <button :class="{ 'value-input__operation-active': isLockMinus }"
                  class="value-input__operation"
                 @click="decrement">-</button>
-        <input v-model="current"
+        <input :value="current"
                 type="text"
                @keyup.enter="formattedValue"
                @blur="formattedValue"
@@ -16,11 +16,6 @@
 </template>
 <script>
 export default {
-    data() {
-        return {
-            localValue: 0,
-        }
-    },
     props: {
         value: {
             type: Number,
@@ -45,46 +40,37 @@ export default {
     },
     computed: {
         isLockPlus() {
-            return this.max <= Number(this.localValue.toFixed(2));
+            return this.max <= Number(this.value.toFixed(2));
         },
         isLockMinus() {
-            return this.min >= Number(this.localValue.toFixed(2));
+            return this.min >= Number(this.value.toFixed(2));
         },
-        current:{
-        get() {
-            return Number(this.localValue.toFixed(2));
+        current() {
+            return Number(this.value.toFixed(2));
         },
-        set(v){
-            this.$emit("change", Number(v));
-        }
-    }
     },
-    mounted() {
-        this.localValue = this.value;
-    },
+    
     methods: {
         formattedValue(event) {
             const parsedValue = parseFloat(event.target.value);
             if (isNaN(parsedValue)) {
-                event.target.value = this.localValue;
+                event.target.value = this.current;
             }
             else {
-                if (parsedValue <= this.max && parsedValue >= this.min) this.localValue = parsedValue;
-                else this.current = parsedValue < this.min ? this.min : this.max;
+                if (parsedValue <= this.max && parsedValue >= this.min) this.value = parsedValue;
+                else this.$emit("change", Number(parsedValue < this.min ? this.min : this.max));
             }
         },
         increment() {
             const step = Number(this.step);
             if (!this.isLockPlus) {
-                this.localValue += step;
-                this.$emit("create", this.localValue);
+                this.$emit("create", this.value + step);
             }
         },
         decrement() {
             const step = Number(this.step);
             if (!this.isLockMinus) {
-                this.localValue -= step;
-                this.$emit("create", this.localValue);
+                this.$emit("create", this.value - step);
             }
         },
 
