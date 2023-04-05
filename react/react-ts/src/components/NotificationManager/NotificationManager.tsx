@@ -49,4 +49,4 @@ export class NotificationManager {
   }
 }
 
-export const notification = new NotificationManager();
+export const notificationManager = new NotificationManager();
