@@ -30,9 +30,15 @@
     <p><router-link :to="{ name: 'loader' }">
       Loader
     </router-link></p>
+    <p><router-link :to="{ name: 'loaderSemenov' }">
+      LoaderSemenov
+      </router-link></p>
     <p><router-link :to="{ name: 'progressAn' }">
       Progress 2
     </router-link></p>
+    <router-link :to="{ name: 'accordion' }">
+      Accordion
+    </router-link>
     <p><router-link :to="{ name: 'tabsKiseleva' }">
       TabsKiseleva
     </router-link></p>
@@ -41,6 +47,9 @@
     </router-link></p>
     <p><router-link :to="{ name: 'mainInput' }">
       MainInput
+     </router-link></p> 
+    <p><router-link :to="{ name: 'accordionStaysPage' }">
+      accordionStaysPage
     </router-link></p>
   </div>
 </template>
