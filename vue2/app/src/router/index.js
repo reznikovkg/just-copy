@@ -85,6 +85,11 @@ const routes = [
     name: 'tabsSviridov',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
+  {
+    path: '/notificationShimkin',
+    name: 'notificationShimkin',
+    component: () => import(/* webpackChunkName: "notificationShimkin" */ '../views/NotificationPageShimkin.vue')
+  }
 ]
 
 const router = new VueRouter({

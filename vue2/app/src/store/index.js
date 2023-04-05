@@ -13,6 +13,7 @@ import accordion from "./accordion"
 import loaderSemenov from "./loaderSemenov";
 import tabsKiseleva from './tabsKiseleva';
 import tabsSviridov from './tabsSviridov';
+import notificationShimkin from './notificationShimkin'
 
 Vue.use(Vuex)
 
@@ -54,5 +55,6 @@ export default new Vuex.Store({
     loaderSemenov,
     tabsKiseleva,
     tabsSviridov,
+    notificationShimkin,
   }
 })
