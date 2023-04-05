@@ -91,6 +91,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
   {
+    path: '/mainInput',
+    name: 'mainInput',
+    component: () => import(/* webpackChunkName: "mainInput" */ '../views/MainInput.vue')
+ },
+ {
     path: '/accordionStaysPage',
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
