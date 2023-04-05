@@ -1,0 +1,41 @@
+.accordion {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #333;
+  &__item {
+    border-bottom: 1px solid #ccc;
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #e1e1e1;
+    }
+  }
+  &__icon {
+    font-size: 16px;
+    margin-left: auto;
+    transition: transform 0.3s ease;
+    &--active {
+      transform: rotate(180deg);
+    }
+  }
+  &__content {
+    padding: 10px;
+    background-color: #fff;
+    overflow-y: hidden;
+    transition: all 0.3s ease;
+    max-height: 0;
+    padding: 0 5px;
+    &--active {
+      max-height: 1000px;
+      transition: all 0.5s ease;
+      padding: 5px;
+    }
+  }
+}
