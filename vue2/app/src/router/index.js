@@ -95,6 +95,11 @@ const routes = [
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
+  {
+    path: '/popupKhaustov',
+    name: 'popupKhaustov',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/PopupKhaustovPage.vue')
+  },
 ]
 
 const router = new VueRouter({
