@@ -1,53 +1,62 @@
 <template>
-    <div class="progress-bar">
-      <div class="progress-bar__outer" :style="outerBlockStyle">
-          <div class="progress-bar__inner" :style="innerStyle"></div>
-      </div>
-      <div class="progress-bar__text" :style="textStyle">
-        {{ percent }}%
+  <div class="progress">
+    <div 
+      class="progress__outer" 
+      :style="{
+        width: `${progressWidth}px`,
+        height: `${progressHeight}px`,
+        background: innerStrokeColor
+      }"
+    >
+      <div 
+        class="progress__inner" 
+        :style="{
+          height: `${progressHeight}px`,
+          width: `${currValue}%`,
+          background: `${colorFunc(currValue)}`,
+          transition: `${changeTime}s ${timingFunction}`
+        }"
+      >
       </div>
     </div>
-  </template>
+    <div 
+      class="progress__text" 
+      :style="{
+        display: showTip === false ? 'none' : '',
+        color: `${textColor}`
+      }"
+    >
+      {{ percent }}%
+    </div>
+  </div>
+</template>
   
-  <script>
+<script>
   export default {
     name: "ProgressShel",
+    model: {
+      prop: 'value',
+      event: 'change'
+    },
     props: {
-      value: {
+      value: Number,
+      textColor: String,
+      innerStrokeColor: String,
+      progressHeight: Number,
+      progressWidth: Number,
+      showTip: Boolean,
+      changeTime: {
         type: Number,
-        default: 0
-      },
-      height: {
-        type: Number,
-        default: 10
-      },
-      width: {
-        type: Number,
-        default: 200
-      },
-      showTip: {
-        type: Boolean,
-        required: false,
-        default: true
+        default: 0.3
       },
       colorFunc: {
         type: Function,
-        required: false,
-        default: null
-      },
-      innerStrokeColor: {
-        type: String,
-        required: false,
-        default: "#d6efff"
-      },
-      changeTime: {
-        type: Number,
-        required: false,
-        default: 0.3
+        default: function () {
+          return 'red'
+        }
       },
       timingFunction: {
         type: String,
-        required: false,
         default: "linear"
       }
     },
@@ -56,47 +65,22 @@
         currValue: this.value
       }
     },
-    model: {
-      prop: 'value',
-      event: 'click'
-    },
     computed: {
       percent() {
         return this.currValue.toFixed()
       },
-      innerStyle() {
-        return {
-          height: `${this.height}px`,
-          width: `${this.currValue}%`,
-          background: `${this.colorFunc === null ? this.color() : this.colorFunc(this.currValue)}`,
-          transition: `${this.changeTime}s ${this.timingFunction}`
-        };
-      },
-      outerBlockStyle() {
-        return {
-          width: `${this.width}px`,
-          height: `${this.height}px`,
-          background: this.innerStrokeColor
-        };
-      },
-      textStyle() {
-        if(this.showTip === false) {
-          return {
-            display: 'none'
-          }
-        }
-      }
     },
     methods: {
-      color() {
-        return "red";
-      },
       increase(change) {
-        this.currValue = this.currValue + change > 100 ? 100 : this.currValue + change;
+        this.currValue = this.currValue + change;
+        if(this.currValue > 100)
+          this.currValue = 100;
         this.$emit("change", this.currValue);
       },
       decrease(change) {
-        this.currValue = this.currValue - change < 0 ? 0 : this.currValue - change;
+        this.currValue = this.currValue - change;
+        if(this.currValue < 0)
+          this.currValue = 0;
         this.$emit("change", this.currValue);
       }
     }
