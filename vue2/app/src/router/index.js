@@ -89,7 +89,7 @@ const routes = [
     path: '/accordionBorchenko',
     name: 'accordionBorchenko',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionBorchenkoPage/AccordionBorchenkoPage.vue')
-  }
+  },
   {
     path: '/accordionStaysPage',
     name: 'accordionStaysPage',
