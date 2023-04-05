@@ -1,3 +1,26 @@
+<template>
+  <div class="val-input-container">
+    <StasValueInput 
+      :value="current" 
+      :step="0.1" 
+      :max="max" 
+      :min="min" 
+      @change="(v)=>setCurrentValue(v)" 
+      @create="(v)=>setCurrentValue(v)" />
+    max:<StasValueInput 
+      :value="max" 
+      :step="1" 
+      :max="inf" 
+      :min="nInf" 
+      @create="(v)=>setMax(v)" />
+    min:<StasValueInput 
+      :value="min" 
+      :step="1" 
+      :max="inf" 
+      :min="nInf" 
+      @create="(v)=>setMin(v)" />
+  </div>
+</template>
 <script>
 import StasValueInput from "../../../components/stasValueInput/StasValueInput.vue";
 export default {
@@ -13,11 +36,18 @@ export default {
       default: -10,
       required: false,
     },
+    value: {
+      default: 0,
+      required: false,
+    },
   },
   data() {
     return {
+      current:this.value,
       max: this.maxValue,
       min: this.minValue,
+      inf:Number.POSITIVE_INFINITY,
+      nInf:Number.NEGATIVE_INFINITY,
     };
   },
   methods: {
@@ -27,18 +57,12 @@ export default {
     setMin(min) {
       this.min = min;
     },
+    setCurrentValue(current){
+      this.current=current;
+    }
   },
 };
 </script>
-
-<template>
-  <div class="val-input-container">
-    <StasValueInput :step="0.1" :max="max" :min="min" />
-    maximum:<StasValueInput :StasValueInput="max" @create="setMax" />
-    minimum:<StasValueInput :StasValueInput="min" @create="setMin" />
-  </div>
-</template>
-
 
 <style lang="scss" scoped>
 .val-input-container {
@@ -47,5 +71,4 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
   }
-
 </style>
