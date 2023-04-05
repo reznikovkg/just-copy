@@ -13,9 +13,15 @@ export default {
     getStep: (state) => state.step,
   },
   mutations: {
-    setMax: (state, payload) => (state.maxValue = payload),
-    setMin: (state, payload) => (state.minValue = payload),
-    setValue: (state, payload) => (state.value = payload),
+    setMax: (state, payload) =>{ 
+      state.maxValue = payload
+  },
+    setMin: (state, payload) => {
+      state.minValue = payload
+    },
+    setValue: (state, payload) => {
+      state.value = payload
+    },
   },
   actions: {
     setMaxValue: ({ commit }, payload) => {
