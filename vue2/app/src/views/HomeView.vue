@@ -48,6 +48,9 @@
     <p><router-link :to="{ name: 'accordionStaysPage' }">
       accordionStaysPage
     </router-link></p>
+    <p><router-link :to="{ name: 'stasInput' }">
+      Stas Number Input
+    </router-link></p>
   </div>
 </template>
 <script>

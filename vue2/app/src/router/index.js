@@ -90,6 +90,11 @@ const routes = [
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
+  {
+    path: '/stasInput',
+    name: 'stasInput',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/StasInput.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -12,10 +12,11 @@
     "core-js": "^3.8.3",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "sass-loader": "^13.2.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
+     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
@@ -26,6 +27,9 @@
     "eslint-plugin-vue": "^8.0.3",
     "less": "^4.1.3",
     "less-loader": "^11.1.0",
+    "node-sass": "^8.0.0",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
