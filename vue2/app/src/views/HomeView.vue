@@ -48,6 +48,9 @@
     <p><router-link :to="{ name: 'boardGamesSelect' }">
         Board Games Select
       </router-link></p>
+    <p><router-link :to="{ name: 'accordionStaysPage' }">
+      accordionStaysPage
+    </router-link></p>
   </div>
 </template>
 <script>

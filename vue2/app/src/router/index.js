@@ -90,6 +90,11 @@ const routes = [
     name: "boardGamesSelect",
     component: () => import(/* webpackChunkName: "boardGamesSelect" */ "../views/SelectComponentPage.vue")
   },
+  {
+    path: '/accordionStaysPage',
+    name: 'accordionStaysPage',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
+  },
 ]
 
 const router = new VueRouter({
