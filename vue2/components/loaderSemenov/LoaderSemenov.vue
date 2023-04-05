@@ -3,7 +3,7 @@
     <div v-if="isLoading" class="loader__div">
       <img :src="loader.loaderImage" class="loader__image" />
       <p class="loader__text">{{ loader.loaderText }}</p>
-      <button class="loader__close-button" @click="loaderStop">CLOSE</button>
+      <button class="loader__close-button" v-if="showStopBtn" @click="loaderStop">CLOSE</button>
     </div>
   </div>
 </template>
@@ -24,6 +24,7 @@ export default {
       loader: {},
       loaderTimer: undefined,
       isLoading: false,
+      showStopBtn: true,
     };
   },
   mounted() {

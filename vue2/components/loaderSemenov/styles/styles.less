@@ -26,7 +26,7 @@
     }
 
     &__button {
-        height: 200px;
+        height: 125px;
         width: 200px;
         background-color: #3a3a3a;
         color: rgb(248, 248, 248);
@@ -58,5 +58,48 @@
 
     100% {
         transform: rotate(360deg);
+    }
+}
+.outer-div {
+    display: flex;
+    flex: 1 0 100%;
+}
+.buttons-div {
+    width: 25%;
+    background-color: #2e051e;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+}
+.user {
+    &-div
+    {
+        border: 1px solid #7e7e7e;
+        border-radius: 20px;
+        padding: 2px 7px;
+        margin: 5px 10px;
+    }
+
+    &-login {
+        display: inline-block;
+        color: #42424298;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        
+    }
+
+    &-name {
+        display: inline-block;
+        color: #222222;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bolder;
+        font-size: 18px;
+    }
+
+    &-status {
+        font-family: monospace;
+        font-size: 16px;
     }
 }

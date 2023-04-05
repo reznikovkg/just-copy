@@ -41,6 +41,12 @@ export default {
                 loaderImage: "https://sun9-50.userapi.com/c532036/u55205033/docs/d6/852f90ebc129/file.gif?extra=w4I38Bqyvt0DeEsssoTu_bXIshbukT5I5kJ2mtabeK_okpuIpzpDguhOJZtp77-Bw4S0B3Al1gIAKkgQd39R43wM_xVXwI6j8P_jczE8yZ8HNjftSSZICN2-8w3yhHP4Ritb09xpDXT7Bso4FIreSD2p_lQ",
                 loaderText: "Загрузка...",
                 loaderDuration: "3"
+            },
+            indefinite:
+            {
+                loaderImage: "https://cdn-icons-png.flaticon.com/512/6356/6356630.png",
+                loaderText: "Загрузка...",
+                loaderDuration: "1000"
             }
         }
     },

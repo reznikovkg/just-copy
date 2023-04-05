@@ -1,8 +1,23 @@
 <template>
   <div>
+    <Loader ref="loaderSemenov" />
+    <div class="outer-div">
+      <div class="database-div" style="width: 75%">
+        <div class="user-div" v-for="(element, index) in getItems" :key="index">
+          <p class="user-login">@{{ element.login }}</p>
+          <p class="user-name"> {{ element.username }}</p>
+          <hr>
+          <p class="user-status">{{ element.status }}</p>
+        </div>
+      </div>
+      <div class="buttons-div">
+        <button class="loader__button" @click="fetchDB">
+          Refresh DB
+        </button>
+      </div>
+    </div>
     <h1>Loaders:</h1>
     <div style="padding: 5px">
-      <Loader ref="loaderSemenov" />
       <button class="loader__button" @click="() => loaderStart('default')">
         Default
       </button>
@@ -25,29 +40,52 @@
 </template>
     
 <script>
+import { mapGetters, mapActions } from "vuex";
 import Loader from "../../../components/loaderSemenov/LoaderSemenov.vue";
 export default {
   name: "LoaderPage",
   components: {
     Loader,
   },
-  methods: {
-    loaderStart(loaderStyle) {
-      this.$refs.loader.loaderStart(loaderStyle);
-    },
-    loaderStop() {
-      this.$refs.loader.loaderStop();
-    },
-  },
   mounted() {
     if(document.readyState != 'complete')
-      this.loaderStart("long");
+      this.loaderStart("indefinite");
 
     document.onreadystatechange = () => {
       if (document.readyState == 'complete') {
         this.loaderStop();
       }
     };
+  },
+  computed:
+  {
+    ...mapGetters("expressDb", [
+      "getItems",
+      "getState", 
+    ]),
+    dbIsLoaded() {
+      if (this.getState)
+        this.loaderStop()
+      return true
+    }
+  },
+  methods: {
+    ...mapActions("expressDb", [
+      "loadItems",
+    ]),
+    loaderStart(loaderStyle) {
+      this.$refs.loader.loaderStart(loaderStyle);
+    },
+    loaderStop() {
+      this.$refs.loader.loaderStop();
+    },
+    async fetchDB() {
+      this.$refs.loader.$data.showStopBtn = false;
+      this.loaderStart("indefinite");
+      await this.loadItems();
+      this.loaderStop();
+      this.$refs.loader.$data.showStopBtn = true;
+    }
   },
 };
 </script>

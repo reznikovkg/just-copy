@@ -6,28 +6,46 @@ app.use(cors());
 
 const db = [
   {
-    id: '123',
-    name: 'Utug',
-    type: 'switch',
-    value: 123,
+    id: 1,
+    login: 'User1',
+    username: 'Cool Username',
+    status: '👨‍💻Coding👨‍💻',
   },
   {
-    id: '1233',
-    name: 'Utug1',
-    type: 'checkbox',
-    value: 123,
+    id: 2,
+    login: 'User2',
+    username: 'Even Cooler Username',
+    status: '☢️Reviewing code☢️',
   },
   {
-    id: '123',
-    name: 'Utug',
-    type: 'switch',
-    value: 123,
+    id: 3,
+    login: 'User3',
+    username: 'Boss',
+    status: '🏝️Chilling🏝️',
   },
   {
-    id: '1233',
-    name: 'Utug1',
-    type: 'checkbox',
-    value: 123,
+    id: 4,
+    login: 'User4',
+    username: 'Sysadmin',
+    status: '☕Serving coffee☕',
+  },
+  {
+    id: 5,
+    login: 'Senior',
+    username: 'Senior Developer',
+    status: '🤙Hardly working🤙',
+  },
+  {
+    id: 6,
+    login: 'Junge',
+    username: 'Junior Developer',
+    status: '🔥Working Hard🔥',
+  },
+  {
+    id: 7,
+    login: 'Probation341',
+    username: 'Probation Developer',
+    status: '💀Refactoring everything💀',
   },
 ]
 
@@ -40,9 +58,8 @@ app.get('/json', (req, res) => {
     if (req.query && req.query.cat) {
         return res.json(db.filter(item => (item.cat === req.query.cat)))
     }
-  
     res.json(db)
-  }, 3000)
+  }, 1000)
 })
 
 app.get('/json/:id', (req, res) => {
