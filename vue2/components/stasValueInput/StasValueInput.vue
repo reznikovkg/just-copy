@@ -1,10 +1,5 @@
 <script>
 export default {
-  data() {
-    return {
-      tempValue: 0,
-    };
-  },
   props: {
     StasValueInput: {
       type: Number,
@@ -27,6 +22,11 @@ export default {
       required: false,
     },
   },
+  data() {
+    return {
+      tempValue: 0,
+    };
+  },
   computed: {
     isLockPlus() {
       return this.max <= Number(this.tempValue.toFixed(2));
@@ -46,7 +46,8 @@ export default {
       const parsedValue = parseFloat(event.target.value);
       if (isNaN(parsedValue)) {
         event.target.value = this.tempValue;
-      } else {
+      } 
+      else {
         if (parsedValue <= this.max && parsedValue >= this.min)
           this.tempValue = parsedValue;
         else this.tempValue = parsedValue < this.min ? this.min : this.max;

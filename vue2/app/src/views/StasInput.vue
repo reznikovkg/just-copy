@@ -6,11 +6,11 @@ export default {
   },
   props: {
     maxValue: {
-      default: 5,
+      default: 10,
       required: false,
     },
     minValue: {
-      default: -5,
+      default: -10,
       required: false,
     },
   },

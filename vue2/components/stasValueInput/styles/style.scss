@@ -13,8 +13,21 @@ $border-black: 1.5px solid rgba(173, 192, 203, 0.225);
   &:hover {
     border-color: $grey-color;
   }
- 
-  .value-input__operation {
+  &__value {
+    height: 100%;
+    width: 40px;
+    margin: 0 5px;
+    text-align: center;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    color: $grey-color;
+  }
+  &__operation-active {
+    cursor: not-allowed;
+    color: rgb(188, 186, 186);
+  }
+  &__operation {
     padding: 0.6rem;
     margin: 0;
     border: none;
@@ -35,20 +48,4 @@ $border-black: 1.5px solid rgba(173, 192, 203, 0.225);
     }
  
   }
-}
- 
-.value-input__value {
-  height: 100%;
-  width: 40px;
-  margin: 0 5px;
-  text-align: center;
-  padding: 0.5rem;
-  border: none;
-  outline: none;
-  color: $grey-color;
-}
- 
-.value-input__operation-active {
-  cursor: not-allowed;
-  color: rgb(188, 186, 186);
 }
