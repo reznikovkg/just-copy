@@ -62,16 +62,21 @@
 }
 .outer-div {
     display: flex;
-    flex: 1 0 100%;
-}
-.buttons-div {
-    width: 25%;
-    background-color: #2e051e;
+    flex: 0 0 100%;
     vertical-align: middle;
     align-items: center;
     justify-content: center;
     align-content: center;
     margin: auto;
+}
+.buttons-div {
+    width: 25%;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    text-align:  center;
 }
 .user {
     &-div
@@ -91,6 +96,7 @@
     }
 
     &-name {
+        white-space: pre;
         display: inline-block;
         color: #222222;
         font-family: Verdana, Geneva, Tahoma, sans-serif;

@@ -4,7 +4,7 @@
     <div class="outer-div">
       <div class="database-div" style="width: 75%">
         <div class="user-div" v-for="(element, index) in getItems" :key="index">
-          <p class="user-login">@{{ element.login }}</p>
+          <p class="user-login">@{{ element.login }} </p>
           <p class="user-name"> {{ element.username }}</p>
           <hr>
           <p class="user-status">{{ element.status }}</p>
@@ -16,6 +16,7 @@
         </button>
       </div>
     </div>
+
     <h1>Loaders:</h1>
     <div style="padding: 5px">
       <button class="loader__button" @click="() => loaderStart('default')">

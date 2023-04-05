@@ -29,13 +29,13 @@ export default {
   actions: {
     async loadItems({ commit }) {
         commit("setLoaderState", false);
-        let sleep = 1;
         commit("setItems", [])
         await axios.get(domen + "/json").then(async (response) => {
             for (let item of response.data) {
                 // Симуляция нагруженной базы данных
-                setTimeout(() => {commit("addItem", item);}, sleep * 1000);
-                await new Promise(r => setTimeout(r, 1000));
+                let time = Math.random() * 3500 + 100
+                setTimeout(() => {commit("addItem", item);}, time);
+                await new Promise(r => setTimeout(r, time));
             }
         });
         commit("setLoaderState", true)
