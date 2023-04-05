@@ -86,11 +86,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
   {
+<<<<<<< HEAD
     path: '/accordionBorchenko',
     name: 'accordionBorchenko',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionBorchenkoPage/AccordionBorchenkoPage.vue')
   },
   {
+=======
+    path: '/mainInput',
+    name: 'mainInput',
+    component: () => import(/* webpackChunkName: "mainInput" */ '../views/MainInput.vue')
+ },
+ {
+>>>>>>> 529c93aaa1b66ceedd20a5c8b17ff757208bcceb
     path: '/accordionStaysPage',
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')

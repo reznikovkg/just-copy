@@ -48,6 +48,9 @@
     <p><router-link :to="{ name: 'accordionBorchenko' }">
       AccordionBorchenko
     </router-link></p> 
+    <p><router-link :to="{ name: 'mainInput' }">
+      MainInput
+    </router-link></p>
     <p><router-link :to="{ name: 'accordionStaysPage' }">
       accordionStaysPage
     </router-link></p>
