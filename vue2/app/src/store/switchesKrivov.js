@@ -48,7 +48,8 @@ export default {
             ...sw,
             value: !sw.value
           }
-        } else {
+        } 
+        else {
           return sw;
         }
       })

@@ -10,9 +10,14 @@
         <button @click="() => addSW()">Добавить</button>
       </div>
       <div v-for="(sw) in getSwitchList" :key="sw.name">
-        <Checkbox v-if="sw.type === switchesTypes.CHECKBOX" :label="sw.name" v-model="sw.value"
-          @change="change" />
-        <SwitchButton v-else-if="sw.type === switchesTypes.SWITCH" :label="sw.name" v-model="sw.value" @change="change" />
+        <Checkbox v-if="sw.type === switchesTypes.CHECKBOX" 
+        :label="sw.name" 
+        v-model="sw.value"
+        @change="change" />
+        <SwitchButton v-else-if="sw.type === switchesTypes.SWITCH" 
+        :label="sw.name" 
+        v-model="sw.value" 
+        @change="change" />
         <button class="container__button" @click="() => deleteFromSwitchList(sw.name)">delete switch</button>
       </div>
     </div>
@@ -36,8 +41,7 @@ export default {
   },
   computed: {
     ...mapGetters(
-      'switchList',
-      [
+      'switchList', [
         'getSwitchList'
       ]),
     switchesTypes() {
@@ -46,8 +50,7 @@ export default {
   },
   methods: {
     ...mapActions(
-      'switchList',
-      [
+      'switchList', [
         'addToSwitchList',
         'deleteFromSwitchList',
         'changeSwitch'
