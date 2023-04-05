@@ -61,9 +61,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPage.vue')
   },
   {
+    path: '/loaderSemenov',
+    name: 'loaderSemenov',
+    component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPageSemenov.vue')
+  },
+  {
     path: '/progress-an',
     name: 'progressAn',
     component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
+  },
+  {
+    path: '/accordion',
+    name: 'accordion',
+    component: () => import(/* webpackChunkName: "accordion" */ '../views/AccordionPage.vue')
   },
   {
     path: '/tabsKiseleva',
@@ -79,6 +89,11 @@ const routes = [
     path: '/range',
     name: 'range',
     component: () => import(/* webpackChunkName: "range" */ '../views/RangeInputPage.vue')
+  },
+  {
+    path: '/accordionStaysPage',
+    name: 'accordionStaysPage',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
 ]
 

@@ -1,0 +1,8 @@
+.accordion {
+    padding: 30px;
+
+    &__icon {
+        margin-left: auto;
+        transition: transform 0.4s ease;
+    }
+}

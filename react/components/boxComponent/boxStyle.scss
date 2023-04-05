@@ -1,0 +1,35 @@
+.box {
+    position: relative;
+    border-top: 1px solid #ced0d7;
+    &__content {
+        overflow: hidden;
+        transition: 0.4s;
+
+    }
+    &__label {
+        position: relative;
+    }
+    &__sign {
+        padding-left: 100px;
+        padding-right: 10px;
+    }
+    &__panel {
+        display: flex;
+        height: 40px;
+        cursor: pointer;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &:last-child {
+        border-bottom: 1px solid #ced0d7;
+    }
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+.text {
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
