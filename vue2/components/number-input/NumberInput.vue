@@ -3,10 +3,10 @@
         <button :class="{ 'number-input__operation--active': isLockMinus }"
                 class="number-input__operation"
                 @click="decrement">-</button>
-        <input :value="current"
-               @keyup.enter="formattedValue"
-               @blur="formattedValue" type="text"
-            class="number-input__value" />
+        <input  :value="current"
+                @keyup.enter="formattedValue"
+                @blur="formattedValue" type="text"
+                class="number-input__value" />
         <button :class="{ 'number-input__operation--active': isLockPlus }"
                 class="number-input__operation"
                 @click="increment">+
@@ -63,13 +63,13 @@ export default {
         increment() {
             const step = Number(this.step);
             if (!this.isLockPlus) {
-                this.$emit("create", this.value + step);
+                this.$emit("change", this.value + step);
             }
         },
         decrement() {
             const step = Number(this.step);
             if (!this.isLockMinus) {
-                this.$emit("create", this.value - step);
+                this.$emit("change", this.value - step);
             }
         },
     },

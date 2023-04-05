@@ -1,16 +1,16 @@
 <template>
   <div class="num-input-container">
-    <NumberInput v-model.lazy="current"
-                 @create="setCurrent"
-                 :step="step"
-                 :max="max" 
-                 :min="min" />
-    max
-    <NumberInput :value="max"
-                 @create="setMax"/>
-    min
-    <NumberInput :value="min"
-                 @create="setMin"/>
+      <NumberInput v-model.lazy="current"
+                  @change="setCurrent"
+                  :step="step"
+                  :max="max" 
+                  :min="min" />
+      max
+      <NumberInput :value="max"
+                  @change="setMax"/>
+      min
+      <NumberInput :value="min"
+                  @change="setMin"/>
   </div>
 </template>
 

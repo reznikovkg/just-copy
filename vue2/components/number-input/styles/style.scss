@@ -26,7 +26,6 @@ $border-black: 1.5px solid rgba(12, 48, 120, 0.225);
     color: $grey-color;
   }
 
-
   &__operation {
     padding: 0.6rem;
     margin: 0;
@@ -38,11 +37,9 @@ $border-black: 1.5px solid rgba(12, 48, 120, 0.225);
     &:first-child {
       border-right: $border-black ;
     }
-
     &:last-child {
       border-left: $border-black;
     }
-
     &:hover {
       border-color: #ccc;
     }
