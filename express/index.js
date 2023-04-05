@@ -6,28 +6,44 @@ app.use(cors());
 
 const db = [
   {
-    id: '123',
-    name: 'Utug',
-    type: 'switch',
-    value: 123,
+    id: 0,
+    items: [
+      {
+        header: 'Accordion 1 Item 1',
+        content: '<img src="https://media.tenor.com/aMV0odd8Bw8AAAAC/frog-pepsi.gif" alt="frog pepsi"></img>',
+        active: true,
+      },
+      {
+        header: 'Accordion 1 Item 2',
+        content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        active: true,
+      },
+      {
+        header: 'Accordion 1 Item 3',
+        content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        active: false,
+      },
+    ],
   },
   {
-    id: '1233',
-    name: 'Utug1',
-    type: 'checkbox',
-    value: 123,
-  },
-  {
-    id: '123',
-    name: 'Utug',
-    type: 'switch',
-    value: 123,
-  },
-  {
-    id: '1233',
-    name: 'Utug1',
-    type: 'checkbox',
-    value: 123,
+    id: 1,
+    items: [
+      {
+        header: 'Accordion 2 Item 1',
+        content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        active: false,
+      },
+      {
+        header: 'Accordion 2 Item 2',
+        content: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        active: false,
+      },
+      {
+        header: 'Accordion 2 Item 3',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        active: false,
+      },
+    ],
   },
 ]
 
@@ -37,10 +53,6 @@ app.get('/', (req, res) => {
 
 app.get('/json', (req, res) => {
   setTimeout(() => {
-    if (req.query && req.query.cat) {
-        return res.json(db.filter(item => (item.cat === req.query.cat)))
-    }
-  
     res.json(db)
   }, 3000)
 })

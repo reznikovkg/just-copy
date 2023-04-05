@@ -1,13 +1,13 @@
 <template>
-    <div class="outer">
-        <Accordion
-          v-for="(accordion, index) in accordions"
-          :items="accordion.items"
-          :key="index"
-          @itemToggle="(itemIndex) => toggleAccordionItemByAccordionId(index, itemIndex)"
-          style = 'margin-top: 20px'
-        />
-    </div>
+  <div class="outer">
+    <Accordion
+      v-for="(accordion, index) in accordions"
+      :items="accordion.items"
+      :key="index"
+      @itemToggle="(itemIndex) => toggleAccordionItemByAccordionId(index, itemIndex)"
+      style = 'margin-top: 20px'
+    />
+  </div>
 </template>
   
 <script>
@@ -19,21 +19,25 @@ export default {
     Accordion,
   },
   computed: {
-    ...mapGetters('accordionStays', [
+    ...mapGetters('accordionStaysExpress', [
       'getAccordions'
     ]),
     accordions() {
       return this.getAccordions
     }
   },
+  mounted() {
+    this.loadAccordions()
+  },
   methods: {
-    ...mapActions('accordionStays', [
-      'toggleAccordionItem'
+    ...mapActions('accordionStaysExpress', [
+      'toggleAccordionItem',
+      'loadAccordions'
     ]),
     toggleAccordionItemByAccordionId(accordionId, index) {
       this.toggleAccordionItem({ accordionId, index })
     }
-  }
+  },
 }
 </script>
 

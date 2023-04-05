@@ -14,6 +14,7 @@ import loaderSemenov from "./loaderSemenov";
 import tabsKiseleva from './tabsKiseleva';
 import tabsSviridov from './tabsSviridov';
 import accordionStays from './accordionStays'
+import accordionStaysExpress from './accordionStaysExpress'
 
 Vue.use(Vuex)
 
@@ -56,5 +57,6 @@ export default new Vuex.Store({
     tabsKiseleva,
     tabsSviridov,
     accordionStays,
+    accordionStaysExpress,
   }
 })
