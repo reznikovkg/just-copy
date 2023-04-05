@@ -15,6 +15,7 @@ import tabsKiseleva from './tabsKiseleva';
 import tabsSviridov from './tabsSviridov';
 import mainInput from './mainInput';
 import accordionStays from './accordionStays';
+import accordionY from './accordionY';
 
 Vue.use(Vuex)
 
@@ -58,5 +59,6 @@ export default new Vuex.Store({
     tabsSviridov,
     mainInput,
     accordionStays,
+    accordionY,
   }
 })

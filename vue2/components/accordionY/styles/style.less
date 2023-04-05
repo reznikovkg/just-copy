@@ -1,0 +1,49 @@
+.componentPage{
+  height: 100vh;
+}
+.accordion {
+
+  &__item {
+    width: 40%;
+    text-align: left;
+    border-radius: 0.8rem;
+    background: linear-gradient(135deg, white 0%, #c3cfe2 100%);
+    row-gap: 8px;
+  }
+
+  &__content {
+    padding-top: 0;
+    margin-top: 0;
+    text-align: left;
+    margin-bottom: 5px;
+    overflow: hidden;
+    margin-left: 20px;
+    max-height: 0;
+    transition: max-height 0.2s;
+    object-fit: cover;
+
+    &--expand {
+      max-height: 500px;
+    }
+  }
+
+  &__main {
+    cursor: pointer;
+    padding: 20px;
+    text-align: left;
+    border-radius: 0.8rem;
+    row-gap: 8px;
+
+    &:after {
+      content: '+';
+      font-size: 13px;
+      float: right;
+      margin-left: 5px;
+    }
+
+    &--active:after {
+      content: '-';
+    }
+  }
+}
+
