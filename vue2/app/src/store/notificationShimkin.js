@@ -18,7 +18,6 @@ export default {
         type: payload.type,
         size: payload.size ?? "normal",
       });
-      console.log(this)
       const idToDelete = state.idGenerator;
       if (payload.delay) {
         setTimeout(() => {
