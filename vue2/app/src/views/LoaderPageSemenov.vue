@@ -49,8 +49,9 @@ export default {
     Loader,
   },
   mounted() {
-    if(document.readyState != 'complete')
+    if (document.readyState != 'complete') {
       this.loaderStart("indefinite");
+    }
 
     document.onreadystatechange = () => {
       if (document.readyState == 'complete') {
@@ -58,17 +59,11 @@ export default {
       }
     };
   },
-  computed:
-  {
+  computed: {
     ...mapGetters("expressDb", [
       "getItems",
       "getState", 
     ]),
-    dbIsLoaded() {
-      if (this.getState)
-        this.loaderStop()
-      return true
-    }
   },
   methods: {
     ...mapActions("expressDb", [
