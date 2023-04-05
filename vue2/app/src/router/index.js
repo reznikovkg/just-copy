@@ -85,6 +85,11 @@ const routes = [
     name: 'tabsSviridov',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
+  {
+    path: '/accordionBorchenko',
+    name: 'accordionBorchenko',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionBorchenkoPage/AccordionBorchenkoPage.vue')
+  },
 ]
 
 const router = new VueRouter({
