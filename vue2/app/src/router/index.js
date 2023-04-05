@@ -90,6 +90,11 @@ const routes = [
     name: 'tabsSviridov',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
+  {
+    path: '/accordionStaysPage',
+    name: 'accordionStaysPage',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
+  },
 ]
 
 const router = new VueRouter({
