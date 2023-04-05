@@ -1,8 +1,10 @@
 <template>
     <div class="notification">
-        <h2 class="notification__title">{{ title }}</h2>
-        <div class="notification__content">{{ content }}</div>
-        <div class="notification__close-button" @click="dispose()">✖</div>
+        <div class="notification__group">
+            <h2 class="notification__title">{{ title }}</h2>
+            <div class="notification__content">{{ content }}</div>
+            <div class="notification__close-button" @click="() => dispose()">✖</div>
+        </div>
     </div>
 </template>
 
@@ -44,12 +46,12 @@ export default {
 .notification {
     position: relative;
     border-radius: 5px;
-    padding: 15px 25px;
     width: 330px;
     box-shadow: -2px 2px 15px 2px rgb(0 0 0 / 10%);
 
     &__group {
         position: relative;
+        padding: 15px 25px;
     }
 
     &__title {

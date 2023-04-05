@@ -17,7 +17,7 @@ export default {
         getInterval: (state) => state.interval,
     },
     mutations: {
-        addNotification: (state, payload) => {
+        addNotification: (state, payload = {}) => {
             state.notifications = [
                 ...state.notifications,
                 {

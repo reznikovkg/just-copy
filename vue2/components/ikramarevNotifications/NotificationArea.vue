@@ -1,8 +1,13 @@
 <template>
     <div :class="[`notification-area`, `notification-area--${position}`]">
-        <NotificationCard v-for="notification in getNotifications" :key="notification.id" :id="notification.id"
-            :title="notification.title" :content="notification.content" :timeout="notification.timeout"
-            @onNotificationDisposed="(id) => deleteNotification(id)" />
+        <NotificationCard 
+            v-for="notification in getNotifications" 
+            :key="notification.id" 
+            :id="notification.id"
+            :title="notification.title" 
+            :content="notification.content" 
+            :timeout="notification.timeout"
+            @onNotificationDisposed="(id) => deleteNotification(id)"/>
     </div>
 </template>
 
@@ -39,9 +44,12 @@ export default {
 
 <style scoped lang="less">
 .notification-area {
+    display: inline-block;
     position: absolute;
-    width: auto;
+    top: 0;
+    right: 0;
     padding: 10px;
+    overflow: visible;
 
     &--right {
         top: 0;
@@ -56,7 +64,9 @@ export default {
     }
 }
 
-.notification-area>.notification:not(:last-child) {
-    margin-bottom: 10px;
+.notification-area {
+    .notification:not(:last-child) {
+        margin-bottom: 10px;
+    }
 }
 </style>

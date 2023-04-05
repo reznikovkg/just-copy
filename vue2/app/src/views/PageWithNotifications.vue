@@ -1,8 +1,8 @@
 <template>
     <div class="page">
         <h2>#4 Уведомления (Крамарев Илья 61 группа)</h2>
-        <button type="button" @click="addNotification({})">Отобразить уведомление</button>
-        <NotificationArea :position='"right"' v-if="getNotificationsCount"></NotificationArea>
+        <button type="button" @click="() => addNotification()">Отобразить уведомление</button>
+        <NotificationArea :position='"right"' v-if="getNotificationsCount"/>
     </div>
 </template>
 
