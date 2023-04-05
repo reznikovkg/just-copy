@@ -1,26 +1,27 @@
-.progress-bar {
+.progress {
     position: relative;
     display: flex;
     align-items: center;
 
     &__text {
-      color: #3c3f59;
-      font-size: 18px;
+      color: black;
+      font-size: 20px;
       display: table-row;
       padding-left: 8px;
     }
 
-    &__outer {
-      border-radius: 100px;
-      overflow: hidden;
-      height: 6px;
-      background-color: rgb(212, 206, 206);
-    }
-
     &__inner {
       height: 100%;
-      border-radius: 100px;
+      border-radius: 150px;
       width: 100%;
-      background-color: red;
+      background-color: green;
+    }
+
+    &__outer {
+      border-radius: 150px;
+      overflow: hidden;
+      height: 10px;
+      width: 100%;
+      background-color: grey;
     }
   }

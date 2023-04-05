@@ -44,7 +44,10 @@
       innerStrokeColor: String,
       progressHeight: Number,
       progressWidth: Number,
-      showTip: Boolean,
+      showTip: {
+        type: Boolean,
+        default: true
+      },
       changeTime: {
         type: Number,
         default: 0.3
@@ -52,7 +55,7 @@
       colorFunc: {
         type: Function,
         default: function () {
-          return 'red'
+          return `hsl(${this.currValue * 1.2} 50% 50%)`;
         }
       },
       timingFunction: {
@@ -71,14 +74,10 @@
       },
     },
     methods: {
-      increase(change) {
+      changePercentage(change) {
         this.currValue = this.currValue + change;
         if(this.currValue > 100)
           this.currValue = 100;
-        this.$emit("change", this.currValue);
-      },
-      decrease(change) {
-        this.currValue = this.currValue - change;
         if(this.currValue < 0)
           this.currValue = 0;
         this.$emit("change", this.currValue);
