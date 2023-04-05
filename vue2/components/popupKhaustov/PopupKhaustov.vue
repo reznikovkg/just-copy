@@ -1,22 +1,20 @@
 
 <template>
-    <div class="popup-zone">
-      <transition-group name="popup-div__anim">
-        <div class="popup-div"
-        v-for="(element, index) in popups"
-        :key="index" >
-            <img class="popup-icon" :src="element.content.icon"/>
-            <p class="popup-title">
-              {{ element.content.title }}
-            </p>
-            <p class="popup-text">
-              {{ element.content.text }}
-            </p>
-            <button class="popup-close-button" @click="() => popupDiscard(element.id)">
-            </button>
-        </div>
-      </transition-group>
-    </div>
+  <div class="popup-zone">
+    <transition-group name="popup-div__anim">
+      <div class="popup-div" v-for="(element, index) in popups" :key="index">
+        <img class="popup-icon" :src="element.content.icon" />
+        <p class="popup-title">
+          {{ element.content.title }}
+        </p>
+        <p class="popup-text">
+          {{ element.content.text }}
+        </p>
+        <button class="popup-close-button" @click="() => popupDiscard(element.id)">
+        </button>
+      </div>
+    </transition-group>
+  </div>
 </template>
 
 <script>
@@ -29,8 +27,7 @@ export default {
       "getPopupTypes",
       "getLastId",
     ]),
-    types()
-    {
+    types() {
       return this.getPopupTypes;
     },
     popups() {
@@ -38,15 +35,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions("popupKhaustov",[
+    ...mapActions("popupKhaustov", [
       "addPopup",
       "removePopup",
     ]),
 
     popupShow(popupType) {
       let id = this.getLastId;
-      
-      let popup = this.types[popupType];
+      let popup = this.types[popupType];    
       if (popup == undefined) popup = this.types["default"];
       this.addPopup(popup)
       setTimeout(() => {
@@ -54,8 +50,7 @@ export default {
       }, popup.duration * 1000)
     },
 
-    popupDiscard(id)
-    {
+    popupDiscard(id) {
       this.removePopup(id);
     }
   },

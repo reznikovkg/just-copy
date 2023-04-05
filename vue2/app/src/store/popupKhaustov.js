@@ -49,24 +49,24 @@ export default {
 	mutations: {
 		addPopup: (state, payload) => {
 			state.popups = [
-			...state.popups,
+				...state.popups,
 				{
 					id: state.lastId,
 					content: payload,
 				},
 			];
-			state.lastId+=1
+			state.lastId += 1
 		},
 		removePopup: (state, payload) => {
-      state.popups = state.popups.filter((x) => x.id != payload);
+			state.popups = state.popups.filter((x) => x.id != payload);
 		}
 	},
 	actions: {
-    addPopup: ({ commit }, payload) => {
-      commit("addPopup", payload);
-    },
-    removePopup: ({ commit }, payload) => {
-      commit("removePopup", payload);
-    },
-  },
+		addPopup: ({ commit }, payload) => {
+			commit("addPopup", payload);
+		},
+		removePopup: ({ commit }, payload) => {
+			commit("removePopup", payload);
+		},
+	},
 }

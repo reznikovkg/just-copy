@@ -1,39 +1,39 @@
 <template>
   <div>
-    <Popup ref="popupKhaustov"></Popup>
-		<div style="margin: 5px; padding: 5px;">
+    <Popup ref="popupKhaustov"/>
+    <div style="margin: 5px; padding: 5px;">
       <p> default (5 sec) </p>
-			<button @click="() => popupShow('default')">
-				ShowPopup
-			</button>
+      <button @click="() => popupShow('default')">
+        ShowPopup
+      </button>
       <hr>
-      
+
       <p> danger (10 sec) </p>
-			<button @click="() => popupShow('danger')">
-				ShowPopup
-			</button>
+      <button @click="() => popupShow('danger')">
+        ShowPopup
+      </button>
       <hr>
-      
+
       <p> important (4 sec) </p>
-			<button @click="() => popupShow('important')">
-				ShowPopup
-			</button>
+      <button @click="() => popupShow('important')">
+        ShowPopup
+      </button>
       <hr>
-      
+
       <p> info (3 sec) </p>
-			<button @click="() => popupShow('info')">
-				ShowPopup
-			</button>
+      <button @click="() => popupShow('info')">
+        ShowPopup
+      </button>
       <hr>
-      
+
       <p> notification (1 sec) </p>
-			<button @click="() => popupShow('notification')">
-				ShowPopup
-			</button>
+      <button @click="() => popupShow('notification')">
+        ShowPopup
+      </button>
       <hr>
-      
-		</div>
-	</div>
+
+    </div>
+  </div>
 </template>
 
 <script>
