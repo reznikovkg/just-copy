@@ -4,6 +4,10 @@ import IconComponent from "../iconComponent/iconComponent";
 import {DeleteAccordionItem} from "../../services/AccordionItemService";
 import {observer} from "mobx-react-lite";
 import Store from "../../store/Store";
+import CreateAccordionItemPageComponent
+    from "../pages/сreateAccordionItemPageComponent/CreateAccordionItemPageComponent";
+import UpdateAccordionItemPageComponent
+    from "../pages/updateAccordionItemPageComponent/UpdateAccordionItemPageComponent";
 
 
 const BoxComponent = ({item}) => {
@@ -31,10 +35,7 @@ const BoxComponent = ({item}) => {
                 DeleteAccordionItem(item.id)
                 Store.getAllAccordionItem()
             }}>удалить</button>
-            <button className="update_accordion_item__button" type="submit" onClick={(e)=>{
-                const response = DeleteAccordionItem(item.id)
-                Store.getAllAccordionItem()
-            }}>изменить</button>
+            <UpdateAccordionItemPageComponent id={item.id}></UpdateAccordionItemPageComponent>
         </div>
     );
 };

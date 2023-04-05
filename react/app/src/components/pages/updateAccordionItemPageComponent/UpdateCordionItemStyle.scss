@@ -1,0 +1,28 @@
+.update_button{
+  padding: 5px;
+  margin-bottom: 3px;
+  background-color: #1732cb;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  border: none
+}
+.update_accordion_item{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  &__input{
+    padding: 5px;
+    margin: 3px;
+    border-radius: 6px;
+    border-width: 1px;
+  }
+  &__button{
+    padding: 5px;
+    background-color: #1732cb;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    border: none
+  }
+}

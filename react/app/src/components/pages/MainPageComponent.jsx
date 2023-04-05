@@ -1,6 +1,6 @@
 import LinkComponent from "../linkComponent/LinkComponent";
 import {observer} from "mobx-react-lite";
-import {memo} from "react";
+
 
 
 const MainPageComponent = () => {
@@ -11,4 +11,4 @@ const MainPageComponent = () => {
     );
 };
 
-export default memo(observer(MainPageComponent));
+export default observer(MainPageComponent);

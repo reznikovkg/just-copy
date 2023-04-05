@@ -16,5 +16,5 @@ export async function DeleteAccordionItem(id){
 
 
 export async function UpdateAccordionItem(id, accordionItem){
-    return $api.delete(`delete/${id}`, accordionItem)
+    return $api.put(`update/${id}`, accordionItem)
 }
