@@ -1,0 +1,47 @@
+$grey-color: #666;
+$white-color: #e8e8e8;
+$border-black: 1.5px solid rgba(66, 107, 187, 0.664);
+
+.value-input {
+  display: inline-flex;
+  align-items: center;
+  border: $border-black;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 10px;
+
+  &:focus-within,
+  &:hover {
+    border-color: $grey-color;
+  }
+
+  &__value {
+    height: 100%;
+    width: 40px;
+    margin: 0 5px;
+    text-align: center;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    color: $grey-color;
+  }
+
+  &__operation {
+    padding: 0.6rem;
+    margin: 0;
+    border: none;
+    background-color: #f5f7fa;
+    color: $grey-color;
+    height: 100%;
+
+    &:first-child {
+      border-right: $border-black ;
+    }
+    &:last-child {
+      border-left: $border-black;
+    }
+    &:hover {
+      border-color: #ccc;
+    }
+  }
+}
