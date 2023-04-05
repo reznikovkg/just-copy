@@ -71,6 +71,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
   },
   {
+    path: '/accordion',
+    name: 'accordion',
+    component: () => import(/* webpackChunkName: "accordion" */ '../views/AccordionPage.vue')
+  },
+  {
     path: '/tabsKiseleva',
     name: 'tabsKiseleva',
     component: () => import('../views/TabsKiseleva.vue')
@@ -84,7 +89,17 @@ const routes = [
     path: '/notifications-kramarev',
     name: 'notificationsKramarev',
     component: () => import('../views/PageWithNotifications.vue')
-  }
+  },
+  {
+    path: '/mainInput',
+    name: 'mainInput',
+    component: () => import(/* webpackChunkName: "mainInput" */ '../views/MainInput.vue')
+  },
+  {
+    path: '/accordionStaysPage',
+    name: 'accordionStaysPage',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
+  },
 ]
 
 const router = new VueRouter({
