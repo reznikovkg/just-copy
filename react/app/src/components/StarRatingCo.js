@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FaStar } from "react-icons/fa";
-import "./App.sass";
+import "../App.sass";
 
-export default function StarRating({ maxValue, onRatingChange }) {
+export default function StarRatingCo({ maxValue, onRatingChange }) {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
 
@@ -38,11 +38,11 @@ export default function StarRating({ maxValue, onRatingChange }) {
   );
 }
 
-StarRating.propTypes = {
+StarRatingCo.propTypes = {
   maxValue: PropTypes.number,
   onRatingChange: PropTypes.func.isRequired,
 };
 
-StarRating.defaultProps = {
+StarRatingCo.defaultProps = {
   maxValue: 5,
 };
