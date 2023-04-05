@@ -10,20 +10,12 @@
             </div>
             <div class="accordion">
               <AccordionComponent 
-              v-for="(accordion__item, i) in tabs"
-              :accordion__item="accordion__item"
-              :index="i" 
-              :key="i"
-              :open="accordion__item.open"
-              :activeIndex="()=>setActiveAccordion(0)"
-              />
-              <AccordionComponent 
-              v-for="(accordion__item, i) in tabs"
-              :accordion__item="accordion__item"
-              :index="i" 
-              :key="i"
-              :open="accordion__item.open"
-              :activeIndex="()=>setActiveAccordion(1)"
+                v-for="(accordion__item, i) in tabs"
+                :accordion__item="accordion__item"
+                :index="i" 
+                :key="i"
+                :open="accordion__item.open"
+                :activeIndex="0"
               />
             </div>
           </div>
@@ -35,29 +27,26 @@
   <script>
   import AccordionComponent from '../../../../components/accordionBorchenko/AccordionComponent.vue'
   import {mapActions,mapGetters} from "vuex"
+  
   export default {
     name: 'App',
     components: {
       AccordionComponent
     },
     computed: {
-      ...mapGetters('accordionBorchenko',[
+      ...mapGetters('accordionBorchenko', [
         'getAccordion',
         'getActiveAccordion'
       ]),
       tabs() {
-            return this.getAccordion
-        },
-  },
-    methods: {
+        return this.getAccordion
+      },
+    },
+    methods: {  
       ...mapActions('accordionBorchenko', [
          'changeOpen',
          'setActiveIndex'
-    ]),
-    setActiveAccordion(index){
-      this.changeOpen(index);
-      return this.getActiveAccordion
-    }
+      ]),
     }
   }
   </script>

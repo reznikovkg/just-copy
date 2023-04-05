@@ -61,11 +61,8 @@ export default new Vuex.Store({
     loaderSemenov,
     tabsKiseleva,
     tabsSviridov,
-<<<<<<< HEAD
     accordionBorchenko,
-=======
     mainInput,
->>>>>>> 529c93aaa1b66ceedd20a5c8b17ff757208bcceb
     accordionStays,
   }
 })
