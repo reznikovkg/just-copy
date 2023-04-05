@@ -13,13 +13,9 @@ import accordion from "./accordion"
 import loaderSemenov from "./loaderSemenov";
 import tabsKiseleva from './tabsKiseleva';
 import tabsSviridov from './tabsSviridov';
-<<<<<<< HEAD
 import accordionBorchenko from './accordionBorchenko'
 import accordionStays from './accordionStays'
-=======
 import mainInput from './mainInput';
-import accordionStays from './accordionStays';
->>>>>>> 529c93aaa1b66ceedd20a5c8b17ff757208bcceb
 
 Vue.use(Vuex)
 
