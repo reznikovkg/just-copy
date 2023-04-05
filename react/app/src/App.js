@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import ProgressBar from './pages/ProgressBarPage';
-import RatingPage from './pages/RatingPage';
+import React from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import ProgressBar from "./pages/ProgressBarPage";
+import RatingPage from "./pages/RatingPage";
 
 export default function App() {
   return (
@@ -30,4 +30,4 @@ export default function App() {
       </div>
     </BrowserRouter>
   );
-} 
+}

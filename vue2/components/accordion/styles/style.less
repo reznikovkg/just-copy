@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+@font: Raleway;
+@gray-color: #777;
+@bg: #f1f1f1;
+
+.accordion {
+  background: @bg;
+  width: 500px;
+
+  &__info {
+    font-family: @font;
+    padding-top: 0;
+    margin-top: 0;
+    text-align: left;
+    padding-left: 30px;
+    margin-bottom: 2px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    border-bottom: 1px solid @gray-color;
+
+    &--expand {
+      overflow-x: auto;
+      transition: max-height 0.5s ease-in;
+      max-height: 500px;
+    }
+  }
+
+  &__main {
+    font-size: 16px;
+    font-family: @font;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    outline: none;
+
+    &:after {
+      content: '˃';
+      font-size: 13px;
+      color: @gray-color;
+      float: right;
+      margin-left: 5px;
+    }
+
+    &--active:after {
+      content: '˅';
+    }
+  }
+}
+

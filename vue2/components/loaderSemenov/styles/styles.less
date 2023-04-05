@@ -1,0 +1,62 @@
+.loader {
+    &__div {
+        background-color: #13010c94;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        vertical-align: middle;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__image {
+        animation: spin 1.5s ease-in-out infinite;
+        width: 128px;
+        height: 128px;
+    }
+    
+    &__text {
+        font-size: 30px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #fdfdfd;
+    }
+
+    &__button {
+        height: 200px;
+        width: 200px;
+        background-color: #3a3a3a;
+        color: rgb(248, 248, 248);
+        border: 1.5px solid #222222;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    
+    &__close-button {
+        height: 80px;
+        width: 120px;
+        background-color: #2e051e;
+        color: rgb(248, 248, 248);
+        border: 1.5px solid #2b0626;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+}
+.basic-image {
+    margin: 5px;
+    height: 300px;
+    width: 425px;
+    border-radius: 20px;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

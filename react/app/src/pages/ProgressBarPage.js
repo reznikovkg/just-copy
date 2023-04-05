@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import ProgressBar from "../components/ProgressBar";
 
-export default function RatingPage() {
-
-
+const RatingPage = ({ progressValue }) => {
   return (
     <div>
-        <h1>Прогресс бар</h1>
-        <ProgressBar value={50} />
+      <h1>Прогресс бар</h1>
+      <ProgressBar value={progressValue} />
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return {
+    progressValue: state.progressValue,
+  };
+};
+
+export default connect(mapStateToProps)(RatingPage);
