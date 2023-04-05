@@ -24,7 +24,8 @@ export default {
               content: "Third  Content", 
               open: false
             }
-        ],       
+        ],
+               
     },
     getters: {
         getUniqueId: (state) => {

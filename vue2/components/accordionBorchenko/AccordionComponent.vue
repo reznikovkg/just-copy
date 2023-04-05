@@ -14,7 +14,7 @@ export default {
     name: 'AccordionItem',
     props: ['accordion__item', 'index', 'open','activeIndex','arrayIndex'],
     computed: {
-    ...mapGetters('accordionBorchenko',[
+    ...mapGetters('accordionBorchenko', [
       'getAccordion'
     ])
   },
