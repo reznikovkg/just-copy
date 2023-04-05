@@ -15,7 +15,7 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "AccordionItem",
-  props: ["accordion__item", "index", "open", "activeIndex", "arrayIndex"],
+  props: ["accordion__item", "index", "open", "activeIndex"],
   computed: {
     ...mapGetters("accordionBorchenko", [
       "getAccordion"

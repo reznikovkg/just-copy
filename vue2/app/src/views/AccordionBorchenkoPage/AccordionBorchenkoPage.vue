@@ -2,7 +2,7 @@
     <body>
       <div id="app">
         <div class="content">
-          <h3 class="content__title">Лабораторная работа №2</h3>
+          <h3 class="content__title">Лабораторная работа №3</h3>
           <div class="container">
             <div class="container__lab-info">
               <h6 class="info-title">Вариант 8. Аккордеон</h6>
