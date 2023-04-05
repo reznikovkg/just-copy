@@ -1,0 +1,28 @@
+@border-blue: 3px solid #85c9c1;
+@bg-color:inherit;
+.tabs{
+  font-family: Arial;
+  &__wrapper{
+    overflow: hidden;
+    display: flex;
+    border: @border-blue;
+    background-color: #d4f3ef;
+  }
+  &__btn{
+    background-color: @bg-color;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    &:hover {
+      background-color: #85c9c1cb;
+    }
+  }
+  &__body {
+    padding: 6px 12px;
+    border: @border-blue;
+    border-top: none;
+  }
+}
