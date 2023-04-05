@@ -17,11 +17,11 @@ export default {
         },
         title: {
             type: String,
-            default: 'Заголовок'
+            required: true,
         },
         content: {
             type: String,
-            default: 'Содержание'
+            required: true,
         },
         timeout: {
             type: Number,

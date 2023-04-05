@@ -62,9 +62,7 @@ export default {
         left: 0;
         bottom: 0;
     }
-}
 
-.notification-area {
     .notification:not(:last-child) {
         margin-bottom: 10px;
     }
