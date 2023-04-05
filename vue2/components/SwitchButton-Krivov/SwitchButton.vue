@@ -14,7 +14,8 @@ export default {
     event: "change"
   },
   props: {
-    checked: Boolean
+    checked: Boolean,
+    label: String
   },
   methods: {
     change() {

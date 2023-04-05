@@ -14,10 +14,15 @@
   background-position: center center;
   cursor: pointer;
   transition-duration: 0.5s;
+  margin: 60px;
+  
+  &__labels {
+    position: relative;
+    left: 40px;
+  }
 
   &::before {
     margin-left: 25px;
-    content: "Переключатель";
   }
 
   &.enabled {

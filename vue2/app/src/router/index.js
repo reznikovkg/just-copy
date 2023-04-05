@@ -85,6 +85,11 @@ const routes = [
     name: 'tabsSviridov',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
   },
+  {
+    path: '/switchKrivov',
+    name: 'switchKrivov',
+    component: () => import('../views/SwitchKrivovPage.vue')
+  }
 ]
 
 const router = new VueRouter({
