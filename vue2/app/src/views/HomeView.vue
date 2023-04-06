@@ -45,6 +45,12 @@
     <p><router-link :to="{ name: 'tabsSviridov' }">
       TabsSviridov
     </router-link></p>
+    <p><router-link :to="{ name: 'mainInput' }">
+      MainInput
+       </router-link></p>
+    <p><router-link :to="{ name: 'accordionStaysPage' }">
+      accordionStaysPage
+    </router-link></p>
     <p><router-link :to="{ name: 'notificationShimkin' }">
       NotificationShimkin
     </router-link></p>
