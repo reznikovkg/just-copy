@@ -10,7 +10,7 @@ export default {
     idGenerator: 0
   },
   mutations: {
-    addNotification: function (state, payload) {
+    addNotification: (state, payload) => {
       state.notifications.push({
         id: ++state.idGenerator,
         title: payload.title,
