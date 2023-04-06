@@ -7,8 +7,8 @@ export default {
     namespaced: true,
     state: {
         activeElements: [
-            Array.from({length: 3}, () => false),
-            Array.from({length: 2}, () => true)
+            [ false, false, false ],
+            [ true, true ]
         ],
         accordionData: [
             [
@@ -30,6 +30,10 @@ export default {
                     title: "Жаба, которая не сдала зачет",
                     content: "<img src='https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/31PCiCXBrUL._CR0,0,300,300_UX256.jpg'>"
                 },
+                {
+                    title: "Пустой элемент",
+                    content: "",
+                }
             ]
         ]
     },

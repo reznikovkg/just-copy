@@ -1,5 +1,5 @@
 <template>
-  <div class=componentPage>
+  <div class=component-page>
     <h1>Лабораторная №2-3</h1>
     <h2>Найдите жабу <span>&#128079;&#127995;</span> </h2>
     <AccordionComponent
@@ -7,7 +7,8 @@
         :elems=getElems(0)
         :active-elems=getActiveElems(0)
         :contentArrayIndex="0"
-        @updateElement="dispatchSetActive($event)" />
+        @updateElement="(event) => dispatchSetActive(event)" 
+    />
 
       <h2>Демонстрация Жабы: </h2>
     <AccordionComponent
@@ -15,7 +16,8 @@
         :elems=getElems(1)
         :active-elems=getActiveElems(1)
         :contentArrayIndex="1"
-        @updateElement="dispatchSetActive($event)" />
+        @updateElement="(event) => dispatchSetActive(event)" 
+    />
   </div>
 </template>
 

@@ -5,13 +5,20 @@
         <div
             class="accordion__main"
             :class="{'accordion__main--active': activeElems[index]}"
-            @click="emitUpdateElement(index)"
+             @click="emitUpdateElement(index)"
             v-html="elem.title">
         </div>
         <p
             class="accordion__content"
             :class="{'accordion__content--expand': activeElems[index]}"
-            v-html="elem.content">
+            v-html="elem.content"
+            v-if=activeElems[index]>
+        </p>
+        <p 
+            class="accordion__content"
+            :class="{'accordion__content--expand': false}"
+            v-html="elem.content"
+            v-else>
         </p>
       </div>
     </div>

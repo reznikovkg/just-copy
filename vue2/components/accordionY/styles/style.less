@@ -1,6 +1,7 @@
-.componentPage{
+.component-page{
   height: 100vh;
 }
+
 .accordion {
 
   &__item {
@@ -35,14 +36,16 @@
     row-gap: 8px;
 
     &:after {
-      content: '+';
+      content: '>';
       font-size: 13px;
       float: right;
       margin-left: 5px;
+      transition: 0.3s;
     }
 
     &--active:after {
-      content: '-';
+      transition: 0.3s;
+      rotate: 90deg;
     }
   }
 }
