@@ -2,13 +2,16 @@
   border: 1px solid #39ff14;
   transition: all 0.2s ease 0s;
   background-color: #39ff14;
+  display: flex;
+  flex-direction: column;
+  margin-bottom:10px;
 
   &:hover {
     background-color: #ff148f;
     border-color: #ff148f;
   }
 
-  &--title {
+  &__title {
     font-weight: 500;
     font-size: 28px;
     font-family: "Consolas", sans-serif;
@@ -28,7 +31,7 @@
     transition: all 0.2s ease 0s;
 
     &:after {
-      content: "\002B"; /*+*/
+      content: "\002B";
       font-size: 36px;
       color: black;
       float: right;
@@ -53,13 +56,13 @@
     color: black;
 
     .accordion__item {
-      &--title {
+      &__title {
         &:hover {
           color: rgb(255, 57, 133);
         }
 
         &:after {
-          content: "\2212"; /*-*/
+          content: "\2212";
           color: black;
         }
       }

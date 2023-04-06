@@ -3,7 +3,7 @@
     :class="open ? 'accordion__item--open' : 'accordion__item'"
     @click="() => changeOpen(this.index)"
   >
-    <button class="accordion__item--title">{{ accordion__item.title }}</button>
+    <button class="accordion__item__title">{{ accordion__item.title }}</button>
     <div class="accordion__item--hidden">
       <p>{{ accordion__item.content }}</p>
     </div>
