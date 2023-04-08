@@ -3,6 +3,19 @@ import Vuex from 'vuex'
 import berries from './berries'
 import users from './users'
 import exp from './exp'
+import switches from "./switches";
+import notifications from './notifications'
+import modalUsers from "./modalUsers";
+import tabs from './tabs'
+import modals from "./modals";
+import loaders from "./loaders";
+import accordion from "./accordion"
+import loaderSemenov from "./loaderSemenov";
+import tabsKiseleva from './tabsKiseleva';
+import tabsSviridov from './tabsSviridov';
+import mainInput from './mainInput';
+import accordionStays from './accordionStays';
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -32,6 +45,18 @@ export default new Vuex.Store({
   modules: {
     users,
     berries,
-    exp
+    exp,
+    switches,
+    notifications,
+    tabs,
+    modalUsers,
+    modals,
+    loaders,
+    accordion,
+    loaderSemenov,
+    tabsKiseleva,
+    tabsSviridov,
+    mainInput,
+    accordionStays,
   }
 })
