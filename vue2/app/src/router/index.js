@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -94,6 +95,11 @@ const routes = [
     path: '/accordionStaysPage',
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
+  },
+  {
+    path: '/CheckboxSwitchVolgin',
+    name: 'CheckboxSwitchVolgin',
+    component: () => import( '../views/CheckboxSwitchPageVolgin.vue')
   },
 ]
 

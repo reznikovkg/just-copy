@@ -51,6 +51,9 @@
     <p><router-link :to="{ name: 'accordionStaysPage' }">
       accordionStaysPage
     </router-link></p>
+    <p><router-link :to="{  name: 'CheckboxSwitchVolgin' }">
+      CheckboxSwitchPageVolgin
+    </router-link></p>
   </div>
 </template>
 <script>
