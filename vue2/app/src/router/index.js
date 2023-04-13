@@ -95,6 +95,11 @@ const routes = [
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
+ {
+    path: '/switchPage',
+    name: 'switchPage',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/SwitchPage.vue')
+  },
 ]
 
 const router = new VueRouter({
