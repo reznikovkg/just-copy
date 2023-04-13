@@ -11,9 +11,42 @@
 
 
 <script>
+import { mapGetters, mapActions} from "vuex";
 export default {
+    data() {
+        return {
+            modalId: 0,
+        }
+    },
+    computed: {
+        ...mapGetters("modalStore", [
+            "lastId",
+            "getModalContent",
+            "getModalState",
+        ]),
+        isVisible() {
+            return this.getModalState(modalId);
+        },
+        modal() {
+            return this.getModalContent(modalId);
+        }
+    },
+    mounted() {
+        this.modalId = this.lastId;
+        console.log(this.lastId);
+        this.addModalToStore("test");
+    },
     methods: {
+        ...mapActions("modalStore",[
+            "addModal",
+            "changeVisibility"
+        ]),
+        addModalToStore(test) {
+            this.addModal(test);
+        },
         closeModal() {
+            console.log(this.modalId)
+            //this.changeVisibility(modalId);
             this.$emit('close')
         }
     }
@@ -41,14 +74,5 @@ export default {
             border: none;
             padding: 0;
         } 
-        
     }
-    .section {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: rgb(73, 209, 20) url("https://phonoteka.org/uploads/posts/2021-03/1616689580_28-p-krasivii-fon-dlya-shapki-32.jpg") center/cover no-repeat;
-    }   
 </style>
