@@ -95,6 +95,11 @@ const routes = [
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
+  {
+    path: '/ToggleSwitchZamaro',
+    name: 'ToggleSwitchZamaro',
+    component: () => import('../views/ToggleSwitchZamaro.vue')
+  }
 ]
 
 const router = new VueRouter({

@@ -1,0 +1,9 @@
+.section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgb(73,209,20) url("https://wallpaper.dog/large/20533655.jpg") center/cover no-repeat;
+  z-index: -1;
+}

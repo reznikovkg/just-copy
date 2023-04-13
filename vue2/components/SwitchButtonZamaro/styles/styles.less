@@ -1,0 +1,31 @@
+@background_color_off: #0d0549;
+@background_color_on: rgba(45, 34, 225, 0.89);
+@border_circle_color: gray;
+@background_circle_color: white;
+
+.switch-button {
+  width: 60px;
+  height: 30px;
+  border-radius: 24px;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  background-color: @background_color_off;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  
+  &__circle {
+    height: 26px;
+    width: 26px;
+    border: 2px solid @border_circle_color;
+    border-radius: 50%;
+    transition-duration: 0.5s;
+    background-color: @background_circle_color;
+  }
+  
+  &.enabled {
+    background-color: @background_color_on;
+    .switch-button__circle {
+      transform: translateX(30px);
+    }
+  }
+}

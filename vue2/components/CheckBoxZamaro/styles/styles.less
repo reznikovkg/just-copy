@@ -1,0 +1,34 @@
+@background_color_on: rgba(45, 34, 225, 0.89);
+@border_color: gray;
+@background_color_off: #0d0549;;
+
+.checkbox {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  color: @background_color_off;
+  background-color: #0d0549;
+  border: 1px solid @border_color;
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  
+  &__labels {
+    position: relative;
+    left: 40px;
+  }
+
+  &::before {
+    margin-left: 25px;
+  }
+
+  &.enabled {
+    border-color: @border_color;
+    background-color: @background_color_on;
+    color: @background_color_on;
+  }
+}
