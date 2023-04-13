@@ -21,23 +21,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "btn" */ '../views/ExpressPage.vue')
   },
   {
-    path: '/checkbox',
-    name: 'checkbox',
-    component: () => import(/* webpackChunkName: "checkbox" */ '../views/CheckBoxPage.vue')
-  },
-  {
     path: '/select',
     name: 'select',
     component: () => import(/* webpackChunkName: "select" */ '../views/SelectPage.vue')
   },
   {
-    path: '/notifications',
-    name: 'notifications',
-    component: () => import(/* webpackChunkName: "select" */ '../views/NotificationPage.vue')
-  },
-  {
-    path: '/modal',
-    name: 'modal',
+    path: '/modal2',
+    name: 'modal2',
     component: () => import(/* webpackChunkName: "select" */ '../views/ModalPage/ModalPage.vue')
   },
   {
@@ -51,49 +41,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "select" */ '../views/TabsPage.vue')
   },
   {
-    path: '/modal2',
-    name: 'modal2',
-    component: () => import(/* webpackChunkName: "modal2" */ '../views/ModalPage.vue')
-  },
-  {
-    path: '/loader',
-    name: 'loader',
-    component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPage.vue')
-  },
-  {
-    path: '/loaderSemenov',
-    name: 'loaderSemenov',
-    component: () => import(/* webpackChunkName: "loader" */ '../views/LoaderPageSemenov.vue')
-  },
-  {
-    path: '/progress-an',
-    name: 'progressAn',
-    component: () => import(/* webpackChunkName: "loader" */ '../views/ProgressAnPage.vue')
-  },
-  {
-    path: '/accordion',
-    name: 'accordion',
-    component: () => import(/* webpackChunkName: "accordion" */ '../views/AccordionPage.vue')
-  },
-  {
-    path: '/tabsKiseleva',
-    name: 'tabsKiseleva',
-    component: () => import('../views/TabsKiseleva.vue')
-  },
-  {
-    path: '/tabsSviridov',
-    name: 'tabsSviridov',
-    component: () => import(/* webpackChunkName: "modal2" */ '../views/TabsSviridov.vue')
-  },
-  {
-    path: '/mainInput',
-    name: 'mainInput',
-    component: () => import(/* webpackChunkName: "mainInput" */ '../views/MainInput.vue')
- },
- {
-    path: '/accordionStaysPage',
-    name: 'accordionStaysPage',
-    component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
+    path: '/modal',
+    name: 'modal',
+    component: () => import(/* webpackChunkName: "select" */ '../views/ModalPage2.vue')
   },
 ]
 

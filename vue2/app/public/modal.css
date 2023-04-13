@@ -1,0 +1,10 @@
+
+.section {
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgb(73, 209, 20) url("https://img1.goodfon.ru/original/3840x2160/e/84/firewatch-game-priroda.jpg") center/cover no-repeat;
+}
