@@ -2,7 +2,7 @@
 
 ###### A simple star rating component for React project
 
-![react-stars](https://imgur.com/4b2tx0s)
+![react-stars](https://i.imgur.com/4b2tx0s.png)
 
 ### Get started quickly
 
