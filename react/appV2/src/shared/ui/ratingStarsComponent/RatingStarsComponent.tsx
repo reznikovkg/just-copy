@@ -3,10 +3,10 @@ import {useState} from "react";
 
 export type Props = {
     starsCount?: number,
-    onChange: (rating: number) => void
+    onChange?: (rating: number) => void
 }
 
-export const RatingStarsComponent = ({starsCount = 5, onChange}: Props) => {
+export const RatingStarsComponent = ({starsCount = 5, onChange = () => {}}: Props) => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
 
