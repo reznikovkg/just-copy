@@ -17,7 +17,7 @@ export const RatingStarsComponent = ({starsCount = 5, onChange}: Props) => {
 
     return (
         <div className={"flex flex-row"}>
-            {[...Array(5)].map((star, index) => {
+            {[...Array(starsCount)].map((star, index) => {
                 const currRating = index + 1;
                 return (
                     <label key={index}>

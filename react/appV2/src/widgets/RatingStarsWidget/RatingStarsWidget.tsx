@@ -3,7 +3,7 @@ import {RatingStarsComponent} from "@/shared/ui/ratingStarsComponent/RatingStars
 export const RatingStarsWidget = () => {
     return (
         <div>
-            <RatingStarsComponent onChange={(rating) => console.log(rating)}/>
+            <RatingStarsComponent starsCount={6} onChange={(rating) => console.log(rating)}/>
         </div>
     )
 }
