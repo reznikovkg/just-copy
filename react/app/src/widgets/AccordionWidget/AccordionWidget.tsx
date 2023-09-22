@@ -1,7 +1,7 @@
 import React from "react";
 import AccordionComponent from "@/shared/ui/accordionComponent/AccordionComponent";
 import LinkComponent from "@/shared/ui/linkComponent/LinkComponent";
-import {cn} from "@/shared/lib/utils";
+import "./AccordionWidget.scss"
 
 export const AccordionWidget = () => {
     const collapse_items_2 = [
@@ -57,7 +57,7 @@ export const AccordionWidget = () => {
     ]
 
     return (
-        <div className={cn("acordion_page", "w-[400px]")}>
+        <div className={"accordion-widget"}>
             <AccordionComponent data={collapse_items_1}/>
             <AccordionComponent data={collapse_items_2}/>
             <AccordionComponent data={collapse_items_3}/>

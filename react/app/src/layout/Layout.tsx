@@ -1,9 +1,10 @@
 import React from "react";
+import "./Layout.scss"
 import {Outlet} from "react-router-dom";
 
 export const Layout = () => {
     return (
-        <div className={"p-5 h-full"}>
+        <div className={"layout"}>
             <Outlet/>
         </div>
     )

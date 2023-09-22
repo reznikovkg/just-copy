@@ -1,5 +1,6 @@
 import {FaStar} from "react-icons/fa";
 import {useState} from "react";
+import "./RatingStarsComponent.scss"
 
 export type Props = {
     starsCount?: number,
@@ -16,20 +17,20 @@ export const RatingStarsComponent = ({starsCount = 5, onChange = () => {}}: Prop
     }
 
     return (
-        <div className={"flex flex-row"}>
+        <div className={"rating-stars"}>
             {[...Array(starsCount)].map((star, index) => {
                 const currRating = index + 1;
                 return (
                     <label key={index}>
                         <input
-                            className="hidden"
+                            className="rating-stars__input"
                             type="radio"
                             name="rating"
                             value={currRating}
                             onClick={() => handleOnChange(currRating)}
                         />
                         <FaStar
-                            className={"cursor-pointer"}
+                            className={"rating-stars__icon"}
                             size={50}
                             color={currRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
                             onMouseEnter={() => setHover(currRating)}
