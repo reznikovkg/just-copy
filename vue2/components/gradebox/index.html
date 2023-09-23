@@ -12,15 +12,13 @@
         font-family: ps;
         background: #d211e4
       }
-
       body {
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 50vh;
         background: #d211e4
-      }
-      
+      }      
       .stars ul{
         list-style-type: none;
         padding:0;
@@ -40,26 +38,20 @@
         font-size:24px;
         background-color:#e7e1e1;
         border:2px solid #eee;
-        
+        padding:0;        
       }
     </style>
   </head>
   <body>
     <div class="stars"></div>
-
-     <!--<a class="fa-solid fa-star"></a>-->   
-     <!--&#10029; -->  
       <script src="https://kit.fontawesome.com/3996ae7cc7.js" crossorigin="anonymous"></script>
-      <script> 
-      
+      <script>      
       const main = document.querySelector('.stars');
       const starsUL = createElements(main, 'div','main');
       const output = createElements(main, 'div', 'output');
-      for(let x=0; x<5; x++){
-        
+      for(let x=0; x<5; x++){        
         const star=createElements(starsUL, 'li', 'star');
-        star.innerHTML = '&#10029;';
-       
+        star.innerHTML = '&#10029;';       
         star.starValue=(x+1);
         ["mouseover", "mouseout", "click"].forEach((el)=>{
           star.addEventListener(el, starRate);
@@ -108,12 +100,10 @@
         el.classList.add(myClass);
         parent.append(el);
         return el;
-
-      }
-       
+      }       
       </script>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>  
+      <strong>We're sorry but %= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>  
     </noscript>    
   </body>
 </html>
