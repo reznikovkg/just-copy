@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Вариант 2: Оценка</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        font-family: ps;
+        background: #d211e4
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 50vh;
+        background: #d211e4
+      }
+      
+      .stars ul{
+        list-style-type: none;
+        padding:0;
+      }
+      .star{
+        font-size:3em;
+        color:#a8b2b6;
+        display:inline-block;
+      }
+      .gray{
+        color:rgb(222, 222, 222);
+      }
+      .yellow{
+        color: yellow;
+      }
+      .output{
+        font-size:24px;
+        background-color:#e7e1e1;
+        border:2px solid #eee;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars"></div>
+
+     <!--<a class="fa-solid fa-star"></a>-->   
+     <!--&#10029; -->  
+      <script src="https://kit.fontawesome.com/3996ae7cc7.js" crossorigin="anonymous"></script>
+      <script> 
+      
+      const main = document.querySelector('.stars');
+      const starsUL = createElements(main, 'div','main');
+      const output = createElements(main, 'div', 'output');
+      for(let x=0; x<5; x++){
+        
+        const star=createElements(starsUL, 'li', 'star');
+        star.innerHTML = '&#10029;';
+       
+        star.starValue=(x+1);
+        ["mouseover", "mouseout", "click"].forEach((el)=>{
+          star.addEventListener(el, starRate);
+        })
+      }
+      
+      function starRate(e){
+        console.log(e.type);
+        console.log(e.target.starValue);
+        const eventType = e.type;
+        const curStars = document.querySelectorAll('.star');
+        if(eventType==='click'){
+          output.innerHTML = `You rated this ${e.target.starValue} stars`;
+          addYellow(curStars, e.target.starValue);
+        }
+        if(eventType==='mouseover'){
+          addGray(curStars, e.target.starValue);
+        }
+      }
+
+      function addYellow(curStars, val){
+        console.log(val);
+        curStars.forEach((star, index)=>{
+          if (index<val){
+            star.classList.add('yellow');
+          }else{
+            star.classList.remove('yellow');
+          }
+          })
+      }
+
+      function addGray(curStars, val){
+        console.log(val);
+        curStars.forEach((star, index)=>{
+          if (index<val){
+            star.classList.add('gray');
+          }else{
+            star.classList.remove('gray');
+          }
+          })
+      }
+
+
+      function createElements(parent, elType, myClass){
+        const el = document.createElement(elType);
+        el.classList.add(myClass);
+        parent.append(el);
+        return el;
+
+      }
+       
+      </script>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>  
+    </noscript>    
+  </body>
+</html>
