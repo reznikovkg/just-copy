@@ -36,19 +36,27 @@
         color:rgb(222, 222, 222);
       }
 
-      .yellow{
-        color: yellow;
-      }   
+      .orange{
+        color: orange;
+      }
+
+      .output{
+        font-size:24px;
+        background-color:#e7e1e1;
+        border:2px solid #eee;
+        padding:0;        
+      }      
     </style>
   </head>
   <body>
     <div class="stars"></div>      
       <script>      
       const main = document.querySelector('.stars');
-      const starsUL = createElements(main, 'div','main');      
+      const starsUL = createElements(main, 'div','main');
+      const output = createElements(main, 'div', 'output');
       for(let x=0; x<5; x++){        
         const star=createElements(starsUL, 'li', 'star');
-        star.innerHTML = '&#10029;';       
+        star.innerHTML = '&#9733;';       
         star.starValue=(x+1);
         ["mouseover", "mouseout", "click"].forEach((el)=>{
           star.addEventListener(el, starRate);
@@ -60,21 +68,22 @@
         console.log(e.target.starValue);
         const eventType = e.type;
         const curStars = document.querySelectorAll('.star');
-        if(eventType==='click'){          
-          addYellow(curStars, e.target.starValue);
+        if(eventType==='click'){
+          output.innerHTML = `You rated this ${e.target.starValue} stars`;
+          addOrange(curStars, e.target.starValue);
         }
         if(eventType==='mouseover'){
           addGray(curStars, e.target.starValue);
         }
       }
 
-      function addYellow(curStars, val){
+      function addOrange(curStars, val){
         console.log(val);
         curStars.forEach((star, index)=>{
           if (index<val){
-            star.classList.add('yellow');
+            star.classList.add('orange');
           }else{
-            star.classList.remove('yellow');
+            star.classList.remove('orange');
           }
           })
       }
