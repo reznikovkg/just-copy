@@ -38,22 +38,14 @@
 
       .yellow{
         color: yellow;
-      }
-
-      .output{
-        font-size:24px;
-        background-color:#e7e1e1;
-        border:2px solid #eee;
-        padding:0;        
-      }      
+      }   
     </style>
   </head>
   <body>
     <div class="stars"></div>      
       <script>      
       const main = document.querySelector('.stars');
-      const starsUL = createElements(main, 'div','main');
-      const output = createElements(main, 'div', 'output');
+      const starsUL = createElements(main, 'div','main');      
       for(let x=0; x<5; x++){        
         const star=createElements(starsUL, 'li', 'star');
         star.innerHTML = '&#10029;';       
@@ -68,8 +60,7 @@
         console.log(e.target.starValue);
         const eventType = e.type;
         const curStars = document.querySelectorAll('.star');
-        if(eventType==='click'){
-          output.innerHTML = `You rated this ${e.target.starValue} stars`;
+        if(eventType==='click'){          
           addYellow(curStars, e.target.starValue);
         }
         if(eventType==='mouseover'){
