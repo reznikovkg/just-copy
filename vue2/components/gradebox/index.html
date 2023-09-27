@@ -6,106 +6,116 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Вариант 2: Оценка</title>
     <style>
-      *{
+      * {
         margin: 0;
         padding: 0;
-        font-family: ps;
-        background: #d211e4
+        font-family: sans-serif;;
+        background: #faf0e6
       }
 
       body {
-        display: flex;
         justify-content: center;
-        align-items: center;
+        justify-content: center;
         min-height: 50vh;
-        background: #d211e4
-      }   
-
-      .stars ul{
+        background: #faf0e6
+      }
+      
+      .stars ul {
         list-style-type: none;
-        padding:0;
+        padding: 0;
       }
 
-      .star{
-        font-size:3em;
-        color:#a8b2b6;
-        display:inline-block;
+      .star {
+        font-size: 2em;
+        color: #a8b2b6;
+        display: inline-block;
+      }      
+      
+      .button { 
+        background-color: white;
+        color: #1d8be6;
+        border: none;
+        cursor: pointer;
+        width: 100px;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 10px;
+        box-shadow: 0 6px 8px 0 #3c35a566;
       }
 
-      .gray{
-        color:rgb(222, 222, 222);
+      h3 {
+        color: #1d8be6;
       }
 
-      .orange{
+      .orange {
         color: orange;
       }
-
-      .output{
-        font-size:24px;
-        background-color:#e7e1e1;
-        border:2px solid #eee;
-        padding:0;        
-      }      
+      
     </style>
   </head>
   <body>
-    <div class="stars"></div>      
-      <script>      
-      const main = document.querySelector('.stars');
-      const starsUL = createElements(main, 'div','main');
-      const output = createElements(main, 'div', 'output');
-      for(let x=0; x<5; x++){        
-        const star=createElements(starsUL, 'li', 'star');
-        star.innerHTML = '&#9733;';       
+    <h3>Section 1</h3>
+    <div class="stars"></div>
+    <h3>Section 2</h3>
+    <div class="stars"></div>    
+    <h3>Reset section</h3>
+    <button type="button" class="button"onclick="resetStars()">Reset</button>     
+    <script>
+    const starContainers = document.querySelectorAll('.stars');    
+    starContainers.forEach((el)=> {
+      const starsUL = createElements(el, 'ul', 'main');
+      for(let x=0; x<5; x++) {
+        const star=createElements(starsUL, 'div', 'star');
+        star.innerHTML ='&#9733;';       
         star.starValue=(x+1);
-        ["mouseover", "mouseout", "click"].forEach((el)=>{
-          star.addEventListener(el, starRate);
+        ["mouseover", "mouseout", "click"].forEach((elem)=> {
+          star.addEventListener(elem, starRate);
         })
       }
+    }) 
+
+    function starRate(e) {     
+      const eventType = e.type;
+      const parent = e.target.closest('ul');
+      console.log(parent);   
+      const curStars = parent.querySelectorAll('.star')     
+      if(eventType==='click') {          
+        addOrange(curStars, e.target.starValue);
+      }
+      if(eventType==='mouseover') {
+        addOrange(curStars, e.target.starValue);
+      }
+    }
+
+    function addOrange(curStars, val) {
+      console.log(val);
+      curStars.forEach((star , index)=> {
+        if (index<val) {
+          star.classList.add('orange');
+        }else {
+          star.classList.remove('orange');
+        }
+        })
+    }
+
+    function resetStars() {
+      const starContainers = document.querySelectorAll('.stars');
+      starContainers.forEach((el)=> {
+        const curStars = el.querySelectorAll('.star');
+        curStars.forEach((star)=> {
+          star.classList.remove('orange');
+        })
+      });
+    }      
       
-      function starRate(e){
-        console.log(e.type);
-        console.log(e.target.starValue);
-        const eventType = e.type;
-        const curStars = document.querySelectorAll('.star');
-        if(eventType==='click'){
-          output.innerHTML = `You rated this ${e.target.starValue} stars`;
-          addOrange(curStars, e.target.starValue);
-        }
-        if(eventType==='mouseover'){
-          addGray(curStars, e.target.starValue);
-        }
-      }
-
-      function addOrange(curStars, val){
-        console.log(val);
-        curStars.forEach((star, index)=>{
-          if (index<val){
-            star.classList.add('orange');
-          }else{
-            star.classList.remove('orange');
-          }
-          })
-      }
-
-      function addGray(curStars, val){
-        console.log(val);
-        curStars.forEach((star, index)=>{
-          if (index<val){
-            star.classList.add('gray');
-          }else{
-            star.classList.remove('gray');
-          }
-          })
-      }
-
-      function createElements(parent, elType, myClass){
-        const el = document.createElement(elType);
-        el.classList.add(myClass);
-        parent.append(el);
-        return el;
-      }       
-      </script>
+    function createElements(parent, elType, myClass) {
+      const el = document.createElement(elType);
+      el.classList.add(myClass);
+      parent.append(el);
+      return el;
+    }    
+  
+    </script>
     <noscript>
       <strong>We're sorry but %= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>  
     </noscript>    
