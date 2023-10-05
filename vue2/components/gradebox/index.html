@@ -1,123 +1,159 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Вариант 2: Оценка</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;;
-        background: #faf0e6
-      }
-
-      body {
-        justify-content: center;
-        justify-content: center;
-        min-height: 50vh;
-        background: #faf0e6
-      }
-      
-      .stars ul {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .star {
-        font-size: 2em;
-        color: #a8b2b6;
-        display: inline-block;
-      }      
-      
-      .button { 
-        background-color: white;
-        color: #1d8be6;
-        border: none;
-        cursor: pointer;
-        width: 100px;
-        padding: 10px;
-        margin-top: 10px;
-        border-radius: 10px;
-        box-shadow: 0 6px 8px 0 #3c35a566;
-      }
-
-      h3 {
-        color: #1d8be6;
-      }
-
-      .orange {
-        color: orange;
-      }
-      
-    </style>
-  </head>
-  <body>
-    <h3>Section 1</h3>
-    <div class="stars"></div>
-    <h3>Section 2</h3>
-    <div class="stars"></div>    
-    <h3>Reset section</h3>
-    <button type="button" class="button"onclick="resetStars()">Reset</button>     
-    <script>
-    const starContainers = document.querySelectorAll('.stars');    
-    starContainers.forEach((el)=> {
-      const starsUL = createElements(el, 'ul', 'main');
-      for(let x=0; x<5; x++) {
-        const star=createElements(starsUL, 'div', 'star');
-        star.innerHTML ='&#9733;';       
-        star.starValue=(x+1);
-        ["mouseover", "mouseout", "click"].forEach((elem)=> {
-          star.addEventListener(elem, starRate);
-        })
-      }
-    }) 
-
-    function starRate(e) {     
-      const eventType = e.type;
-      const parent = e.target.closest('ul');
-      console.log(parent);   
-      const curStars = parent.querySelectorAll('.star')     
-      if(eventType==='click') {          
-        addOrange(curStars, e.target.starValue);
-      }
-      if(eventType==='mouseover') {
-        addOrange(curStars, e.target.starValue);
-      }
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Вариант 2: Оценка</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: #faf0e6;
     }
 
-    function addOrange(curStars, val) {
-      console.log(val);
-      curStars.forEach((star , index)=> {
-        if (index<val) {
-          star.classList.add('orange');
-        }else {
-          star.classList.remove('orange');
-        }
-        })
+    body {
+      min-height: 50vh;
+      background: #faf0e6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
-    function resetStars() {
-      const starContainers = document.querySelectorAll('.stars');
-      starContainers.forEach((el)=> {
-        const curStars = el.querySelectorAll('.star');
-        curStars.forEach((star)=> {
-          star.classList.remove('orange');
-        })
-      });
-    }      
-      
-    function createElements(parent, elType, myClass) {
-      const el = document.createElement(elType);
-      el.classList.add(myClass);
-      parent.append(el);
-      return el;
-    }    
-  
-    </script>
-    <noscript>
-      <strong>We're sorry but %= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>  
-    </noscript>    
-  </body>
+    .stars ul {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .star {
+      font-size: 2em;
+      color: #a8b2b6;
+      display: inline-block;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .button {
+      background-color: white;
+      color: #1d8be6;
+      border: none;
+      cursor: pointer;
+      width: 100px;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    h3 {
+      color: #1d8be6;
+    }
+
+    .orange {
+      color: orange !important;
+    }
+
+    .gray {
+      color: #a8b2b6 !important;
+    }
+  </style>
+</head>
+<body>
+<h3>Section 1</h3>
+<div class="stars" id="section1"></div>
+<h3>Section 2</h3>
+<div class="stars" id="section2"></div>
+<h3>Reset section 1</h3>
+<button type="button" class="button" onclick="resetStars(0)">Reset</button>
+<h3>Reset section 2</h3>
+<button type="button" class="button" onclick="resetStars(1)">Reset</button>
+<script>
+  const starContainers = document.querySelectorAll('.stars');
+  const my_stars = [[], []]; // Arrays for stars in each section
+  const selectedRating = [0, 0]; // Array to store the selected rating for each section
+  starContainers.forEach((el, sectionIndex) => {
+    const starsUL = createElements(el, 'ul', 'main');
+    for (let x = 0; x < 5; x++) {
+      const star = createElements(starsUL, 'div', 'star');
+      star.innerHTML = '&#9733;';
+      star.starValue = x + 1;
+      star.addEventListener("mouseenter", starRateEnter);
+      star.addEventListener("mouseleave", starRateLeave);
+      star.addEventListener("click", starRateClick);
+      my_stars[sectionIndex].push(star); // Add the star to the corresponding array
+    }
+  });
+
+  function starRateEnter(e) {
+    const parent = e.target.closest('.stars');
+    const sectionIndex = Array.from(starContainers).indexOf(parent);
+    const curStars = parent.querySelectorAll('.star');
+    const val = e.target.starValue;
+    curStars.forEach((star, index) => {
+      if (index < val) {
+        star.classList.add('orange');
+        star.classList.remove('gray');
+      } else {
+        star.classList.remove('orange');
+        star.classList.add('gray');
+      }
+    });
+  }
+
+  function starRateLeave(e) {
+    const parent = e.target.closest('.stars');
+    const sectionIndex = Array.from(starContainers).indexOf(parent);
+    const curStars = parent.querySelectorAll('.star');
+    const val = selectedRating[sectionIndex];
+    curStars.forEach((star, index) => {
+      if (index < val) {
+        star.classList.add('orange');
+        star.classList.remove('gray');
+      } else {
+        star.classList.remove('orange');
+        star.classList.add('gray');
+      }
+    });
+  }
+
+  function starRateClick(e) {
+    const parent = e.target.closest('.stars');
+    const sectionIndex = Array.from(starContainers).indexOf(parent);
+    const val = e.target.starValue;
+    selectedRating[sectionIndex] = val; // Store the selected rating
+    const curStars = parent.querySelectorAll('.star');
+    curStars.forEach((star, index) => {
+      if (index < val) {
+        star.classList.add('orange');
+      } else {
+        star.classList.remove('orange');
+      }
+    });
+  }
+
+  function resetStars(sectionIndex) {
+    selectedRating[sectionIndex] = 0; // Reset the selected rating to zero
+    const starsSection = my_stars[sectionIndex];
+    starsSection.forEach((star) => {
+      star.classList.remove('orange');
+      star.classList.add('gray');
+    });
+  }
+
+  function createElements(parent, elType, myClass) {
+    const el = document.createElement(elType);
+    el.classList.add(myClass);
+    parent.append(el);
+    return el;
+  }
+</script>
+<noscript>
+  <strong>We're sorry but %= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+</body>
 </html>
