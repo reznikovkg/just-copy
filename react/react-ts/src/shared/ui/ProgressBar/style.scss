@@ -7,14 +7,14 @@
 
   .progress {
     border: 1px solid black;
-    height: 16px;
+    height: fit-content;
     border-radius: 10px;
   }
 
   .progress__bar {
     background-color: dodgerblue;
     text-align: center;
-    height: 100%;
+    height: fit-content;
     font-weight: 600;
     border-radius: 10px;
 
