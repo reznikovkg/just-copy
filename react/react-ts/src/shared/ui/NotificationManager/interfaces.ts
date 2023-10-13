@@ -1,4 +1,4 @@
-import { INotification } from "./../Notification/interfaces";
+import { INotification } from "../Notification/interfaces";
 export interface INotificationOption {
   id?: string;
   title: string;
