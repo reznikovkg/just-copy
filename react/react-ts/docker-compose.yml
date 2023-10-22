@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  react-ts:
+    build: .
+    restart: always
+    ports:
+      - "80:80"
