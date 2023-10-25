@@ -1,17 +1,11 @@
-FROM node:17-alpine as build
+FROM node:17-alpine
 
 WORKDIR /app
+
 COPY . .
 
 RUN npm install
-RUN npm run build
 
-FROM nginx
+EXPOSE 5173
 
-COPY --from=build /app/dist /var/www
-
-COPY nginx.conf /etc/nginx/nginx.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "dev"]
