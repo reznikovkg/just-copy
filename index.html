@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notification</title>
+</head>
+
+<style>
+    .notification-container {
+        position: fixed;
+        right: 16px;
+        top: 16px;
+        width: 300px;
+    }
+
+    .notification {
+        position: relative;
+        overflow: hidden;
+        padding: 16px;
+        margin-bottom: 16px;
+        transition: 0.3s opacity;
+    }
+
+    .notification-hide {
+        left: 100%;
+        opacity: 0;
+        transition: 0.5s;
+    }
+
+    .notification-show {
+        left: 0;
+        opacity: 1;
+        transition: 0.5s;
+    }
+
+    .notification-default-theme {
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.075);
+    }
+
+    .notification-header {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .notification-description {
+        font-size: 14px;
+    }
+
+    .close-button {
+        background: transparent url("close_icon.svg") center/10px auto no-repeat;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .notification-close {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 16px;
+        margin: auto;
+        height: 20px;
+    }
+</style>
+
+<body>
+    <button id="show-notification">Показать</button>
+
+</html>
+
+<script>
+    document.querySelector('#show-notification').onclick = () => {
+        new Notification({
+            title: "Заголовок",
+            description: "Описание",
+            interval: 10
+        })
+    }
+
+    class Notification {
+        constructor(params) {
+            this.title = params["title"]
+            this.description = params["description"]
+            this.interval = params["interval"]
+            this.showView()
+        }
+
+        addContainerIfNeed() {
+            if (!document.querySelector('.notification-container')) {
+                const container = document.createElement('div')
+                container.classList.add('notification-container')
+                document.body.append(container)
+            }
+        }
+
+        removeView() {
+            this.view.classList.add('notification-hide')
+            this.view.classList.remove('notification-show')
+            this.view.addEventListener('transitionend', () => {
+                this.view.classList.remove('notification-hide')
+                this.view.remove()
+            }, {
+                once: true
+            })
+        }
+
+        showView() {
+            const newView = document.createElement('div')
+            newView.classList.add('notification')
+            newView.classList.add(`notification-default-theme`)
+            newView.classList.add('notification-hide')
+            let html = '<div class="notification-header"></div>\n' + 
+                        '<div class="notification-description"></div>\n' + 
+                        '<button class="notification-close close-button" type="button"></button>'
+            newView.innerHTML = html
+            newView.querySelector('.notification-header').textContent = this.title
+            newView.querySelector('.notification-description').textContent = this.description
+            this.view = newView
+            this.addContainerIfNeed()
+            document.querySelector('.notification-container').append(this.view)
+            if (this.interval !== undefined) {
+                setTimeout(() => {
+                    this.removeView()
+                }, this.interval * 1000)
+            }
+            this.view.querySelector('.notification-close').addEventListener('click', (e) => {
+                this.removeView()
+            })
+            window.setTimeout(() => {
+                this.view.classList.remove('notification-hide')
+                this.view.classList.add('notification-show')
+            })
+        }
+    }
+</script>
