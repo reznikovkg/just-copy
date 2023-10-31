@@ -1,14 +1,7 @@
-import {z} from 'zod'
+const urlRegex = /^(http|https):\/\/([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})?|localhost)(:\d+)?(\/.*)?$/;
 
-const envVariables = z.object({
-    VITE_API_ENDPOINT: z.string().url(),
-})
-
-envVariables.parse(import.meta.env);
-
-declare global {
-    interface ImportMetaEnv extends z.infer<typeof envVariables> {
-    }
+if (!urlRegex.test(import.meta.env.VITE_API_ENDPOINT)) {
+    throw new Error("VITE_API_ENDPOINT is not a valid URL");
 }
 
 export const config = {
