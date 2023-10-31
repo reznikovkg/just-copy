@@ -7,6 +7,12 @@ export default defineConfig({
   build: {
     target: 'esnext'
   },
+  server: {
+    host: '0.0.0.0',
+    watch: {
+      usePolling: true
+    }
+  },
   plugins: [
     react(),
   ],
