@@ -4,71 +4,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         form {
-            display: block;
-            margin-bottom: 10;
+          display: block;
+          margin-bottom: 10;
         }
         
       .switch-field__switch-button-off {
-        display: inline-block;
-            width: 62px; 
-            height: 24px;
-            border-radius: 12px; 
-            background: #d80909;
-            z-index: 0;
-            margin: 0;
-            padding: 0;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            transition-duration: 300ms; 
+          display: inline-block;
+          width: 62px; 
+          height: 24px;
+          border-radius: 12px; 
+          background: #d80909;
+          z-index: 0;
+          margin: 0;
+          padding: 0;
+          border: none;
+          cursor: pointer;
+          position: relative;
+          transition-duration: 300ms; 
       }
         
       .switch-field__switch-button-off::after {
-        content: "";
-            height: 36px; 
-            width: 36px; 
-            border-radius: 18px;
-            background: #fff; 
-            top: -6px; 
-            left: -6px; 
-            transition-duration: 300ms;
-            box-shadow: 0 0 10px 0 #999999; 
-            position: absolute;
-            z-index: 1;
+          content: "";
+          height: 36px; 
+          width: 36px; 
+          border-radius: 18px;
+          background: #fff; 
+          top: -6px; 
+          left: -6px; 
+          transition-duration: 300ms;
+          box-shadow: 0 0 10px 0 #999999; 
+          position: absolute;
+          z-index: 1;
         }
         
       .switch-field__switch-button-on {
-        display: inline-block;
-            width: 62px; 
-            height: 24px; 
-            border-radius: 12px; 
-            background: #1aff00; 
-            z-index: 0;
-            margin: 0;
-            padding: 0;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            transition-duration: 300ms; 
+          display: inline-block;
+          width: 62px; 
+          height: 24px; 
+          border-radius: 12px; 
+          background: #1aff00; 
+          z-index: 0;
+          margin: 0;
+          padding: 0;
+          border: none;
+          cursor: pointer;
+          position: relative;
+          transition-duration: 300ms; 
       }
         
       .switch-field__switch-button-on::after{
-      content: "";
-            height: 36px; 
-            width: 36px; 
-            border-radius: 18px; 
-            background: #fff; 
-            top: -6px; 
-            left: 30px; 
-            transition-duration: 300ms;
-            box-shadow: 0 0 10px 0 #999999; 
-            position: absolute;
-            z-index: 1;
+          content: "";
+          height: 36px; 
+          width: 36px; 
+          border-radius: 18px; 
+          background: #fff; 
+          top: -6px; 
+          left: 30px; 
+          transition-duration: 300ms;
+          box-shadow: 0 0 10px 0 #999999; 
+          position: absolute;
+          z-index: 1;
       }
      
       .switch-field__checkbox {
-        position: relative; 
-        bottom: -35px;  
+          position: relative; 
+          bottom: -35px;  
       }
  
       .checkbox-text{
@@ -83,17 +83,13 @@
 </head>
 <body>
     
-    <form class="switch-field">
-       <div role="switch" class="switch-field__switch-button-off">
-      <input type="checkbox" name="переключатель" class="switch-field__checkbox">
-        
-    </form>
-    <div>
-      <label class="checkbox-text flag-selected" for="переключатель">Переключатель</label>
-    </div>
-    
-</body>
+<form class="switch-field">
+  <div role="switch" class="switch-field__switch-button-off">
+  <input type="checkbox" name="переключатель" class="switch-field__checkbox">     
+</form>
+<div><label class="checkbox-text flag-selected" for="переключатель">Переключатель</label></div>
 
+</body>
 <script>
 
 const switchButton = document.querySelector('.switch-field__switch-button-off');
@@ -103,17 +99,14 @@ switchButton.addEventListener('click', function() {
  
   if (switchButton.classList.contains('switch-field__switch-button-on')) 
   {
-   
     switchButton.classList.remove('switch-field__switch-button-on');
     switchButton.classList.add('switch-field__switch-button-off');
     checkbox.checked = false;
-    
-  } else {
-  
+  } else 
+  {
     switchButton.classList.remove('switch-field__switch-button-off');
     switchButton.classList.add('switch-field__switch-button-on');
     checkbox.checked = true;
-
   }
 });
 </script>
