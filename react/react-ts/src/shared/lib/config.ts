@@ -5,5 +5,6 @@ if (!urlRegex.test(import.meta.env.VITE_API_ENDPOINT)) {
 }
 
 export const config = {
-    API_ENDPOINT: import.meta.env.VITE_API_ENDPOINT
+    API_ENDPOINT: import.meta.env.VITE_API_ENDPOINT,
+    WS_ENDPOINT: import.meta.env.VITE_API_ENDPOINT.replace("http", "ws").replace("https", "ws")
 } as const

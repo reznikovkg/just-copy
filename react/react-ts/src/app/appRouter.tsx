@@ -1,6 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
 import MainPage from "@/pages/MainPage/MainPage";
 import {Layout} from "@/layout/Layout";
+import EventPage from "@/pages/EventPage/EventPage";
 
 export const appRouter = createBrowserRouter([
     {
@@ -13,4 +14,8 @@ export const appRouter = createBrowserRouter([
             },
         ],
     },
+    {
+        path: '/events',
+        element: <EventPage />,
+    }
 ])

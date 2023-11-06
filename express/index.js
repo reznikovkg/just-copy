@@ -3,6 +3,13 @@ const app = express()
 const port = 3000
 const cors = require('cors');
 app.use(cors());
+const http = require('http');
+const server = http.createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*',
+    }
+});
 
 const db = [
   {
@@ -31,6 +38,28 @@ const db = [
   },
 ]
 
+io.on('connection', (socket) => {
+    console.log(`Client with id ${socket.id} connected`);
+
+    socket.emit('message', "Hello Message from server")
+
+    socket.on('message', (message) => {
+        console.log(`Message "${message}" received`);
+        socket.emit('message', "Message from server")
+    });
+
+    socket.on('disconnect', () => {
+        console.log(`Client with id ${socket.id} disconnected`);
+    });
+});
+
+app.get('/ws/requestMessage', (req, res) => {
+    io.emit(
+        'message',"Requested message from server"
+    );
+    res.json({message: "Message has been sent via websocket"})
+});
+
 app.get('/', (req, res) => {
   res.send('My backend!!!')
 })
@@ -49,6 +78,6 @@ app.get('/json/:id', (req, res) => {
   return res.json(db.find(item => (item.id === req.params.id)))
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
