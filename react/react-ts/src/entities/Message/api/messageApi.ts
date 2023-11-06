@@ -18,8 +18,6 @@ const getSocket = () => {
     return socket;
 };
 
-getSocket()
-
 export const messageApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         sendMessage: build.mutation<string, string>({
