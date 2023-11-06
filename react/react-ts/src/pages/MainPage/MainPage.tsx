@@ -2,6 +2,7 @@ import "./MainPage.scss"
 import {NotificationWidget} from "@/widgets/NotificationWidget/NotificationWidget";
 import {ProgressBarWidget} from "@/widgets/ProgressBarWidget/ProgressBarWidget";
 import {RatingStarsWidget} from "@/widgets/RatingStarsWidget/RatingStarsWidget";
+import {Link} from "react-router-dom";
 
 const MainPage = () => {
     return (
@@ -9,6 +10,8 @@ const MainPage = () => {
             <NotificationWidget/>
             <ProgressBarWidget/>
             <RatingStarsWidget/>
+
+            <Link to={"/events"}>Events</Link>
         </div>
     );
 };
