@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(38, 186, 58, 0.7);
+      color: #21151e;
+      padding: 20px 20px;
+      border-radius: 10px;
+      border-color: #71ef12;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+<button id="showNotification">Показать уведомление</button>
+<div id="notification" class="notification"></div>
+<script>
+  const showNotificationButton = document.getElementById('showNotification');
+  const notification = document.getElementById('notification');
+
+  showNotificationButton.addEventListener('click', () => {
+    notification.style.display = 'block';
+    notification.innerText = 'Пришло уведомление';
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 3000);
+  });
+</script>
+</body>
+</html>
