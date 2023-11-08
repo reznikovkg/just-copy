@@ -1,16 +1,12 @@
 import {baseApi} from "@/shared/api";
-import {io, Socket} from "socket.io-client";
 import {config} from "@/shared/lib/config";
 
-
-let socket: Socket;
+let socket: WebSocket;
 
 const getSocket = () => {
     if (!socket) {
         try {
-            socket = io(config.API_ENDPOINT, {
-                withCredentials: false,
-            });
+            socket = new WebSocket(config.WS_ENDPOINT);
         } catch (err) {
             console.log(err)
         }
@@ -20,13 +16,10 @@ const getSocket = () => {
 
 export const messageApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        sendMessage: build.mutation<string, string>({
+        sendMessage: build.mutation<void, string>({
             queryFn: (message: string) => {
-                return new Promise(resolve => {
-                    getSocket().emit('message', message, (message: string) => {
-                        resolve({data: message});
-                    });
-                })
+                getSocket().send(message);
+                return { data: undefined };
             },
         }),
         requestMessage: build.mutation<string, void>({
@@ -39,12 +32,11 @@ export const messageApi = baseApi.injectEndpoints({
                 {updateCachedData, cacheDataLoaded, cacheEntryRemoved}
             ) {
                 await cacheDataLoaded;
-
-                getSocket().on('message', (message: string) => {
+                getSocket().onmessage = function(event) {
                     updateCachedData((draft) => {
-                        draft.push(message)
+                        draft.push(event.data)
                     })
-                });
+                };
             }
         }),
     }),

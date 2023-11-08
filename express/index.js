@@ -4,12 +4,9 @@ const port = 3000
 const cors = require('cors');
 app.use(cors());
 const http = require('http');
+const WebSocket = require("ws");
 const server = http.createServer(app);
-const io = require('socket.io')(server, {
-    cors: {
-        origin: '*',
-    }
-});
+const webSocketServer = new WebSocket.Server({ server });
 
 const db = [
   {
@@ -38,25 +35,27 @@ const db = [
   },
 ]
 
-io.on('connection', (socket) => {
-    console.log(`Client with id ${socket.id} connected`);
+webSocketServer.on('connection', ws => {
+    console.log(`Client connected`);
 
-    socket.emit('message', "Hello Message from server")
+    ws.send('Hi there, I am a WebSocket server');
 
-    socket.on('message', (message) => {
+    ws.on('message', (message) => {
         console.log(`Message "${message}" received`);
-        socket.emit('message', "Message from server")
+        ws.send("Message from server")
     });
 
-    socket.on('disconnect', () => {
-        console.log(`Client with id ${socket.id} disconnected`);
+    ws.on('disconnect', () => {
+        console.log(`Client disconnected`);
     });
 });
 
 app.get('/ws/requestMessage', (req, res) => {
-    io.emit(
-        'message',"Requested message from server"
-    );
+    webSocketServer.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send("Requested message from server");
+        }
+    });
     res.json({message: "Message has been sent via websocket"})
 });
 
