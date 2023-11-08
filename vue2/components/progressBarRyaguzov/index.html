@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div {
+            display: block;
+            margin-bottom: 1;
+        }
+        .el-progress {
+            position: relative;
+            line-height: 1;
+        }
+        .el-progress-bar {
+            padding-right: 50px;
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+            margin-right: -55px;
+            box-sizing: border-box;
+        }
+        .el-progress-bar__outer {
+            height: 6px;
+            border-radius: 100px;
+            background-color: #ebeef5;
+            overflow: hidden;
+            position: relative;
+            vertical-align: middle;
+        }
+        .el-progress-bar__inner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            text-align: right;
+            border-radius: 100px;
+            line-height: 1;
+        }
+        .el-progress__text {
+            font-size: 14.4px;
+            color: rgb(96, 98, 102);
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+            line-height: 1;
+        }
+
+    </style>
+    <title>Progress bar</title>
+</head>
+<body>
+    <div>
+        <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="el-progress el-progress--line">
+            <div class="el-progress-bar">
+                <div class="el-progress-bar__outer">
+                    <div class="el-progress-bar__inner"></div>
+                </div>
+            </div>
+            <div class="el-progress__text"></div>
+        </div> 
+        <button id="decrement">-10</button>
+        <button id="increment">+10</button>
+    </div>
+</body>
+<script>
+const progressBar = document.querySelector(".el-progress-bar__inner");
+
+const progressText = document.querySelector(".el-progress__text");
+
+const decrementButton = document.getElementById("decrement");
+const incrementButton = document.getElementById("increment");
+
+let progressValue = 10;
+
+function updateProgress() {
+  progressBar.style.width = `${progressValue}%`;
+  progressText.textContent = `${progressValue}%`;
+  progressBar.style.backgroundColor = `hsl(${progressValue}, 100%, 50%)`
+}
+window.addEventListener("load", updateProgress);
+
+decrementButton.addEventListener("click", function() {
+  if (progressValue > 0) {
+    progressValue -= 10;
+    updateProgress();
+  }
+});
+
+incrementButton.addEventListener("click", function() {
+  if (progressValue < 100) {
+    progressValue += 10;
+    updateProgress();
+  }
+});
+</script>
+</html>
