@@ -69,28 +69,32 @@
 </head>
 <body>
 
-<div role="switch" class="switch-field switch-field_off">
-<div><input type="checkbox" name="переключатель" class="checkbox-field_checkbox"> </div>
-<div><label class="checkbox-text flag-selected" for="переключатель">Переключатель</label></div>
+<div role="switch" class="switch-field switch-field_off" name="switch_1">
+<div><input type="checkbox" name="checkbox_1" class="checkbox-field_checkbox"> </div>
+<div><label class="checkbox-text flag-selected" for="checkbox_1">Переключатель_1</label></div>
+<br>
+<br>
+<div role="switch" class="switch-field switch-field_off" name="switch_2">
+<div><input type="checkbox" name="checkbox_2" class="checkbox-field_checkbox"> </div>
+<div><label class="checkbox-text flag-selected" for="checkbox_2">Переключатель_2</label></div>
 </body>
+
 <script>
-
-const switchButton = document.querySelector('.switch-field');
-const checkbox = document.querySelector('.checkbox-field_checkbox');
-
-switchButton.addEventListener('click', function() {
- 
-  if (switchButton.classList.contains('switch-field_on')) 
-  {
-    switchButton.classList.remove('switch-field_on');
-    switchButton.classList.add('switch-field_off');
-    checkbox.checked = false;
-  } else 
-  {
-    switchButton.classList.remove('switch-field_off');
-    switchButton.classList.add('switch-field_on');
-    checkbox.checked = true;
-  }
-});
+  const switchButtons = document.querySelectorAll('.switch-field');
+  switchButtons.forEach(function(switchButton) {
+    switchButton.addEventListener('click', function(event) {
+      const target = event.currentTarget;
+      const checkbox = target.querySelector('.checkbox-field_checkbox');
+        if (target.classList.contains('switch-field_on')) {
+          target.classList.remove('switch-field_on');
+          target.classList.add('switch-field_off');
+          checkbox.checked = false;
+        } else {
+          target.classList.remove('switch-field_off');
+          target.classList.add('switch-field_on');
+          checkbox.checked = true;
+      }
+    });
+  });
 </script>
 </html>
