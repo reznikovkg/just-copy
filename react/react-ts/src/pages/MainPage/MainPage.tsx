@@ -10,8 +10,10 @@ const MainPage = () => {
             <NotificationWidget/>
             <ProgressBarWidget/>
             <RatingStarsWidget/>
-
-            <Link to={"/events"}>Events</Link>
+            <div className={"main__nav"}>
+                <Link to={"/events"}>Events</Link>
+                <Link to={"/notes"}>Notes</Link>
+            </div>
         </div>
     );
 };
