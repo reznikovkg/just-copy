@@ -4,7 +4,7 @@ import {VirtualScrollWidget} from "@/widgets/VirtualScrollWidget/VirtualScrollWi
 
 const VirtualScrollPage = () => {
     return (
-        <div className={"note"}>
+        <div className={"virtual-scroll"}>
             <VirtualScrollWidget/>
 
             <Link to={"/"}>Main</Link>
