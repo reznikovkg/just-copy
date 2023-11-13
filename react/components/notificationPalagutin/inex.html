@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     .notification {
-      position: fixed;
-      top: 20px;
-      right: 20px;
       background-color: rgba(38, 186, 58, 0.7);
       color: #21151e;
       padding: 10px 20px;
@@ -16,6 +13,12 @@
       margin-top: 10px;
       display: none;
     }
+    #notificationContainer  {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
   </style>
 </head>
 <body>
@@ -41,11 +44,6 @@
     });
 
     newNotification.appendChild(closeButton);
-
-    const existingNotifications = document.querySelectorAll('.notification');
-    const offset = existingNotifications.length * 40;
-
-    newNotification.style.top = `${20 + offset}px`;
 
     notificationContainer.appendChild(newNotification);
 
