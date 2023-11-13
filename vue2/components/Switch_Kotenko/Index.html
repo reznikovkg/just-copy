@@ -5,7 +5,8 @@
     <style>
         
      .switch-field{
-          display: inline-block;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
           width: 62px; 
           height: 24px;
           border-radius: 12px; 
@@ -53,14 +54,15 @@
      
       .checkbox-field_checkbox {
           position: relative; 
-          bottom: -35px; 
+          top: 5;
+          left: 70px;
            
       }
  
       .checkbox-text{
           position: relative; 
-          bottom: -16px;
-          left: 25;
+          top: 6;
+          left: 80px;
       }
 
     </style>
@@ -68,23 +70,25 @@
     
 </head>
 <body>
-
-<div role="switch" class="switch-field switch-field_off" name="switch_1">
-<div><input type="checkbox" name="checkbox_1" class="checkbox-field_checkbox"> </div>
-<div><label class="checkbox-text flag-selected" for="checkbox_1">Переключатель_1</label></div>
-<br>
-<br>
-<div role="switch" class="switch-field switch-field_off" name="switch_2">
-<div><input type="checkbox" name="checkbox_2" class="checkbox-field_checkbox"> </div>
-<div><label class="checkbox-text flag-selected" for="checkbox_2">Переключатель_2</label></div>
+  <div role="switch" class="switch-field switch-field_off" name="switch_1">
+    <input type="checkbox" name="checkbox_1" class="checkbox-field_checkbox">
+    <label class="checkbox-text flag-selected" for="checkbox_1">Переключатель_1</label>
+  </div>
+  <br>
+  <div role="switch" class="switch-field switch-field_off" name="switch_2">
+    <input type="checkbox" name="checkbox_2" class="checkbox-field_checkbox">
+    <label class="checkbox-text flag-selected" for="checkbox_2">Переключатель_2</label>
+  </div>
+  <br>
+  <input type="checkbox" name="checkbox_3" class="checkbox-field_checkbox">
+  <label class="checkbox-text flag-selected" for="checkbox_3">Переключатель_3</label>
 </body>
-
-<script>
-  const switchButtons = document.querySelectorAll('.switch-field');
-  switchButtons.forEach(function(switchButton) {
-    switchButton.addEventListener('click', function(event) {
-      const target = event.currentTarget;
-      const checkbox = target.querySelector('.checkbox-field_checkbox');
+  <script>
+    const switchButtons = document.querySelectorAll('.switch-field');
+    switchButtons.forEach(function(switchButton) {
+      const checkbox = switchButton.querySelector('.checkbox-field_checkbox');
+      switchButton.addEventListener('click', function(event) {
+        const target = event.currentTarget;
         if (target.classList.contains('switch-field_on')) {
           target.classList.remove('switch-field_on');
           target.classList.add('switch-field_off');
@@ -93,8 +97,8 @@
           target.classList.remove('switch-field_off');
           target.classList.add('switch-field_on');
           checkbox.checked = true;
-      }
+        }
+      });
     });
-  });
-</script>
-</html>
+  </script>
+  </html>
