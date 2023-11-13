@@ -83,12 +83,13 @@
   <input type="checkbox" name="checkbox_3" class="checkbox-field_checkbox">
   <label class="checkbox-text flag-selected" for="checkbox_3">Переключатель_3</label>
 </body>
-  <script>
-    const switchButtons = document.querySelectorAll('.switch-field');
-    switchButtons.forEach(function(switchButton) {
-      const checkbox = switchButton.querySelector('.checkbox-field_checkbox');
-      switchButton.addEventListener('click', function(event) {
-        const target = event.currentTarget;
+
+<script>
+  const switchButtons = document.querySelectorAll('.switch-field');
+  switchButtons.forEach(function(switchButton) {
+    switchButton.addEventListener('click', function(event) {
+      const target = event.currentTarget;
+      const checkbox = target.querySelector('.checkbox-field_checkbox');
         if (target.classList.contains('switch-field_on')) {
           target.classList.remove('switch-field_on');
           target.classList.add('switch-field_off');
