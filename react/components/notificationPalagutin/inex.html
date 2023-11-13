@@ -10,27 +10,52 @@
       right: 20px;
       background-color: rgba(38, 186, 58, 0.7);
       color: #21151e;
-      padding: 20px 20px;
-      border-radius: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
       border-color: #71ef12;
+      margin-top: 10px;
       display: none;
     }
   </style>
 </head>
-
 <body>
-<button id="showNotification">Показать уведомление</button>
-<div id="notification" class="notification"></div>
+<button id="showNotification">Show Notification</button>
+<div id="notificationContainer"></div>
+
 <script>
   const showNotificationButton = document.getElementById('showNotification');
-  const notification = document.getElementById('notification');
+  const notificationContainer = document.getElementById('notificationContainer');
+  let notificationCount = 0;
 
   showNotificationButton.addEventListener('click', () => {
-    notification.style.display = 'block';
-    notification.innerText = 'Пришло уведомление';
+    const newNotification = document.createElement('div');
+    newNotification.classList.add('notification');
+    newNotification.innerText = `Уведомление номер ${++notificationCount}`;
+
+
+    const closeButton = document.createElement('span');
+    closeButton.classList.add('closeButton');
+    closeButton.innerHTML = '&#10006;';
+    closeButton.addEventListener('click', () => {
+      notificationContainer.removeChild(newNotification);
+    });
+
+    newNotification.appendChild(closeButton);
+
+    const existingNotifications = document.querySelectorAll('.notification');
+    const offset = existingNotifications.length * 40;
+
+    newNotification.style.top = `${20 + offset}px`;
+
+    notificationContainer.appendChild(newNotification);
+
     setTimeout(() => {
-      notification.style.display = 'none';
-    }, 3000);
+      newNotification.style.display = 'block';
+      setTimeout(() => {
+        newNotification.style.display = 'none';
+        notificationContainer.removeChild(newNotification);
+      }, 3000);
+    }, 100);
   });
 </script>
 </body>
