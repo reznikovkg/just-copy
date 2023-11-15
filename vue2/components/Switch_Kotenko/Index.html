@@ -80,27 +80,30 @@
     <label class="checkbox-text flag-selected" for="checkbox_2">Переключатель_2</label>
   </div>
   <br>
-  <input type="checkbox" name="checkbox_3" class="checkbox-field_checkbox">
+  <input type="checkbox" id="checkbox_3" class="checkbox-field_checkbox">
   <label class="checkbox-text flag-selected" for="checkbox_3">Переключатель_3</label>
   <div role="switch" class="switch-field switch-field_off" name="switch_3"></div>
+  <input type="checkbox" id="checkbox_4" class="checkbox-field_checkbox">
+  <label class="checkbox-text flag-selected" for="checkbox_4">Переключатель_4</label>
 </body>
 
 <script>
+
   const switchButtons = document.querySelectorAll('.switch-field');
   switchButtons.forEach(function(switchButton) {
     switchButton.addEventListener('click', function(event) {
       const target = event.currentTarget;
       const checkbox = target.querySelector('.checkbox-field_checkbox');
-        if (target.classList.contains('switch-field_on')) {
-          target.classList.remove('switch-field_on');
-          target.classList.add('switch-field_off');
-          checkbox.checked = false;
-        } else {
-          target.classList.remove('switch-field_off');
-          target.classList.add('switch-field_on');
-          checkbox.checked = true;
-        }
-      });
+      if (target.classList.contains('switch-field_on')) {
+        target.classList.remove('switch-field_on');
+        target.classList.add('switch-field_off');
+        checkbox.checked = false;
+      } else {
+        target.classList.remove('switch-field_off');
+        target.classList.add('switch-field_on');
+        checkbox.checked = true;
+      }
     });
-  </script>
-  </html>
+  });
+</script>
+</html>
