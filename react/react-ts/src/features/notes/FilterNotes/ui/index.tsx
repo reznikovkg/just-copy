@@ -1,14 +1,18 @@
 import React from "react";
 import Button from "@/shared/ui/Button/Button";
-import {useAppDispatch, useAppSelector} from "@/shared/model/hooks";
+import {useAppDispatch} from "@/shared/model/hooks";
 import {filterNotes} from "@/features/notes/FilterNotes/model/filterNotes";
+import {FilterDataEvent} from "@/entities/NoteList/model/types";
 
 export const FilterNotes = () => {
     const dispatch = useAppDispatch()
-    const {notes} = useAppSelector(state => state.noteList);
 
     const onClick = () => {
-        dispatch(filterNotes(notes));
+        const filterDataEvent: FilterDataEvent = {
+            cmd: "filterData",
+            payload: "blue"
+        }
+        dispatch(filterNotes(filterDataEvent));
     }
 
     return (

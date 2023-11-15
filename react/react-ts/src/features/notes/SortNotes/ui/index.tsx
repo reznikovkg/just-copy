@@ -1,14 +1,18 @@
 import React from "react";
 import Button from "@/shared/ui/Button/Button";
-import {useAppDispatch, useAppSelector} from "@/shared/model/hooks";
+import {useAppDispatch} from "@/shared/model/hooks";
 import {sortNotes} from "@/features/notes/SortNotes/model/sortNotes";
+import {SortDataEvent} from "@/entities/NoteList/model/types";
 
 export const SortNotes = () => {
     const dispatch = useAppDispatch()
-    const {notes} = useAppSelector(state => state.noteList);
 
     const onClick = () => {
-        dispatch(sortNotes(notes));
+        const sortDataEvent: SortDataEvent = {
+            cmd: "sortData",
+            payload: "asc"
+        }
+        dispatch(sortNotes(sortDataEvent));
     }
 
     return (

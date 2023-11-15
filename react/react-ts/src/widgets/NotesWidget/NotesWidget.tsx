@@ -1,15 +1,19 @@
 import {useCallback, useEffect, useRef} from "react";
 import {useDynamicSizeList} from "@/shared/ui/VirtualScroll/VirtualScroll";
 import "./NotesWidget.scss"
-import {useAppSelector} from "@/shared/model/hooks";
+import {useAppDispatch, useAppSelector} from "@/shared/model/hooks";
 import {SortNotes} from "@/features/notes/SortNotes";
 import {FilterNotes} from "@/features/notes/FilterNotes";
-import {SetDataEvent} from "@/entities/NoteList/model/types";
+import {Note, SetDataEvent} from "@/entities/NoteList/model/types";
 import {worker} from "@/entities/NoteList/model/webWorketInit";
+import {noteListActions} from "@/entities/NoteList";
 
 export function NotesWidget() {
     const {notes} = useAppSelector(state => state.noteList);
     const scrollElementRef = useRef<HTMLDivElement>(null);
+
+    const dispatch = useAppDispatch()
+    const {updateNoteList} = noteListActions;
 
     useEffect(() => {
         const setDataEvent: SetDataEvent = {
@@ -18,6 +22,11 @@ export function NotesWidget() {
         }
         worker.postMessage(setDataEvent);
     }, [])
+
+    worker.onmessage = (e) => {
+        const updatedNotes: Note[] = e.data;
+        dispatch(updateNoteList(updatedNotes))
+    }
 
     const {virtualItems, totalHeight, measureElement} = useDynamicSizeList({
         estimateItemHeight: useCallback(() => 16, []),
