@@ -13,6 +13,7 @@ const MainPage = () => {
             <div className={"main__nav"}>
                 <Link to={"/events"}>Events</Link>
                 <Link to={"/notes"}>Notes</Link>
+                <Link to={"/zmts"}>ЗМТС</Link>
             </div>
         </div>
     );

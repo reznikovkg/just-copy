@@ -1,0 +1,25 @@
+.zmts-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.zmts-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.zmts-modification {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: start;
+}
+
+.zmts-container {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}

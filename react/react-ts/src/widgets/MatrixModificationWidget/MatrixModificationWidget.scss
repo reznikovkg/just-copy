@@ -1,0 +1,9 @@
+.matrix-column-modification-widget {
+    &__container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
