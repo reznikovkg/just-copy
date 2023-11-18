@@ -80,14 +80,27 @@
     <label class="checkbox-text flag-selected" for="checkbox_2">Переключатель_2</label>
   </div>
   <br>
-  <input type="checkbox" id="checkbox_3" class="checkbox-field_checkbox">
+  
+  <input type="checkbox" name="checkbox_3" class="checkbox-field_checkbox">
   <label class="checkbox-text flag-selected" for="checkbox_3">Переключатель_3</label>
+
   <div role="switch" class="switch-field switch-field_off" name="switch_3"></div>
-  <input type="checkbox" id="checkbox_4" class="checkbox-field_checkbox">
+
+  <input type="checkbox" name="checkbox_4" class="checkbox-field_checkbox">
   <label class="checkbox-text flag-selected" for="checkbox_4">Переключатель_4</label>
 </body>
 
+
 <script>
+  const labels = document.querySelectorAll('.checkbox-text');
+  const checkboxes = document.querySelectorAll('.checkbox-field_checkbox');
+
+  labels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      const checkbox = document.querySelector(`input[name="${this.getAttribute('for')}"]`);
+      checkbox.checked = !checkbox.checked;
+    });
+  }); 
 
   const switchButtons = document.querySelectorAll('.switch-field');
   switchButtons.forEach(function(switchButton) {
