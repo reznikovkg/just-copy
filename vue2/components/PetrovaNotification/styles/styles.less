@@ -1,0 +1,58 @@
+.notification {
+  position: relative;
+  overflow: hidden;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: 0.3s opacity;
+
+  &-container {
+    position: fixed;
+    right: 16px;
+    top: 16px;
+    width: 300px;
+  }
+
+  &-default-theme {
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.075);
+  }
+
+  &-header {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &-description {
+    font-size: 14px;
+  }
+
+  &-close {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 16px;
+    margin: auto;
+    height: 20px;
+  }
+}
+
+.close-button {
+  background: transparent url("close_icon.svg") center/10px auto no-repeat;
+  border: 0;
+  cursor: pointer;
+}
+
+.slide-fade {
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.3s;
+  }
+
+  &-enter,
+  &-leave-to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
