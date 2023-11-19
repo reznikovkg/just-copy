@@ -3,14 +3,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        
+     
      .switch-field{
           display: grid;
           grid-template-columns: 1fr 1fr;
           width: 62px; 
           height: 24px;
           border-radius: 12px; 
-          z-index: 0;
+          z-index: 1;
           margin: 0;
           padding: 0;
           border: none;
@@ -64,7 +64,12 @@
           top: 6;
           left: 80px;
       }
-
+      
+      .container {
+        position: relative; 
+        top: -25;
+        z-index: 0;
+      }
     </style>
     <title>Document</title>
     
@@ -75,21 +80,12 @@
     <label class="checkbox-text flag-selected" for="checkbox_1">Переключатель_1</label>
   </div>
   <br>
-  <div role="switch" class="switch-field switch-field_off" name="switch_2">
+  <div role="switch" class="switch-field switch-field_off" name="switch_2"></div>
+  <div class="container">
     <input type="checkbox" name="checkbox_2" class="checkbox-field_checkbox">
     <label class="checkbox-text flag-selected" for="checkbox_2">Переключатель_2</label>
-  </div>
-  <br>
-  
-  <input type="checkbox" name="checkbox_3" class="checkbox-field_checkbox">
-  <label class="checkbox-text flag-selected" for="checkbox_3">Переключатель_3</label>
-
-  <div role="switch" class="switch-field switch-field_off" name="switch_3"></div>
-
-  <input type="checkbox" name="checkbox_4" class="checkbox-field_checkbox">
-  <label class="checkbox-text flag-selected" for="checkbox_4">Переключатель_4</label>
+</div>
 </body>
-
 
 <script>
   const labels = document.querySelectorAll('.checkbox-text');
