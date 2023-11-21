@@ -1,19 +1,17 @@
 <template>
-  <div class="notification-container" v-if="getNotifications.length > 0">
-    <PetrovaNotificationItem v-for="notification in getNotifications" :notification="notification" />
+  <div v-if="notifications.length > 0" class="notification__container">
+    <PetrovaNotificationItem v-for="notification in notifications" :notification="notification" :key="notification.id" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import PetrovaNotificationItem from "./PetrovaNotificationItem.vue";
 
 export default {
+  name: 'PetrovaNotification',
   components: { PetrovaNotificationItem },
-  computed: {
-    ...mapGetters("petrovaNotification", [
-      "getNotifications",
-    ])
+  props: {
+    notifications: [],
   }
 };
 </script>

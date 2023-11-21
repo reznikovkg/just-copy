@@ -1,17 +1,17 @@
 <template>
   <Transition appear name="slide-fade" @after-leave="afterLeave">
-    <div class="notification notification-default-theme notification-show" v-if="show">
-      <div class="notification-header">{{ notification.title }}</div>
-      <div class="notification-description">{{ notification.description }}</div>
-      <button class="notification-close close-button" type="button" @click="() => safeDelete()"></button>
+    <div v-if="show" class="notification notification--default-theme">
+      <div class="notification__header">{{ notification.title }}</div>
+      <div class="notification__description">{{ notification.description }}</div>
+      <button class="notification__close close-button" type="button" @click="() => safeDelete()"></button>
     </div>
   </Transition>
 </template>
 
 <script>
-import { mapActions } from "vuex";
 
 export default {
+  name: 'PetrovaNotificationItem',
   props: {
     notification: {},
   },
@@ -21,16 +21,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions("petrovaNotification", [
-      "deleteNotification"
-    ]),
     safeDelete() {
       console.log("safeDelete");
       this.show = false;
     },
     afterLeave() {
       console.log("afterLeave");
-      this.deleteNotification(this.notification.id);
+      this.$root.$emit('removeModal', this.notification.id);
     }
   },
   mounted() {
