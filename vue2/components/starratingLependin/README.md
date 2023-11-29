@@ -1,4 +1,4 @@
-# rating-weblancer
+# Star-rating
 
 ## Rating props
 
