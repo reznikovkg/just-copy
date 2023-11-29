@@ -46,3 +46,6 @@ resetRating - сброс рейтинга
 reset - сброс рейтинга
 
 ```
+<p align="center">
+ <img width="200px" src="Stars.png" alt="qr"/>
+</p>
