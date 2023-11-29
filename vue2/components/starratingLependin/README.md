@@ -47,5 +47,5 @@ reset - сброс рейтинга
 
 ```
 <p align="center">
- <img width="200px" src="Stars.png" alt="qr"/>
+ <img width="200px" src="assets/img/Stars.PNG" alt="qr"/>
 </p>
