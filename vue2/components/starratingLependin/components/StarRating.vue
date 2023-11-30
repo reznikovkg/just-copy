@@ -66,6 +66,10 @@ export default {
   },
   computed: {
     ratingHoverWidth() {
+      if (this.ratings.hoverRating <= this.starLimitProps) {
+        return (
+          (this.ratings.hoverRating / this.starLimitProps - 0.5 / this.starLimitProps) * 100);
+      }
       return (this.ratings.hoverRating / this.starLimitProps) * 100;
     },
     ratingWidth() {
@@ -76,7 +80,9 @@ export default {
     },
     viewRating() {
       if (this.ratings.ratingHidden) {
-        return `${this.ratings.hoverRating} out of ${this.starLimitProps}`;
+        return `${this.ratings.hoverRating - 0.5} out of ${
+          this.starLimitProps
+        }`;
       }
       return `${this.ratings.rating} out of ${this.starLimitProps}`;
     },
@@ -91,14 +97,14 @@ export default {
       if (index < this.starLimitProps) {
         this.ratings.hoverRating = index + 0.5;
       } else {
-        this.ratings.hoverRating = index;
+        this.ratings.hoverRating = index + 0.5;
       }
     },
     setRating: function (index) {
-      this.ratings.rating = index;
+      this.ratings.rating = index - 0.5;
     },
     setDecimal: function () {
-      this.ratings.rating = this.ratings.hoverRating;
+      this.ratings.rating = this.ratings.hoverRating - 0.5;
     },
     resetHover: function () {
       this.ratings.ratingHidden = false;
