@@ -67,8 +67,7 @@ export default {
   computed: {
     ratingHoverWidth() {
       if (this.ratings.hoverRating <= this.starLimitProps) {
-        return (
-          (this.ratings.hoverRating / this.starLimitProps - 0.5 / this.starLimitProps) * 100);
+        return ((this.ratings.hoverRating / this.starLimitProps - 0.5 / this.starLimitProps) * 100);
       }
       return (this.ratings.hoverRating / this.starLimitProps) * 100;
     },
@@ -80,9 +79,7 @@ export default {
     },
     viewRating() {
       if (this.ratings.ratingHidden) {
-        return `${this.ratings.hoverRating - 0.5} out of ${
-          this.starLimitProps
-        }`;
+        return `${this.ratings.hoverRating - 0.5} out of ${this.starLimitProps}`;
       }
       return `${this.ratings.rating} out of ${this.starLimitProps}`;
     },
