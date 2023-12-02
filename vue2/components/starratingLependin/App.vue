@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import StarRating from "./components/StarRating.vue";
+import StarRating from "./components/gradeboxLependin/StarRating.vue";
 export default {
   name: "App",
   components: {
