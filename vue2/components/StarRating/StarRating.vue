@@ -1,7 +1,7 @@
 <template>
   <div
     class="star-rating__wrap"
-    :style="`width:${this.ratings.widthContainer}px`"
+    :style="`width:${this.widthContainer}px`"
   >
     <div
       class="star-rating"
@@ -73,70 +73,68 @@ export default {
   },
   data() {
     return {
-      ratings: {
-        hoverRating: 0,
-        rating: 0,
-        ratingHidden: false,        
-      },
+      hoverRating: 0,
+      rating: 0,
+      ratingHidden: false,
     };
   },  
   computed: {
     ratingHoverWidth() {
-      if (this.ratings.hoverRating <= this.starLimitProps) {
+      if (this.hoverRating <= this.starLimitProps) {
         return (
-          (this.ratings.hoverRating / this.starLimitProps - 0.5 / this.starLimitProps) * 100
+          (this.hoverRating / this.starLimitProps - 0.5 / this.starLimitProps) * 100
         );
       }
-      return (this.ratings.hoverRating / this.starLimitProps) * 100;
+      return (this.hoverRating / this.starLimitProps) * 100;
     },
     ratingWidth() {
-      if (!this.ratings.ratingHidden) {
-        return (this.ratings.rating / this.starLimitProps) * 100;
+      if (!this.ratingHidden) {
+        return (this.rating / this.starLimitProps) * 100;
       }
       return 0;
     },
     viewRating() {
-      if (this.ratings.ratingHidden) {
-        return `${this.ratings.hoverRating - 0.5} out of ${
+      if (this.ratingHidden) {
+        return `${this.hoverRating - 0.5} out of ${
           this.starLimitProps
         }`;
       }
-      return `${this.ratings.rating} out of ${this.starLimitProps}`;
+      return `${this.rating} out of ${this.starLimitProps}`;
     },
   },
   mounted: function () {
     this.$nextTick(() => {
-      this.ratings.rating = this.ratingProps;
+      this.rating = this.ratingProps;
     });
     this.$nextTick(() => {
       if (this.widthContainerProps !== "") {
-        this.ratings.widthContainer = this.widthContainerProps;
+        this.widthContainer = this.widthContainerProps;
       } else {
-        this.ratings.widthContainer = String(this.starLimitProps * 22.1);
+        this.widthContainer = String(this.starLimitProps * 22.1);
       }
     });
   },
   methods: {
     onMouse(index) {
-      this.ratings.ratingHidden = true;
-      this.ratings.hoverRating = index;
+      this.ratingHidden = true;
+      this.hoverRating = index;
     },
     onMouseLeave(index) {
-      this.ratings.ratingHidden = true;
-      this.ratings.hoverRating = index + 0.5;
+      this.ratingHidden = true;
+      this.hoverRating = index + 0.5;
     },
     setRating(index) {
-      this.ratings.rating = index - 0.5;
+      this.rating = index - 0.5;
     },
     setDecimal() {
-      this.ratings.rating = this.ratings.hoverRating - 0.5;
+      this.rating = this.hoverRating - 0.5;
     },
     resetHover() {
-      this.ratings.ratingHidden = false;
-      this.ratings.hoverRating = 0;
+      this.ratingHidden = false;
+      this.hoverRating = 0;
     },
     resetRating() {
-      this.ratings.rating = 0;
+      this.rating = 0;
     },
   },
 };
