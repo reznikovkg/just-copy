@@ -58,8 +58,7 @@ export default {
       ratings: {
         hoverRating: 0,
         rating: 0,
-        ratingHidden: false,
-        widthContainer: "100",
+        ratingHidden: false,        
       },
     };
   },
@@ -74,7 +73,7 @@ export default {
     },
     isCountProps: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     widthContainerProps: {
       type: String,

@@ -1,51 +1,50 @@
 # Star-rating
 
-## Rating props
+## Star-rating attributes
 
-```
-ratingProps(Number) - стартовое значение рейтинга (по умолчанию 0)
+|Attribute|Description|Type|Default|
+|:-:|:-:|:-:|:-:|
+|ratingProps|Rating value at the start|Number|0|
+|starLimitProps|Number of stars|Number|5|
+|isCountProps|Counter under star rating|Boolean|false|
+|widthContainerProps|Width of star rating container|String|""|
 
-starLimitProps(Number) - стартовое значение лимита звезд в рейтинге (по умолчанию 5)
-
-isCountProps(Boolean) - наличие числового показателя рейтинга (по умолчанию true)
-
-```
 
 ### Rating computed
-```
-ratingHoverWidth - расчет ширины полоски рейтинга при наведении (в процентах)
-
-ratingWidth - расчет ширины полоски рейтинга при клике (в процентах)
-
-viewRating - числовой показатель
-
-```
-
-#### Rating methods
-
-```
-onMouse - события наведения мыши на звездочки 
-
-onMouseLeave - событие наведения на десятичные показатели (между звездочками)
-
-setRating - установка рейтинга
-
-setDecimal - установка десятичного рейтинга
-
-resetHover - сброс наведения 
-
-resetRating - сброс рейтинга
+|Computed|Description|
+|:-:|:-:|
+|ratingHoverWidth|Calculation of the width of the rating bar on hover (in percent)|
+|ratingWidth|Calculation of the width of the rating bar when clicked (in percent)|
+|viewRating|Numerical indicator of how many stars are clicked or hovered over|
 
 
-```
+### Rating methods
+|Method|Description|
+|:-:|:-:|
+|onMouse|Mouse hover events on stars|
+|onMouseLeave|Decimal pointing event (between stars)|
+|setRating|Setting rating|
+|setDecimal|Setting decimal rating|
+|resetHover|Reset mouse hover |
+|resetRating|Rating reset|
 
-##### Rating buttons
 
-```
 
-reset - сброс рейтинга
+### Rating buttons
+Reset - сброс рейтинга
 
-```
+
+###### Пример работы звездного рейтинга с надписью снизу
 <p align="center">
  <img width="200px" src="assets/img/Stars.PNG" alt="qr"/>
+</p>
+
+###### Пример работы звездного рейтинга без надписи
+<p align="center">
+ <img width="200px" src="assets/img/StarsWithoutCounter.PNG" alt="qr"/>
+</p>
+
+###### Пример, когда размер контейнера задается вручную, а не рассчитывается автоматически
+<p align="center">
+ <img width="200px" src="assets/img/ManualContainerSize.PNG" alt="qr"/>
 </p>
