@@ -23,9 +23,9 @@
 |:-:|:-:|
 |onMouse|Mouse hover events on stars|
 |onMouseLeave|Decimal pointing event (between stars)|
-|setRating|Setting rating|
-|setDecimal|Setting decimal rating|
-|resetHover|Reset mouse hover |
+|setRating|Setting rating on click|
+|setDecimal|Setting decimal rating on click|
+|resetHover|Reset mouse hover|
 |resetRating|Rating reset|
 
 
