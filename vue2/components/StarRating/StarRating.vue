@@ -12,7 +12,7 @@
         v-for="index in starLimitProps"
         :key="index"
         src="@/assets/img/star-outlined.svg"
-        class="star-rating__img--outlined"
+        class="star-rating__img"
         @mouseover="() => onMouse(index)"
         @mouseleave="() => onMouseLeave(index)"
         @click="() => setRating(index)"
@@ -25,7 +25,7 @@
           v-for="index in starLimitProps"
           :key="index"
           src="@/assets/img/star-yellow.svg"
-          class="star-rating__img--colored"
+          class="star-rating__img"
           @mouseover="() => onMouse(index)"
           @mouseleave="() => onMouseLeave(index)"
           @click="() => setRating(index)"
@@ -36,7 +36,7 @@
           v-for="index in starLimitProps"
           :key="index"
           src="@/assets/img/star-yellow.svg"
-          class="star-rating__img--colored"
+          class="star-rating__img"
           @mouseover="() => onMouse(index)"
           @mouseleave="() => onMouseLeave(index)"
           @click="() => setRating(index)"
@@ -53,15 +53,6 @@
 <script>
 export default {
   name: "StarRating",
-  data() {
-    return {
-      ratings: {
-        hoverRating: 0,
-        rating: 0,
-        ratingHidden: false,        
-      },
-    };
-  },
   props: {
     ratingProps: {
       type: Number,
@@ -80,6 +71,15 @@ export default {
       default: "",
     },
   },
+  data() {
+    return {
+      ratings: {
+        hoverRating: 0,
+        rating: 0,
+        ratingHidden: false,        
+      },
+    };
+  },  
   computed: {
     ratingHoverWidth() {
       if (this.ratings.hoverRating <= this.starLimitProps) {
@@ -104,11 +104,11 @@ export default {
       return `${this.ratings.rating} out of ${this.starLimitProps}`;
     },
   },
-  mounted() {
-    this.$nextTick(function () {
+  mounted: function () {
+    this.$nextTick(() => {
       this.ratings.rating = this.ratingProps;
     });
-    this.$nextTick(function () {
+    this.$nextTick(() => {
       if (this.widthContainerProps !== "") {
         this.ratings.widthContainer = this.widthContainerProps;
       } else {
