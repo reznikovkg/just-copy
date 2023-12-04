@@ -1,13 +1,6 @@
 <template>
-  <div
-    class="star-rating__wrap"
-    :style="`width:${this.widthContainer}px`"
-  >
-    <div
-      class="star-rating"
-      @mouseleave="() => resetHover()"
-      @click="() => setDecimal()"
-    >
+  <div class="star-rating__wrap" :style="`width:${widthContainer}px`">
+    <div class="star-rating" @mouseleave="() => resetHover()" @click="() => setDecimal()">
       <img
         v-for="index in starLimitProps"
         :key="index"
@@ -17,10 +10,7 @@
         @mouseleave="() => onMouseLeave(index)"
         @click="() => setRating(index)"
       />
-      <div
-        class="star-rating__subwrap"
-        :style="`width: ${this.ratingHoverWidth}%`"
-      >
+      <div class="star-rating__subwrap" :style="`width: ${ratingHoverWidth}%`">
         <img
           v-for="index in starLimitProps"
           :key="index"
@@ -31,7 +21,7 @@
           @click="() => setRating(index)"
         />
       </div>
-      <div class="star-rating__subwrap" :style="`width: ${this.ratingWidth}%`">
+      <div class="star-rating__subwrap" :style="`width: ${ratingWidth}%`">
         <img
           v-for="index in starLimitProps"
           :key="index"
@@ -44,9 +34,7 @@
       </div>
     </div>
     <div v-if="isCountProps" class="star-rating__count">{{ viewRating }}</div>
-    <button class="star-rating__reset" @click="() => resetRating()">
-      Reset
-    </button>
+    <button class="star-rating__reset" @click="() => resetRating()">Reset</button>
   </div>
 </template>
 
@@ -54,7 +42,7 @@
 export default {
   name: "StarRating",
   props: {
-    ratingProps: {
+    value: {
       type: Number,
       default: 0,
     },
@@ -76,14 +64,13 @@ export default {
       hoverRating: 0,
       rating: 0,
       ratingHidden: false,
+      widthContainer: "",
     };
   },  
   computed: {
     ratingHoverWidth() {
       if (this.hoverRating <= this.starLimitProps) {
-        return (
-          (this.hoverRating / this.starLimitProps - 0.5 / this.starLimitProps) * 100
-        );
+        return ((this.hoverRating / this.starLimitProps - 0.5 / this.starLimitProps) * 100);
       }
       return (this.hoverRating / this.starLimitProps) * 100;
     },
@@ -95,16 +82,14 @@ export default {
     },
     viewRating() {
       if (this.ratingHidden) {
-        return `${this.hoverRating - 0.5} out of ${
-          this.starLimitProps
-        }`;
+        return `${this.hoverRating - 0.5} out of ${this.starLimitProps}`;
       }
       return `${this.rating} out of ${this.starLimitProps}`;
     },
   },
   mounted: function () {
     this.$nextTick(() => {
-      this.rating = this.ratingProps;
+      this.rating = this.value;
     });
     this.$nextTick(() => {
       if (this.widthContainerProps !== "") {
@@ -124,7 +109,7 @@ export default {
       this.hoverRating = index + 0.5;
     },
     setRating(index) {
-      this.rating = index - 0.5;
+      this.$emit("input", index - 0.5);
     },
     setDecimal() {
       this.rating = this.hoverRating - 0.5;

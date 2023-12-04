@@ -1,17 +1,9 @@
 <template>
   <div class="wrapper">
     <div>
-      <StarRating
-        :rating-props="2.5"
-        :star-limit-props="10"
-        :width-container-props="'500'"        
-      />
-      <StarRating
-        :rating-props="6.5"
-        :star-limit-props="8"
-        :is-count-props="false"
-      />
-      <StarRating :rating-props="3" :star-limit-props="5" />
+      <StarRating v-model="rating1" :star-limit-props="10" :width-container-props="'500'" />
+      <StarRating v-model="rating2" :star-limit-props="8" :is-count-props="false" :width-container-props="'50'" />
+      <StarRating v-model="rating3" :star-limit-props="5" />
     </div>
   </div>
 </template>
@@ -22,6 +14,13 @@ export default {
   name: "App",
   components: {
     StarRating,
+  },
+  data() {
+    return {
+      rating1: 2.5,
+      rating2: 6.5,
+      rating3: 3,
+    };
   },
 };
 </script>
