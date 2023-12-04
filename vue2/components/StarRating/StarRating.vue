@@ -42,7 +42,7 @@
 export default {
   name: "StarRating",
   props: {
-    value: {
+    modelValue: {
       type: Number,
       default: 0,
     },
@@ -87,17 +87,18 @@ export default {
       return `${this.rating} out of ${this.starLimitProps}`;
     },
   },
-  mounted: function () {
-    this.$nextTick(() => {
-      this.rating = this.value;
-    });
-    this.$nextTick(() => {
-      if (this.widthContainerProps !== "") {
-        this.widthContainer = this.widthContainerProps;
-      } else {
-        this.widthContainer = String(this.starLimitProps * 22.1);
-      }
-    });
+  mounted() {
+    this.rating = this.modelValue;
+    if (this.widthContainerProps !== "") {
+      this.widthContainer = this.widthContainerProps;
+    } else {
+      this.widthContainer = String(this.starLimitProps * 22.1);
+    }
+  },
+  watch: {
+    modelValue: function(newVal) {
+      this.rating = newVal;
+    },
   },
   methods: {
     onMouse(index) {
@@ -109,10 +110,11 @@ export default {
       this.hoverRating = index + 0.5;
     },
     setRating(index) {
-      this.$emit("input", index - 0.5);
+      this.$emit("update:modelValue", index - 0.5);
     },
     setDecimal() {
       this.rating = this.hoverRating - 0.5;
+      this.$emit("update:modelValue", this.rating);
     },
     resetHover() {
       this.ratingHidden = false;
@@ -120,6 +122,7 @@ export default {
     },
     resetRating() {
       this.rating = 0;
+      this.$emit("update:modelValue", this.rating);
     },
   },
 };
