@@ -96,7 +96,7 @@ export default {
     }
   },
   watch: {
-    modelValue: (newVal) => {
+    modelValue: function(newVal) {
       this.rating = newVal;
     },
   },
