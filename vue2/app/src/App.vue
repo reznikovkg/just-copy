@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-    </nav>
-    <RouterView/>
+    <SwitchCheckbox/>
   </div>
 </template>
 
 <script>
+import SwitchCheckbox from 'C:/Users/lunar/just-copy/vue2/components/Switch_Kotenko/SwitchCheckbox.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    SwitchCheckbox
+  }
 }
 </script>
 
