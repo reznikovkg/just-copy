@@ -1,3 +1,9 @@
+# RyaguzovProgressBar
+
+This is Vue.js component implementing progressBar.
+
+## Usage
+```vue
 <template>
   <div id="app">
     <ProgressBar/>
@@ -16,3 +22,6 @@ export default {
 
 <style>
 </style>
+
+```
+![Alt text](./assets/progress_bar.png)
