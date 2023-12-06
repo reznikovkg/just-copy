@@ -41,6 +41,10 @@
 <script>
 export default {
   name: "StarRating",
+  model: {
+    prop: "modelValue",
+    event: "update:modelValue",
+  },
   props: {
     modelValue: {
       type: Number,
