@@ -42,8 +42,8 @@
 export default {
   name: "StarRating",
   model: {
-    prop: "modelValue",
-    event: "update:modelValue",
+    prop: 'value',
+    event: 'change',
   },
   props: {
     modelValue: {
@@ -63,7 +63,7 @@ export default {
       default: "",
     },
   },
-  data() {
+  data () {
     return {
       hoverRating: 0,
       rating: 0,
@@ -79,10 +79,7 @@ export default {
       return (this.hoverRating / this.starLimitProps) * 100;
     },
     ratingWidth() {
-      if (!this.ratingHidden) {
-        return (this.rating / this.starLimitProps) * 100;
-      }
-      return 0;
+      return this.ratingHidden ? 0 : (this.rating / this.starLimitProps) * 100;
     },
     viewRating() {
       if (this.ratingHidden) {
@@ -100,31 +97,31 @@ export default {
     }
   },
   watch: {
-    modelValue: function(newVal) {
+    modelValue (newVal) {
       this.rating = newVal;
     },
   },
   methods: {
-    onMouse(index) {
+    onMouse (index) {
       this.ratingHidden = true;
       this.hoverRating = index;
     },
-    onMouseLeave(index) {
+    onMouseLeave (index) {
       this.ratingHidden = true;
       this.hoverRating = index + 0.5;
     },
-    setRating(index) {
+    setRating (index) {
       this.$emit("update:modelValue", index - 0.5);
     },
-    setDecimal() {
+    setDecimal () {
       this.rating = this.hoverRating - 0.5;
       this.$emit("update:modelValue", this.rating);
     },
-    resetHover() {
+    resetHover () {
       this.ratingHidden = false;
       this.hoverRating = 0;
     },
-    resetRating() {
+    resetRating () {
       this.rating = 0;
       this.$emit("update:modelValue", this.rating);
     },
