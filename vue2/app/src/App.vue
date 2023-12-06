@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-    </nav>
-    <RouterView/>
+    <ProgressBar/>
   </div>
 </template>
 
 <script>
+import ProgressBar from 'C:/Users/Stas/Desktop/labs_vue/just-copy/vue2/components/lab2ProgressBarRyaguzov/ProgressBar.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    ProgressBar
+  }
 }
 </script>
 
