@@ -1,40 +1,40 @@
 <template>
-  <div class="star-rating__wrap" :style="`width:${widthContainer}px`">
-    <div class="star-rating" @mouseleave="() => resetHover()" @click="() => setDecimal()">
+  <div class="star-rating__wrap" :style="`width:${widthDefault}px`">
+    <div class="star-rating" @mouseleave=" () => resetHover ()" @click=" () => setDecimal ()">
       <img
-        v-for="index in starLimitProps"
+        v-for="index in starLimit"
         :key="index"
         src="@/assets/img/star-outlined.svg"
         class="star-rating__img"
-        @mouseover="() => onMouse(index)"
-        @mouseleave="() => onMouseLeave(index)"
-        @click="() => setRating(index)"
+        @mouseover=" () => onMouse (index)"
+        @mouseleave=" () => onMouseLeave (index)"
+        @click=" () => setRating (index)"
       />
       <div class="star-rating__subwrap" :style="`width: ${ratingHoverWidth}%`">
         <img
-          v-for="index in starLimitProps"
+          v-for="index in starLimit"
           :key="index"
           src="@/assets/img/star-yellow.svg"
           class="star-rating__img"
-          @mouseover="() => onMouse(index)"
-          @mouseleave="() => onMouseLeave(index)"
-          @click="() => setRating(index)"
+          @mouseover=" () => onMouse (index)"
+          @mouseleave=" () => onMouseLeave (index)"
+          @click=" () => setRating (index)"
         />
       </div>
       <div class="star-rating__subwrap" :style="`width: ${ratingWidth}%`">
         <img
-          v-for="index in starLimitProps"
+          v-for="index in starLimit"
           :key="index"
           src="@/assets/img/star-yellow.svg"
           class="star-rating__img"
-          @mouseover="() => onMouse(index)"
-          @mouseleave="() => onMouseLeave(index)"
-          @click="() => setRating(index)"
+          @mouseover=" () => onMouse (index)"
+          @mouseleave=" () => onMouseLeave (index)"
+          @click=" () => setRating (index)"
         />
       </div>
     </div>
-    <div v-if="isCountProps" class="star-rating__count">{{ viewRating }}</div>
-    <button class="star-rating__reset" @click="() => resetRating()">Reset</button>
+    <div v-if="isCount" class="star-rating__count">{{ viewRating }}</div>
+    <button class="star-rating__reset" @click=" () => resetRating ()">Reset</button>
   </div>
 </template>
 
@@ -50,15 +50,15 @@ export default {
       type: Number,
       default: 0,
     },
-    starLimitProps: {
+    starLimit: {
       type: Number,
       default: 5,
     },
-    isCountProps: {
+    isCount: {
       type: Boolean,
       default: false,
     },
-    widthContainerProps: {
+    widthContainer: {
       type: String,
       default: "",
     },
@@ -68,33 +68,23 @@ export default {
       hoverRating: 0,
       rating: 0,
       ratingHidden: false,
-      widthContainer: "",
+      widthDefault: "",
     };
   },  
   computed: {
-    ratingHoverWidth() {
-      if (this.hoverRating <= this.starLimitProps) {
-        return ((this.hoverRating / this.starLimitProps - 0.5 / this.starLimitProps) * 100);
-      }
-      return (this.hoverRating / this.starLimitProps) * 100;
+    ratingHoverWidth () {
+      return this.hoverRating <= this.starLimit ? ((this.hoverRating / this.starLimit - 0.5 / this.starLimit) * 100) : (this.hoverRating / this.starLimit) * 100;
     },
-    ratingWidth() {
-      return this.ratingHidden ? 0 : (this.rating / this.starLimitProps) * 100;
+    ratingWidth () {
+      return this.ratingHidden ? 0 : (this.rating / this.starLimit) * 100;
     },
-    viewRating() {
-      if (this.ratingHidden) {
-        return `${this.hoverRating - 0.5} out of ${this.starLimitProps}`;
-      }
-      return `${this.rating} out of ${this.starLimitProps}`;
+    viewRating () {
+      return this.ratingHidden ? `${this.hoverRating - 0.5} out of ${this.starLimit}` : `${this.rating} out of ${this.starLimit}`;
     },
   },
-  mounted() {
+  mounted () {
     this.rating = this.modelValue;
-    if (this.widthContainerProps !== "") {
-      this.widthContainer = this.widthContainerProps;
-    } else {
-      this.widthContainer = String(this.starLimitProps * 22.1);
-    }
+    this.widthDefault = this.widthContainer !== "" ? this.widthContainer : String(this.starLimit * 22.1);
   },
   watch: {
     modelValue (newVal) {
@@ -111,11 +101,11 @@ export default {
       this.hoverRating = index + 0.5;
     },
     setRating (index) {
-      this.$emit("update:modelValue", index - 0.5);
+      this.$emit ("update:modelValue", index - 0.5);
     },
     setDecimal () {
       this.rating = this.hoverRating - 0.5;
-      this.$emit("update:modelValue", this.rating);
+      this.$emit ("update:modelValue", this.rating);
     },
     resetHover () {
       this.ratingHidden = false;
@@ -123,7 +113,7 @@ export default {
     },
     resetRating () {
       this.rating = 0;
-      this.$emit("update:modelValue", this.rating);
+      this.$emit ("update:modelValue", this.rating);
     },
   },
 };

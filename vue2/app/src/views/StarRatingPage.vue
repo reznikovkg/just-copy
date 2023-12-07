@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
     <div>
-      <StarRating v-model="rating1" :star-limit-props="10" :width-container-props="'500'" />
-      <StarRating v-model="rating2" :star-limit-props="8" :is-count-props="false" :width-container-props="'50'" />
-      <StarRating v-model="rating3" :star-limit-props="5" />
+      <StarRating v-model="rating1" :star-limit="10" :width-container="'500'" />
+      <StarRating v-model="rating2" :star-limit="8" :is-count="false" :width-container="'50'" />
+      <StarRating v-model="rating3" :star-limit="5" />
     </div>
   </div>
 </template>
