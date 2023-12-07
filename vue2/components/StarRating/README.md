@@ -4,10 +4,10 @@
 
 |Attribute|Description|Type|Default|
 |:-:|:-:|:-:|:-:|
-|ratingProps|Rating value at the start|Number|0|
-|starLimitProps|Number of stars|Number|5|
-|isCountProps|Counter under star rating|Boolean|false|
-|widthContainerProps|Width of star rating container|String|""|
+|modelValue|Rating value at the start|Number|0|
+|starLimit|Number of stars|Number|5|
+|isCount|Counter under star rating|Boolean|false|
+|widthContainer|Width of star rating container|String|""|
 
 
 ### Rating computed
