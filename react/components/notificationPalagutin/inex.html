@@ -4,15 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    .notification:not(:first-child) {
-      margin-top: 10px;
-    }
-
     body {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin: 0;
+    }
+    #notification-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .notification-group {
+      margin-left: 13px;
+      margin-right: 8px;
+      display: block;
+    }
+    #show-notification {
+      display: flex;
+      margin: 10px;
     }
 
     .notification {
@@ -30,7 +41,10 @@
       background-color: #fff;
       overflow: hidden;
     }
-    .closeButton {
+    .notification:not(:first-child) {
+      margin-top: 10px;
+    }
+    .close-button {
       position: absolute;
       top: 15px;
       right: 5px;
@@ -38,58 +52,40 @@
       color: #909399;
       font-size: 16px;
     }
-    .notificationContent {
+    .notification-content {
       font-size: 14px;
       margin: 6px 0 0;
     }
-    .notificationHeader {
+    .notification-header {
       font-size: 16px;
       margin: 0;
-    }
-    #notificationContainer {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-    .notificationGroup {
-      margin-left: 13px;
-      margin-right: 8px;
-      display: block;
-    }
-
-    #showNotification {
-      display: flex;
-      margin: 10px;
     }
 
   </style>
 </head>
 <body>
-<button id="showNotification">Показать уведомление</button>
-<div id="notificationContainer"></div>
+<button id="show-notification">Показать уведомление</button>
+<div id="notification-container"></div>
 
 <script>
-  const showNotificationButton = document.getElementById('showNotification');
-  const notificationContainer = document.getElementById('notificationContainer');
-  let notificationCount = 0;
-
+  const showNotificationButton = document.getElementById('show-notification');
+  const notificationContainer = document.getElementById('notification-container');
   showNotificationButton.addEventListener('click', () => {
     const newNotification = document.createElement('div');
     newNotification.classList.add('notification');
     const innerNotificationContent = document.createElement("div")
-    innerNotificationContent.classList.add('notificationGroup')
+    innerNotificationContent.classList.add('notification-group')
 
     const header = document.createElement("h2");
-    header.classList.add('notificationHeader')
+    header.classList.add('notification-header')
     header.innerText = `Заголовок`;
 
     const content = document.createElement("div")
-    content.classList.add('notificationContent')
+    content.classList.add('notification-content')
     content.innerText = 'Описание'
 
     const closeButton = document.createElement('span');
-    closeButton.classList.add('closeButton');
+    closeButton.classList.add('close-button');
     closeButton.innerHTML = '&#10006;';
     closeButton.addEventListener('click', () => {
       notificationContainer.removeChild(newNotification);
