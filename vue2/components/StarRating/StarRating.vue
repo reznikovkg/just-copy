@@ -1,6 +1,6 @@
 <template>
   <div class="star-rating__wrap" :style="`width:${widthDefault}px`">
-    <div class="star-rating" @mouseleave=" () => resetHover ()" @click=" () => setDecimal ()">
+    <div class="star-rating" @mouseleave="() => resetHover()" @click="() => setDecimal()">
       <img
         v-for="index in starLimit"
         :key="index"
@@ -72,8 +72,10 @@ export default {
     };
   },  
   computed: {
-    ratingHoverWidth () {
-      return this.hoverRating <= this.starLimit ? ((this.hoverRating / this.starLimit - 0.5 / this.starLimit) * 100) : (this.hoverRating / this.starLimit) * 100;
+    ratingHoverWidth() {
+      const baseRating = this.hoverRating / this.starLimit;
+      const hoverWidth = this.hoverRating <= this.starLimit ? (baseRating - 0.5 / this.starLimit) * 100 : baseRating * 100;
+      return hoverWidth;
     },
     ratingWidth () {
       return this.ratingHidden ? 0 : (this.rating / this.starLimit) * 100;
@@ -81,16 +83,19 @@ export default {
     viewRating () {
       return this.ratingHidden ? `${this.hoverRating - 0.5} out of ${this.starLimit}` : `${this.rating} out of ${this.starLimit}`;
     },
+    ratingValue: {
+      get() {
+        return this.rating;
+      },
+      set(newVal) {
+        this.$emit('update:modelValue', newVal);
+      }
+    },
   },
   mounted () {
     this.rating = this.modelValue;
-    this.widthDefault = this.widthContainer !== "" ? this.widthContainer : String(this.starLimit * 22.1);
-  },
-  watch: {
-    modelValue (newVal) {
-      this.rating = newVal;
-    },
-  },
+    this.widthDefault = this.widthContainer ? this.widthContainer : String(this.starLimit * 22.1);
+  },  
   methods: {
     onMouse (index) {
       this.ratingHidden = true;
