@@ -49,75 +49,61 @@
     <title>Progress bar</title>
 </head>
 <body>
-    <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="el-progress el-progress--line" name="progress1">
+    <div role="progressbar" data-progress="20" class="el-progress el-progress--line" name="progress1" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" >
         <div class="el-progress-bar">
             <div class="el-progress-bar__outer">
                 <div class="el-progress-bar__inner"></div>
             </div>
         </div>
         <div class="el-progress__text"></div>
-        <button id="decrement">-10</button>
-        <button id="increment">+10</button>
-    </div> 
+        <button class="decrement" data-decrement="-20"></button>
+        <button class="increment" data-increment="+20"></button>
+    </div>
 
-    <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="el-progress el-progress--line" name="progress2">
+    <div role="progressbar" data-progress="30" name="progress1" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="el-progress el-progress--line"  >
         <div class="el-progress-bar">
             <div class="el-progress-bar__outer">
                 <div class="el-progress-bar__inner"></div>
             </div>
         </div>
         <div class="el-progress__text"></div>
-        <button id="decrement">-10</button>
-        <button id="increment">+10</button>
-    </div> 
-
-    <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="el-progress el-progress--line" name="progress3">
-        <div class="el-progress-bar">
-            <div class="el-progress-bar__outer">
-                <div class="el-progress-bar__inner"></div>
-            </div>
-        </div>
-        <div class="el-progress__text"></div>
-        <button id="decrement">-10</button>
-        <button id="increment">+10</button>
+        <button class="decrement" data-decrement="-10"></button>
+        <button class="increment" data-increment="+10"></button>
     </div>
 </body>
 <script>
-const decrementButtons = document.querySelectorAll("button[id^='decrement']");
-const incrementButtons = document.querySelectorAll("button[id^='increment']");
-const progressBars = document.querySelectorAll(".el-progress-bar__inner");
-const progressTexts = document.querySelectorAll(".el-progress__text");
+window.onload = function() {
+ const progresses = document.querySelectorAll(".el-progress");
+ progresses.forEach(function(progress) {
+ const progressValue = parseInt(progress.dataset.progress);
+ updateProgress(progress, progressValue);
+ const decrementButton = progress.querySelector(".decrement");
+ const incrementButton = progress.querySelector(".increment");
+ decrementButton.innerHTML = decrementButton.dataset.decrement;
+ incrementButton.innerHTML = incrementButton.dataset.increment;
+ });
+};
 
-let progressValues = Array(progressBars.length).fill(10);
+document.addEventListener("click", function(event) {
+ if (event.target.classList.contains("decrement") || event.target.classList.contains("increment")) {
+  const progress = event.target.closest("[role='progressbar']");
+  if (progress) {
+    const progressValue = parseInt(progress.dataset.progress);
+    const increment = event.target.classList.contains("increment") ? parseInt(event.target.dataset.increment) : parseInt(event.target.dataset.decrement);
+    const newProgressValue = Math.min(100, Math.max(0, progressValue + increment));
+    progress.dataset.progress = newProgressValue;
+    updateProgress(progress, newProgressValue);
+  }
+ }
+});
 
-function updateProgress(index) {
-  progressBars[index].style.width = `${progressValues[index]}%`;
-  progressTexts[index].textContent = `${progressValues[index]}%`;
-  progressBars[index].style.backgroundColor = `hsl(${progressValues[index]}, 100%, 50%)`;
+function updateProgress(progress, value) {
+ const progressBar = progress.querySelector(".el-progress-bar__inner");
+ const progressText = progress.querySelector(".el-progress__text");
+ progressBar.style.width = `${value}%`;
+ progressText.textContent = `${value}%`;
+ progressBar.style.backgroundColor = `hsl(${value}, 100%, 50%)`;
 }
 
-window.addEventListener("load", function() {
-  for (let i = 0; i < progressBars.length; i++) {
-    updateProgress(i);
-  }
-});
-
-decrementButtons.forEach((button, index) => {
-  button.addEventListener("click", function() {
-    if (progressValues[index] > 0) {
-      progressValues[index] -= 10;
-      updateProgress(index);
-    }
-  });
-});
-
-incrementButtons.forEach((button, index) => {
-  button.addEventListener("click", function() {
-    if (progressValues[index] < 100) {
-      progressValues[index] += 10;
-      updateProgress(index);
-    }
-  });
-});
 </script>
 </html>
