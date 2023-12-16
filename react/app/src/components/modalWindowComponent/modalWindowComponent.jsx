@@ -1,11 +1,11 @@
 import './modalWindowStyle.scss'
-const ModalWindowComponent = ({showModal, onClick}) => {
+const ModalWindowComponent = ({showModal, onClick, message}) => {
     return <div>
         {showModal ?
             <div className={'modal'}>
                 <div className={'modal-content'}>
                     <span className={'close'} onClick={onClick}>&times;</span>
-                    <h1>Вы открыли модальное окно!</h1>
+                    <h1>{message}</h1>
                 </div>
             </div> : null
         }
