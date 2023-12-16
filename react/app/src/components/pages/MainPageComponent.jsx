@@ -5,6 +5,7 @@ const MainPageComponent = () => {
     return (
         <div className="main_page">
             <LinkComponent link="/acordions" > Акордион </LinkComponent>
+            <LinkComponent link="/switch" > Переключатели </LinkComponent>
         </div>
     );
 };
