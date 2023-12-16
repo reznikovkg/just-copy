@@ -1,0 +1,34 @@
+.modal {
+    display: flex; /* Скрыто по умолчанию */
+    position: absolute; /* Оставаться на месте */
+    z-index: 1; /* Сидеть на вершине */
+    top: 0;
+    left: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% сверху и по центру */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%; /* Может быть больше или меньше, в зависимости от размера экрана */
+        color: #282c34;
+    }
+
+    /* Кнопка закрытия */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+.button_open{
+    background-color: #fbc5b4;
+    padding: 20px;
+    border-radius: 20px;
+    font-family: "TT Travels";
+}

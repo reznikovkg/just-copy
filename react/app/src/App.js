@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import React from "react";
 import MainPageComponent from "./components/pages/MainPageComponent";
 import AсcordionPageComponent from "./components/pages/AсcordionPageComponent";
-import ModalWindowComponent from "./components/modalWindowComponent/modalWindowComponent";
+import ModalWindowPage from "./components/pages/ModalWindowPage";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
             <Route exact path='/' element={<MainPageComponent />}/>
             <Route  path='/main' element={<MainPageComponent />}/>
             <Route  path='/acсordions' element={<AсcordionPageComponent />}/>
-            <Route path = 'modalWindow' element={<ModalWindowComponent />}/>
+            <Route  path ='/modalWindow' element={<ModalWindowPage />}/>
         </Routes>
     </div>
   );
