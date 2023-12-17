@@ -8,6 +8,47 @@ export const matrixSlice = createSlice({
     name: 'matrixSlice',
     initialState,
     reducers: {
+        updateToNextStep(state) {
+            switch (state.step) {
+                // Приведение матрицы по слоям j=1,...,m+1
+                case 1: {
+                    // 1. найти b
+                    let b = []
+                    for (let j = 0; j < state.n; j++) {
+                        let b_min = state.matrix[0][j][0]
+                        for (let i = 0; i < state.n; i++) {
+                            for (let k = 0; k < state.l; k++) {
+                                if (state.matrix[i][j][k] < b_min) {
+                                    b_min = state.matrix[i][j][k];
+                                }
+                            }
+                        }
+                        b.push(b_min);
+                    }
+
+                    // 2. Привести матрицу
+                    let updatedMatrix = state.matrix;
+                    for (let j = 0; j < state.n; j++) {
+                        for (let i = 0; i < state.n; i++) {
+                            for (let k = 0; k < state.l; k++) {
+                                updatedMatrix[i][j][k] = updatedMatrix[i][j][k] - b[j];
+                            }
+                        }
+                    }
+                    state.matrix = updatedMatrix;
+
+                    // 3. Посчитать оценку
+                    let score = 0;
+                    for (let i = 0; i < b.length; i++) {
+                        score += b[i];
+                    }
+                    state.score = score;
+
+                    state.step = state.step + 1;
+                    break;
+                }
+            }
+        },
         updateMatrix(state, action: PayloadAction<Cell>) {
             const {i, j, v} = action.payload;
             let updatedMatrix = state.matrix;

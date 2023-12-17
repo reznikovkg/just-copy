@@ -4,6 +4,12 @@ export type MatrixState = {
     n: number;
     l: number;
     currentLayer: number;
+    i_cur: number;
+    R: number;
+    phi_m1: number;
+    tabu: number;
+    step: number;
+    score?: number;
 }
 
 export enum UpdateType {
