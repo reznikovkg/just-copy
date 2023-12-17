@@ -16,5 +16,5 @@
 
 Выполненая работа.
 
-![Снимок экрана 2023-12-18 в 02 05 31](https://github.com/stasean21/vuejs-lab1/assets/95855695/20f810d8-369a-4d4a-b27e-a077cebde04c)
+![Снимок экрана 2023-12-18 в 02 35 34](https://github.com/stasean21/just-copy-vue-1/assets/95855695/93170698-bc82-4cae-b081-e4eda63ec22b)
 ![Снимок экрана 2023-12-18 в 02 05 51](https://github.com/stasean21/vuejs-lab1/assets/95855695/c35cd901-cea8-48cc-b6a9-65ffcadb2510)
