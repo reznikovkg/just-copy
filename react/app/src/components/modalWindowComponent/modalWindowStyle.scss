@@ -1,13 +1,16 @@
 .modal {
     display: flex; /* Скрыто по умолчанию */
-    position: absolute; /* Оставаться на месте */
+    position: fixed;
     z-index: 1; /* Сидеть на вершине */
     top: 0;
     left: 0;
     width: 100%; /* Полная ширина */
     height: 100%; /* Полная высота */
 
-    .modal-content {
+    .modal_content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         background-color: #fefefe;
         margin: 15% auto; /* 15% сверху и по центру */
         padding: 20px;
@@ -17,9 +20,8 @@
     }
 
     /* Кнопка закрытия */
-    .close {
+    .modal_btn_close {
         color: #aaa;
-        float: right;
         font-size: 28px;
         font-weight: bold;
         cursor: pointer;
@@ -30,5 +32,5 @@
     background-color: #fbc5b4;
     padding: 20px;
     border-radius: 20px;
-    font-family: "TT Travels";
+    font-family: "Roboto", sans-serif;
 }
