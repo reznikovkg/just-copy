@@ -7,7 +7,7 @@
     width: 100%; /* Полная ширина */
     height: 100%; /* Полная высота */
 
-    .modal_content {
+    .modal__content {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -20,7 +20,7 @@
     }
 
     /* Кнопка закрытия */
-    .modal_btn_close {
+    .modal__close-button {
         color: #aaa;
         font-size: 28px;
         font-weight: bold;
@@ -28,7 +28,7 @@
     }
 }
 
-.button_open{
+.open-button {
     background-color: #fbc5b4;
     padding: 20px;
     border-radius: 20px;

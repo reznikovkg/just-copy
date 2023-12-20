@@ -11,7 +11,7 @@ const ModalWindowPage = () => {
 
     return <div>
         {!showModal ?
-            <button className={'button_open'} onClick={onClick}>Открыть модальное окно</button> : null
+            <button className={'open-button'} onClick={onClick}>Открыть модальное окно</button> : null
         }
         <ModalWindowComponent showModal={showModal} onClick={onClick} message={message}/>
     </div>

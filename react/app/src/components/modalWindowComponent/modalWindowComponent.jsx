@@ -3,9 +3,9 @@ const ModalWindowComponent = ({showModal, onClick, message}) => {
     return <div>
         {showModal ?
             <div className={'modal'}>
-                <div className={'modal_content'}>
+                <div className={'modal__content'}>
                     <h1>{message}</h1>
-                    <span className={'modal_btn_close'} onClick={onClick}>&times;</span>
+                    <span className={'modal__close-button'} onClick={onClick}>&times;</span>
                 </div>
             </div> : null
         }
