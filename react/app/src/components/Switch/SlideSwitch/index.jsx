@@ -7,9 +7,9 @@ const SlideSwitch = ({isChecked, onToggleChange}) => {
             type="checkbox"
             checked={isChecked}
             onClick={onToggleChange}
-            className={'slide-switch-input'}
+            className={'slide-switch__input'}
         />
-        <span className={`slider round${isChecked ? ' checked' : ''}`}/>
+        <span className={`slider --round${isChecked ? ' --checked' : ''}`}/>
     </label>
 }
 

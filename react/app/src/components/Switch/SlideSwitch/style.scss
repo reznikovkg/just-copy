@@ -4,7 +4,7 @@
   width: 3.75rem;
   height: 2.125rem;
 
-  .slide-switch-input {
+  .slide-switch__input {
     opacity: 0;
     width: 0;
     height: 0;
@@ -31,7 +31,7 @@
       transition: .4s;
     }
 
-    &.checked {
+    &.--checked {
       background-color: rgb(19, 206, 102);
 
       &:before {
@@ -39,7 +39,7 @@
       }
     }
 
-    &.round {
+    &.--round {
       border-radius: 2.125rem;
 
       &:before {

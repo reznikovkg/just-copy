@@ -8,7 +8,7 @@ const CheckboxSwitch = ({isChecked, onToggleChange}) => {
             checked={isChecked}
             onClick={onToggleChange}
         />
-        <span className={`checkbox-label${isChecked ? ' checked' : ''}`}>Переключатель</span>
+        <span className={`checkbox__label${isChecked ? ' --checked' : ''}`}>Переключатель</span>
     </label>
 }
 
