@@ -4,7 +4,6 @@ import {Route, Routes} from "react-router-dom";
 import React from "react";
 import MainPageComponent from "./components/pages/MainPageComponent";
 import AсcordionPageComponent from "./components/pages/AсcordionPageComponent";
-import ModalWindowPage from "./components/pages/ModalWindowPage";
 import SwitchPage from "./components/pages/SwitchPage";
 import ModalWindowReduxPage from "./components/pages/ModalWindowReduxPage";
 
