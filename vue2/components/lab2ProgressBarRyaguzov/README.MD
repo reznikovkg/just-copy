@@ -2,7 +2,7 @@
 
 This is Vue.js component implementing progressBar.
 
-## Notification object attributes
+## ProgressBar object attributes
 
 |Property              |Description                                          | Type  |
 |:-------------------: |:---------------------------------------------------:|:-----:|
