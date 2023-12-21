@@ -7,7 +7,6 @@ import AсcordionPageComponent from "./components/pages/AсcordionPageComponent"
 import SwitchPage from "./components/pages/SwitchPage";
 import SwitchReduxPage from "./components/pages/SwitchReduxPage";
 import ModalWindowPage from "./components/pages/ModalWindowPage";
-import SwitchPage from "./components/pages/SwitchPage";
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
             <Route exact path={'/switch'} element={<SwitchPage/>}/>
             <Route exact path={'/switch-redux'} element={<SwitchReduxPage/>}/>
             <Route  path ='/modalWindow' element={<ModalWindowPage />}/>
-            <Route exact path={'/switch'} element={<SwitchPage/>}/>
         </Routes>
     </div>
   );
