@@ -4,6 +4,6 @@ import ModalWindowSlice from "../features/ModalWindowSlice";
 
 export default configureStore({
     reducer: {
-        modalWindow: ModalWindowSlice,
+        modalWindow: ModalWindowSlice
     },
 })
