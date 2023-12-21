@@ -1,18 +1,5 @@
-# RyaguzovProgressBar
-
-This is Vue.js component implementing progressBar.
-
-## Notification object attributes
-
-|Property              |Description                                          | Type  |
-|:-------------------: |:---------------------------------------------------:|:-----:|
-|progressValue         |Displays progress bar status                         |Number |
-|intervalProgressValue |Responsible for the progressbar change interval      |Number |
-
-## Usage
-```vue
 <template>
-  <ProgressBar
+  <ProgressBar 
     :progressValue="progressValue"
     :intervalProgressValue="intervalProgressValue"
     @decrement="decrement"
@@ -47,6 +34,3 @@ methods: {
 
 <style scoped lang="less">
 </style>
-
-```
-![Alt text](./assets/progressbar.png)

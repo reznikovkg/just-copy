@@ -1,33 +1,33 @@
 <template>
-    <div role="progressbar" 
-         aria-valuenow="50" 
-         aria-valuemin="0" 
-         aria-valuemax="100" 
-         class="el-progress el-progress--line">
-        <div class="el-progress-bar">
-            <div class="el-progress-bar__outer">
-                <div class="el-progress-bar__inner" :style="progressStyle" ></div>
-            </div>
-        </div>
-        <div class="el-progress__text">
-          {{ progressValue }}%
-        </div>
-        <button id="decrement" @click="decrement">
-          -10
-        </button>
-        <button id="increment" @click="increment">
-          +10
-        </button>
+  <div role="progressbar" class="el-progress el-progress--line">
+    <div class="el-progress-bar">
+      <div class="el-progress-bar__outer">
+        <div class="el-progress-bar__inner" :style="progressStyle"/>
+      </div>
     </div>
+    <div class="el-progress__text">
+      {{ progressValue }}%
+    </div>
+    <button class="decrement" @click="() => $emit('decrement', intervalProgressValue)">
+      -{{ intervalProgressValue }}
+    </button>
+    <button class="increment" @click="() => $emit('increment', intervalProgressValue)">
+      +{{ intervalProgressValue }}
+    </button>
+  </div>
 </template>
-
+ 
 <script>
 export default {
-  name: 'ProgressBar',
-  data () {
-    return {
-      progressValue: 10,
-    }
+  props: {
+    progressValue: {
+      type: Number,
+      default: 10
+    },
+    intervalProgressValue: {
+      type: Number,
+      default: 10
+    },
   },
   computed: {
     progressStyle() {
@@ -35,20 +35,13 @@ export default {
        width: `${this.progressValue}%`,
        backgroundColor: `hsl(${this.progressValue}, 100%, 50%)`,
      };
-   }
+    }
   },
   methods: {
-   increment() {
-     if (this.progressValue < 100) {
-       this.progressValue += 10;
-     }
-   },
-   decrement() {
-     if (this.progressValue > 0) {
-       this.progressValue -= 10;
-     }
-   }
- }
+    updateProgress(newProgressValue) {
+      this.$emit('update:progressValue', newProgressValue);
+    }
+  }
 }
 </script>
 
