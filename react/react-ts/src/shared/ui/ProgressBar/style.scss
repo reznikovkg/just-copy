@@ -1,0 +1,29 @@
+.container--progress {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  margin: 20px 0;
+
+  .progress {
+    border: 1px solid black;
+    height: fit-content;
+    border-radius: 10px;
+  }
+
+  .progress__bar {
+    background-color: dodgerblue;
+    text-align: center;
+    height: fit-content;
+    font-weight: 600;
+    border-radius: 10px;
+
+    transition-duration: 1s;
+  }
+
+  .button_container {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+  }
+}

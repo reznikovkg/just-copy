@@ -1,0 +1,9 @@
+.checkbox-switch {
+  display: flex;
+  grid-gap: 0.25rem;
+  cursor: pointer;
+
+  .checkbox__label.--checked {
+    color: #409eff;
+  }
+}

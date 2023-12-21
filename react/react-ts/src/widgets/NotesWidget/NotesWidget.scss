@@ -1,0 +1,48 @@
+.notes-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__menu {
+    display: flex;
+  }
+}
+
+.virtual-scroll {
+  height: 600px;
+  overflow: auto;
+  border: 1px solid lightgrey;
+  position: relative;
+
+  &__container {
+    display: flex;
+    gap: 4px
+  }
+}
+
+.virtual-scroll-item {
+  position: absolute;
+  top: 0;
+  padding: 6px 12px;
+
+  &__type-0 {
+    height: 16px;
+    background-color: skyblue;
+  }
+
+  &__type-1 {
+    height: 32px;
+    background-color: red;
+  }
+
+  &__type-2 {
+    height: 48px;
+    background-color: blue;
+  }
+
+  &__type-3 {
+    height: 64px;
+    background-color: yellow;
+  }
+}
+
