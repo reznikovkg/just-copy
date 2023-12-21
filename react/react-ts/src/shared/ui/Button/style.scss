@@ -1,0 +1,26 @@
+.btn {
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aquamarine;
+  padding: 10px;
+
+  transition-duration: 0.7s;
+
+  margin-right: 15px;
+
+  box-shadow: 0 0 3px gray;
+
+  border-radius: 5px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(68, 211, 163);
+  }
+}
