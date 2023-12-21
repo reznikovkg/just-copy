@@ -3,26 +3,24 @@ import { createSlice } from '@reduxjs/toolkit'
 export const modalWindowSlice = createSlice({
     name: 'modalWindow',
     initialState: {
-        values: [false],
-        message: "Вы открыли модальное окно"
+        modals: {}
     },
     reducers: {
-        openModal: (state, action) => {
-            state.values[action.payload] = true
-        },
         closeModal: (state, action) => {
-           if(action.payload !== 0) {
-               state.values = state.values.slice(0, action.payload)
-           } else {
-               state.values[action.payload] = false
-           }
+            const id = action.payload;
+           delete state.modals[id];
         },
-        addModal: (state) => {
-            state.values.push(true)
+        openModal: (state, action) => {
+            const { id } = action.payload;
+            state.modals[id] = action.payload;
         }
     },
 })
 
 export const { openModal, closeModal, addModal } = modalWindowSlice.actions
+
+export const modalDataByIdSelector = (id) => (state) => state.modalWindow.modals[id];
+
+export const getModalIds = (state) => Object.values(state.modalWindow.modals).map(({id}) => id);
 
 export default modalWindowSlice.reducer

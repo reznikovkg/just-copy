@@ -13,9 +13,9 @@ function App() {
     <div className="App">
         <Routes>
             <Route exact path='/' element={<MainPageComponent />}/>
-            <Route  path='/main' element={<MainPageComponent />}/>
-            <Route  path='/acсordions' element={<AсcordionPageComponent />}/>
-            <Route  path ='/modalWindow' element={<ModalWindowPage />}/>
+            <Route path='/main' element={<MainPageComponent />}/>
+            <Route path='/acсordions' element={<AсcordionPageComponent />}/>
+            <Route path ='/modalWindow' element={<ModalWindowPage />}/>
             <Route exact path={'/switch'} element={<SwitchPage/>}/>
             <Route path ='/modalWindowRedux' element={<ModalWindowReduxPage/>}/>
         </Routes>

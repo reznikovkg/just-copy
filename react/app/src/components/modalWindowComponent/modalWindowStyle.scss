@@ -1,4 +1,4 @@
-.modal {
+.overlay {
     display: flex; /* Скрыто по умолчанию */
     position: fixed;
     z-index: 1; /* Сидеть на вершине */
@@ -6,8 +6,9 @@
     left: 0;
     width: 100%; /* Полная ширина */
     height: 100%; /* Полная высота */
+    background: #ffffff;
 
-    .modal__content {
+    .modal {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -18,22 +19,36 @@
         width: 50%; /* Может быть больше или меньше, в зависимости от размера экрана */
         color: #282c34;
 
-        .modal__header{
+        &__header {
+            flex: 0 0 auto;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+
+            /* Кнопка закрытия */
+            &__close-button {
+                color: #aaa;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+
+        &__content {
+            flex: 0 1 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            &__open-button {
+                background-color: #fbc5b4;
+                padding: 20px;
+                border-radius: 20px;
+                font-family: "Roboto", sans-serif;
+            }
         }
     }
-
-    /* Кнопка закрытия */
-    .modal__close-button {
-        color: #aaa;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
 }
-
 .open-button {
     background-color: #fbc5b4;
     padding: 20px;
