@@ -10,8 +10,6 @@ const ModalWindowComponent = ({showModal, onCloseModal, onOpenModal, message}) =
                         <span className={'modal__close-button'} onClick={onCloseModal}>&times;</span>
                     </div>
                      <button className={'open-button'} onClick={onOpenModal}>Открыть модальное окно</button>
-                    <h1>{message}</h1>
-                    <span className={'modal__close-button'} onClick={onClick}>&times;</span>
                 </div>
             </div> : null
         }
