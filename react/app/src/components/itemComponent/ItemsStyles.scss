@@ -1,0 +1,27 @@
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: calc(100% - 100px);
+    background-color: #e8e8e8;
+    padding: 30px 50px;
+    gap: 8px;
+
+    &__title {
+        font-size: 2em;
+        font-weight: bold;
+        padding: 2px;
+        margin-bottom: 30px;
+
+        span {
+            border-bottom: 2px solid #2aad1c;
+            padding: 8px 0;
+        }
+    }
+
+    &__all {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+    }
+}

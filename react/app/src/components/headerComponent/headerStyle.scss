@@ -1,0 +1,102 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  gap: 20px;
+
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    border-bottom: solid 0.5px #a0a0a0;
+    padding: 10px 30px;
+
+    &__left {
+      display: flex;
+      gap: 24px;
+      justify-content: flex-start;
+    }
+
+    &__right {
+      display: flex;
+      gap: 24px;
+      justify-content: flex-end;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #5f5f5f;
+
+      &__png {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  &__main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+
+    &__logo {
+      width: 170px;
+      height: 50px;
+    }
+
+    &__search {
+      input, select {
+        height: 24px;
+      }
+
+      &__button {
+        background: #4CAF50;
+        color: white;
+        height: 24px;
+        padding: 0 5px;
+      }
+    }
+
+    &__contact {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &__img {
+        width: 40px;
+        height: 40px;
+      }
+
+      &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        & > :first-child {color: #5f5f5f}
+        & > :last-child {font-weight: bold;}
+      }
+    }
+  }
+  &__navigation {
+    background: #4CAF50;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    color: white;
+    font-weight: bold;
+    padding-left: 30px;
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+}

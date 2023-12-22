@@ -14,7 +14,38 @@ body {
     font-family: "Roboto", sans-serif;
     font-size: 12px;
     line-height: 1.2;
-    width: 100%;
     min-height: 100vh;
     display: flex;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+.footer {
+    height: 40px;
+    width: 100%;
+    background: #4CAF50;
+}
+.cartPage {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 30px 50px;
+    background-color: #e8e8e8;
+
+    &__title {
+        font-size: 2em;
+        font-weight: bold;
+        padding: 2px;
+        margin-bottom: 30px;
+
+        span {
+            border-bottom: 2px solid #2aad1c;
+            padding: 8px 0;
+        }
+    }
+
+    &__totalAmount {
+        font-size: 1.5em;
+        padding: 10px 0;
+    }
 }

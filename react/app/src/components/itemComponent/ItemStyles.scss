@@ -1,0 +1,129 @@
+.item {
+    display: flex;
+    width: 350px;
+    height: 150px;
+
+    &__icon {
+        position: relative;
+        flex: 0 0 auto;
+        width: 150px;
+        height: 100%;
+        background-color: #ffffff;
+
+        &__img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+
+        &__sale {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: #2aad1c;
+            padding: 4px 8px;
+            border-radius: 16px;
+            font-size: 10px;
+            color: #ffffff;
+        }
+    }
+
+    &__info {
+        flex: 0 1 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2px 5px;
+
+        &__main {
+            flex: 0 1 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            &__rating {
+                display: flex;
+                height: 12px;
+                width: 100%;
+                gap: 2px;
+
+                &__star {
+                    height: 100%;
+                }
+            }
+
+            &__title {
+
+            }
+
+            &__price {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                &__new {
+                    font-weight: bold;
+                    font-size: 1.4em;
+                }
+
+                &__old {
+                    text-decoration: line-through;
+                    font-size: 1em;
+                    color: #9a9a9a;
+                }
+            }
+
+            &__sales {
+                display: flex;
+                justify-content: space-between;
+                color: #9a9a9a;
+
+                &__available {
+
+                }
+                &__sold {
+
+                }
+            }
+        }
+
+        &__buttons {
+            flex: 0 0 auto;
+            display: flex;
+            justify-self: end;
+            gap: 4px;
+
+            button {
+                height: 16px;
+                cursor: pointer;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+.button_green {
+    background-color: #169b08;
+    border: 1px solid #169b08;
+    padding: 10px;
+    border-radius: 4px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.button_other {
+    background-color: #e8e8e8;
+    border: 1px solid #343434;
+    padding: 10px;
+    border-radius: 4px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8em;
+}

@@ -1,0 +1,30 @@
+.caterories {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  padding: 30px;
+  gap: 10px;
+
+  &__line {
+    width: 40px;
+    height: 3px;
+    background: #4CAF50;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      &__img {
+        width: 70%;
+        height: 80%;
+        object-fit: cover;
+      }
+    }
+  }
+}
