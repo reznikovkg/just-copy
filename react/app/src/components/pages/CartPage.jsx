@@ -7,11 +7,12 @@ const CartPage = () => {
     const totalAmount = useSelector(getTotalAmount);
 
     return (
-        <div className={'cartPage'}>
-            <div className={'cartPage__title'}><span>Cart</span></div>
+        <div className={'cart-page'}>
+            <div className={'cart-page__title'}>Cart</div>
             {items.map(({id}) => (<ItemInCartComponent id={id}/>))}
-            <div className={'cartPage__totalAmount'}>Total amount: <b>${totalAmount.toFixed(2)}</b></div>
-            <button className={'button_green'}>Buy</button>
+            <div className={'cart-page__total-amount'}>Total amount:
+                <b>${totalAmount.toFixed(2)}</b></div>
+            <button className={'cart-page__green-button'}>Buy</button>
         </div>
     );
 }

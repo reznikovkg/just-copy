@@ -8,7 +8,7 @@
         flex: 0 0 auto;
         width: 150px;
         height: 100%;
-        background-color: #ffffff;
+        background-color: var(--white-color);
 
         &__img {
             object-fit: contain;
@@ -20,11 +20,11 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            background-color: #2aad1c;
+            background-color: var(--accent-color);
             padding: 4px 8px;
             border-radius: 16px;
             font-size: 10px;
-            color: #ffffff;
+            color: var(--white-color);
         }
     }
 
@@ -52,10 +52,6 @@
                 }
             }
 
-            &__title {
-
-            }
-
             &__price {
                 display: flex;
                 align-items: center;
@@ -77,13 +73,6 @@
                 display: flex;
                 justify-content: space-between;
                 color: #9a9a9a;
-
-                &__available {
-
-                }
-                &__sold {
-
-                }
             }
         }
 
@@ -93,11 +82,33 @@
             justify-self: end;
             gap: 4px;
 
-            button {
+            &__green-button {
+                background-color: var(--accent-color);
+                border: 1px solid var(--accent-color);
+                padding: 10px;
+                border-radius: 4px;
+                color: var(--white-color);
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 0.8em;
+            }
+
+            &__other-button {
+                background-color: #e8e8e8;
+                border: 1px solid #343434;
+                padding: 10px;
+                border-radius: 4px;
+                color: var(--white-color);
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 0.8em;
+            }
+
+            &__button {
                 height: 16px;
                 cursor: pointer;
 
-                img {
+                &__img {
                     width: 100%;
                     height: 100%;
                 }
@@ -106,24 +117,5 @@
     }
 }
 
-.button_green {
-    background-color: #169b08;
-    border: 1px solid #169b08;
-    padding: 10px;
-    border-radius: 4px;
-    color: #ffffff;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 0.8em;
-}
 
-.button_other {
-    background-color: #e8e8e8;
-    border: 1px solid #343434;
-    padding: 10px;
-    border-radius: 4px;
-    color: #ffffff;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 0.8em;
-}
+

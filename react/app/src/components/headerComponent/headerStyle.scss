@@ -4,24 +4,23 @@
   width: 100vw;
   gap: 20px;
 
-
   &__info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: nowrap;
-    border-bottom: solid 0.5px #a0a0a0;
+    border-bottom: solid 0.5px var(--light-gray-color);
     padding: 10px 30px;
 
     &__left {
       display: flex;
-      gap: 24px;
+      gap: 34px;
       justify-content: flex-start;
     }
 
     &__right {
       display: flex;
-      gap: 24px;
+      gap: 34px;
       justify-content: flex-end;
     }
 
@@ -37,6 +36,7 @@
       }
     }
   }
+
   &__main {
     display: flex;
     flex-direction: row;
@@ -50,13 +50,14 @@
     }
 
     &__search {
-      input, select {
+
+      &__input, &__select {
         height: 24px;
       }
 
       &__button {
-        background: #4CAF50;
-        color: white;
+        background: var(--accent-color);
+        color: var(--white-color);
         height: 24px;
         padding: 0 5px;
       }
@@ -75,28 +76,30 @@
       &__info {
         display: flex;
         flex-direction: column;
-        gap: 6px;
-        & > :first-child {color: #5f5f5f}
-        & > :last-child {font-weight: bold;}
+        gap: 2px;
+        font-size: 14px;
+
+        &__text {
+          color: #5f5f5f
+        }
+
+        &__phone {
+          font-weight: bold;
+        }
       }
     }
   }
+
   &__navigation {
-    background: #4CAF50;
+    background: var(--accent-color);
     height: 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     gap: 30px;
-    color: white;
+    color: var(--white-color);
     font-weight: bold;
     padding-left: 30px;
-
-    a {
-      color: white;
-      text-decoration: none;
-    }
   }
-
 }

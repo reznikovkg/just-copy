@@ -1,41 +1,115 @@
 .best-seller {
   display: flex;
-  flex-direction: column;
-  padding: 30px 50px;
+  flex-direction: row;
+  padding: 30px 30px;
 
-  &__top {
+  &__left {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
 
-    &__categories {
-      display: flex;
-      flex-direction: row;
-      gap: 35px;
-       &__item {
-
-       }
-    }
-  }
-  &__down {
-    &__list {
+    &__top {
       display: flex;
       flex-direction: row;
       align-items: center;
-      &__item {
+      justify-content: space-between;
+      padding: 15px 0;
+
+      &__categories {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 35px;
         align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        &__img {
-          width: 70%;
-        }
-        &__img-stars {
-          width: 20%;
+
+        &__border {
+          padding: 5px;
+          border: solid 2px var(--accent-color);
         }
       }
+    }
+
+    &__long-line {
+      border: none;
+      background-color: #D9D9D9;
+      height: 1.5px;
+    }
+
+    &__short-line {
+      border: none;
+      background-color: var(--accent-color);
+      height: 2px;
+      width: 18%;
+    }
+
+    &__down {
+      padding-top: 10px;
+
+      &__list {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 5px;
+
+        &__item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          text-align: center;
+
+          &__price {
+            font-weight: bold;
+            font-size: 16px;
+          }
+
+          &__img {
+            width: 70%;
+          }
+
+          &__img-stars {
+            width: 40%;
+          }
+        }
+      }
+    }
+  }
+  &__right {
+    width: 20%;
+    padding-left: 20px;
+    padding-top: 60px;
+    &__ad {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background-color: coral;
+      color: var(--white-color);
+      padding: 10px;
+
+      &__img {
+        width: 70%;
+        height: 70% ;
+      }
+    }
+
+    &__more {
+      display: flex;
+      flex-direction: row;
+      padding: 10px 0;
+      justify-content: space-between;
+
+        &__arrows {
+          display: flex;
+          gap: 7px;
+          flex-direction: row;
+          align-items: center;
+        }
+    }
+
+    &__line {
+      border: none;
+      background-color: var(--accent-color);
+      height: 2px;
     }
   }
 }

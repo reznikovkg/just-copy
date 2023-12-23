@@ -6,20 +6,61 @@ const NewsComponent = () => {
         <div className={'news'}>
             <div className={'news__left'}>
                 <div className={'news__left__top'}>
-                    <img className={'news__big-img'} src={'/1.png'} alt={'news1'}/>
+                    <div className={'news__left__top__item'}>
+                        <div className={'news__left__top__item__imgContainer'}>
+                            <img className={'news__left__top__item__img'} src={'/bg_watch.png'} alt={'tv'}/>
+                        </div>
+                        <h1 className={'news__left__top__item__title'}>SAVE UP TO 50% OFF</h1>
+                        <h4 className={'news__left__top__item__description'}>Super ultra hd tv 4k for you</h4>
+                        <div className={'news__left__top__item__button'}>BUY NOW</div>
+                    </div>
                 </div>
                 <div className={'news__left__down'}>
-                    <img className={'news__little-img'} src={'/4.png'} alt={'news4'}/>
-                    <img className={'news__little-img'} src={'/5.png'} alt={'news5'}/>
+                    <div className={'news__left__down__item'}>
+                        <div className={'news__left__down__item__imgContainer'}>
+                            <img className={'news__left__down__item__img'} src={'/bg_phone.png'} alt={'tv'}/>
+                        </div>
+                        <h1 className={'news__left__down__item__title'}>SAVE UP TO 50% OFF</h1>
+                        <h4 className={'news__left__down__item__description'}>Super ultra hd tv 4k for you</h4>
+                        <h1 className={'news__left__down__item__price'}>$499.99</h1>
+                    </div>
+                    <div className={'news__left__down__item'}>
+                        <div className={'news__left__down__item__imgContainer'}>
+                            <img className={'news__left__down__item__img'} src={'/bg_camera.png'} alt={'tv'}/>
+                        </div>
+                        <h1 className={'news__left__down__item__title'}>CHRISTMAS 50% OFF</h1>
+                        <h4 className={'news__left__down__item__description'}>Super ultra hd tv 4k for you</h4>
+                        <h1 className={'news__left__down__item__price'}>$499.99</h1>
+                    </div>
                 </div>
             </div>
             <div className={'news__right'}>
-                <img className={'news__img'} src={'/2.png'} alt={'news2'}/>
-                <img className={'news__img'} src={'/3.png'} alt={'news3'}/>
-                <img className={'news__img'} src={'/6.png'} alt={'news6'}/>
+                <div className={'news__right__item'}>
+                    <div className={'news__right__item__imgContainer'}>
+                        <img className={'news__right__item__img'} src={'/bg_tv.png'} alt={'tv'}/>
+                    </div>
+                    <h1 className={'news__right__item__title'}>ULTRA HD TV</h1>
+                    <h4 className={'news__right__item__description'}>Super ultra hd tv 4k for you</h4>
+                    <div className={'news__right__item__button'}>BUY NOW</div>
+                </div>
+                <div className={'news__right__item'}>
+                    <div className={'news__right__item__imgContainer'}>
+                        <img className={'news__right__item__img'} src={'/bg_mac.png'} alt={'mac'}/>
+                    </div>
+                    <h1 className={'news__right__item__title'}>MACBOOK PRO</h1>
+                    <h4 className={'news__right__item__description'}>Super ultra hd mac 4k for you</h4>
+                    <div className={'news__right__item__button'}>BUY NOW</div>
+                </div>
+                <div className={'news__right__item'}>
+                    <div className={'news__right__item__imgContainer'}>
+                        <img className={'news__right__item__img'} src={'/bg_head.png'} alt={'headphones'}/>
+                    </div>
+                    <h1 className={'news__right__item__title'}>HEADPHONES</h1>
+                    <h4 className={'news__right__item__description'}>Super ultra headphones</h4>
+                    <h1 className={'news__right__item__price'}>$69.99</h1>
+                </div>
             </div>
         </div>
-        <ItemsComponent/>
     </>
 }
 

@@ -31,19 +31,19 @@ const HeaderComponent = () => {
             <div className={'header__main'}>
                 <img className={'header__main__logo'} src={'/Avansi.png'} alt={'logo'}/>
                 <div className={'header__main__search'}>
-                    <select>
+                    <select className={'header__main__search__select'}>
                         <option value="someOption">All Categories</option>
                         <option value="someOption">Phones</option>
                         <option value="someOption">Computers</option>
                     </select>
-                    <input title={'Search'} placeholder={'Keyword here..'}/>
+                    <input className={'header__main__search__input'} title={'Search'} placeholder={'Keyword here..'}/>
                     <button className={'header__main__search__button'}> Search </button>
                 </div>
                 <div className={'header__main__contact'}>
                     <img className={'header__main__contact__img'} src={'/phone.png'} alt={'phone'}/>
                     <div className={'header__main__contact__info'}>
-                        <span>CALL US NOW</span>
-                        <span>0123-456-789</span>
+                        <div className={'header__main__contact__info__text'}>CALL US NOW</div>
+                        <div className={'header__main__contact__info__phone'}>0123-456-789</div>
                     </div>
                 </div>
                 <CartModule/>

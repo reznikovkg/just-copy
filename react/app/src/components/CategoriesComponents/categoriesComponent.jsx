@@ -5,11 +5,11 @@ const CategoriesComponent = () => {
         <div className={'caterories__line'}></div>
         <div className={'caterories__list'}>
             <div className={'caterories__list__item'}>
-                <img className={'caterories__list__item__img'} src={'/phones.png'} alt={'phones'}/>
+                <img className={'caterories__list__item__img'} src={'/iphones.png'} alt={'iphones'}/>
                 <div className={'caterories__list__item__title'}>PHONES</div>
             </div>
             <div className={'caterories__list__item'}>
-                <img className={'caterories__list__item__img'} src={'/computers.png'} alt={'computers'}/>
+                <img className={'caterories__list__item__img'} src={'/comp.png'} alt={'computers'}/>
                 <div className={'caterories__list__item__title'}>COMPUTERS</div>
             </div>
             <div className={'caterories__list__item'}>

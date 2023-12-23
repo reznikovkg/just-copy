@@ -12,7 +12,7 @@ const StorePage = () => {
     return <div className={'store-page'}>
         <HeaderComponent/>
         <Routes >
-            <Route path={'/'} element={<><NewsComponent/><CategoriesComponent/><BestSellerComponent/></>}/>
+            <Route path={'/'} element={<><NewsComponent/><CategoriesComponent/><ItemsComponent/><BestSellerComponent/></>}/>
             <Route path ='departments' element={<DepartmentsPage/>}></Route>
             <Route path='cart' element={<CartPage/>}></Route>
         </Routes>

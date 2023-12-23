@@ -1,4 +1,10 @@
 * {
+    --second-text-color: #9a9a9a;
+    --accent-color: #2aad1c;
+    --light-gray-color: #a0a0a0;
+    --white-color: white;
+    --main-text-color: black;
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,9 +29,9 @@ body {
 .footer {
     height: 40px;
     width: 100%;
-    background: #4CAF50;
+    background: var(--accent-color);
 }
-.cartPage {
+.cart-page {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -35,17 +41,30 @@ body {
     &__title {
         font-size: 2em;
         font-weight: bold;
-        padding: 2px;
         margin-bottom: 30px;
-
-        span {
-            border-bottom: 2px solid #2aad1c;
-            padding: 8px 0;
-        }
+        border-bottom: 2px solid var(--accent-color);
+        padding: 8px 0;
     }
 
-    &__totalAmount {
+    &__total-amount {
         font-size: 1.5em;
         padding: 10px 0;
     }
+
+    &__green-button {
+        background-color: var(--accent-color);
+        border: 1px solid var(--accent-color);
+        padding: 10px;
+        border-radius: 4px;
+        color: var(--white-color);
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+}
+a {
+    color: var(--white-color);
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
 }

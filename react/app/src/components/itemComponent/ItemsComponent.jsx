@@ -8,7 +8,7 @@ const ItemsComponent = () => {
 
     return (
         <div className={"items"}>
-            <div className={"items__title"}><span>Weekly Deals</span></div>
+            <div className={"items__title"}>Weekly Deals</div>
             <div className={"items__all"}>
                 {items.map((data) => (<ItemComponent {...data} />))}
             </div>

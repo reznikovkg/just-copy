@@ -35,9 +35,13 @@ const ItemsComponent = ({id, title, src, price, oldPrice, available, sold, ratin
                     </div>
                 </div>
                 <div className={"item__info__buttons"}>
-                    <button className={'button_green'} onClick={addItemHandler}>Add to cart</button>
-                    <button className={'button_other'}><img src={"/like.svg"} alt={"like"}/></button>
-                    <button className={'button_other'}><img src={"/refresh.svg"} alt={"refresh"}/></button>
+                    <button className={'item__info__buttons__button item__info__buttons__green-button'} onClick={addItemHandler}>Add to cart</button>
+                    <button className={'item__info__buttons__button item__info__buttons__other-button'}>
+                        <img className={'item__info__buttons__button__img'} src={"/like.svg"} alt={"like"}/>
+                    </button>
+                    <button className={'item__info__buttons__button item__info__buttons__other-button'}>
+                        <img className={'item__info__buttons__button__img'} src={"/refresh.svg"} alt={"refresh"}/>
+                    </button>
                 </div>
             </div>
         </div>

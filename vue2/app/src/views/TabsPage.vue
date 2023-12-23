@@ -52,9 +52,9 @@ export default {
     width: 50%;
 }
 .tabs-button {
-  background-color: #4CAF50;
+  background-color: var(--accent-color);
   border: none;
-  color: white;
+  color: var(--white-color);
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;

@@ -1,11 +1,7 @@
 .cart {
   display: flex;
   height: 50px;
-
-  a {
-    padding: 0;
-    margin: 0;
-  }
+  align-items: center;
 
   &__icon {
     position: relative;
@@ -32,8 +28,8 @@
       border-radius: 12px;
       left: -6px;
       bottom: -6px;
-      background-color: #000000;
-      color: #ffffff;
+      background-color: var(--main-text-color);
+      color: var(--white-color);
     }
   }
 
@@ -45,10 +41,6 @@
 
     &__title {
       font-weight: bold;
-    }
-
-    &__total_amount {
-
     }
   }
 }

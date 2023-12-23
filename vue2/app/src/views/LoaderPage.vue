@@ -95,7 +95,7 @@ export default {
     &__block {
        padding: 20px;
        margin-bottom: 10px;
-       border: 1px solid black;
+       border: 1px solid var(--main-text-color);
        border-radius: 10px;
        position: relative;
        overflow: hidden;
