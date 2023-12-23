@@ -1,0 +1,10 @@
+.zmts-matrix-widget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__container {
+        display: grid;
+        gap: 16px
+    }
+}

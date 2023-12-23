@@ -3,6 +3,7 @@ import MainPage from "@/pages/MainPage/MainPage";
 import {Layout} from "@/layout/Layout";
 import EventPage from "@/pages/EventPage/EventPage";
 import NotesPage from "@/pages/NotesPage/NotesPage";
+import ZmtsPage from "@/pages/ZmtsPage/ZmtsPage";
 
 export const appRouter = createBrowserRouter([
     {
@@ -22,5 +23,9 @@ export const appRouter = createBrowserRouter([
     {
         path: '/notes',
         element: <NotesPage />,
+    },
+    {
+        path: '/zmts',
+        element: <ZmtsPage />,
     }
 ])

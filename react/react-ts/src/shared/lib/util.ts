@@ -15,3 +15,13 @@ export function shuffle(array: any) {
 
     return array;
 }
+
+export function cn(c1: string, c2?: string) {
+    return c1 + (c2? ` ${c2}` : "")
+}
+
+export const create3dMatrix = (m: number, n: number, l: number) => {
+    return Array.from({length: m}, () =>
+        Array.from({length: n}, () =>
+            Array.from({length: l}, () => 0)));
+}
