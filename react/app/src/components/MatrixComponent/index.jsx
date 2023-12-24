@@ -1,84 +1,62 @@
 import {useState} from 'react';
-import graph from 'graphology';
-import {dijkstra} from 'graphology-shortest-path';
+import MatrixInput from "./MatrixInput";
 
 const MatrixComponent = () => {
-    const [matrixSize, setMatrixSize] = useState(3);
-    const [matrix, setMatrix] = useState(Array(matrixSize).fill().map(() => Array(matrixSize).fill(0)));
+    const [size, setSize] = useState(3);
+    const [matrix, setMatrix] = useState([]);
 
     const [sourceNode, setSourceNode] = useState(0);
     const [targetNode, setTargetNode] = useState(2);
     const [pathLength, setPathLength] = useState(null);
 
-    const handleMatrixSizeChange = (e) => {
-        setMatrixSize(parseInt(e.target.value));
-        setMatrix(Array(parseInt(e.target.value)).fill().map(() => Array(parseInt(e.target.value)).fill(0)));
-        setSourceNode(0)
-        setTargetNode(parseInt(e.target.value) - 1)
-    };
-
-    const handleCellValueChange = (row, col, value) => {
-        const newMatrix = [...matrix];
-        newMatrix[row][col] = value;
+    const handleMatrixChange = (newMatrix) => {
         setMatrix(newMatrix);
     };
 
-    const calculatePathLength = () => {
-        const g = new graph();
-        for (let i = 0; i < matrix.length; i++) {
-            g.addNode(i);
-        }
+    const calculatePathLength = (source, target) => {
+        const m = matrix.length;
+        const n = matrix[0].length;
 
-        for (let i = 0; i < matrix.length; i++) {
-            for (let j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] !== 0 && i !== j) {
-                    g.addEdge(i, j);
-                    g.setEdgeAttribute(i, j, 'weight', matrix[i][j]);
+        const distances = Array(m)
+            .fill()
+            .map(() =>
+                Array(n)
+                    .fill()
+                    .map(() => Infinity)
+            );
+
+        distances[0][source] = 0;
+
+        for (let layer = 0; layer < m - 1; layer++) {
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n; j++) {
+                    if (
+                        matrix[layer][i][j] !== 0 &&
+                        distances[layer][i] !== Infinity &&
+                        distances[layer + 1][j] > distances[layer][i] + matrix[layer][i][j]
+                    ) {
+                        distances[layer + 1][j] = distances[layer][i] + matrix[layer][i][j];
+                    }
                 }
             }
         }
 
-        const path = dijkstra.bidirectional(g, sourceNode, targetNode);
+        return distances[m - 1][target];
+    };
 
-        if (path !== null) {
-            let length = 0;
-            for (let i = 0; i < path.length - 1; i++) {
-                const u = path[i];
-                const v = path[i + 1];
-                length += g.getEdgeAttribute(u, v, 'weight');
-            }
-            setPathLength(length);
-        } else {
-            setPathLength(null);
-        }
+    const handleCalculateClick = () => {
+        const pathLength = calculatePathLength(sourceNode, targetNode);
+        setPathLength(pathLength);
     };
 
     return (
         <div>
-            <input
-                type="number"
-                value={matrixSize}
-                onChange={handleMatrixSizeChange}
-                min={2}
+            <h2>Матрица</h2>
+            <MatrixInput
+                size={size}
+                onSizeChange={setSize}
+                onChange={handleMatrixChange}
             />
-            <table>
-                <tbody>
-                {matrix.map((row, i) => (
-                    <tr key={i}>
-                        {row.map((cell, j) => (
-                            <td key={j}>
-                                <input
-                                    type="number"
-                                    value={cell}
-                                    min={0}
-                                    onChange={(e) => handleCellValueChange(i, j, parseInt(e.target.value))}
-                                />
-                            </td>
-                        ))}
-                    </tr>
-                ))}
-                </tbody>
-            </table>
 
             <h2>Source Node:</h2>
             <input
@@ -98,8 +76,9 @@ const MatrixComponent = () => {
                 onChange={e => setTargetNode(parseInt(e.target.value))}
             />
 
-            <br />
-            <button onClick={calculatePathLength}>Calculate Path Length</button>
+            <br/>
+
+            <button onClick={handleCalculateClick}>Calculate</button>
 
             <h2>Path Length:</h2>
             {pathLength === null ? (
