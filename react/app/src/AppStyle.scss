@@ -4,6 +4,7 @@
     --light-gray-color: #a0a0a0;
     --white-color: white;
     --main-text-color: black;
+    --delete-button-color: red;
 
     margin: 0;
     padding: 0;
@@ -26,11 +27,13 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .footer {
     height: 40px;
     width: 100%;
     background: var(--accent-color);
 }
+
 .cart-page {
     display: flex;
     flex-direction: column;
@@ -62,6 +65,7 @@ body {
         font-size: 0.8em;
     }
 }
+
 a {
     color: var(--white-color);
     text-decoration: none;

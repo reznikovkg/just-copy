@@ -41,6 +41,23 @@
             flex-direction: column;
             gap: 8px;
 
+            &__delete {
+                background: var(--delete-button-color);
+                color: var(--white-color);
+                height: 40px;
+                width: 205px;
+                text-align: center;
+                font-weight: bold;
+                border-radius: 30px;
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-style: none;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+
             &__price {
                 display: flex;
                 align-items: center;

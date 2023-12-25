@@ -1,12 +1,18 @@
 import '../itemComponent/ItemStyles.scss';
 import './ItemInCartStyles.scss';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {itemByIdSelector} from "../../features/ItemsSlice";
-import {getCartItemById} from "../../features/CartSlice";
+import {addItem, getCartItemById, removeItem} from "../../features/CartSlice";
 
 const ItemInCartComponent = ({id}) => {
     const { title, price, src } = useSelector(itemByIdSelector(id));
     const { count } = useSelector(getCartItemById(id));
+
+    const dispatch = useDispatch();
+
+    const removeItemHandler = () => {
+        dispatch(removeItem(id));
+    }
 
     return (
         <div className={"item"}>
@@ -19,6 +25,7 @@ const ItemInCartComponent = ({id}) => {
                     <div className={"item__info__main__price"}>
                         <div className={"item__info__main__price__new"}>${price.toFixed(2)} * {count} = ${(price * count).toFixed(2)}</div>
                     </div>
+                    <button className={"item__info__main__delete"} onClick={removeItemHandler}>Delete</button>
                 </div>
             </div>
         </div>

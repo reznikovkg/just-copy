@@ -41,6 +41,10 @@
             flex-direction: column;
             gap: 8px;
 
+            &__title {
+                color: var(--main-text-color);
+            }
+
             &__rating {
                 display: flex;
                 height: 12px;

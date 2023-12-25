@@ -24,7 +24,7 @@ const ItemsComponent = ({id, title, src, price, oldPrice, available, sold, ratin
                         <img className={"item__info__main__rating__star"}
                              src={value <= rating ? "/star_active.svg" : "/star.svg"} alt={"star"}/>
                     ))}</div>
-                    <div className={"item__info__main__title"}>{title}</div>
+                    <a className={"item__info__main__title"} href={`store/item/${id}`}>{title}</a>
                     <div className={"item__info__main__price"}>
                         <div className={"item__info__main__price__new"}>${price.toFixed(2)}</div>
                         <div className={"item__info__main__price__old"}>${oldPrice.toFixed(2)}</div>

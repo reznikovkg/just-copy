@@ -7,6 +7,7 @@ import ItemsComponent from "../itemComponent/ItemsComponent";
 import CategoriesComponent from "../CategoriesComponents/categoriesComponent";
 import BestSellerComponent from "../bestSellerComponent/bestSellerComponent";
 import CartPage from "./CartPage";
+import ItemPage from "./ItemPage";
 
 const StorePage = () => {
     return <div className={'store-page'}>
@@ -14,6 +15,7 @@ const StorePage = () => {
         <Routes >
             <Route path={'/'} element={<><NewsComponent/><CategoriesComponent/><ItemsComponent/><BestSellerComponent/></>}/>
             <Route path ='departments' element={<DepartmentsPage/>}></Route>
+            <Route path ='item/:id' element={<ItemPage/>}></Route>
             <Route path='cart' element={<CartPage/>}></Route>
         </Routes>
         <div className={'footer'}/>
