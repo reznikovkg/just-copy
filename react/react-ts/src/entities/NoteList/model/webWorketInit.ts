@@ -1,0 +1,1 @@
+export const worker = new Worker('/src/entities/NoteList/model/webWorker.ts');

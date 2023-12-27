@@ -1,0 +1,10 @@
+.rating-stars {
+  display: flex;
+  flex-direction: row;
+  &__input {
+    display: none;
+  }
+  &__icon {
+    cursor: pointer;
+  }
+}

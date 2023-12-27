@@ -3,6 +3,10 @@ const app = express()
 const port = 3000
 const cors = require('cors');
 app.use(cors());
+const http = require('http');
+const WebSocket = require("ws");
+const server = http.createServer(app);
+const webSocketServer = new WebSocket.Server({ server });
 
 const db = [
   {
@@ -31,6 +35,30 @@ const db = [
   },
 ]
 
+webSocketServer.on('connection', ws => {
+    console.log(`Client connected`);
+
+    ws.send('Hi there, I am a WebSocket server');
+
+    ws.on('message', (message) => {
+        console.log(`Message "${message}" received`);
+        ws.send("Message from server")
+    });
+
+    ws.on('disconnect', () => {
+        console.log(`Client disconnected`);
+    });
+});
+
+app.get('/ws/requestMessage', (req, res) => {
+    webSocketServer.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send("Requested message from server");
+        }
+    });
+    res.json({message: "Message has been sent via websocket"})
+});
+
 app.get('/', (req, res) => {
   res.send('My backend!!!')
 })
@@ -49,6 +77,6 @@ app.get('/json/:id', (req, res) => {
   return res.json(db.find(item => (item.id === req.params.id)))
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
