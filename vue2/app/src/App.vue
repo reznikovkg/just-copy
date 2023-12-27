@@ -6,7 +6,7 @@
 
   
 <script>
-import MyPage from "@/components/MyPage.vue"; // Обновите путь к компоненту
+import MyPage from "@/components/MyPage.vue";
 
 export default {
   components: {

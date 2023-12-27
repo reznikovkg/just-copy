@@ -1,102 +1,102 @@
 body {
-    font-family: 'Source Sans Pro', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    }
-    .modal-shadow {
-        position:fixed;
-        top: 0;
-        left: 0;
-        min-height: 100%;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.39);
-    }
- 
- 
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  .modal-shadow {
+      position:fixed;
+      top: 0;
+      left: 0;
+      min-height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.39);
+  }
+
+
 .modal-shadow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.39);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .modal {
-    background: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    min-width: 320px; /* Можно уменьшить минимальную ширину, если нужно */
-    max-width: 480px;
-    position: relative;
-    z-index: 1; /* Выше чем .modal-shadow, чтобы находиться "поверх" */
-  }
-  
-  .modal-close {
-    border-radius: 50%;
-    color: #fff;
-    background: #2a4cc7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 7px;
-    right: 7px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-  }
-  
-  .modal-title {
-    color: #0971c7;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .modal-content {
-    margin-bottom: 20px;
-  }
-  
-  .modal-footer {
-    text-align: right;
-  }
-  
-  .modal-footer__button {
-    background-color: #0971c7;
-    color: #fff;
-    border: none;
-    text-align: center;
-    padding: 8px 15px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .page {
-    position: relative;
-    width: 100%;
-    min-height: 100%;
-  }
-  
-  /* Стили для кнопки */
-  
-  .show-modal-button {
-    background-color: #0971c7;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  .show-modal-button:hover {
-    background-color: #2a4cc7;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.39);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  min-width: 320px; /* Можно уменьшить минимальную ширину, если нужно */
+  max-width: 480px;
+  position: relative;
+  z-index: 1; /* Выше чем .modal-shadow, чтобы находиться "поверх" */
+}
+
+.modal-close {
+  border-radius: 50%;
+  color: #fff;
+  background: #2a4cc7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.modal-title {
+  color: #0971c7;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.modal-content {
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  text-align: right;
+}
+
+.modal-footer__button {
+  background-color: #0971c7;
+  color: #fff;
+  border: none;
+  text-align: center;
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Стили для кнопки */
+
+.show-modal-button {
+  background-color: #0971c7;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.show-modal-button:hover {
+  background-color: #2a4cc7;
+}
