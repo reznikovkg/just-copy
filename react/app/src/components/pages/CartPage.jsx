@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {getItemsArray, getTotalAmount} from "../../features/CartSlice";
+import {getItemsArray, getTotalAmount} from "../../store/CartSlice";
 import ItemInCartComponent from "../itemInCartComponent/itemInCartComponent";
 
 const CartPage = () => {

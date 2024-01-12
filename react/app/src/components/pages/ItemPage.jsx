@@ -1,9 +1,9 @@
 import './itemPage.scss'
 import React from "react";
 import {useSelector} from "react-redux";
-import {itemByIdSelector, itemsArraySelector} from "../../features/ItemsSlice";
+import {itemByIdSelector, itemsArraySelector} from "../../store/ItemsSlice";
 import {useParams} from "react-router-dom";
-import {addItem} from "../../features/CartSlice";
+import {addItem} from "../../store/CartSlice";
 import {useDispatch} from "react-redux";
 const ItemPage = () => {
 

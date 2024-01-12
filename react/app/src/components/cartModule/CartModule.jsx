@@ -1,6 +1,6 @@
 import './CartStyles.scss';
 import {useSelector} from "react-redux";
-import {getItemCount, getTotalAmount} from "../../features/CartSlice";
+import {getItemCount, getTotalAmount} from "../../store/CartSlice";
 import {Link} from "react-router-dom";
 
 const CartModule = () => {

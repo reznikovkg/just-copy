@@ -1,8 +1,8 @@
 import '../itemComponent/ItemStyles.scss';
 import './ItemInCartStyles.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {itemByIdSelector} from "../../features/ItemsSlice";
-import {addItem, getCartItemById, removeItem} from "../../features/CartSlice";
+import {itemByIdSelector} from "../../store/ItemsSlice";
+import {addItem, getCartItemById, removeItem} from "../../store/CartSlice";
 
 const ItemInCartComponent = ({id}) => {
     const { title, price, src } = useSelector(itemByIdSelector(id));

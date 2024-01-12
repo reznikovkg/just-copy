@@ -1,6 +1,6 @@
 import './ItemsStyles.scss';
 import {useSelector} from "react-redux";
-import {itemsArraySelector} from "../../features/ItemsSlice";
+import {itemsArraySelector} from "../../store/ItemsSlice";
 import ItemComponent from "./ItemComponent";
 
 const ItemsComponent = () => {

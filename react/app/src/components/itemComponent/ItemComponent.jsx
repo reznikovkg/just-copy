@@ -1,6 +1,6 @@
 import './ItemStyles.scss';
 import {useDispatch} from "react-redux";
-import {addItem} from "../../features/CartSlice";
+import {addItem} from "../../store/CartSlice";
 const ItemsComponent = ({id, title, src, price, oldPrice, available, sold, rating}) => {
     const dispatch = useDispatch();
 
