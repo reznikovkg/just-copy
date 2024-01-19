@@ -8,16 +8,16 @@ const HeaderComponent = () => {
                         <img className={'header__info__item__png'} src={'/email.png'} alt={'email'}/>
                         contact@gmail.com
                     </div>
-                    <a className={'header__info__item'}> Daily Deals </a>
-                    <a className={'header__info__item'}> Help & Contact </a>
+                    <div className={'header__info__item'}> Daily Deals </div>
+                    <div className={'header__info__item'}> Help & Contact </div>
                 </div>
                 <div className={'header__info__right'}>
                     <div className={'header__info__item'}>
                         <img className={'header__info__item__png'} src={'/ion_location.png'} alt={'location'}/>
                         Store Location
                     </div>
-                    <a className={'header__info__item'}> Order History </a>
-                    <a className={'header__info__item'}> $ US Dollar </a>
+                    <div className={'header__info__item'}> Order History </div>
+                    <div className={'header__info__item'}> $ US Dollar </div>
                     <div className={'header__info__item'}>
                         <img className={'header__info__item__png'} src={'/language.png'} alt={'language'}/>
                         English
