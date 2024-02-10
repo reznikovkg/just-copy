@@ -51,15 +51,31 @@
 
     &__search {
 
-      &__input, &__select {
-        height: 24px;
+      &__input {
+        height: 40px;
+        width: 250px;
+        padding: 0 10px 0 15px;
+        color: var(--second-text-color);
+        border-color: var(--light-gray-color);
+        border-right: 0;
+        border-radius: 2px;
+      }
+
+     &__select {
+        height: 40px;
+        padding: 0 10px 0 15px;
+        color: var(--second-text-color);
+        border-color: var(--light-gray-color);
+        border-right: 0;
+        border-radius: 2px;
       }
 
       &__button {
         background: var(--accent-color);
-        color: var(--white-color);
-        height: 24px;
-        padding: 0 5px;
+        color: var(--main-text-color);
+        height: 40px;
+        padding: 0 15px;
+        border-radius: 2px;
       }
     }
 
