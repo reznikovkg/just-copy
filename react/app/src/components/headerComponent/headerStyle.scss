@@ -50,33 +50,40 @@
     }
 
     &__search {
+      display: flex;
+      flex-direction: row;
+      height: 40px;
+      border-radius: 2px;
+      border: 1px solid var(--light-gray-color);
 
-      &__input {
-        height: 40px;
-        width: 250px;
-        padding: 0 10px 0 15px;
-        color: var(--second-text-color);
-        border-color: var(--light-gray-color);
-        border-right: 0;
-        border-radius: 2px;
-      }
+        &__line {
+          width: 1px;
+          background-color: var(--second-text-color);
+          margin-left: 10px;
+        }
 
-     &__select {
-        height: 40px;
-        padding: 0 10px 0 15px;
-        color: var(--second-text-color);
-        border-color: var(--light-gray-color);
-        border-right: 0;
-        border-radius: 2px;
-      }
+        &__input {
+          height: 100%;
+          width: 250px;
+          padding: 0 10px 0 15px;
+          color: var(--second-text-color);
+          border: none;
+        }
 
-      &__button {
-        background: var(--accent-color);
-        color: var(--main-text-color);
-        height: 40px;
-        padding: 0 15px;
-        border-radius: 2px;
-      }
+         &__select {
+           height: 100%;
+            padding: 0 10px 0 15px;
+            color: var(--second-text-color);
+            border: none;
+          }
+
+         &__button {
+            height: 100%;
+            background: var(--accent-color);
+            color: var(--main-text-color);
+            padding: 0 15px;
+            border: none;
+         }
     }
 
     &__contact {

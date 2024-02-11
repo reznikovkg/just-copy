@@ -36,6 +36,7 @@ const HeaderComponent = () => {
                         <option value="someOption">Phones</option>
                         <option value="someOption">Computers</option>
                     </select>
+                    <div className={'header__main__search__line'}></div>
                     <input className={'header__main__search__input'} title={'Search'} placeholder={'Keyword here..'}/>
                     <button className={'header__main__search__button'}> Search </button>
                 </div>
