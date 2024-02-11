@@ -1,0 +1,135 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  gap: 20px;
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    border-bottom: solid 0.5px var(--light-gray-color);
+    padding: 10px 30px;
+
+    &__left {
+      display: flex;
+      gap: 34px;
+      justify-content: flex-start;
+    }
+
+    &__right {
+      display: flex;
+      gap: 34px;
+      justify-content: flex-end;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #5f5f5f;
+
+      &__png {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+
+    &__logo {
+      width: 170px;
+      height: 50px;
+    }
+
+    &__search {
+      display: flex;
+      flex-direction: row;
+      height: 40px;
+      border-radius: 2px;
+      border: 1px solid var(--light-gray-color);
+
+        &__line {
+          width: 1px;
+          background-color: var(--second-text-color);
+          margin-left: 10px;
+        }
+
+        &__input {
+          height: 100%;
+          width: 250px;
+          padding: 0 10px 0 15px;
+          color: var(--second-text-color);
+          border: none;
+        }
+
+         &__select {
+           height: 100%;
+            padding: 0 10px 0 15px;
+            color: var(--second-text-color);
+            border: none;
+          }
+
+         &__button {
+            height: 100%;
+            background: var(--accent-color);
+            color: var(--main-text-color);
+            padding: 0 15px;
+            border: none;
+         }
+    }
+
+    &__contact {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &__img {
+        width: 40px;
+        height: 40px;
+      }
+
+      &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: 14px;
+
+        &__text {
+          color: #5f5f5f
+        }
+
+        &__phone {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &__navigation {
+    background: var(--accent-color);
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    color: var(--white-color);
+    font-weight: bold;
+    padding-left: 30px;
+  }
+
+  a {
+    color: var(--white-color);
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+  }
+}

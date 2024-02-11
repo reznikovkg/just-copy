@@ -1,4 +1,11 @@
 * {
+    --second-text-color: #9a9a9a;
+    --accent-color: #2aad1c;
+    --light-gray-color: #a0a0a0;
+    --white-color: white;
+    --main-text-color: black;
+    --delete-button-color: red;
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,7 +21,49 @@ body {
     font-family: "Roboto", sans-serif;
     font-size: 12px;
     line-height: 1.2;
-    width: 100%;
     min-height: 100vh;
     display: flex;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
+
+.footer {
+    height: 40px;
+    width: 100%;
+    background: var(--accent-color);
+}
+
+.cart-page {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 30px 50px;
+    background-color: #e8e8e8;
+
+    &__title {
+        font-size: 2em;
+        font-weight: bold;
+        margin-bottom: 30px;
+        border-bottom: 2px solid var(--accent-color);
+        padding: 8px 0;
+    }
+
+    &__total-amount {
+        font-size: 1.5em;
+        padding: 10px 0;
+    }
+
+    &__green-button {
+        background-color: var(--accent-color);
+        border: 1px solid var(--accent-color);
+        padding: 10px;
+        border-radius: 4px;
+        color: var(--white-color);
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+}
+
+
