@@ -1,5 +1,6 @@
 <template>
   <nav class="menu">
+    <!-- Меню открывается/закрывается через v-model -->
     <input type="checkbox" class="menu-open" v-model="menuOpen" id="menu-open" />
     <label class="menu-open-button" for="menu-open">
       <span class="lines line-1"></span>
@@ -7,9 +8,10 @@
       <span class="lines line-3"></span>
     </label>
 
+    <!-- Перебор элементов меню -->
     <a href="#" v-for="(item, index) in menuItems" :key="index" :class="['menu-item', item.color]"
       @click.prevent="item.action">
-      <i :class="item.icon"></i>
+      <i :class="item.icon"></i> <!-- Иконка -->
     </a>
   </nav>
 </template>
@@ -18,6 +20,7 @@
 export default {
   name: 'MenuComponent',
   props: {
+    // Принимаем список элементов меню
     menuItems: {
       type: Array,
       required: true,
@@ -26,7 +29,7 @@ export default {
   },
   data() {
     return {
-      menuOpen: false,
+      menuOpen: false, // Состояние открытия меню
     };
   }
 };
