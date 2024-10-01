@@ -1,6 +1,5 @@
 <template>
   <nav class="menu">
-    <!-- Меню открывается/закрывается через v-model -->
     <input type="checkbox" class="menu-open" v-model="menuOpen" id="menu-open" />
     <label class="menu-open-button" for="menu-open">
       <span class="lines line-1"></span>
@@ -8,30 +7,47 @@
       <span class="lines line-3"></span>
     </label>
 
-    <!-- Перебор элементов меню -->
     <a href="#" v-for="(item, index) in menuItems" :key="index" :class="['menu-item', item.color]"
-      @click.prevent="item.action">
-      <i :class="item.icon"></i> <!-- Иконка -->
+      :style="getItemStyle(index, menuItems.length)" @click.prevent="item.action">
+      <i :class="item.icon"></i>
     </a>
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'MenuComponent',
+  name: "MenuComponent",
   props: {
-    // Принимаем список элементов меню
     menuItems: {
       type: Array,
       required: true,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
-      menuOpen: false, // Состояние открытия меню
+      menuOpen: false,
+      radius: 120,
     };
-  }
+  },
+  methods: {
+    getItemStyle(index, totalItems) {
+      if (!this.menuOpen) {
+        return {
+          transform: `translate3d(0px, 0px, 0)`,
+        };
+      }
+
+      const angle = (index / totalItems) * 2 * Math.PI;
+      const x = this.radius * Math.cos(angle);
+      const y = this.radius * Math.sin(angle);
+
+      return {
+        transform: `translate3d(${x}px, ${y}px, 0)`,
+        transitionDuration: `${200 + index * 100}ms`,
+      };
+    },
+  },
 };
 </script>
 
@@ -63,12 +79,6 @@ a {
   line-height: 80px;
   transform: translate3d(0, 0, 0);
   transition: transform ease-out 200ms;
-}
-
-.menu-item span {
-  display: block;
-  font-size: 12px;
-  margin-top: 5px;
 }
 
 .menu-open {
@@ -144,43 +154,8 @@ a {
   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
 }
 
-.menu-open:checked+.menu-open-button {
-  transition-duration: 200ms;
-  transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-}
-
 .menu-open:checked~.menu-item {
   transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
-}
-
-.menu-open:checked~.menu-item:nth-child(3) {
-  transition-duration: 180ms;
-  transform: translate3d(0.08361px, -104.99997px, 0);
-}
-
-.menu-open:checked~.menu-item:nth-child(4) {
-  transition-duration: 280ms;
-  transform: translate3d(90.9466px, -52.47586px, 0);
-}
-
-.menu-open:checked~.menu-item:nth-child(5) {
-  transition-duration: 380ms;
-  transform: translate3d(90.9466px, 52.47586px, 0);
-}
-
-.menu-open:checked~.menu-item:nth-child(6) {
-  transition-duration: 480ms;
-  transform: translate3d(0.08361px, 104.99997px, 0);
-}
-
-.menu-open:checked~.menu-item:nth-child(7) {
-  transition-duration: 580ms;
-  transform: translate3d(-90.86291px, 52.62064px, 0);
-}
-
-.menu-open:checked~.menu-item:nth-child(8) {
-  transition-duration: 680ms;
-  transform: translate3d(-91.03006px, -52.33095px, 0);
 }
 
 .blue {
