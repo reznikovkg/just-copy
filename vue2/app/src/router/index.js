@@ -95,6 +95,11 @@ const routes = [
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
+	{
+		path: "/radialMenu",
+		name: "radialMenu",
+		component: () => import("../views/RadialMenu.vue"),
+	},
 ]
 
 const router = new VueRouter({
