@@ -1,4 +1,3 @@
-html
 <template>
 	<div>
 		<RadialMenu :items="menuItems" />
