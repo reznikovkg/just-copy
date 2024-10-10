@@ -1,41 +1,52 @@
 <template>
-  <div>
-    <div v-if="!gameStarted" class="start-screen">
-      <h3>Выберите режим игры</h3>
-      <select v-model="gridSize">
-        <option v-for="size in [3, 4, 5]" :key="size" :value="size">{{ size }} x {{ size }}</option>
-      </select>
+  <div class="main-container">
+    <!-- Start Screen -->
+    <div class="start-screen" v-if="!gameStarted">
+      <h1 class="title">Добро пожаловать в Крестики-Нолики!</h1>
 
-      <div>
-        <input type="checkbox" v-model="againstBot" id="againstBot">
-        <label for="againstBot">Против бота</label>
-      </div>
-
-      <div v-if="againstBot">
-        <label>Уровень сложности:</label>
-        <select v-model="difficulty">
-          <option value="easy">Легкий</option>
-          <option value="medium">Средний</option>
-          <option value="hard">Сложный</option>
+      <!-- Grid Size Selection -->
+      <div class="option">
+        <label for="grid-size">Размер сетки:</label>
+        <select id="grid-size" v-model="gridSize" class="dropdown">
+          <option v-for="size in [3, 4, 5]" :key="size" :value="size">{{ size }} x {{ size }}</option>
         </select>
       </div>
 
-      <button @click="startGame">Начать игру</button>
+      <!-- Play Against Bot Option -->
+      <div class="option">
+        <label for="against-bot">Играть против бота:</label>
+        <input id="against-bot" type="checkbox" v-model="againstBot" class="checkbox">
+      </div>
+
+      <!-- Difficulty Selection -->
+      <div class="option" v-if="againstBot">
+        <label for="difficulty">Сложность:</label>
+        <select id="difficulty" v-model="difficulty" class="dropdown">
+          <option value="easy">Легкая</option>
+          <option value="medium">Средняя</option>
+          <option value="hard">Сложная</option>
+        </select>
+      </div>
+
+      <button @click="startGame" class="start-button">Начать игру</button>
     </div>
 
-    <div v-else class="game-screen">
-      <div class="grid" :style="gridStyle">
-        <CellComponent
+    <!-- Game Screen -->
+    <div class="game-screen" v-if="gameStarted">
+      <div :style="gridStyle" class="grid-container">
+        <cell-component
           v-for="(cell, index) in cells"
           :key="index"
-          :value="cell"
           :index="index"
+          :value="cell"
           @cell-click="handleCellClick"
         />
       </div>
+
       <div v-if="winner" class="result">
-        <h3>{{ winner }} победил!</h3>
-        <button @click="resetGame">Начать сначала</button>
+        <p v-if="winner !== 'Ничья'">{{ winner }} победил!</p>
+        <p v-else>{{ winner }}</p>
+        <button @click="resetGame" class="reset-button">Сброс</button>
       </div>
     </div>
   </div>
@@ -69,7 +80,11 @@ export default {
         gridTemplateRows: `repeat(${this.gridSize}, ${cellSize}px)`,
         width: `${gridDimension}px`,
         height: `${gridDimension}px`,
-        border: '1px solid #000',
+        gap: '10px',
+        padding: '20px',
+        backgroundColor: 'transparent',
+        border: 'none',
+        outline: 'none',
       };
     },
   },
@@ -111,8 +126,7 @@ export default {
       if (this.difficulty === 'easy') {
         let emptyCells = this.getEmptyIndices(this.cells);
         if (emptyCells.length === 0) return;
-        let randomIndex =
-          emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        let randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
         setTimeout(() => {
           this.handleCellClick(randomIndex);
         }, 500);
@@ -129,26 +143,27 @@ export default {
       }
     },
     getMaxDepthForDifficulty() {
+      // Adjust max depth to prevent freezing for larger grids
       if (this.difficulty === 'medium') {
-        return this.gridSize === 4 ? 3 : this.gridSize === 5 ? 2 : 4;
-      } else if (this.difficulty === 'hard' && this.gridSize >= 4) {
-        return this.gridSize === 4 ? 4 : 3;
+        return this.gridSize === 3 ? 2 : this.gridSize === 4 ? 3 : 2;
+      } else if (this.difficulty === 'hard') {
+        return this.gridSize === 3 ? Infinity : this.gridSize === 4 ? 4 : 3; // Limit depth for large grids
       }
-      return Infinity;
+      return 1; // Easy difficulty with shallow search
     },
     minimax(newBoard, player, depth = 0, maxDepth = Infinity) {
       const availSpots = this.getEmptyIndices(newBoard);
 
       if (this.checkWinForMinimax(newBoard, 'X')) {
-        return { score: -10 + depth };
+        return { score: -10 + depth }; // Penalize for player win
       } else if (this.checkWinForMinimax(newBoard, 'O')) {
-        return { score: 10 - depth };
+        return { score: 10 - depth }; // Reward for bot win
       } else if (availSpots.length === 0) {
-        return { score: 0 };
+        return { score: 0 }; // Draw
       }
 
       if (depth >= maxDepth) {
-        return { score: 0 };
+        return { score: 0 }; // Return neutral score when depth limit is reached
       }
 
       const moves = [];
@@ -192,74 +207,21 @@ export default {
       return moves[bestMove];
     },
     getEmptyIndices(board) {
-      return board
-        .map((cell, index) => (cell === '' ? index : null))
-        .filter((val) => val !== null);
+      return board.map((cell, index) => (cell === '' ? index : null)).filter(val => val !== null);
     },
     checkWinForMinimax(board, player) {
       const lines = this.getWinningLines();
-      return lines.some((line) =>
-        line.every((index) => board[index] === player)
-      );
+      return lines.some(line => line.every(index => board[index] === player));
     },
     togglePlayer() {
       this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
     },
     checkWin(player) {
       const lines = this.getWinningLines();
-      return lines.some((line) =>
-        line.every((index) => this.cells[index] === player)
-      );
-    },
-    getWinningLines() {
-      let lines = [];
-      let size = this.gridSize;
-      let winCondition = this.gridSize;
-
-      for (let row = 0; row < size; row++) {
-        for (let col = 0; col <= size - winCondition; col++) {
-          let line = [];
-          for (let k = 0; k < winCondition; k++) {
-            line.push(row * size + col + k);
-          }
-          lines.push(line);
-        }
-      }
-
-      for (let col = 0; col < size; col++) {
-        for (let row = 0; row <= size - winCondition; row++) {
-          let line = [];
-          for (let k = 0; k < winCondition; k++) {
-            line.push((row + k) * size + col);
-          }
-          lines.push(line);
-        }
-      }
-
-      for (let row = 0; row <= size - winCondition; row++) {
-        for (let col = 0; col <= size - winCondition; col++) {
-          let line = [];
-          for (let k = 0; k < winCondition; k++) {
-            line.push((row + k) * size + (col + k));
-          }
-          lines.push(line);
-        }
-      }
-
-      for (let row = 0; row <= size - winCondition; row++) {
-        for (let col = winCondition - 1; col < size; col++) {
-          let line = [];
-          for (let k = 0; k < winCondition; k++) {
-            line.push((row + k) * size + (col - k));
-          }
-          lines.push(line);
-        }
-      }
-
-      return lines;
+      return lines.some(line => line.every(index => this.cells[index] === player));
     },
     isDraw() {
-      return this.cells.every((cell) => cell !== '');
+      return this.cells.every(cell => cell !== '');
     },
     resetGame() {
       this.gameStarted = false;
@@ -267,15 +229,100 @@ export default {
       this.currentPlayer = 'X';
       this.cells = [];
     },
+    getWinningLines() {
+      const size = this.gridSize;
+      let lines = [];
+
+      for (let i = 0; i < size; i++) {
+        lines.push([...Array(size).keys()].map(key => key + i * size));
+        lines.push([...Array(size).keys()].map(key => i + key * size));
+      }
+
+      lines.push([...Array(size).keys()].map(key => key * (size + 1)));
+      lines.push([...Array(size).keys()].map(key => (key + 1) * (size - 1)));
+
+      return lines;
+    },
   },
 };
 </script>
 
 <style scoped>
+/* Main Container Styles */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1e1e1e;
+}
+
 .start-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #263238;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  color: #ffffff;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.option {
+  margin: 10px 0;
+  color: #B0BEC5;
+  font-size: 18px;
+}
+
+.dropdown,
+input[type="checkbox"] {
+  margin-left: 10px;
+  color: #ffffff;
+  background-color: #263238;
+  border: 1px solid #616161;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.dropdown:focus,
+input[type="checkbox"]:focus {
+  border-color: #FFC107;
+}
+
+.start-button,
+.reset-button {
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.start-button:hover,
+.reset-button:hover {
+  background-color: #388E3C;
+  transform: scale(1.05);
+}
+
+.grid-container {
+  margin: 20px;
+}
+
+.result {
+  margin-top: 20px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 24px;
 }
 
 .game-screen {
@@ -284,7 +331,10 @@ export default {
   align-items: center;
 }
 
-.result {
-  margin-top: 10px;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e1e;
+  font-family: Arial, sans-serif;
 }
 </style>
