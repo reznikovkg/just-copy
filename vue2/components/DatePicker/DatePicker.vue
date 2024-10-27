@@ -5,9 +5,9 @@
       type="text"
       placeholder="YYYY-MM-DD"
       class="calendar__input"
-      @focus="openCalendar"
-      @input="validateAndUpdateDate"
-      @keydown.enter="handleEnter"
+      @focus="() => openCalendar()"
+      @input="() => validateAndUpdateDate()"
+      @keydown.enter="() => handleEnter()"
     />
     <button class="clear-button" @click="() => clearInput()">✖</button>
 
@@ -105,14 +105,10 @@ export default {
   },
   computed: {
     dayNames() {
-      return ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
+      return ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', "Вс"]
     },
     monthNames() {
-      return [
-        'Янв', 'Фев', 'Март', 'Апр', 'Май',
-        'Июнь', 'Июль', 'Авг', 'Сент',
-        'Окт', 'Нояб', 'Дек'
-      ]
+      return ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек']
     },
     daysInMonth() {
       const date = new Date(this.currentYear, this.currentMonth + 1, 0)
@@ -122,8 +118,9 @@ export default {
       }))
     },
     blanks() {
-      const firstDayOfMonth = new Date(this.currentYear, this.currentMonth, 1).getDay()
-      return Array.from({ length: firstDayOfMonth })
+      const firstDayOfMonth = new Date(this.currentYear, this.currentMonth, 1).getDay();
+      const adjustedFirstDay = (firstDayOfMonth === 0) ? 6 : firstDayOfMonth - 1;
+      return Array.from({ length: adjustedFirstDay });
     },
     fullMonthDays() {
       const previousMonthDays = this.getPreviousMonthDays()
@@ -206,17 +203,20 @@ export default {
       }
     },
     getPreviousMonthDays() {
-      const firstDayOfMonth = new Date(this.currentYear, this.currentMonth, 1).getDay()
-      const prevMonth = new Date(this.currentYear, this.currentMonth, 0)
-      const daysInPrevMonth = prevMonth.getDate()
-      return Array.from({ length: firstDayOfMonth }, (_, i) => ({
-        day: daysInPrevMonth - firstDayOfMonth + 1 + i,
-        isOtherMonth: true
-      }))
-    },
+        const firstDayOfMonth = new Date(this.currentYear, this.currentMonth, 1).getDay()
+        const adjustedFirstDay = (firstDayOfMonth === 0) ? 6 : firstDayOfMonth - 1
+        const prevMonth = new Date(this.currentYear, this.currentMonth, 0)
+        const daysInPrevMonth = prevMonth.getDate()
+        return Array.from({ length: adjustedFirstDay }, (_, i) => ({
+          day: daysInPrevMonth - adjustedFirstDay + 1 + i,
+          isOtherMonth: true
+        }));
+      },
     getNextMonthDays() {
       const lastDayOfMonth = new Date(this.currentYear, this.currentMonth + 1, 0).getDay()
-      return Array.from({ length: 6 - lastDayOfMonth }, (_, i) => ({
+      const adjustedLastDay = (lastDayOfMonth === 0) ? 6 : lastDayOfMonth - 1
+      const remainingDays = 6 - adjustedLastDay
+      return Array.from({ length: remainingDays }, (_, i) => ({
         day: i + 1,
         isOtherMonth: true
       }))
