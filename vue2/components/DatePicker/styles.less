@@ -28,11 +28,11 @@
     cursor: pointer;
   }
 
-  &__gridMini {
+  &__grid-mini {
     display: grid;
     grid-template-columns: repeat(4, 3fr);
 
-    > .day {
+    .day {
       text-align: left;
     }
   }
@@ -69,7 +69,7 @@
     border-radius: 16px;
   }
 
-  &:hover:not(&--other-month) {
+  &:hover {
     background-color: rgba(128, 128, 128, 0.2);
     transition: .2s;
   }
@@ -77,6 +77,10 @@
   &--other-month {
     color: gray;
     cursor: not-allowed;
+    
+    &:hover {
+      background-color: transparent;
+    }
   }
 
   &__name {

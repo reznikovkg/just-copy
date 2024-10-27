@@ -46,7 +46,7 @@
         </template>
       </div>
 
-      <div v-if="showYearPicker" class="calendar__gridMini">
+      <div v-if="showYearPicker" class="calendar__grid-mini">
         <div
           v-for="year in yearRange"
           class="day"
@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <div v-if="showMonthPicker" class="calendar__gridMini">
+      <div v-if="showMonthPicker" class="calendar__grid-mini">
         <div
           class="day"
           v-for="(month, index) in monthNames"
@@ -136,10 +136,12 @@ export default {
       return years
     }
   },
+  mounted() {
+    this.inputDate = ''
+  },
   methods: {
     openCalendar() {
       this.showCalendar = true
-      this.selectedDay = this.selectedDay
     },
     closeCalendar() {
       this.showCalendar = false
@@ -239,9 +241,6 @@ export default {
       this.inputDate = ''
       this.selectedDay = null
     }
-  },
-  mounted() {
-    this.inputDate = ''
   }
 }
 </script>
