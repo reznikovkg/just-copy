@@ -95,6 +95,11 @@ const routes = [
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
+  {
+    path: '/themeSwiper',
+    name: 'themeSwiper',
+    component: () => import(/* webpackChunkName: "modal2" */ '../views/ThemeSwiper.vue')
+  },
 ]
 
 const router = new VueRouter({
