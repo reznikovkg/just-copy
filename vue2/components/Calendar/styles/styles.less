@@ -1,45 +1,87 @@
-@import "./../../../../_constants/less/vars.less";
-
 .calendar {
     position: relative;
-    max-width: 250px;
     color: #6b86ff;
     font-family: "Arial", sans-serif;
     font-weight: bolder;
+    font-size: 20px;
 
     &__selector{
-        width: 100%;
         padding: 3%;
-        aspect-ratio: 1/1;
-        box-shadow: 5px 5px 20px gray;
+        box-shadow: 3px 3px 20px black;
         z-index: 1;
         position: absolute;
         background-color: whitesmoke;
+        display: flex;
     }
+
+
 
     &__button {
         aspect-ratio: 1/1;
-        min-width: 20px;
         text-align: center;
+        border-radius: 50%;
+        line-height: 200%;
+        
         &--disabled {
             pointer-events: none;
             color: #aaaaaa;
         }
+        &--today {
+            color: #cc0404 !important;
+        }
+        &--selected {
+            background-color: #2e00e5;
+            color: white;
+        }
+        &:hover{
+            color: #230698 !important;
+        }
+
+        &__upper {
+            width: 10%;
+            text-align: center;
+            border-radius: 50%;
+            line-height: 200%;
+        }
+    }
+
+    &__big-button {
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        line-height: 200%;
     }
 
     &__upper {
         display: flex;
         justify-content: center;
         margin-bottom: 10px;
+        height: 10%;
     }
 
     &__grid {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
+        &__months {
+            display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        }
     }
 
-    &__mount-title {
+    &__month-title {
         width: 40%;
         text-align: center;
+        line-height: 200%;
+    }
+
+    &__quick-options {
+        width: 120px;
+        margin-right: 2%;
+    }
+    &__quick-option {
+        color: #000;
+        font-weight: normal;
+        margin-bottom: 10px;
+        font-size: 15px;
     }
 }
