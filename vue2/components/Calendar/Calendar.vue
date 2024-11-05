@@ -5,99 +5,52 @@
             readonly
             @click="toggleCalendar"
         />
-        <div aria-modal="true" v-show="showCalendar" class="calendar__selector">
+        <div v-show="showCalendar" aria-modal="true" class="calendar__selector">
             <div
-                class="calendar__quick-options"
                 v-if="showQuickOptions"
+                class="calendar__quick-options"
             >
                 <div
                     v-for="quickOption in quickOptions"
                     class="calendar__quick-option"
-                    @click="pickDeltaDate(
-                        quickOption.deltaDays,
-                        quickOption.deltaWeeks,
-                        quickOption.deltaMonths,
-                        quickOption.deltaYears
-                    )"
+                    @click="pickDeltaDate(quickOption)"
                 >
                     {{ quickOption.name }}
                 </div>
             </div>
-            <div
-                v-if="showDaySelector"
-            >
+            <div>
                 <div class="calendar__upper">
-                    <div class="calendar__button__upper" @click="changeBufferedDate(-1)">«</div>
-                    <div class="calendar__button__upper" @click="changeBufferedDate(0,-1)">‹</div>
-                    <div class="calendar__month-title">{{  MonthTitle(bufferDate) }}</div>
-                    <div class="calendar__button__upper" @click="changeBufferedDate(0, 1)">›</div>
-                    <div class="calendar__button__upper" @click="changeBufferedDate(1)">»</div>
+                    <div class="calendar__button__upper" @click="() => {bufferDate = upperDates.past2}">«</div>
+                    <div class="calendar__button__upper" @click="() => {bufferDate = upperDates.past1}">‹</div>
+                    <div class="calendar__month-title">{{  pageTitle }}</div>
+                    <div class="calendar__button__upper" @click="() => {bufferDate = upperDates.future1}">›</div>
+                    <div class="calendar__button__upper" @click="() => {bufferDate = upperDates.future2}">»</div>
                 </div>
-                <div class="calendar__grid">
-                    <div v-for="day in dayNames" class="calendar__button">{{ day }}</div>
+                <div
+                    :class="{
+                        'calendar__grid': showDaySelector,
+                        'calendar__grid__months': !showDaySelector,
+                    }"
+                >
+                    <div
+                        v-if="showDaySelector"
+                        v-for="day in dayNames" class="calendar__button"
+                    >
+                        {{ day }}
+                    </div>
                     <div
                         v-for="(date, index) in datesList"
-                        @click="pickDate(date.date)"
                         :key="index"
                         :class="{
                             'calendar__button--disabled': !date.enabled,
                             'calendar__button--today': date.today,
                             'calendar__button--selected': date.selected && date.enabled,
+                            'calendar__big-button': !showDaySelector,
                         }"
                         class="calendar__button"
-                    >
-                        {{ date.date.getDate() }}
-                    </div>
-                </div>
-            </div>
-            <div
-                v-else-if="showMonthSelector"
-            >
-                <div class="calendar__upper">
-                    <div class="calendar__button__upper" @click="changeBufferedDate(-2)">«</div>
-                    <div class="calendar__button__upper" @click="changeBufferedDate(-1)">‹</div>
-                    <div class="calendar__month-title">{{  bufferDate.getFullYear() }}</div>
-                    <div class="calendar__button__upper" @click="changeBufferedDate(1)">›</div>
-                    <div class="calendar__button__upper" @click="changeBufferedDate(2)">»</div>
-                </div>
-                <div class="calendar__grid__months">
-                    <div
-                        v-for="(date, index) in datesList"
                         @click="pickDate(date.date)"
-                        :key="index"
-                        :class="{
-                            'calendar__button--today': date.today,
-                            'calendar__button--selected': date.selected,
-                        }"
-                        class="calendar__button, calendar__big-button"
                     >
-                        {{ MonthTitle(date.date) }}
-                    </div>
-                </div>
-
-            </div>
-            <div
-                v-else
-            >
-                <div class="calendar__upper">
-                    <div class="calendar__button__upper" @click="changeBufferedDate(-6)">«</div>
-                    <div class="calendar__button__upper" @click="changeBufferedDate(-3)">‹</div>
-                    <div class="calendar__month-title"></div>
-                    <div class="calendar__button__upper" @click="changeBufferedDate(3)">›</div>
-                    <div class="calendar__button__upper" @click="changeBufferedDate(6)">»</div>
-                </div>
-               <div class="calendar__grid__months">
-                    <div
-                        v-for="(date, index) in datesList"
-                        @click="pickDate(date.date)"
-                        :key="index"
-                        :class="{
-                            'calendar__button--today': date.today,
-                            'calendar__button--selected': date.selected,
-                        }"
-                        class="calendar__button, calendar__big-button"
-                    >
-                        {{ date.date.getFullYear() }}
+                        {{ dateButtonText(date.date) }}
                     </div>
                 </div>
             </div>
@@ -139,35 +92,83 @@ export default {
         },
     },
     data() {
-        const today = new Date()
-        today.setHours(0, 0, 0, 0)
-        const selectedDates = []
-        switch (this.selectorMode) {
-            case SelectorModes.RANGE: {
-                selectedDates.push(new Date(today))
-            }
-            case SelectorModes.SINGLE: {
-                selectedDates.push(new Date(today))
-            }
-        }
         return {
-            selectedDates: selectedDates,
-            bufferDate: new Date(today),
+            selectedDates: [new Date(), new Date()],
+            bufferDate: new Date(),
             showCalendar: false,
             rangeSelectorState: true
         }
     },
+    mounted() {
+        this.bufferDate.setHours(0, 0, 0, 0)
+        this.selectedDates = []
+        switch (this.selectorMode){
+            case SelectorModes.SINGLE: {
+                this.selectedDates.push(new Date(this.bufferDate))
+                break
+            }
+            case SelectorModes.RANGE:  {
+                this.selectedDates.push(new Date(this.bufferDate))
+                this.selectedDates.push(new Date(this.bufferDate))
+                break
+            }
+        }
+    },
     computed: {
         dayNames() {
-            return ['вс','пн', 'вт', 'ср', 'чт', 'пт', 'сб',]
+            return ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс',]
         },
 
         showDaySelector(){
             return [SelectorVariants.DAY, SelectorVariants.WEEK].includes(this.selectorVariant)
         },
 
-        showMonthSelector(){
-            return SelectorVariants.MONTH === this.selectorVariant
+        pageTitle(){
+            switch (this.selectorVariant) {
+                case SelectorVariants.DAY:
+                case SelectorVariants.WEEK:{
+                    return this.monthTitle(this.bufferDate)
+                }
+                case SelectorVariants.MONTH: {
+                    return this.bufferDate.getFullYear()
+                }
+                case SelectorVariants.YEAR: {
+                    return ""
+                }
+            }
+        },
+
+        upperDates() {
+            const result = {
+                past2: new Date(this.bufferDate),
+                past1: new Date(this.bufferDate),
+                future1: new Date(this.bufferDate),
+                future2: new Date(this.bufferDate),
+            }
+            switch (this.selectorVariant){
+                case SelectorVariants.DAY:
+                case SelectorVariants.WEEK:{
+                    result.past2.setFullYear(this.bufferDate.getFullYear() - 1)
+                    result.past1.setMonth(this.bufferDate.getMonth() - 1)
+                    result.future1.setMonth(this.bufferDate.getMonth() + 1)
+                    result.future2.setFullYear(this.bufferDate.getFullYear() + 1)
+                    break
+                }
+                case SelectorVariants.MONTH: {
+                    result.past2.setFullYear(this.bufferDate.getFullYear() - 2)
+                    result.past1.setFullYear(this.bufferDate.getFullYear() - 1)
+                    result.future1.setFullYear(this.bufferDate.getFullYear() + 1)
+                    result.future2.setFullYear(this.bufferDate.getFullYear() + 2)
+                    break
+                }
+                case SelectorVariants.YEAR: {
+                    result.past2.setFullYear(this.bufferDate.getFullYear() - 6)
+                    result.past1.setFullYear(this.bufferDate.getFullYear() - 3)
+                    result.future1.setFullYear(this.bufferDate.getFullYear() + 3)
+                    result.future2.setFullYear(this.bufferDate.getFullYear() + 6)
+                }
+            }
+            return result
         },
 
         datesList(){
@@ -183,9 +184,9 @@ export default {
                 case SelectorVariants.WEEK:
                 case SelectorVariants.DAY:
                     date.setDate(1)
-                    date.setDate(date.getDate() - date.getDay())
+                    date.setDate(date.getDate() - (date.getDay() + 6) % 7)
                     lastDay.setMonth(lastDay.getMonth() + 1, 0)
-                    lastDay.setDate(lastDay.getDate() + 6 - lastDay.getDay())
+                    lastDay.setDate(lastDay.getDate() + 7 - lastDay.getDay())
                     next = () => {date.setDate(date.getDate() + 1)}
                     break
                 case SelectorVariants.MONTH:
@@ -203,54 +204,52 @@ export default {
 
             const dates = []
             do{
-                let weekStart = new Date(date).setDate(date.getDate() - date.getDay())
+                let weekStart = new Date(date).setDate(date.getDate() - (date.getDay() + 6) % 7)
                 if (date.getDate() === 1) {
                         enabled = date.getMonth() !== nextMonth
                     }
-                    let selected = false
-                    switch (this.selectorMode) {
-                        case SelectorModes.SINGLE: {
-                            if(this.selectorVariant === SelectorVariants.WEEK)
-                                selected = this.selectedDates[0].getTime() === weekStart
-                            else
-                                selected = date.getTime() === this.selectedDates[0].getTime()
-                            break
-                        }
-                        case SelectorModes.SEVERAL: {
-                            for (const index in Object.values(this.selectedDates)) {
-                                if(this.selectorVariant === SelectorVariants.WEEK) {
-                                    if (this.selectedDates[index].getTime() === weekStart) {
-                                        selected = true
-                                        break
-                                    }
-                                }
-                                else if (date.getTime() === this.selectedDates[index].getTime()) {
+                let selected = false
+                switch (this.selectorMode) {
+                    case SelectorModes.SINGLE: {
+                        if(this.selectorVariant === SelectorVariants.WEEK)
+                            selected = this.selectedDates[0].getTime() === weekStart
+                        else
+                            selected = date.getTime() === this.selectedDates[0].getTime()
+                        break
+                    }
+                    case SelectorModes.SEVERAL: {
+                        for (const index in Object.values(this.selectedDates)) {
+                            if(this.selectorVariant === SelectorVariants.WEEK) {
+                                if (this.selectedDates[index].getTime() === weekStart) {
                                     selected = true
                                     break
                                 }
                             }
-                            break
+                            else if (date.getTime() === this.selectedDates[index].getTime()) {
+                                selected = true
+                                break
+                            }
                         }
-                        case SelectorModes.RANGE: {
-                            if(this.selectorVariant === SelectorVariants.WEEK)
-                                selected = this.selectedDates[0].getTime() <= weekStart &&
-                                       weekStart <= this.selectedDates[1].getTime()
-                            else
-                                selected = this.selectedDates[0].getTime() <= date.getTime() &&
-                                       date.getTime() <= this.selectedDates[1].getTime()
-
-                        }
+                        break
                     }
-                    dates.push({
-                        date: new Date(date),
-                        enabled: enabled,
-                        selected: selected,
-                        today: date.getTime() === today.getTime(),
-                    })
+                    case SelectorModes.RANGE: {
+                        if(this.selectorVariant === SelectorVariants.WEEK)
+                            selected = this.selectedDates[0].getTime() <= weekStart &&
+                                   weekStart <= this.selectedDates[1].getTime()
+                        else
+                            selected = this.selectedDates[0].getTime() <= date.getTime() &&
+                                   date.getTime() <= this.selectedDates[1].getTime()
 
+                    }
+                }
+                dates.push({
+                    date: new Date(date),
+                    enabled: enabled,
+                    selected: selected,
+                    today: date.getTime() === today.getTime(),
+                })
                 next()
             } while (date.getTime() <= lastDay.getTime())
-            console.log(dates)
             return dates
         },
 
@@ -288,6 +287,7 @@ export default {
                     ];
                 case SelectorVariants.MONTH:
                     return [
+                        {name: "Этот месяц"},
                         {name: "Месяц назад", deltaMonths: -1},
                         {name: "Через Месяц", deltaMonths: 1},
                         {name: "Два месяца назад", deltaMonths: -2},
@@ -297,6 +297,7 @@ export default {
                     ];
                 case SelectorVariants.WEEK:
                     return [
+                        {name: "Эта неделя"},
                         {name: "Неделю назад", deltaWeeks: -1},
                         {name: "Через неделю", deltaWeeks: 1},
                         {name: "Две недели назад", deltaWeeks: -2},
@@ -308,6 +309,7 @@ export default {
                     ];
                 case SelectorVariants.YEAR:
                     return [
+                        {name: "Этот год"},
                         {name: "Год назад", deltaYears: -1},
                         {name: "Через год", deltaYear: 1},
                         {name: "Два года назад", deltaYears: -2},
@@ -318,7 +320,21 @@ export default {
     },
 
     methods: {
-        MonthTitle(date) {
+        dateButtonText(date){
+            switch (this.selectorVariant){
+                case SelectorVariants.DAY:
+                case SelectorVariants.WEEK:{
+                    return date.getDate()
+                }
+                case SelectorVariants.MONTH: {
+                    return this.monthTitle(date)
+                }
+                case SelectorVariants.YEAR: {
+                    return date.getFullYear()
+                }
+            }
+        },
+        monthTitle(date) {
             const monthNames = ["янв ", "фев ", "апр ", "мар ", "май ", "июн ", "июл ", "авг ", "сен ", "окт ", "ноя ", "дек ",]
             return monthNames[date.getMonth()] + date.getFullYear()
         },
@@ -344,7 +360,7 @@ export default {
         },
         pickDate(date) {
             if(this.selectorVariant === SelectorVariants.WEEK)
-                date.setDate(date.getDate() - date.getDay())
+                date.setDate(date.getDate() - (date.getDay() + 6) % 7)
             switch (this.selectorMode) {
                 case SelectorModes.SINGLE: {
                     this.selectedDates[0] = date
@@ -384,6 +400,8 @@ export default {
         },
 
         dateToString(date) {
+            if(date === undefined)
+                return ""
             switch (this.selectorVariant){
                 case SelectorVariants.DAY: {
                     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
@@ -405,23 +423,25 @@ export default {
             }
         },
 
-        pickDeltaDate(deltaDays, deltaWeeks, deltaMonths, deltaYears) {
-            let dateToPick = new Date()
+        pickDeltaDate(quickOption) {
+            const dateToPick = new Date()
             dateToPick.setHours(0, 0, 0, 0)
-            if (deltaDays === undefined)
-                deltaDays = 0
-            if (deltaWeeks !== undefined)
-                deltaDays += deltaWeeks * 7
-            dateToPick.setDate(dateToPick.getDate() + deltaDays)
+            if(this.selectorVariant === SelectorVariants.MONTH)
+                dateToPick.setDate(1)
+            if(this.selectorVariant === SelectorVariants.YEAR)
+                dateToPick.setMonth(0, 1)
 
-            if (deltaMonths === undefined)
-                deltaMonths = 0
-            if (deltaYears === undefined)
-                deltaYears = 0
+            let deltaDays = quickOption.deltaDays === undefined ? 0 : quickOption.deltaDays
+            let deltaMonths = quickOption.deltaMonths === undefined ? 0 : quickOption.deltaMonths
+            let deltaYears = quickOption.deltaYears === undefined ? 0 : quickOption.deltaYears
+
+            if (quickOption.deltaWeeks !== undefined)
+                deltaDays += quickOption.deltaWeeks * 7
+            dateToPick.setDate(dateToPick.getDate() + deltaDays)
 
             if (deltaMonths !== 0 || deltaYears !== 0) {
                 const oldDate = dateToPick.getDate()
-                dateToPick = new Date(
+                dateToPick.setFullYear(
                     dateToPick.getFullYear() + deltaYears,
                     dateToPick.getMonth() + deltaMonths + 1,
                     0
@@ -429,14 +449,9 @@ export default {
                 if (dateToPick.getDate() > oldDate)
                     dateToPick.setDate(oldDate)
             }
-            this.pickDate(dateToPick)
-        },
 
-        changeBufferedDate(year = 0, month = 0) {
-            let newDate = new Date(this.bufferDate)
-            newDate.setFullYear(newDate.getFullYear() + year)
-            newDate.setMonth(newDate.getMonth() + month)
-            this.bufferDate = newDate
+            this.pickDate(dateToPick)
+            this.bufferDate = dateToPick
         },
     }
 }
