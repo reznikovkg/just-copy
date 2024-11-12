@@ -95,6 +95,11 @@ const routes = [
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
+  {
+    path: '/navbarPage',
+    name: 'navbar',
+    component: () => import('../views/NavbarPage.vue')
+  },
 ]
 
 const router = new VueRouter({
