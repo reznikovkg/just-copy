@@ -54,6 +54,9 @@
 		<p><router-link :to="{ name: 'radialMenu' }">
 			radialMenu
 		</router-link></p>
+		<p><router-link :to="{ name: 'redactorClipPatchView' }">
+			redactorClipPatch
+		</router-link></p>
   </div>
 </template>
 <script>

@@ -100,6 +100,11 @@ const routes = [
 		name: "radialMenu",
 		component: () => import("../views/RadialMenu.vue"),
 	},
+  {
+		path: "/redactorClipPatch",
+		name: "redactorClipPatchView",
+		component: () => import("../views/RedactorClipPatch.vue"),
+	},
 ]
 
 const router = new VueRouter({
