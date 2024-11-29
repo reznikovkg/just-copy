@@ -1,33 +1,43 @@
 <template>
   <div class="clip-editor">
-    <div class="clip-editor__controls">
-      <button class="clip-editor__button" @click="() => toggleEditMode()">
-        {{ isEditing ? 'Смотреть результат' : 'Редактировать' }}
+    <header class="clip-editor__header">
+      <button
+        class="clip-editor__button"
+        @click="() => toggleEditMode()"
+      >
+        {{ isEditing ? "Смотреть результат" : "Редактировать" }}
       </button>
-      <button class="clip-editor__button" @click="() => resetClipPath()">Сбросить</button>
-    </div>
+      <button
+        class="clip-editor__button clip-editor__button--reset"
+        @click="() => resetClipPath()"
+      >
+        Сбросить
+      </button>
+    </header>
 
-    <div 
-      class="clip-editor__canvas-wrapper" 
-      :style="{ clipPath: points.length > 2 && !isEditing ? clipPathStyle : 'none' }"
-    >
-      <canvas 
-        class="clip-editor__canvas"
-        ref="canvas" 
-        @mousedown="($event) => onMouseDown($event)" 
-        @mousemove="($event) => onMouseMove($event)"
-        @mouseup="() => stopDragging()" 
-        @mouseleave="() => stopDragging()"
-      ></canvas>
-    </div>
+    <main class="clip-editor__content">
+      <div v-if="isEditing" class="clip-editor__canvas-wrapper">
+        <canvas
+          class="clip-editor__canvas"
+          ref="canvas"
+          @mousedown="($event) => onMouseDown($event)"
+          @mousemove="($event) => onMouseMove($event)"
+          @mouseup="() => stopDragging()"
+          @mouseleave="() => stopDragging()"
+        ></canvas>
+      </div>
 
-    <div class="clip-editor__output">
-      <h3 class="clip-editor__output-title">Clip-path:</h3>
-      <code class="clip-editor__output-code">{{ clipPathStyle }}</code>
-    </div>
+      <div v-else class="clip-editor__result">
+        <div class="clip-editor__svg-output" v-html="svgContent"></div>
+        <textarea
+          class="clip-editor__code"
+          readonly
+          :value="svgContent"
+        ></textarea>
+      </div>
+    </main>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -39,26 +49,29 @@ export default {
       draggingPointIndex: null,
       backgroundImage: "https://i.pinimg.com/736x/c8/cc/24/c8cc24bba37a25c009647b8875aae0e3.jpg",
       loadedImage: null,
+      svgContent: "",
     };
-  },
-  computed: {
-    clipPathStyle() {
-      if (this.points.length < 3) return "none";
-      const pointsString = this.points.map(point => `${point.x}px ${point.y}px`).join(", ");
-      return `polygon(${pointsString})`;
-    },
   },
   methods: {
     toggleEditMode() {
       this.isEditing = !this.isEditing;
-      this.drawCanvas();
+
+      if (!this.isEditing) {
+        this.generateSVG();
+      } else {
+        this.$nextTick(() => {
+          this.drawCanvas();
+        });
+      }
     },
+
     resetClipPath() {
       this.points = [];
+      this.svgContent = "";
       this.drawCanvas();
     },
     onMouseDown(event) {
-      if (!this.isEditing) return
+      if (!this.isEditing) return;
       const { offsetX, offsetY } = event;
       const clickedPointIndex = this.points.findIndex(
         ({ x, y }) => Math.hypot(x - offsetX, y - offsetY) < 5
@@ -83,8 +96,7 @@ export default {
       }
     },
     onMouseMove(event) {
-      if (!this.isEditing) return
-      if (this.draggingPointIndex === null) return;
+      if (!this.isEditing || this.draggingPointIndex === null) return;
       const { offsetX, offsetY } = event;
       this.$set(this.points, this.draggingPointIndex, { x: offsetX, y: offsetY });
       this.drawCanvas();
@@ -94,11 +106,14 @@ export default {
     },
     drawCanvas() {
       const canvas = this.$refs.canvas;
+      if (!canvas) return
       const ctx = canvas.getContext("2d");
       canvas.width = 500;
       canvas.height = 500;
 
-      if (!this.loadedImage) return;
+      if (!this.loadedImage) {
+        return;
+      }
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(this.loadedImage, 0, 0, canvas.width, canvas.height);
@@ -168,16 +183,47 @@ export default {
       const dy = py - yy;
       return Math.sqrt(dx * dx + dy * dy);
     },
+    generateSVG() {
+      if (this.points.length < 3 || !this.loadedImage) return;
+
+      const minX = Math.min(...this.points.map(p => p.x));
+      const minY = Math.min(...this.points.map(p => p.y));
+      const width = Math.max(...this.points.map(p => p.x)) - minX;
+      const height = Math.max(...this.points.map(p => p.y)) - minY;
+
+      const svgPoints = this.points
+        .map(point => `${point.x - minX},${point.y - minY}`)
+        .join(" ");
+
+      this.svgContent = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">
+          <clipPath id="clipPath">
+            <polygon points="${svgPoints}" />
+          </clipPath>
+          <image href="${this.backgroundImage}" x="${-minX}" y="${-minY}" width="500" height="500" clip-path="url(#clipPath)" />
+        </svg>
+      `.trim();
+    },
   },
   mounted() {
     const img = new Image();
+    img.crossOrigin = "Anonymous";
     img.src = this.backgroundImage;
 
     img.onload = () => {
       this.loadedImage = img;
-      this.drawCanvas();
+      if (this.isEditing) {
+        this.drawCanvas();
+      }
     };
   },
+  watch: {
+    isEditing(newValue) {
+      if (newValue && this.loadedImage) {
+        this.drawCanvas();
+      }
+    }
+  }
 };
 </script>
 
