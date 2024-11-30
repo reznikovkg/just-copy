@@ -95,6 +95,16 @@ const routes = [
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
+  {
+    path: '/objectDiff',
+    name: 'objectDiff',
+    component: () => import(/* webpackChunkName: "objectDiff" */'../views/./ObjectDiffPage')
+  },
+  {
+    path: '/custom-date',
+    name: 'customDate',
+    component: () => import(/* webpackChunkName: "objectDiff" */'../views/./CustomDatePage')
+  }
 ]
 
 const router = new VueRouter({
