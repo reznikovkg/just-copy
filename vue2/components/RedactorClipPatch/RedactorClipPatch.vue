@@ -1,40 +1,112 @@
 <template>
   <div class="clip-editor">
     <header class="clip-editor__header">
-      <button
-        class="clip-editor__button"
-        @click="() => toggleEditMode()"
-      >
+      <button class="clip-editor__button" @click="() => toggleEditMode()">
         {{ isEditing ? "Смотреть результат" : "Редактировать" }}
       </button>
-      <button
-        class="clip-editor__button clip-editor__button--reset"
-        @click="() => resetClipPath()"
-      >
-        Сбросить
-      </button>
+      <button class="clip-editor__button" @click="() => resetClipPath()">Сбросить</button>
+      <div class="clip-editor__line-type">
+        <label>
+          <input type="radio" value="line" v-model="lineType" /> Прямые линии
+        </label>
+        <label>
+          <input type="radio" value="curve" v-model="lineType" /> Кривые линии
+        </label>
+      </div>
     </header>
 
     <main class="clip-editor__content">
-      <div v-if="isEditing" class="clip-editor__canvas-wrapper">
-        <canvas
-          class="clip-editor__canvas"
-          ref="canvas"
+      <div class="clip-editor__svg-container">
+        <svg
+          class="clip-editor__svg"
+          :width="svgWidth"
+          :height="svgHeight"
+          xmlns="http://www.w3.org/2000/svg"
           @mousedown="($event) => onMouseDown($event)"
           @mousemove="($event) => onMouseMove($event)"
           @mouseup="() => stopDragging()"
           @mouseleave="() => stopDragging()"
-        ></canvas>
+        >
+          <defs v-if="!isEditing">
+            <clipPath id="clipPath">
+              <path :d="svgPath" />
+            </clipPath>
+          </defs>
+          <image
+            :href="backgroundImage"
+            :width="svgWidth"
+            :height="svgHeight"
+            :clip-path="!isEditing ? 'url(#clipPath)' : null"
+          />
+          <path
+            v-if="isEditing"
+            :d="svgPath"
+            fill="none"
+            stroke="rgba(0, 255, 0, 0.5)"
+            stroke-width="2"
+          />
+          <circle
+            v-if="isEditing"
+            v-for="(point, index) in points"
+            :key="`point-${point.id}`"
+            :cx="point.x"
+            :cy="point.y"
+            r="5"
+            :fill="index === activePoint ? 'orange' : 'red'"
+            @mousedown.stop="startDraggingPoint(index)"
+          />
+          <line
+            v-if="isEditing && point.control1"
+            v-for="(point, index) in points"
+            :key="`control1-${point.id}`"
+            :x1="point.x"
+            :y1="point.y"
+            :x2="point.control1.x"
+            :y2="point.control1.y"
+            stroke="blue"
+          />
+          <line
+            v-if="isEditing && point.control2"
+            v-for="(point, index) in points"
+            :key="`control2-${point.id}`"
+            :x1="point.x"
+            :y1="point.y"
+            :x2="point.control2.x"
+            :y2="point.control2.y"
+            stroke="blue"
+          />
+          <circle
+            v-if="isEditing && point.control1"
+            v-for="(point, index) in points"
+            :key="`control-point1-${point.id}`"
+            :cx="point.control1.x"
+            :cy="point.control1.y"
+            r="4"
+            fill="blue"
+            :stroke="index === activePoint ? 'black' : 'none'"
+            stroke-width="1"
+            @mousedown.stop="draggingControlPoint = [index, 'control1']"
+          />
+          <circle
+            v-if="isEditing && point.control2"
+            v-for="(point, index) in points"
+            :key="`control-point2-${point.id}`"
+            :cx="point.control2.x"
+            :cy="point.control2.y"
+            r="4"
+            fill="blue"
+            :stroke="index === activePoint ? 'black' : 'none'"
+            stroke-width="1"
+            @mousedown.stop="draggingControlPoint = [index, 'control2']"
+          />
+        </svg>
       </div>
-
-      <div v-else class="clip-editor__result">
-        <div class="clip-editor__svg-output" v-html="svgContent"></div>
-        <textarea
-          class="clip-editor__code"
-          readonly
-          :value="svgContent"
-        ></textarea>
-      </div>
+      <textarea
+        v-if="!isEditing"
+        class="clip-editor__code"
+        readonly
+        :value="svgContent"
+      ></textarea>
     </main>
   </div>
 </template>
@@ -46,10 +118,13 @@ export default {
     return {
       isEditing: true,
       points: [],
+      activePoint: null,
       draggingPointIndex: null,
+      draggingControlPoint: null,
+      lineType: "line",
       backgroundImage: "https://i.pinimg.com/736x/c8/cc/24/c8cc24bba37a25c009647b8875aae0e3.jpg",
-      loadedImage: null,
-      svgContent: "",
+      svgWidth: 500,
+      svgHeight: 500,
     };
   },
   methods: {
@@ -57,173 +132,136 @@ export default {
       this.isEditing = !this.isEditing;
 
       if (!this.isEditing) {
-        this.generateSVG();
-      } else {
-        this.$nextTick(() => {
-          this.drawCanvas();
-        });
+        this.svgContent = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="${this.svgWidth}" height="${this.svgHeight}">
+            <defs>
+              <clipPath id="clipPath">
+                <path d="${this.svgPath}" />
+              </clipPath>
+            </defs>
+            <image href="${this.backgroundImage}" width="${this.svgWidth}" height="${this.svgHeight}" clip-path="url(#clipPath)" />
+          </svg>
+        `.trim();
       }
     },
-
     resetClipPath() {
       this.points = [];
-      this.svgContent = "";
-      this.drawCanvas();
+      this.activePoint = null;
+      this.draggingPointIndex = null;
+      this.draggingControlPoint = null;
     },
     onMouseDown(event) {
-      if (!this.isEditing) return;
-      const { offsetX, offsetY } = event;
-      const clickedPointIndex = this.points.findIndex(
-        ({ x, y }) => Math.hypot(x - offsetX, y - offsetY) < 5
-      );
+      const offsetX = event.offsetX;
+      const offsetY = event.offsetY;
 
-      if (clickedPointIndex >= 0) {
-        this.draggingPointIndex = clickedPointIndex;
-      } else {
-        for (let i = 0; i < this.points.length - 1; i++) {
-          const point1 = this.points[i];
-          const point2 = this.points[i + 1];
-          const distance = this.distanceToSegment(offsetX, offsetY, point1.x, point1.y, point2.x, point2.y);
-          if (distance < 5) {
-            const newPoint = { x: offsetX, y: offsetY };
-            this.points.splice(i + 1, 0, newPoint);
-            this.drawCanvas();
-            return;
-          }
-        }
-        this.points.push({ x: offsetX, y: offsetY });
-        this.drawCanvas();
-      }
-    },
-    onMouseMove(event) {
-      if (!this.isEditing || this.draggingPointIndex === null) return;
-      const { offsetX, offsetY } = event;
-      this.$set(this.points, this.draggingPointIndex, { x: offsetX, y: offsetY });
-      this.drawCanvas();
-    },
-    stopDragging() {
-      this.draggingPointIndex = null;
-    },
-    drawCanvas() {
-      const canvas = this.$refs.canvas;
-      if (!canvas) return
-      const ctx = canvas.getContext("2d");
-      canvas.width = 500;
-      canvas.height = 500;
+      const lineIndex = this.findLineUnderMouse(offsetX, offsetY);
 
-      if (!this.loadedImage) {
+      if (lineIndex !== -1) {
+        this.insertPointOnLine(lineIndex, offsetX, offsetY);
         return;
       }
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(this.loadedImage, 0, 0, canvas.width, canvas.height);
+      const newPoint = {
+        id: Date.now(),
+        x: offsetX,
+        y: offsetY,
+        control1: this.lineType === "curve" ? { x: offsetX - 20, y: offsetY - 20 } : null,
+        control2: this.lineType === "curve" ? { x: offsetX + 20, y: offsetY + 20 } : null,
+      };
+      this.points.push(newPoint);
+      this.activePoint = this.points.length - 1;
+    },
 
-      if (this.points.length > 2) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(this.points[0].x, this.points[0].y);
-        this.points.forEach(point => ctx.lineTo(point.x, point.y));
-        ctx.closePath();
+    onMouseMove(event) {
+      if (this.draggingPointIndex !== null) {
+        const offsetX = event.offsetX;
+        const offsetY = event.offsetY;
 
-        if (!this.isEditing) {
-          ctx.clip();
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.drawImage(this.loadedImage, 0, 0, canvas.width, canvas.height);
-        } else {
-          ctx.clip();
-          ctx.fillStyle = "rgba(128, 128, 128, 0.5)";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.restore();
-        }
-      }
-
-      if (this.isEditing) {
-        ctx.strokeStyle = "rgba(0, 255, 0, 0.5)";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(this.points[0]?.x || 0, this.points[0]?.y || 0);
-        this.points.forEach(point => ctx.lineTo(point.x, point.y));
-        ctx.closePath();
-        ctx.stroke();
-
-        this.points.forEach(point => {
-          ctx.fillStyle = "#ff0000";
-          ctx.beginPath();
-          ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
-          ctx.fill();
+        this.$set(this.points, this.draggingPointIndex, {
+          ...this.points[this.draggingPointIndex],
+          x: Math.round(offsetX),
+          y: Math.round(offsetY),
         });
       }
-    },
-    distanceToSegment(px, py, ax, ay, bx, by) {
-      const abx = bx - ax;
-      const aby = by - ay;
-      const apx = px - ax;
-      const apy = py - ay;
-      const bpx = px - bx;
-      const bpy = py - by;
 
-      const dot = abx * apx + aby * apy;
-      const len_sq = abx * abx + aby * aby;
-      const param = len_sq === 0 ? -1 : dot / len_sq;
-
-      let xx, yy;
-
-      if (param < 0) {
-        xx = ax;
-        yy = ay;
-      } else if (param > 1) {
-        xx = bx;
-        yy = by;
-      } else {
-        xx = ax + param * abx;
-        yy = ay + param * aby;
+      if (this.draggingControlPoint) {
+        const [index, control] = this.draggingControlPoint;
+        const offsetX = event.offsetX;
+        const offsetY = event.offsetY;
+        const sensitivityFactor = 1.5;
+        const deltaX = (offsetX - this.points[index][control].x) * sensitivityFactor;
+        const deltaY = (offsetY - this.points[index][control].y) * sensitivityFactor;
+        this.$set(this.points[index][control], "x", Math.round(offsetX));
+        this.$set(this.points[index][control], "y", Math.round(offsetY));
       }
-
-      const dx = px - xx;
-      const dy = py - yy;
-      return Math.sqrt(dx * dx + dy * dy);
     },
-    generateSVG() {
-      if (this.points.length < 3 || !this.loadedImage) return;
 
-      const minX = Math.min(...this.points.map(p => p.x));
-      const minY = Math.min(...this.points.map(p => p.y));
-      const width = Math.max(...this.points.map(p => p.x)) - minX;
-      const height = Math.max(...this.points.map(p => p.y)) - minY;
 
-      const svgPoints = this.points
-        .map(point => `${point.x - minX},${point.y - minY}`)
-        .join(" ");
+    stopDragging() {
+      this.draggingPointIndex = null;
+      this.draggingControlPoint = null;
+    },
+    startDraggingPoint(index) {
+      this.draggingPointIndex = index;
+    },
+    findLineUnderMouse(x, y) {
+      for (let i = 0; i < this.points.length - 1; i++) {
+        const p1 = this.points[i];
+        const p2 = this.points[i + 1];
 
-      this.svgContent = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">
-          <clipPath id="clipPath">
-            <polygon points="${svgPoints}" />
-          </clipPath>
-          <image href="${this.backgroundImage}" x="${-minX}" y="${-minY}" width="500" height="500" clip-path="url(#clipPath)" />
-        </svg>
-      `.trim();
+        if (this.isPointOnLine(x, y, p1, p2)) {
+          this.activePoint = i;
+          return i;
+        }
+      }
+      return -1;
+    },
+    isPointOnLine(x, y, p1, p2) {
+      const distance = this.calculateDistanceFromLine(x, y, p1, p2);
+      return distance < 5;
+    },
+    calculateDistanceFromLine(x, y, p1, p2) {
+      const num = Math.abs((p2.y - p1.y) * x - (p2.x - p1.x) * y + p2.x * p1.y - p2.y * p1.x);
+      const denom = Math.sqrt((p2.y - p1.y) ** 2 + (p2.x - p1.x) ** 2);
+      return num / denom;
+    },
+    insertPointOnLine(lineIndex, x, y) {
+      const p1 = this.points[lineIndex];
+      const p2 = this.points[lineIndex + 1];
+
+      const t = this.getPointOnLineParameter(p1, p2, x, y);
+      const newPoint = this.getPointOnLine(p1, p2, t);
+      this.points.splice(lineIndex + 1, 0, newPoint);
+      this.activePoint = lineIndex + 1;
+    },
+    getPointOnLineParameter(p1, p2, x, y) {
+      const dx = p2.x - p1.x;
+      const dy = p2.y - p1.y;
+      const t = ((x - p1.x) * dx + (y - p1.y) * dy) / (dx * dx + dy * dy);
+      return t;
+    },
+    getPointOnLine(p1, p2, t) {
+      const x = p1.x + t * (p2.x - p1.x);
+      const y = p1.y + t * (p2.y - p1.y);
+      return { id: Date.now(), x, y, control1: null, control2: null };
     },
   },
-  mounted() {
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.src = this.backgroundImage;
+  computed: {
+    svgPath() {
+      let path = `M${this.points[0]?.x} ${this.points[0]?.y}`;
 
-    img.onload = () => {
-      this.loadedImage = img;
-      if (this.isEditing) {
-        this.drawCanvas();
+      for (let i = 1; i < this.points.length; i++) {
+        const point = this.points[i];
+        if (point.control1 && point.control2) {
+          path += ` C${point.control1.x} ${point.control1.y}, ${point.control2.x} ${point.control2.y}, ${point.x} ${point.y}`;
+        } else {
+          path += ` L${point.x} ${point.y}`;
+        }
       }
-    };
+      path += " Z";
+      return path;
+    },
   },
-  watch: {
-    isEditing(newValue) {
-      if (newValue && this.loadedImage) {
-        this.drawCanvas();
-      }
-    }
-  }
 };
 </script>
 

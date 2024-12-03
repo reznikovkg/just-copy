@@ -2,12 +2,15 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
+  width: max-content;
 
   &__header {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
+    align-items: center;
   }
 
   &__button {
@@ -58,5 +61,15 @@
     font-family: monospace;
     border: 1px solid #ccc;
     border-radius: 5px;
+  }
+
+  &__svg {
+    image {
+      pointer-events: none;
+    }
+
+    circle {
+      cursor: pointer;
+    }
   }
 }
