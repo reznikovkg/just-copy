@@ -45,7 +45,7 @@
             v-if="isEditing"
             :d="svgPath"
             fill="none"
-            stroke="rgba(0, 255, 0, 0.5)"
+            stroke="black"
             stroke-width="2"
           />
           <circle
@@ -54,50 +54,51 @@
             :key="`point-${point.id}`"
             :cx="point.x"
             :cy="point.y"
-            r="5"
-            :fill="index === activePoint ? 'orange' : 'red'"
+             fill="#fff0"
+            r="8"
+            :stroke="index === activePoint ? 'orange' : 'red'"
             @mousedown.stop="startDraggingPoint(index)"
           />
           <line
-            v-if="isEditing && point.control1"
+            v-if="isEditing && point.control1 && lineType !== 'line'"
             v-for="(point, index) in points"
-            :key="`control1-${point.id}`"
+            :key="`control1-line-${point.id}`"
             :x1="point.x"
             :y1="point.y"
             :x2="point.control1.x"
             :y2="point.control1.y"
-            stroke="blue"
+            stroke="#f703034f"
           />
           <line
-            v-if="isEditing && point.control2"
+            v-if="isEditing && point.control2 && lineType !== 'line'"
             v-for="(point, index) in points"
-            :key="`control2-${point.id}`"
+            :key="`control2-line-${point.id}`"
             :x1="point.x"
             :y1="point.y"
             :x2="point.control2.x"
             :y2="point.control2.y"
-            stroke="blue"
+            stroke="#f703034f"
           />
           <circle
-            v-if="isEditing && point.control1"
+            v-if="isEditing && point.control1 && lineType !== 'line'"
             v-for="(point, index) in points"
             :key="`control-point1-${point.id}`"
             :cx="point.control1.x"
             :cy="point.control1.y"
-            r="4"
-            fill="blue"
+            r="6"
+            fill="#f7030380"
             :stroke="index === activePoint ? 'black' : 'none'"
             stroke-width="1"
             @mousedown.stop="draggingControlPoint = [index, 'control1']"
           />
           <circle
-            v-if="isEditing && point.control2"
+            v-if="isEditing && point.control2 && lineType !== 'line'"
             v-for="(point, index) in points"
             :key="`control-point2-${point.id}`"
             :cx="point.control2.x"
             :cy="point.control2.y"
-            r="4"
-            fill="blue"
+            r="6"
+            fill="#f7030380"
             :stroke="index === activePoint ? 'black' : 'none'"
             stroke-width="1"
             @mousedown.stop="draggingControlPoint = [index, 'control2']"
@@ -133,7 +134,6 @@ export default {
   methods: {
     toggleEditMode() {
       this.isEditing = !this.isEditing;
-
       if (!this.isEditing) {
         this.svgContent = `
           <svg xmlns="http://www.w3.org/2000/svg" width="${this.svgWidth}" height="${this.svgHeight}">
@@ -229,29 +229,33 @@ export default {
         point.x = offsetX;
         point.y = offsetY;
 
-        if (this.lineType === "line" && point.control1 && point.control2) {
-
+        if (this.lineType === "line-curve") {
           const prevPoint = this.points[this.draggingPointIndex - 1];
-          const angle = Math.atan2(point.y - prevPoint.y, point.x - prevPoint.x);
-          const controlLength = 50;
+          const nextPoint = this.points[this.draggingPointIndex + 1];
 
-          point.control1.x = prevPoint.x + controlLength * Math.cos(angle);
-          point.control1.y = prevPoint.y + controlLength * Math.sin(angle);
+          if (prevPoint && point.control1) {
+            const angle = Math.atan2(point.y - prevPoint.y, point.x - prevPoint.x);
+            const length = Math.sqrt(
+              Math.pow(point.x - point.control1.x, 2) +
+              Math.pow(point.y - point.control1.y, 2)
+            );
+            prevPoint.control2 = {
+              x: point.x - length * Math.cos(angle),
+              y: point.y - length * Math.sin(angle),
+            };
+          }
 
-          point.control2.x = point.x + controlLength * Math.cos(angle);
-          point.control2.y = point.y + controlLength * Math.sin(angle);
-        } else if (this.lineType === "line-curve" && point.control1 && point.control2) {
-
-          const prevPoint = this.points[this.draggingPointIndex - 1];
-          const angle = Math.atan2(point.y - prevPoint.y, point.x - prevPoint.x);
-
-          const controlLength = 50;
-
-          point.control1.x = prevPoint.x + controlLength * Math.cos(angle + Math.PI);
-          point.control1.y = prevPoint.y + controlLength * Math.sin(angle + Math.PI);
-
-          point.control2.x = point.x + controlLength * Math.cos(angle);
-          point.control2.y = point.y + controlLength * Math.sin(angle);
+          if (nextPoint && point.control2) {
+            const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x);
+            const length = Math.sqrt(
+              Math.pow(point.control2.x - point.x, 2) +
+              Math.pow(point.control2.y - point.y, 2)
+            );
+            nextPoint.control1 = {
+              x: point.x + length * Math.cos(angle),
+              y: point.y + length * Math.sin(angle),
+            };
+          }
         }
       } else if (this.draggingControlPoint) {
         const [pointIndex, controlName] = this.draggingControlPoint;
@@ -281,6 +285,37 @@ export default {
               x: point.control2.x,
               y: point.control2.y,
             };
+          }
+        }
+      }
+    },
+    syncControlPoints() {
+      for (let i = 0; i < this.points.length; i++) {
+        const point = this.points[i];
+        
+        if (this.lineType === "line-curve") {
+          if (point.control1 && point.control2) {
+            if (i > 0) {
+              const prevPoint = this.points[i - 1];
+              const angle = Math.atan2(point.y - prevPoint.y, point.x - prevPoint.x);
+              const length = Math.sqrt(Math.pow(point.x - point.control1.x, 2) +
+                                      Math.pow(point.y - point.control1.y, 2));
+              prevPoint.control2 = {
+                x: point.x - length * Math.cos(angle),
+                y: point.y - length * Math.sin(angle),
+              };
+            }
+
+            if (i < this.points.length - 1) {
+              const nextPoint = this.points[i + 1];
+              const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x);
+              const length = Math.sqrt(Math.pow(point.control2.x - point.x, 2) +
+                                      Math.pow(point.control2.y - point.y, 2));
+              nextPoint.control1 = {
+                x: point.x + length * Math.cos(angle),
+                y: point.y + length * Math.sin(angle),
+              };
+            }
           }
         }
       }
