@@ -51,6 +51,12 @@
     <p><router-link :to="{ name: 'accordionStaysPage' }">
       accordionStaysPage
     </router-link></p>
+    <p><router-link :to="{ name: 'customDate' }">
+      customDate
+    </router-link></p>
+    <p><router-link :to="{ name: 'timeTracker' }">
+      timeTracker
+    </router-link></p>
   </div>
 </template>
 <script>
