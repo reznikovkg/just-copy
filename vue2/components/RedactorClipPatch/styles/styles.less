@@ -1,0 +1,75 @@
+.clip-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: max-content;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+  }
+
+  &__button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+  }
+
+  &__button--reset {
+    background: #dc3545;
+  }
+
+  &__content {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  &__canvas-wrapper {
+    position: relative;
+    width: 500px;
+    height: 500px;
+  }
+
+  &__canvas {
+    display: block;
+  }
+
+  &__result {
+    text-align: center;
+  }
+
+  &__svg-output {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  &__code {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    padding: 10px;
+    font-family: monospace;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  &__svg {
+    image {
+      pointer-events: none;
+    }
+
+    circle {
+      cursor: pointer;
+    }
+  }
+}
