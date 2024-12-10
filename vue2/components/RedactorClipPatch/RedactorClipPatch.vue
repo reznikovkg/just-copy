@@ -13,7 +13,7 @@
           <input type="radio" value="curve" v-model="lineType" /> Кривые линии
         </label>
         <label>
-          <input type="radio" value="line-curve" v-model="lineType" /> Прямая-кривая
+          <input type="radio" value="lune-curve" v-model="lineType" /> Прямая кривая линия
         </label>
       </div>
     </header>
@@ -45,62 +45,57 @@
             v-if="isEditing"
             :d="svgPath"
             fill="none"
-            stroke="black"
+            stroke="rgba(0, 255, 0, 0.5)"
             stroke-width="2"
           />
           <circle
             v-if="isEditing"
             v-for="(point, index) in points"
-            :key="`point-${point.id}`"
+            :key="'point-' + point.id"
             :cx="point.x"
             :cy="point.y"
-             fill="#fff0"
-            r="8"
-            :stroke="index === activePoint ? 'orange' : 'red'"
+            r="5"
+            :fill="index === activePoint ? 'orange' : 'red'"
             @mousedown.stop="startDraggingPoint(index)"
           />
           <line
-            v-if="isEditing && point.control1 && lineType !== 'line'"
+            v-if="isEditing && point.control1 && point.lineType !== 'line'"
             v-for="(point, index) in points"
-            :key="`control1-line-${point.id}`"
+            :key="'control-line1-' + point.id"
             :x1="point.x"
             :y1="point.y"
             :x2="point.control1.x"
             :y2="point.control1.y"
-            stroke="#f703034f"
+            stroke="blue"
           />
           <line
-            v-if="isEditing && point.control2 && lineType !== 'line'"
+            v-if="isEditing && point.control2 && point.lineType !== 'line'"
             v-for="(point, index) in points"
-            :key="`control2-line-${point.id}`"
+            :key="'control-line2-' + point.id"
             :x1="point.x"
             :y1="point.y"
             :x2="point.control2.x"
             :y2="point.control2.y"
-            stroke="#f703034f"
+            stroke="blue"
           />
           <circle
-            v-if="isEditing && point.control1 && lineType !== 'line'"
+            v-if="isEditing && point.control1 && point.lineType !== 'line'"
             v-for="(point, index) in points"
-            :key="`control-point1-${point.id}`"
+            :key="'control-point1-' + point.id"
             :cx="point.control1.x"
             :cy="point.control1.y"
-            r="6"
-            fill="#f7030380"
-            :stroke="index === activePoint ? 'black' : 'none'"
-            stroke-width="1"
+            r="4"
+            fill="blue"
             @mousedown.stop="draggingControlPoint = [index, 'control1']"
           />
           <circle
-            v-if="isEditing && point.control2 && lineType !== 'line'"
+            v-if="isEditing && point.control2 && point.lineType !== 'line'"
             v-for="(point, index) in points"
-            :key="`control-point2-${point.id}`"
+            :key="'control-point2-' + point.id"
             :cx="point.control2.x"
             :cy="point.control2.y"
-            r="6"
-            fill="#f7030380"
-            :stroke="index === activePoint ? 'black' : 'none'"
-            stroke-width="1"
+            r="4"
+            fill="blue"
             @mousedown.stop="draggingControlPoint = [index, 'control2']"
           />
         </svg>
@@ -117,7 +112,7 @@
 
 <script>
 export default {
-  name: "ClipEditor",
+  name: "RedactorClipPatch",
   data() {
     return {
       isEditing: true,
@@ -125,7 +120,7 @@ export default {
       activePoint: null,
       draggingPointIndex: null,
       draggingControlPoint: null,
-      lineType: "line", // 'line', 'curve', 'line-curve'
+      lineType: "line",
       backgroundImage: "https://i.pinimg.com/736x/c8/cc/24/c8cc24bba37a25c009647b8875aae0e3.jpg",
       svgWidth: 500,
       svgHeight: 500,
@@ -156,66 +151,25 @@ export default {
     onMouseDown(event) {
       const offsetX = event.offsetX;
       const offsetY = event.offsetY;
+      const clickedPointIndex = this.points.findIndex(point => {
+        const dx = point.x - offsetX;
+        const dy = point.y - offsetY;
+        return Math.sqrt(dx * dx + dy * dy) <= 5;
+      });
+
+      if (clickedPointIndex !== -1) {
+        this.draggingPointIndex = clickedPointIndex;
+        return;
+      }
 
       const newPoint = {
         id: Date.now(),
         x: offsetX,
         y: offsetY,
-        control1: null,
-        control2: null,
+        lineType: this.lineType,
+        control1: this.lineType === "curve" || this.lineType === "lune-curve" ? { x: offsetX - 20, y: offsetY - 20 } : null,
+        control2: this.lineType === "curve" || this.lineType === "lune-curve" ? { x: offsetX + 20, y: offsetY + 20 } : null,
       };
-
-      if (this.lineType === "line") {
-
-        if (this.points.length > 0) {
-          const prevPoint = this.points[this.points.length - 1];
-          const angle = Math.atan2(newPoint.y - prevPoint.y, newPoint.x - prevPoint.x);
-          const controlLength = 50;
-
-          newPoint.control1 = {
-            x: prevPoint.x + controlLength * Math.cos(angle),
-            y: prevPoint.y + controlLength * Math.sin(angle),
-          };
-          newPoint.control2 = {
-            x: newPoint.x + controlLength * Math.cos(angle),
-            y: newPoint.y + controlLength * Math.sin(angle),
-          };
-        }
-      } else if (this.lineType === "curve") {
-
-        if (this.points.length > 0) {
-          const prevPoint = this.points[this.points.length - 1];
-          const angle = Math.atan2(newPoint.y - prevPoint.y, newPoint.x - prevPoint.x);
-
-          const controlLength = 50;
-
-          newPoint.control1 = {
-            x: prevPoint.x + controlLength * Math.cos(angle + Math.PI / 2),
-            y: prevPoint.y + controlLength * Math.sin(angle + Math.PI / 2),
-          };
-          newPoint.control2 = {
-            x: newPoint.x + controlLength * Math.cos(angle - Math.PI / 2),
-            y: newPoint.y + controlLength * Math.sin(angle - Math.PI / 2),
-          };
-        }
-      } else if (this.lineType === "line-curve") {
-
-        if (this.points.length > 0) {
-          const prevPoint = this.points[this.points.length - 1];
-          const angle = Math.atan2(newPoint.y - prevPoint.y, newPoint.x - prevPoint.x);
-
-          const controlLength = 50;
-
-          newPoint.control1 = {
-            x: prevPoint.x + controlLength * Math.cos(angle + Math.PI),
-            y: prevPoint.y + controlLength * Math.sin(angle + Math.PI),
-          };
-          newPoint.control2 = {
-            x: newPoint.x + controlLength * Math.cos(angle),
-            y: newPoint.y + controlLength * Math.sin(angle),
-          };
-        }
-      }
 
       this.points.push(newPoint);
       this.activePoint = this.points.length - 1;
@@ -225,129 +179,110 @@ export default {
       const offsetY = event.offsetY;
 
       if (this.draggingPointIndex !== null) {
-        const point = this.points[this.draggingPointIndex];
-        point.x = offsetX;
-        point.y = offsetY;
+        const draggedPoint = this.points[this.draggingPointIndex];
+        this.$set(draggedPoint, "x", offsetX);
+        this.$set(draggedPoint, "y", offsetY);
 
-        if (this.lineType === "line-curve") {
-          const prevPoint = this.points[this.draggingPointIndex - 1];
-          const nextPoint = this.points[this.draggingPointIndex + 1];
-
-          if (prevPoint && point.control1) {
-            const angle = Math.atan2(point.y - prevPoint.y, point.x - prevPoint.x);
-            const length = Math.sqrt(
-              Math.pow(point.x - point.control1.x, 2) +
-              Math.pow(point.y - point.control1.y, 2)
-            );
-            prevPoint.control2 = {
-              x: point.x - length * Math.cos(angle),
-              y: point.y - length * Math.sin(angle),
-            };
-          }
-
-          if (nextPoint && point.control2) {
-            const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x);
-            const length = Math.sqrt(
-              Math.pow(point.control2.x - point.x, 2) +
-              Math.pow(point.control2.y - point.y, 2)
-            );
-            nextPoint.control1 = {
-              x: point.x + length * Math.cos(angle),
-              y: point.y + length * Math.sin(angle),
-            };
-          }
+        if (draggedPoint.control1) {
+          this.$set(draggedPoint.control1, "x", offsetX - 20);
+          this.$set(draggedPoint.control1, "y", offsetY - 20);
+        }
+        if (draggedPoint.control2) {
+          this.$set(draggedPoint.control2, "x", offsetX + 20);
+          this.$set(draggedPoint.control2, "y", offsetY + 20);
         }
       } else if (this.draggingControlPoint) {
-        const [pointIndex, controlName] = this.draggingControlPoint;
-        const point = this.points[pointIndex];
+        const [index, control] = this.draggingControlPoint;
+        const mainPoint = this.points[index];
+        const dx = offsetX - mainPoint.x;
+        const dy = offsetY - mainPoint.y;
 
-        if (controlName === "control1") {
-          point.control1.x = offsetX;
-          point.control1.y = offsetY;
-        } else if (controlName === "control2") {
-          point.control2.x = offsetX;
-          point.control2.y = offsetY;
-        }
+        this.$set(mainPoint[control], "x", offsetX);
+        this.$set(mainPoint[control], "y", offsetY);
 
-        if (this.lineType === "line-curve") {
-          const prevPoint = this.points[pointIndex - 1];
-          const nextPoint = this.points[pointIndex + 1];
+        if (mainPoint.lineType === "lune-curve") {
+          const oppositeControl = control === "control1" ? "control2" : "control1";
+          const oppositeControlPoint = mainPoint[oppositeControl];
 
-          if (controlName === "control1" && prevPoint) {
-            prevPoint.control2 = {
-              x: point.control1.x,
-              y: point.control1.y,
-            };
-          }
+          const length = Math.sqrt(
+            (oppositeControlPoint.x - mainPoint.x) ** 2 +
+            (oppositeControlPoint.y - mainPoint.y) ** 2
+          );
 
-          if (controlName === "control2" && nextPoint) {
-            nextPoint.control1 = {
-              x: point.control2.x,
-              y: point.control2.y,
-            };
-          }
+          const angle = Math.atan2(dy, dx) + Math.PI;
+          const newX = mainPoint.x + length * Math.cos(angle);
+          const newY = mainPoint.y + length * Math.sin(angle);
+
+          this.$set(mainPoint[oppositeControl], "x", newX);
+          this.$set(mainPoint[oppositeControl], "y", newY);
         }
       }
-    },
-    syncControlPoints() {
-      for (let i = 0; i < this.points.length; i++) {
-        const point = this.points[i];
-        
-        if (this.lineType === "line-curve") {
-          if (point.control1 && point.control2) {
-            if (i > 0) {
-              const prevPoint = this.points[i - 1];
-              const angle = Math.atan2(point.y - prevPoint.y, point.x - prevPoint.x);
-              const length = Math.sqrt(Math.pow(point.x - point.control1.x, 2) +
-                                      Math.pow(point.y - point.control1.y, 2));
-              prevPoint.control2 = {
-                x: point.x - length * Math.cos(angle),
-                y: point.y - length * Math.sin(angle),
-              };
-            }
-
-            if (i < this.points.length - 1) {
-              const nextPoint = this.points[i + 1];
-              const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x);
-              const length = Math.sqrt(Math.pow(point.control2.x - point.x, 2) +
-                                      Math.pow(point.control2.y - point.y, 2));
-              nextPoint.control1 = {
-                x: point.x + length * Math.cos(angle),
-                y: point.y + length * Math.sin(angle),
-              };
-            }
-          }
-        }
-      }
-    },
-    startDraggingPoint(index) {
-      this.draggingPointIndex = index;
-    },
-    startDraggingControlPoint([index, controlName]) {
-      this.draggingControlPoint = [index, controlName];
     },
     stopDragging() {
       this.draggingPointIndex = null;
       this.draggingControlPoint = null;
     },
+    startDraggingPoint(index) {
+      this.draggingPointIndex = index;
+    },
   },
   computed: {
     svgPath() {
-      let path = `M${this.points[0]?.x} ${this.points[0]?.y}`;
+      if (this.points.length === 0) return "";
+
+      let path = `M${this.points[0].x} ${this.points[0].y}`;
+
       for (let i = 1; i < this.points.length; i++) {
         const point = this.points[i];
-        if (point.control1 && point.control2) {
+        const prevPoint = this.points[i - 1];
+
+        if (point.lineType === "lune-curve" && prevPoint.control2 && point.control1) {
+          path += ` C${prevPoint.control2.x} ${prevPoint.control2.y}, ${point.control1.x} ${point.control1.y}, ${point.x} ${point.y}`;
+        } else if (point.lineType === "curve" && point.control1 && point.control2) {
           path += ` C${point.control1.x} ${point.control1.y}, ${point.control2.x} ${point.control2.y}, ${point.x} ${point.y}`;
         } else {
           path += ` L${point.x} ${point.y}`;
         }
       }
-      return path + " Z";
+
+      const firstPoint = this.points[0];
+      const lastPoint = this.points[this.points.length - 1];
+
+      if (lastPoint.lineType === "lune-curve" && lastPoint.control2 && firstPoint.control1) {
+        path += ` C${lastPoint.control2.x} ${lastPoint.control2.y}, ${firstPoint.control1.x} ${firstPoint.control1.y}, ${firstPoint.x} ${firstPoint.y}`;
+      } else if (lastPoint.lineType === "curve" && lastPoint.control2 && firstPoint.control1) {
+        path += ` C${lastPoint.control2.x} ${lastPoint.control2.y}, ${firstPoint.control1.x} ${firstPoint.control1.y}, ${firstPoint.x} ${firstPoint.y}`;
+      } else {
+        path += ` L${firstPoint.x} ${firstPoint.y}`;
+      }
+
+      return path;
+    },
+  },
+  watch: {
+    lineType(newType) {
+      this.points = this.points.map(point => {
+        if (newType === "line") {
+          return { ...point, control1: null, control2: null };
+        } else if (newType === "curve") {
+          return {
+            ...point,
+            control1: point.control1 || { x: point.x - 20, y: point.y - 20 },
+            control2: point.control2 || { x: point.x + 20, y: point.y + 20 },
+          };
+        } else if (newType === "lune-curve") {
+          return {
+            ...point,
+            control1: point.control1 || { x: point.x - 20, y: point.y - 20 },
+            control2: point.control2 || { x: point.x + 20, y: point.y + 20 },
+          };
+        }
+        return point;
+      });
     },
   },
 };
 </script>
-
 
 <style scoped lang="less">
 @import "styles/styles.less";
