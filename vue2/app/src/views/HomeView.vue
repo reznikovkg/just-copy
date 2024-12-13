@@ -51,6 +51,9 @@
     <p><router-link :to="{ name: 'accordionStaysPage' }">
       accordionStaysPage
     </router-link></p>
+    <p><router-link :to="{ name: 'comparisonExample' }">
+      Comparison Example
+    </router-link></p>
   </div>
 </template>
 <script>

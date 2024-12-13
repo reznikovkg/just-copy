@@ -1,0 +1,76 @@
+.comparison {
+  display: flex;
+  gap: 20px; /* Разрыв между блоками */
+
+  &__block {
+    width: 510%;
+  }
+
+  &__title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+
+    &--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__key {
+    width: 40%; /* Фиксированная ширина для ключей */
+    font-weight: bold;
+  }
+
+  &__value {
+    width: 60%; /* Фиксированная ширина для значений */
+  }
+
+  &__controls {
+    margin-top: 20px; /* Отступ сверху для кнопки */
+    text-align: center;
+  }
+
+  &__button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  &__field {
+    &--changed {
+      background-color: yellow;
+    }
+
+    &--added {
+      background-color: green;
+    }
+
+    &--deleted {
+      background-color: red;
+    }
+
+    &--unchanged {
+      background-color: lightgray;
+      color: gray;
+    }
+
+    &--exception {
+      color: darkgray;
+      text-decoration: line-through;
+    }
+  }
+}
