@@ -51,6 +51,16 @@
     <p><router-link :to="{ name: 'accordionStaysPage' }">
       accordionStaysPage
     </router-link></p>
+    <p>
+      <router-link :to="{ name: 'objectDiff' }">
+        ObjectDiff
+      </router-link>
+    </p>
+    <p>
+      <router-link :to="{ name: 'chartDrawer' }">
+        ChartDrawer
+      </router-link>
+    </p>
   </div>
 </template>
 <script>
