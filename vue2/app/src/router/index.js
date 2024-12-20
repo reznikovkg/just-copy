@@ -100,6 +100,11 @@ const routes = [
     name: 'Skeleton',
     component: () => import(/* webpackChunkName: "mainInput" */ '../views/SkeletonPage.vue')
  },
+  {
+    path: '/Masks',
+    name: 'Masks',
+    component: () => import(/* webpackChunkName: "mainInput" */ '../views/MasksPage.vue')
+  },
 ]
 
 const router = new VueRouter({
