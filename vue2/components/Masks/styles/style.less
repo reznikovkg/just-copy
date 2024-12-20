@@ -1,0 +1,39 @@
+.mask_entity {
+  width: 100%;
+  border: #1a1a1a 1px solid;
+
+  &__field {
+    margin: 1%;
+    padding: 1%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #aaaaaa;
+
+    &__error {
+      background-color: red;
+    }
+  }
+
+  &__input {
+    width: 50%;
+  }
+
+  &__validate_button {
+    margin: 1%;
+    padding: 1%;
+    width: min-content;
+    background-color: blanchedalmond;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:hover {
+      background-color: #cfc5f0;
+    }
+
+  }
+}

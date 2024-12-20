@@ -1,0 +1,34 @@
+.Skeleton {
+  background-image: linear-gradient(90deg, #e2e8f0 40%, #f1f7ff 50%, #e2e8f0 60%);
+  background-size: 300%;
+  animation: bganimation 1.5s linear infinite;
+  height: 1rem;
+  width: 100%;
+  border-radius: 6px;
+  position: relative;
+}
+
+@keyframes bganimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+
+}
+
+each(range(1, 10), {
+  .mb-@{index} {
+    margin-bottom: (@index / 4rem);
+  }
+  .mt-@{index} {
+    margin-top: (@index / 4rem);
+  }
+  .ml-@{index} {
+    margin-left: (@index / 4rem);
+  }
+  .mr-@{index} {
+    margin-right: (@index / 4rem);
+  }
+});
