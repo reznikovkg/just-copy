@@ -94,6 +94,11 @@ const routes = [
     path: '/accordionStaysPage',
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
+ },
+ {
+    path: '/perelivator',
+    name: 'perelivator',
+    component: () => import(/* webpackChunkName: "perelivator" */ '../views/PerelivatorPage.vue')
   },
 ]
 
